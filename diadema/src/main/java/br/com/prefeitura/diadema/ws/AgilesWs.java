@@ -65,7 +65,7 @@ public class AgilesWs {
  	    try{ 	    	
  	    	AgilesUser agilesUser = port.login(usuario, senha, "172.16.4.39"); 	    	
  	    	return agilesUser;
- 	   }catch(com.sun.xml.internal.ws.fault.ServerSOAPFaultException ex){
+ 	   }catch(Exception ex){
  		   ex.printStackTrace();
  		 return null;
  	   }
