@@ -2,10 +2,13 @@ package br.com.prefeitura.diadema.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -13,8 +16,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "AGL_USUARIO")
-@Getter
-@NoArgsConstructor // JPA Only
 public class Usuario {
 	
 	 public Usuario()
@@ -23,10 +24,13 @@ public class Usuario {
 	    }
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_agl_usuario")
+	@SequenceGenerator(name="seq_agl_usuario", sequenceName="seq_agl_usuario")
     private Long id;
     private String nome;
     private String email;
-    private String login;
+    private String login;    
+    private String pk;
     
     @ManyToMany
     @JoinTable(
@@ -101,6 +105,15 @@ public class Usuario {
 	public void setLogin(String login) {
 		this.login = login;
 	}
+
+	public String getPk() {
+		return pk;
+	}
+
+	public void setPk(String pk) {
+		this.pk = pk;
+	}
+	
 	
 	
 	

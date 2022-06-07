@@ -14,7 +14,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		httpSec.csrf().disable()
 		.authorizeHttpRequests()
-		.antMatchers(HttpMethod.POST, "/login").permitAll()
+		.antMatchers(HttpMethod.POST, "/api/prefeitura/login").permitAll()
+		.antMatchers(HttpMethod.POST, "*").permitAll()
+		.antMatchers(HttpMethod.GET, "*").permitAll()
+		.antMatchers(HttpMethod.PUT, "*").permitAll()
 		.anyRequest().authenticated().and().cors();
 		
 		//criar filtro
