@@ -37,15 +37,15 @@ public class AcessController {
     }
 	
 	@PostMapping("/login")
-	public ResponseEntity<UsuarioDto>  login(@RequestBody UsuarioDto user){
+	public ResponseEntity<Object>  login(@RequestBody UsuarioDto user){
 
 		AgilesUser usuarioAgiles = agilesWs.loginAgiles(user.getLogin(), user.getSenha());
 		if(usuarioAgiles == null){
-			return new ResponseEntity<UsuarioDto>(new UsuarioDto(), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Object>("Usuario ou senha invalido", HttpStatus.FORBIDDEN);
 		}
 		UsuarioDto usuario = usuarioService.getByUserToken(usuarioAgiles);
 		
-		return new ResponseEntity<UsuarioDto>(usuario, HttpStatus.OK);
+		return new ResponseEntity<Object>(usuario, HttpStatus.OK);
         //return new ResponseEntity<>(UsuarioRespostaDto.transformaEmDTO(usuario), HttpStatus.CREATED);
 	}
 }

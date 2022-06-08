@@ -14,11 +14,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		httpSec.csrf().disable()
 		.authorizeHttpRequests()
-		.antMatchers(HttpMethod.POST, "/api/prefeitura/login").permitAll()
-		.antMatchers(HttpMethod.POST, "/custom-exception-example/validation").permitAll()
-		.antMatchers(HttpMethod.GET, "/custom-exception-example/business").permitAll()
-		.antMatchers(HttpMethod.PUT, "*").permitAll()
-		.anyRequest().authenticated().and().cors();
+		.antMatchers(HttpMethod.POST, "/api/prefeitura/login").permitAll()		
+		.anyRequest().authenticated().and().cors()	
+        .and()
+        .csrf().disable();
+        //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)// quando autenticar não é para criar sessão
+
+		
 		
 		//criar filtro
 		httpSec.addFilterBefore(new SecurityFilter(), UsernamePasswordAuthenticationFilter.class);
