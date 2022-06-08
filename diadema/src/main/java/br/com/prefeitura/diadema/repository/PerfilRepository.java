@@ -6,5 +6,8 @@ import br.com.prefeitura.diadema.model.Perfil;
 
 @Repository
 public abstract interface PerfilRepository extends JpaRepository<Perfil, Long>{
+
+	public Perfil findByNome(String nome);
+	
 	
 }

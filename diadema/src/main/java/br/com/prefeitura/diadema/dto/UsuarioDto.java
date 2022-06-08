@@ -1,13 +1,25 @@
 package br.com.prefeitura.diadema.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import lombok.Getter;
 import lombok.Setter;
 import br.com.prefeitura.diadema.security.Token;
 
+
+
 @Getter
 @Setter
 public class UsuarioDto {
+	
+	//@NotB
+	//@NotBlank(message = "{required.validation}")
+	//@Not
+	@NotBlank(message = "{required.validation}")
 	private Long id;
+	
+	 @Size(min = 4, max = 30, message = "{size.validation}")
 	private String nome;
 	private String senha;
 	private String login;
