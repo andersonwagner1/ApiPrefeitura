@@ -1,4 +1,6 @@
 package br.com.prefeitura.diadema.model;
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,8 +10,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "AGL_PERFIL")
-public class Perfil {
+public class Perfil implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_agl_perfil")
 	@SequenceGenerator(name="seq_agl_perfil", sequenceName="seq_agl_perfil")

@@ -1,14 +1,11 @@
 package br.com.prefeitura.diadema.dto;
 
-import lombok.Getter;
-import lombok.Setter;
 import br.com.prefeitura.diadema.security.Token;
 
-@Getter
-@Setter
 public class UsuarioDto {
 	private Long id;
 	private String nome;
+	
 	private String senha;
 	private String login;
 	private String pk;
