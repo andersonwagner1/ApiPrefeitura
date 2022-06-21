@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,7 +35,7 @@ import br.com.prefeitura.diadema.service.PerfilService;
 @CrossOrigin(origins = "*" , maxAge =3600)
 @RequestMapping("/api/prefeitura/perfil")
 public class PerfilController {
-	
+		
 	private final PerfilService perfilService;
 	
 	
@@ -54,7 +55,8 @@ public class PerfilController {
 		}
 		
 		Perfil perfil = new Perfil();
-		BeanUtils.copyProperties(perfilDto,perfil);
+		
+		BeanUtils.copyProperties(perfil, perfilDto);
 		//adicionar algum outro valor necessasrio
 		//na tabela
 		 perfil = perfilService.save(perfil);	
@@ -63,9 +65,9 @@ public class PerfilController {
 	
 	
 
-	@PutMapping(value = "/update")
-	public ResponseEntity<Object> update(@PathParam(value="id") Long id, @RequestBody PerfilDto perfilDto){
-		Optional<Perfil> perfilOptinal = perfilService.getPerfilById(id);
+	@PostMapping(value = "/update")
+	public ResponseEntity<Object> update(@RequestBody PerfilDto perfilDto){
+		Optional<Perfil> perfilOptinal = perfilService.getPerfilById(perfilDto.getId());
 		
 		if(!perfilOptinal.isPresent()){
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Registro não encotnrado");
@@ -88,12 +90,10 @@ public class PerfilController {
 	
 	
 	@GetMapping(value ="/{id}")
-	public ResponseEntity<Object> getById(@PathParam(value="id") Long id){
+	public ResponseEntity<Object> getById(@PathVariable(value="id") Long id){
 		Optional<Perfil> perfilMModelOpetinal = perfilService.getPerfilById(id);
 		if(!perfilMModelOpetinal.isPresent()){
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Registro não encontrado");
-			
-			
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(perfilMModelOpetinal.get());
 	}

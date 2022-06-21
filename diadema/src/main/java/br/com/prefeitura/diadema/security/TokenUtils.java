@@ -33,7 +33,8 @@ public class TokenUtils {
 				.signWith(key, SignatureAlgorithm.HS256)
 				.compact();
 		
-		return PREFIX + token;
+		//return PREFIX + token; // REMOVIDO POR O SISTEMA JA TEM O BERARER
+		return token;
 	}
 	
 	private static boolean isExpirationValid(Date expiration){
