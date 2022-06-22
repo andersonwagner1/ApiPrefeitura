@@ -1,5 +1,6 @@
 package br.com.prefeitura.diadema.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,10 +45,6 @@ public class PerfilController {
         this.perfilService = perfilService;
     }
 	
-	
-	
-	
-	
 	@PostMapping(value = "/add")
 	public ResponseEntity<Object> add(@RequestBody PerfilDto perfilDto){
 		if(perfilService.existsPerfilByName(perfilDto.getNome())){
@@ -70,10 +67,12 @@ public class PerfilController {
 		Optional<Perfil> perfilOptinal = perfilService.getPerfilById(perfilDto.getId());
 		
 		if(!perfilOptinal.isPresent()){
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Registro não encotnrado");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Registro não encontrado");
 		}
 		Perfil perfil = perfilOptinal.get();
 		perfil.setNome(perfilDto.getNome());
+		perfil.setObservacao(perfilDto.getObservacao());
+		perfil.setSituacao(perfilDto.getSituacao());
 		
 		//adicionar algum outro valor necessasrio
 		//na tabela
@@ -84,8 +83,9 @@ public class PerfilController {
 	
 	@GetMapping(value ="/listAll")
 	public ResponseEntity<List<Perfil>> getAll(){
-		List<Perfil> perfil = perfilService.getAllPerfil();
-		return ResponseEntity.status(HttpStatus.OK).body(perfil);
+		List<Perfil> perfils = perfilService.findByNome("");
+		return ResponseEntity.status(HttpStatus.OK).body(perfils);
+		
 	}
 	
 	

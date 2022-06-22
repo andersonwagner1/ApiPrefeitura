@@ -25,7 +25,7 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_agl_usuario")
-	@SequenceGenerator(name="seq_agl_usuario", sequenceName="seq_agl_usuario")
+	@SequenceGenerator(name="seq_agl_usuario", sequenceName="seq_agl_usuario", allocationSize = 1)
     private Long id;
     private String nome;
     private String email;

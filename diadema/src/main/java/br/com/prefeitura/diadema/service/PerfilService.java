@@ -2,6 +2,7 @@ package br.com.prefeitura.diadema.service;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,10 +28,15 @@ public class PerfilService {
 	public Perfil save(Perfil perfil) {
 		return perfilRepository.save(perfil);
 	}
+	
+	public List<Perfil> findByNome(String nome) {
+		return perfilRepository.findPerfilByName(nome);
+	}
+
 
 	public boolean existsPerfilByName(String nome) {
-		Perfil perfil = perfilRepository.findByNome(nome);
-		return perfil != null;
+		List<Perfil> perfil = perfilRepository.findByNome(nome);
+		return perfil.size() > 0;
 	}
 
 	public List<Perfil> getAllPerfil() {
@@ -48,5 +54,6 @@ public class PerfilService {
 		
 	}
 
+	
 	
 }

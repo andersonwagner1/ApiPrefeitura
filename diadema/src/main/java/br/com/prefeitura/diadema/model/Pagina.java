@@ -12,7 +12,7 @@ public class Pagina {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_agl_pagina")
-	@SequenceGenerator(name="seq_agl_pagina", sequenceName="seq_agl_pagina")
+	@SequenceGenerator(name="seq_agl_pagina", sequenceName="seq_agl_pagina", allocationSize = 1)
     private Long id;
     private String nome;
     
