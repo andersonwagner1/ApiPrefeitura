@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.prefeitura.diadema.dto.UsuarioDto;
+import br.com.prefeitura.diadema.dto.UsuarioInternoDto;
 import br.com.prefeitura.diadema.model.Usuario;
 import br.com.prefeitura.diadema.repository.UsuarioRepository;
 import br.com.prefeitura.diadema.repository.dao.UsuarioDao;
@@ -76,10 +77,9 @@ public class UsuarioService {
 		return user;
 	}
 
-	public UsuarioDto getById(UsuarioDto usuario) {
-		Optional<Usuario> user = usuarioRepository.findById(usuario.getId());		
-		BeanUtils.copyProperties(user,usuario);		
-		return usuario;
+	public UsuarioDto findUserById (Long id) throws SQLException {
+		UsuarioDto user = usuarioDao.findUserInternById(id);		
+		return user;
 	}
 	
 	

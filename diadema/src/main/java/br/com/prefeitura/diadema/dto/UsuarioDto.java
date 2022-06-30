@@ -1,14 +1,16 @@
 package br.com.prefeitura.diadema.dto;
 
+import java.util.List;
+
 import br.com.prefeitura.diadema.security.Token;
 
 public class UsuarioDto {
 	private Long id;
 	private String nome;
 	private String cpf;
-	private String ativado;
+	private String situacao;
 	private String email;
-	private String pk;
+	private String pkUsuarioAgiles;
 	private String certificado;
 	private String prontuario;
 	private String prontuarioRh;
@@ -16,6 +18,9 @@ public class UsuarioDto {
 	private String login;
 	private String situacaoRh;
 	private Integer codigoRh;
+	private List<UnidadeDto> unidades;
+	private List<ProcessoEletronicoDto> processos;
+	
 	private Token token;
 	
 	public Long getId() {
@@ -48,17 +53,21 @@ public class UsuarioDto {
 	public void setToken(Token token) {
 		this.token = token;
 	}
-	public String getPk() {
-		return pk;
+	
+	
+	
+	
+	public String getSituacao() {
+		return situacao;
 	}
-	public void setPk(String pk) {
-		this.pk = pk;
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
 	}
-	public String getAtivado() {
-		return ativado;
+	public String getPkUsuarioAgiles() {
+		return pkUsuarioAgiles;
 	}
-	public void setAtivado(String ativado) {
-		this.ativado = ativado;
+	public void setPkUsuarioAgiles(String pkUsuarioAgiles) {
+		this.pkUsuarioAgiles = pkUsuarioAgiles;
 	}
 	public String getEmail() {
 		return email;
@@ -102,6 +111,20 @@ public class UsuarioDto {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	public List<UnidadeDto> getUnidades() {
+		return unidades;
+	}
+	public void setUnidades(List<UnidadeDto> unidades) {
+		this.unidades = unidades;
+	}
+	public List<ProcessoEletronicoDto> getProcessos() {
+		return processos;
+	}
+	public void setProcessos(List<ProcessoEletronicoDto> processos) {
+		this.processos = processos;
+	}
+	
+	
 	
 	
 	

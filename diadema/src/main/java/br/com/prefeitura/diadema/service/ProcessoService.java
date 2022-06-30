@@ -22,7 +22,11 @@ public class ProcessoService {
 		return processoDao.findProcessByNumberProcess(numberProcess);
 	}
 	
-	public ProcessoEletronicoDto findprocessByIdBaseDocumento(Long idDocBase) throws SQLException{
+	public ProcessoEletronicoDto findProcessByIdBaseDocumento(Long idDocBase) throws SQLException{
 		return processoDao.findProcessByIdDocumentoBase(idDocBase);
+	}
+	
+	public List<ProcessoEletronicoDto> findProcessoByUser(Long idUser) throws SQLException{
+		return processoDao.findProcessByUser(idUser);
 	}
 }

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.prefeitura.diadema.dto.UsuarioDto;
+import br.com.prefeitura.diadema.service.DepartamentService;
+import br.com.prefeitura.diadema.service.ProcessoService;
 import br.com.prefeitura.diadema.service.UsuarioService;
 
 /**
@@ -31,12 +33,15 @@ public class UserController {
 		
 //	}
 	private final UsuarioService usuarioService;
+	private final DepartamentService departamentService;
+	private final ProcessoService processoService;
 	
 	
 	@Autowired
-    public UserController(UsuarioService usuarioService) {
+    public UserController(UsuarioService usuarioService, DepartamentService departamentService, ProcessoService processoService) {
         this.usuarioService = usuarioService;
-       
+        this.processoService = processoService;
+        this.departamentService = departamentService;
     }
 	
 	@PostMapping(value = "/add")
@@ -55,10 +60,16 @@ public class UserController {
 	}
 	
 	
-	@GetMapping(value ="/get")
-	public ResponseEntity<UsuarioDto> getById(@RequestBody UsuarioDto usuario){
-		UsuarioDto user = usuarioService.getById(usuario);
-		return new ResponseEntity<UsuarioDto>(user, HttpStatus.OK);
+	@GetMapping(value ="/detalhe/{id}")
+	public ResponseEntity<Object> findUserById(@PathVariable(value="id") Long id) throws SQLException{
+		UsuarioDto user = usuarioService.findUserById(id);
+		if(user == null){
+			return new ResponseEntity<Object>("Id do usuario não encontrado", HttpStatus.NOT_FOUND);
+		}
+		user.setProcessos(processoService.findProcessoByUser(user.getId()));
+		user.setUnidades(departamentService.findDepartamentByUser(user.getId()));
+		
+		return new ResponseEntity<Object>(user, HttpStatus.OK);
 	}
 	
 	@PutMapping(value = "/update")
@@ -67,4 +78,20 @@ public class UserController {
 		return new ResponseEntity<UsuarioDto>(user, HttpStatus.OK);
 	}
 	
+	@PostMapping(value ="/desativar")
+	public ResponseEntity<Object> desativarUsuario(@RequestBody Long id) throws SQLException{
+		UsuarioDto user = usuarioService.findUserById(id);
+		
+		user.setUnidades(departamentService.findDepartamentByUser(user.getId()));
+		if(user.getUnidades() != null && user.getUnidades().size() > 0) {
+			//return new ResponseEntity<Object>("Usuario tem unidade cadastrado, por favor excluia as unidade primeiro", HttpStatus.CONFLICT);
+			throw new SQLException("Usuario tem unidade cadastrado, por favor excluia as unidade primeiro");
+		}
+				
+		user.setProcessos(processoService.findProcessoByUser(user.getId()));
+		if(user.getProcessos() != null && user.getProcessos().size() > 0) {
+			throw new SQLException("Usuario tem processos cadastrado, por favor excluia as unidade primeiro");
+		}
+		return new ResponseEntity<Object>(user, HttpStatus.OK);
+	}
 }

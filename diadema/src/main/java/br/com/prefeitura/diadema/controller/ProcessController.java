@@ -48,7 +48,7 @@ public class ProcessController {
 	@GetMapping(value ="/{idDocBase}")
 	public ResponseEntity<ProcessoEletronicoDto> getProcessByIdDocBase(@PathVariable(value = "idDocBase") Long idDocBase) {
 		try{
-			ProcessoEletronicoDto processDto = processService.findprocessByIdBaseDocumento(idDocBase);
+			ProcessoEletronicoDto processDto = processService.findProcessByIdBaseDocumento(idDocBase);
 			return new ResponseEntity<ProcessoEletronicoDto>(processDto, HttpStatus.OK);
 		}catch(SQLException sq){
 			sq.printStackTrace();
@@ -102,7 +102,7 @@ public class ProcessController {
 			
 			ProcessoEletronicoDto processo;
 			try {
-				processo = processService.findprocessByIdBaseDocumento(agendaDto.getIdDocumentoBase());
+				processo = processService.findProcessByIdBaseDocumento(agendaDto.getIdDocumentoBase());
 				agendaDto.setProcesso(processo);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -126,7 +126,7 @@ public class ProcessController {
 			
 			ProcessoEletronicoDto processo;
 			try {
-				processo = processService.findprocessByIdBaseDocumento(agendaDto.getIdDocumentoBase());
+				processo = processService.findProcessByIdBaseDocumento(agendaDto.getIdDocumentoBase());
 				agendaDto.setProcesso(processo);
 			} catch (SQLException e) {
 				e.printStackTrace();

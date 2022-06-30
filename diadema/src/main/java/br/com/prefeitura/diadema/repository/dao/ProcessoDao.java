@@ -31,6 +31,17 @@ public class ProcessoDao {
     	return listProcessoEletronico;
     }
     
+    public List<ProcessoEletronicoDto> findProcessByUser(Long idUser) throws SQLException {
+    	ResultSet rs = connection.executeQuery(consultaView() + " WHERE USUARIODESTINO_ID = " + idUser);
+    	List<ProcessoEletronicoDto> listProcessoEletronico = new ArrayList<ProcessoEletronicoDto>();
+    	while(rs.next()){
+    		ProcessoEletronicoDto processoEletronico = parseView(rs);
+    		listProcessoEletronico.add(processoEletronico);
+    	}    	
+    	return listProcessoEletronico;
+    }
+    	
+    
     /**
      * 
      * @param idDocBase
@@ -120,48 +131,11 @@ public class ProcessoDao {
  * @return
  */
 	private String consultaView(){
-		StringBuffer sql = new StringBuffer("SELECT * FROM VIEW_PROCESSO_ELETRONICO PE ");
-		
-		/*sql.append("SELECT ID_REQUISICAO, ");//0
-		sql.append(" PE.DATA_CRIACAO, ");//1
-		sql.append(" PE.ASSUNTO, ");//2
-		sql.append(" PE.IDENTIFICACAOLABEL, ");//3
-		sql.append(" PE.SITUACAOLABEL, ");//4
-		
-		sql.append(" pe.BAIRRO_INTERESSADO,");//5
-		sql.append(" pe.CEP_INTERESSADO,");//6
-		sql.append(" pe.CIDADE_INTERESSADO,");//7
-		sql.append(" pe.COMPL_INTERESSADO,");//8
-		sql.append(" pe.CPF_INTERESSADO,");//9
-		sql.append(" pe.EMAIL_INTERESSADO,");//10
-		sql.append(" pe.ESTADO_INTERESSADO,");//11
-		sql.append(" pe.NOME_INTERESSADO,");//12
-		sql.append(" pe.NUM_INTERESSADO,");//13
-		sql.append(" pe.PRONTUARIO_INTERESSADO,");//14
-		sql.append(" pe.TELEFONE_INTERESSADO,"); //15
-		
-		sql.append(" pe.BAIRRO_SOLICITANTE,");//16		
-		sql.append(" pe.CEP_SOLICITANTE,");//17	
-		sql.append(" pe.CIDADE_SOLICITANTE,");//18		
-		sql.append(" pe.COMPL_SOLICITANTE,");//19		
-		sql.append(" pe.CPF_SOLICITANTE,");//20
-		sql.append(" pe.EMAIL_SOLICITANTE,");//21
-		sql.append(" pe.ESTADO_SOLICITANTE,");//	22	
-		sql.append(" pe.NOME_SOLICITANTE,");//23
-		sql.append(" pe.NUM_SOLICITANTE,");//24
-		sql.append(" pe.PRONTUARIO_SOLICITANTE,");//25
-		sql.append(" pe.TELEFONE_INTERESSADO,");//26
-		
-		sql.append(" pe.id_documento_base,");//27
-		sql.append(" pe.ano_processo,");//28
-		sql.append(" pe.numero_processo,");//29
-		sql.append(" PE.USUARIO_ID,");//30
-		sql.append(" PE.USUARIO_NOME");//31*/
-		
-		//sql.append(" FROM VIEW_PROCESSO_ELETRONICO PE ");
+		StringBuffer sql = new StringBuffer("SELECT * FROM VIEW_PROCESSO_ELETRONICO PE ");		
 		return sql.toString();
 	}
-	
+
+
 	
 }
   
