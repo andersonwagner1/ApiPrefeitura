@@ -8,4 +8,5 @@ import br.com.prefeitura.diadema.model.Pagina;
 @Repository
 public abstract interface PaginaRepository extends JpaRepository<Pagina, Long>{
 	
+	
 }

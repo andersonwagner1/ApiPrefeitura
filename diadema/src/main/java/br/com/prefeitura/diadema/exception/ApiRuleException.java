@@ -5,7 +5,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class ApiRuleException extends BaseRuntimeException {
-    private static final String KEY = "example.name.rule";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static final String KEY = "example.name.rule";
 
     public ApiRuleException() {
         super();

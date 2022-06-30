@@ -1,11 +1,13 @@
 package br.com.prefeitura.diadema.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.prefeitura.diadema.dto.UsuarioDto;
 import br.com.prefeitura.diadema.service.UsuarioService;
-import br.com.prefeitura.diadema.ws.AgilesWs;
 
 /**
  * Controle de acesso do usuario
@@ -44,9 +45,12 @@ public class UserController {
 		return new ResponseEntity<UsuarioDto>(user, HttpStatus.OK);
 	}
 	
-	@GetMapping(value ="/listAll")
-	public ResponseEntity<List<UsuarioDto>> listAll(@RequestBody UsuarioDto usuario){
-		List<UsuarioDto> user = usuarioService.list(usuario);
+	@GetMapping(value ="/find/{find}")
+	public ResponseEntity<List<UsuarioDto>> listAll(@PathVariable(value="find") String find) throws SQLException{
+		List<UsuarioDto> user = usuarioService.findUserByNameOrEmailOrProntuario(find);
+		
+		
+		
 		return new ResponseEntity<List<UsuarioDto>>(user, HttpStatus.OK);
 	}
 	

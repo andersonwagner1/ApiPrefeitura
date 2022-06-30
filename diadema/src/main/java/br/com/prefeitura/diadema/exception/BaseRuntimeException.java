@@ -4,7 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class BaseRuntimeException extends RuntimeException implements MessageException {
-    private final Map<String, Object> mapDetails;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private final Map<String, Object> mapDetails;
 
     public BaseRuntimeException() {
         mapDetails = null;

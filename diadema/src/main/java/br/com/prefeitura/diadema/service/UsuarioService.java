@@ -1,6 +1,6 @@
 package br.com.prefeitura.diadema.service;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import br.com.prefeitura.diadema.dto.UsuarioDto;
 import br.com.prefeitura.diadema.model.Usuario;
 import br.com.prefeitura.diadema.repository.UsuarioRepository;
+import br.com.prefeitura.diadema.repository.dao.UsuarioDao;
 import br.com.prefeitura.diadema.security.Token;
 import br.com.prefeitura.diadema.security.TokenUtils;
 import br.com.prefeitura.diadema.ws.agiles.AgilesUser;
@@ -21,10 +22,12 @@ public class UsuarioService {
 	
 	
 	private UsuarioRepository usuarioRepository;
+	private UsuarioDao usuarioDao = new UsuarioDao();
 
 	@Autowired
 	public UsuarioService(UsuarioRepository usuarioRepository){
 		this.usuarioRepository = usuarioRepository;
+		
 	}
 
 	private UsuarioDto login(UsuarioDto usuario) {
@@ -68,12 +71,9 @@ public class UsuarioService {
 		return usuario;
 	}
 
-	public List<UsuarioDto> list(UsuarioDto usuario) {		
-		List<Usuario> user = usuarioRepository.findAll();	
-		
-		List<UsuarioDto> usuarios = new ArrayList<UsuarioDto>();
-		BeanUtils.copyProperties(user,usuarios);		
-		return usuarios;
+	public List<UsuarioDto> findUserByNameOrEmailOrProntuario(String find) throws SQLException {		
+		List<UsuarioDto> user = usuarioDao.findUserWithRhSystemByNameOrProntuarioOrEmail(find);	
+		return user;
 	}
 
 	public UsuarioDto getById(UsuarioDto usuario) {

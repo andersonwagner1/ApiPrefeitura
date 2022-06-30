@@ -48,6 +48,31 @@ public class AgilesWs {
 		
 	//}
 	
+	public AgilesUser loginAgilesByToken(String token){
+		final String username = AGILES;
+	    final String password = AGILES;
+ 	    Authenticator.setDefault(new Authenticator() {
+	        @Override
+	        protected PasswordAuthentication getPasswordAuthentication() {
+	            return new PasswordAuthentication(username, password.toCharArray());
+	        }
+	    });
+ 	    
+ 	    
+ 	    SingleSignOnServices_Service o = new SingleSignOnServices_Service();
+ 	    SingleSignOnServices port = o.getPort(SingleSignOnServices.class);
+ 	   
+ 	    try{ 	    	
+ 	    	AgilesUser agilesUser = port.getLoggedUser(token, "172.16.4.39"); 	    	
+ 	    	return agilesUser;
+ 	   }catch(Exception ex){
+ 		   ex.printStackTrace();
+ 		 return null;
+ 	   }
+	}
+	
+	
+	
 	public AgilesUser loginAgiles(String usuario, String senha){
 		final String username = AGILES;
 	    final String password = AGILES;

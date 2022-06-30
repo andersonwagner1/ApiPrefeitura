@@ -11,9 +11,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
 @Entity
 @Table(name = "AGL_USUARIO")
 public class Usuario {

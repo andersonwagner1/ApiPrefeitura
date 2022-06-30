@@ -36,6 +36,16 @@ public class AcessController {
         this.agilesWs = agilesWs;
     }
 	
+	@PostMapping("/token")
+	public ResponseEntity<Object> token(@RequestBody String token){
+		AgilesUser usuarioAgilesUser = agilesWs.loginAgilesByToken(token);
+		if(usuarioAgilesUser == null){
+			return new ResponseEntity<Object>("Token invalido", HttpStatus.FORBIDDEN);
+		}
+		UsuarioDto usuario = usuarioService.getByUserToken(usuarioAgilesUser);
+		return new ResponseEntity<Object>(usuario, HttpStatus.OK);
+	}
+	
 	@PostMapping("/login")
 	public ResponseEntity<Object>  login(@RequestBody UsuarioDto user){
 

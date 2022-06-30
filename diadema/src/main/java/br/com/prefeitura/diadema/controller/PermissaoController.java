@@ -3,30 +3,19 @@ package br.com.prefeitura.diadema.controller;
 import java.util.List;
 import java.util.Optional;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.prefeitura.diadema.dto.PerfilDto;
 import br.com.prefeitura.diadema.dto.PermissaoDto;
-import br.com.prefeitura.diadema.model.Perfil;
 import br.com.prefeitura.diadema.model.Permissao;
-import br.com.prefeitura.diadema.service.PerfilService;
 import br.com.prefeitura.diadema.service.PermissionService;
 
 /**
@@ -35,7 +24,8 @@ import br.com.prefeitura.diadema.service.PermissionService;
  *
  */
 @RestController
-@CrossOrigin(origins = "*" , maxAge =3600)
+//@CrossOrigin(origins = "*" , maxAge =3600) 
+//@CrossOrigin("http://localhost:4200") //A anotação @CrossOrigin garante que nossas APIs sejam acessíveis apenas a partir da origem mencionada em seu argumento.
 @RequestMapping("/api/prefeitura/permissao")
 public class PermissaoController {
 		
@@ -53,9 +43,7 @@ public class PermissaoController {
 		return ResponseEntity.status(HttpStatus.OK).body(permissionList);
 	}
 	
-	
-	
-	
+		
 	@PostMapping(value = "/add")
 	public ResponseEntity<Object> add(@RequestBody PermissaoDto permissionDto){
 		if(permissionService.existsPerfilByName(permissionDto.getNome())){
@@ -89,27 +77,5 @@ public class PermissaoController {
 		return ResponseEntity.status(HttpStatus.OK).body(permission);
 	}
 	
-	
-	/*@GetMapping(value ="/listAll")
-	public ResponseEntity<List<Perfil>> getAll(){
-		List<Perfil> perfil = perfilService.getAllPerfil();
-		return ResponseEntity.status(HttpStatus.OK).body(perfil);
-	}
-	*/
-	
-	/*@GetMapping(value ="/{id}")
-	public ResponseEntity<Object> getById(@PathVariable(value="id") Long id){
-		Optional<Perfil> perfilMModelOpetinal = perfilService.getPerfilById(id);
-		if(!perfilMModelOpetinal.isPresent()){
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Registro não encontrado");
-		}
-		return ResponseEntity.status(HttpStatus.OK).body(perfilMModelOpetinal.get());
-	}*/
-	
-	/*@GetMapping(value="/page")
-	public ResponseEntity<Page<Perfil>> getAllPerfil(@PageableDefault(page = 0, size = 10, sort = "nome", direction = Sort.Direction.ASC) Pageable pageable){
-		Page<Perfil> perfilPage = perfilService.getAllPerfil(pageable);
-		return ResponseEntity.status(HttpStatus.OK).body(perfilPage);
-	}*/
 	
 }

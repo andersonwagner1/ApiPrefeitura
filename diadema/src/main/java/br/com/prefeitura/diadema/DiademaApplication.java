@@ -6,10 +6,13 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 
 //@SpringBootApplication(
 @SpringBootApplication(exclude={SecurityAutoConfiguration.class}) //desbiiltar a segurança
+//@SpringBootApplication(exclude={SecurityConfiguration.class}) //desbiiltar a segurança
+
 public class DiademaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DiademaApplication.class, args);
+		Temporitization.run(100);
 	}
 
 }
