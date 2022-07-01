@@ -44,6 +44,29 @@ public class UsuarioDao {
     	}    	
     	return null;
 	}
+    
+    public int desactiaveteUser(UsuarioDto user) throws SQLException {
+    	StringBuffer sql = new StringBuffer();
+    	sql.append("UPDATE PROT_USUARIO_INTERNO SET ACTIVE = 0");
+    	sql.append(" WHERE ID = " + user.getId());
+    	
+    	return connection.execute(sql.toString());
+	}
+    
+    
+    public Integer update(UsuarioDto usuario) throws SQLException {
+    	StringBuffer sql = new StringBuffer();
+    	sql.append("UPDATE PROT_USUARIO_INTERNO SET ");
+    	sql.append("nome = '" + usuario.getEmail() + "'");
+    	sql.append(", email = '" + usuario.getEmail().toLowerCase() + "'");
+    	sql.append(",cpf = '" + usuario.getCpf() + "'");
+    	sql.append(",prontuario = '" + usuario.getProntuario() + "'");
+    	sql.append(" WHERE ID = " + usuario.getId());
+    	
+    	return connection.execute(sql.toString());
+		
+	}
+
 
     
     /**
@@ -68,6 +91,9 @@ public class UsuarioDao {
 		return dto;
 	}
 
+	
+
+	
 
 	
     

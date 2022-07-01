@@ -7,16 +7,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java de modifyUser complex type.
+ * <p>Classe Java de getItem complex type.
  * 
  * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
  * 
  * <pre>
- * &lt;complexType name="modifyUser">
+ * &lt;complexType name="getItem">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="modified" type="{http://imagetechnology.com.br/agiles_services}agilesUser" minOccurs="0"/>
+ *         &lt;element name="itemPk" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -26,35 +26,35 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "modifyUser", propOrder = {
-    "modified"
+@XmlType(name = "getItem", propOrder = {
+    "itemPk"
 })
-public class ModifyUser {
+public class GetItem {
 
-    protected AgilesUser modified;
+    protected String itemPk;
 
     /**
-     * Obtém o valor da propriedade modified.
+     * Obtém o valor da propriedade itemPk.
      * 
      * @return
      *     possible object is
-     *     {@link AgilesUser }
+     *     {@link String }
      *     
      */
-    public AgilesUser getModified() {
-        return modified;
+    public String getItemPk() {
+        return itemPk;
     }
 
     /**
-     * Define o valor da propriedade modified.
+     * Define o valor da propriedade itemPk.
      * 
      * @param value
      *     allowed object is
-     *     {@link AgilesUser }
+     *     {@link String }
      *     
      */
-    public void setModified(AgilesUser value) {
-        this.modified = value;
+    public void setItemPk(String value) {
+        this.itemPk = value;
     }
 
 }

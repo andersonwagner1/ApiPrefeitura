@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the br.com.diadema.ws.agiles package. 
+ * generated in the br.com.prefeitura.diadema.ws.agiles package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -21,411 +21,41 @@ import javax.xml.namespace.QName;
  * provided in this class.
  * 
  */
-@XmlRegistry
+//@XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _FindLevelByDimentionAndLevelName_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findLevelByDimentionAndLevelName");
-    private final static QName _FindParentLevel_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findParentLevel");
-    private final static QName _FindLevelsByName_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findLevelsByName");
-    private final static QName _GetUsersFromGroup_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getUsersFromGroup");
-    private final static QName _CreateLevel_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "createLevel");
-    private final static QName _FindExactNodesByLevelPKs_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findExactNodesByLevelPKs");
-    private final static QName _CreateUserResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "createUserResponse");
-    private final static QName _GetGroupByName_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getGroupByName");
-    private final static QName _GetNodeByLevelsResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getNodeByLevelsResponse");
-    private final static QName _GetUserByPk_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getUserByPk");
-    private final static QName _FindNodesByLevels_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findNodesByLevels");
-    private final static QName _FindNodesByLevelsResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findNodesByLevelsResponse");
-    private final static QName _FindUsersByNameResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findUsersByNameResponse");
-    private final static QName _FindGroupsByName_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findGroupsByName");
-    private final static QName _FindBasicNodesContaining_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findBasicNodesContaining");
-    private final static QName _CreateGroupResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "createGroupResponse");
-    private final static QName _FindDimensionNameByLevelNameResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findDimensionNameByLevelNameResponse");
-    private final static QName _AddUserToGroup_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "addUserToGroup");
-    private final static QName _CreateUser_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "createUser");
-    private final static QName _AddUserToOrganizationalNodeResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "addUserToOrganizationalNodeResponse");
-    private final static QName _AddUserToGroupResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "addUserToGroupResponse");
-    private final static QName _FindChildrenLevelsResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findChildrenLevelsResponse");
-    private final static QName _CreateOrganizationalNodeResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "createOrganizationalNodeResponse");
-    private final static QName _CreateLevelInParentLevelResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "createLevelInParentLevelResponse");
-    private final static QName _FindNodeByLevels_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findNodeByLevels");
-    private final static QName _GetNodeByLevels_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getNodeByLevels");
-    private final static QName _FindExactNodesByLevelPKsResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findExactNodesByLevelPKsResponse");
+    private final static QName _FindItemContainersByItemTypeResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findItemContainersByItemTypeResponse");
+    private final static QName _SendEmailResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "sendEmailResponse");
+    private final static QName _SendEmailWithAttachments_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "sendEmailWithAttachments");
+    private final static QName _SendEmailForProcessWithAttachmentsResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "sendEmailForProcessWithAttachmentsResponse");
+    private final static QName _CheckPermissionResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "checkPermissionResponse");
+    private final static QName _GetItemResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getItemResponse");
+    private final static QName _SendEmailWithAttachmentsResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "sendEmailWithAttachmentsResponse");
+    private final static QName _SendEmailForProcessResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "sendEmailForProcessResponse");
+    private final static QName _SendEmailForProcessWithAttachments_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "sendEmailForProcessWithAttachments");
+    private final static QName _SetActive_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "setActive");
+    private final static QName _GetItemName_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getItemName");
+    private final static QName _ModifyItemResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "modifyItemResponse");
+    private final static QName _GetItem_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getItem");
+    private final static QName _CreateAuditTrailResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "createAuditTrailResponse");
+    private final static QName _FindItemContainersByItemType_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findItemContainersByItemType");
     private final static QName _ModifyUserResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "modifyUserResponse");
-    private final static QName _FindLevelNameByUserAndDimensionResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findLevelNameByUserAndDimensionResponse");
-    private final static QName _FindGroupsByNameResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findGroupsByNameResponse");
-    private final static QName _FindLevelNamesByUserAndDimensionResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findLevelNamesByUserAndDimensionResponse");
-    private final static QName _FindUsersByDimentionAndLevelName_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findUsersByDimentionAndLevelName");
-    private final static QName _FindChildrenLevels_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findChildrenLevels");
-    private final static QName _FindGroupsContaining_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findGroupsContaining");
-    private final static QName _GetNodesByLevels_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getNodesByLevels");
-    private final static QName _ResetUserPasswordAndSendEmailResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "resetUserPasswordAndSendEmailResponse");
-    private final static QName _FindUsersByDimentionAndLevelNameResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findUsersByDimentionAndLevelNameResponse");
-    private final static QName _FindLevelNamesByDimensionNameResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findLevelNamesByDimensionNameResponse");
-    private final static QName _CreateLevelResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "createLevelResponse");
-    private final static QName _GetUsersFromGroupResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getUsersFromGroupResponse");
-    private final static QName _GetNodeByPkResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getNodeByPkResponse");
-    private final static QName _GetActivityAssignee_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getActivityAssignee");
-    private final static QName _ChangeUserPassword_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "changeUserPassword");
-    private final static QName _CreateGroup_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "createGroup");
-    private final static QName _FindLevelNameByUserAndDimension_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findLevelNameByUserAndDimension");
-    private final static QName _CreateLevelInParentLevel_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "createLevelInParentLevel");
-    private final static QName _AddUserToOrganizationalNode_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "addUserToOrganizationalNode");
-    private final static QName _FindParentLevelResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findParentLevelResponse");
-    private final static QName _ResetUserPasswordAndSendEmail_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "resetUserPasswordAndSendEmail");
-    private final static QName _FindBasicNodesContainingResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findBasicNodesContainingResponse");
-    private final static QName _FindGroupsContainingResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findGroupsContainingResponse");
-    private final static QName _GetUserPksFromParticipantResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getUserPksFromParticipantResponse");
-    private final static QName _FindActiveUserByLogin_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findActiveUserByLogin");
-    private final static QName _GetGroupByNameResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getGroupByNameResponse");
-    private final static QName _FindLevelNamesByDimensionName_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findLevelNamesByDimensionName");
-    private final static QName _CreateOrganizationalNode_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "createOrganizationalNode");
-    private final static QName _FindNodesContainingResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findNodesContainingResponse");
-    private final static QName _GetNodeByPk_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getNodeByPk");
-    private final static QName _GetUserByPkResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getUserByPkResponse");
-    private final static QName _GetUserPksFromParticipant_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getUserPksFromParticipant");
-    private final static QName _GetUsersFromParticipantResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getUsersFromParticipantResponse");
-    private final static QName _FindLevelsByNameResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findLevelsByNameResponse");
-    private final static QName _FindNodeByLevelsResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findNodeByLevelsResponse");
-    private final static QName _GetActivityAssigneeResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getActivityAssigneeResponse");
-    private final static QName _GetNodesByLevelsResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getNodesByLevelsResponse");
-    private final static QName _FindLevelNamesByUserAndDimension_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findLevelNamesByUserAndDimension");
-    private final static QName _FindDimensionNameByLevelName_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findDimensionNameByLevelName");
-    private final static QName _FindNodesContaining_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findNodesContaining");
-    private final static QName _ChangeUserPasswordResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "changeUserPasswordResponse");
-    private final static QName _FindLevelByDimentionAndLevelNameResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findLevelByDimentionAndLevelNameResponse");
+    private final static QName _ModifyItem_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "modifyItem");
+    private final static QName _AddToContainerResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "addToContainerResponse");
+    private final static QName _GetItemNameResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getItemNameResponse");
+    private final static QName _AddToContainer_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "addToContainer");
+    private final static QName _SendEmailForProcess_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "sendEmailForProcess");
+    private final static QName _CheckPermission_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "checkPermission");
     private final static QName _ModifyUser_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "modifyUser");
-    private final static QName _FindActiveUserByLoginResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findActiveUserByLoginResponse");
-    private final static QName _FindNodesByNameResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findNodesByNameResponse");
-    private final static QName _FindUsersByName_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findUsersByName");
-    private final static QName _GetUsersFromParticipant_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "getUsersFromParticipant");
-    private final static QName _FindNodesByName_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "findNodesByName");
+    private final static QName _SetActiveResponse_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "setActiveResponse");
+    private final static QName _CreateAuditTrail_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "createAuditTrail");
+    private final static QName _SendEmail_QNAME = new QName("http://imagetechnology.com.br/agiles_services", "sendEmail");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: br.com.diadema.ws.agiles
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: br.com.prefeitura.diadema.ws.agiles
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link FindLevelsByNameResponse }
-     * 
-     */
-    public FindLevelsByNameResponse createFindLevelsByNameResponse() {
-        return new FindLevelsByNameResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetUserPksFromParticipant }
-     * 
-     */
-    public GetUserPksFromParticipant createGetUserPksFromParticipant() {
-        return new GetUserPksFromParticipant();
-    }
-
-    /**
-     * Create an instance of {@link GetUserByPkResponse }
-     * 
-     */
-    public GetUserByPkResponse createGetUserByPkResponse() {
-        return new GetUserByPkResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetUsersFromParticipantResponse }
-     * 
-     */
-    public GetUsersFromParticipantResponse createGetUsersFromParticipantResponse() {
-        return new GetUsersFromParticipantResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetNodeByPk }
-     * 
-     */
-    public GetNodeByPk createGetNodeByPk() {
-        return new GetNodeByPk();
-    }
-
-    /**
-     * Create an instance of {@link FindLevelNamesByDimensionName }
-     * 
-     */
-    public FindLevelNamesByDimensionName createFindLevelNamesByDimensionName() {
-        return new FindLevelNamesByDimensionName();
-    }
-
-    /**
-     * Create an instance of {@link FindNodesContainingResponse }
-     * 
-     */
-    public FindNodesContainingResponse createFindNodesContainingResponse() {
-        return new FindNodesContainingResponse();
-    }
-
-    /**
-     * Create an instance of {@link CreateOrganizationalNode }
-     * 
-     */
-    public CreateOrganizationalNode createCreateOrganizationalNode() {
-        return new CreateOrganizationalNode();
-    }
-
-    /**
-     * Create an instance of {@link FindActiveUserByLoginResponse }
-     * 
-     */
-    public FindActiveUserByLoginResponse createFindActiveUserByLoginResponse() {
-        return new FindActiveUserByLoginResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindNodesByNameResponse }
-     * 
-     */
-    public FindNodesByNameResponse createFindNodesByNameResponse() {
-        return new FindNodesByNameResponse();
-    }
-
-    /**
-     * Create an instance of {@link ChangeUserPasswordResponse }
-     * 
-     */
-    public ChangeUserPasswordResponse createChangeUserPasswordResponse() {
-        return new ChangeUserPasswordResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindLevelByDimentionAndLevelNameResponse }
-     * 
-     */
-    public FindLevelByDimentionAndLevelNameResponse createFindLevelByDimentionAndLevelNameResponse() {
-        return new FindLevelByDimentionAndLevelNameResponse();
-    }
-
-    /**
-     * Create an instance of {@link ModifyUser }
-     * 
-     */
-    public ModifyUser createModifyUser() {
-        return new ModifyUser();
-    }
-
-    /**
-     * Create an instance of {@link FindNodesByName }
-     * 
-     */
-    public FindNodesByName createFindNodesByName() {
-        return new FindNodesByName();
-    }
-
-    /**
-     * Create an instance of {@link FindUsersByName }
-     * 
-     */
-    public FindUsersByName createFindUsersByName() {
-        return new FindUsersByName();
-    }
-
-    /**
-     * Create an instance of {@link GetUsersFromParticipant }
-     * 
-     */
-    public GetUsersFromParticipant createGetUsersFromParticipant() {
-        return new GetUsersFromParticipant();
-    }
-
-    /**
-     * Create an instance of {@link FindNodesContaining }
-     * 
-     */
-    public FindNodesContaining createFindNodesContaining() {
-        return new FindNodesContaining();
-    }
-
-    /**
-     * Create an instance of {@link FindDimensionNameByLevelName }
-     * 
-     */
-    public FindDimensionNameByLevelName createFindDimensionNameByLevelName() {
-        return new FindDimensionNameByLevelName();
-    }
-
-    /**
-     * Create an instance of {@link GetActivityAssigneeResponse }
-     * 
-     */
-    public GetActivityAssigneeResponse createGetActivityAssigneeResponse() {
-        return new GetActivityAssigneeResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetNodesByLevelsResponse }
-     * 
-     */
-    public GetNodesByLevelsResponse createGetNodesByLevelsResponse() {
-        return new GetNodesByLevelsResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindNodeByLevelsResponse }
-     * 
-     */
-    public FindNodeByLevelsResponse createFindNodeByLevelsResponse() {
-        return new FindNodeByLevelsResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindLevelNamesByUserAndDimension }
-     * 
-     */
-    public FindLevelNamesByUserAndDimension createFindLevelNamesByUserAndDimension() {
-        return new FindLevelNamesByUserAndDimension();
-    }
-
-    /**
-     * Create an instance of {@link ChangeUserPassword }
-     * 
-     */
-    public ChangeUserPassword createChangeUserPassword() {
-        return new ChangeUserPassword();
-    }
-
-    /**
-     * Create an instance of {@link CreateGroup }
-     * 
-     */
-    public CreateGroup createCreateGroup() {
-        return new CreateGroup();
-    }
-
-    /**
-     * Create an instance of {@link GetActivityAssignee }
-     * 
-     */
-    public GetActivityAssignee createGetActivityAssignee() {
-        return new GetActivityAssignee();
-    }
-
-    /**
-     * Create an instance of {@link CreateLevelResponse }
-     * 
-     */
-    public CreateLevelResponse createCreateLevelResponse() {
-        return new CreateLevelResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetUsersFromGroupResponse }
-     * 
-     */
-    public GetUsersFromGroupResponse createGetUsersFromGroupResponse() {
-        return new GetUsersFromGroupResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetNodeByPkResponse }
-     * 
-     */
-    public GetNodeByPkResponse createGetNodeByPkResponse() {
-        return new GetNodeByPkResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindLevelNamesByDimensionNameResponse }
-     * 
-     */
-    public FindLevelNamesByDimensionNameResponse createFindLevelNamesByDimensionNameResponse() {
-        return new FindLevelNamesByDimensionNameResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindActiveUserByLogin }
-     * 
-     */
-    public FindActiveUserByLogin createFindActiveUserByLogin() {
-        return new FindActiveUserByLogin();
-    }
-
-    /**
-     * Create an instance of {@link GetGroupByNameResponse }
-     * 
-     */
-    public GetGroupByNameResponse createGetGroupByNameResponse() {
-        return new GetGroupByNameResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindBasicNodesContainingResponse }
-     * 
-     */
-    public FindBasicNodesContainingResponse createFindBasicNodesContainingResponse() {
-        return new FindBasicNodesContainingResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindGroupsContainingResponse }
-     * 
-     */
-    public FindGroupsContainingResponse createFindGroupsContainingResponse() {
-        return new FindGroupsContainingResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetUserPksFromParticipantResponse }
-     * 
-     */
-    public GetUserPksFromParticipantResponse createGetUserPksFromParticipantResponse() {
-        return new GetUserPksFromParticipantResponse();
-    }
-
-    /**
-     * Create an instance of {@link AddUserToOrganizationalNode }
-     * 
-     */
-    public AddUserToOrganizationalNode createAddUserToOrganizationalNode() {
-        return new AddUserToOrganizationalNode();
-    }
-
-    /**
-     * Create an instance of {@link FindParentLevelResponse }
-     * 
-     */
-    public FindParentLevelResponse createFindParentLevelResponse() {
-        return new FindParentLevelResponse();
-    }
-
-    /**
-     * Create an instance of {@link ResetUserPasswordAndSendEmail }
-     * 
-     */
-    public ResetUserPasswordAndSendEmail createResetUserPasswordAndSendEmail() {
-        return new ResetUserPasswordAndSendEmail();
-    }
-
-    /**
-     * Create an instance of {@link FindLevelNameByUserAndDimension }
-     * 
-     */
-    public FindLevelNameByUserAndDimension createFindLevelNameByUserAndDimension() {
-        return new FindLevelNameByUserAndDimension();
-    }
-
-    /**
-     * Create an instance of {@link CreateLevelInParentLevel }
-     * 
-     */
-    public CreateLevelInParentLevel createCreateLevelInParentLevel() {
-        return new CreateLevelInParentLevel();
-    }
-
-    /**
-     * Create an instance of {@link FindExactNodesByLevelPKsResponse }
-     * 
-     */
-    public FindExactNodesByLevelPKsResponse createFindExactNodesByLevelPKsResponse() {
-        return new FindExactNodesByLevelPKsResponse();
     }
 
     /**
@@ -437,307 +67,203 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link FindLevelNameByUserAndDimensionResponse }
+     * Create an instance of {@link ModifyItem }
      * 
      */
-    public FindLevelNameByUserAndDimensionResponse createFindLevelNameByUserAndDimensionResponse() {
-        return new FindLevelNameByUserAndDimensionResponse();
+    public ModifyItem createModifyItem() {
+        return new ModifyItem();
     }
 
     /**
-     * Create an instance of {@link CreateLevelInParentLevelResponse }
+     * Create an instance of {@link CreateAuditTrailResponse }
      * 
      */
-    public CreateLevelInParentLevelResponse createCreateLevelInParentLevelResponse() {
-        return new CreateLevelInParentLevelResponse();
+    public CreateAuditTrailResponse createCreateAuditTrailResponse() {
+        return new CreateAuditTrailResponse();
     }
 
     /**
-     * Create an instance of {@link FindNodeByLevels }
+     * Create an instance of {@link FindItemContainersByItemType }
      * 
      */
-    public FindNodeByLevels createFindNodeByLevels() {
-        return new FindNodeByLevels();
+    public FindItemContainersByItemType createFindItemContainersByItemType() {
+        return new FindItemContainersByItemType();
     }
 
     /**
-     * Create an instance of {@link GetNodeByLevels }
+     * Create an instance of {@link GetItem }
      * 
      */
-    public GetNodeByLevels createGetNodeByLevels() {
-        return new GetNodeByLevels();
+    public GetItem createGetItem() {
+        return new GetItem();
     }
 
     /**
-     * Create an instance of {@link CreateOrganizationalNodeResponse }
+     * Create an instance of {@link ModifyItemResponse }
      * 
      */
-    public CreateOrganizationalNodeResponse createCreateOrganizationalNodeResponse() {
-        return new CreateOrganizationalNodeResponse();
+    public ModifyItemResponse createModifyItemResponse() {
+        return new ModifyItemResponse();
     }
 
     /**
-     * Create an instance of {@link ResetUserPasswordAndSendEmailResponse }
+     * Create an instance of {@link CheckPermission }
      * 
      */
-    public ResetUserPasswordAndSendEmailResponse createResetUserPasswordAndSendEmailResponse() {
-        return new ResetUserPasswordAndSendEmailResponse();
+    public CheckPermission createCheckPermission() {
+        return new CheckPermission();
     }
 
     /**
-     * Create an instance of {@link FindUsersByDimentionAndLevelNameResponse }
+     * Create an instance of {@link ModifyUser }
      * 
      */
-    public FindUsersByDimentionAndLevelNameResponse createFindUsersByDimentionAndLevelNameResponse() {
-        return new FindUsersByDimentionAndLevelNameResponse();
+    public ModifyUser createModifyUser() {
+        return new ModifyUser();
     }
 
     /**
-     * Create an instance of {@link FindChildrenLevels }
+     * Create an instance of {@link CreateAuditTrail }
      * 
      */
-    public FindChildrenLevels createFindChildrenLevels() {
-        return new FindChildrenLevels();
+    public CreateAuditTrail createCreateAuditTrail() {
+        return new CreateAuditTrail();
     }
 
     /**
-     * Create an instance of {@link FindGroupsContaining }
+     * Create an instance of {@link SendEmail }
      * 
      */
-    public FindGroupsContaining createFindGroupsContaining() {
-        return new FindGroupsContaining();
+    public SendEmail createSendEmail() {
+        return new SendEmail();
     }
 
     /**
-     * Create an instance of {@link GetNodesByLevels }
+     * Create an instance of {@link SetActiveResponse }
      * 
      */
-    public GetNodesByLevels createGetNodesByLevels() {
-        return new GetNodesByLevels();
+    public SetActiveResponse createSetActiveResponse() {
+        return new SetActiveResponse();
     }
 
     /**
-     * Create an instance of {@link FindUsersByDimentionAndLevelName }
+     * Create an instance of {@link GetItemNameResponse }
      * 
      */
-    public FindUsersByDimentionAndLevelName createFindUsersByDimentionAndLevelName() {
-        return new FindUsersByDimentionAndLevelName();
+    public GetItemNameResponse createGetItemNameResponse() {
+        return new GetItemNameResponse();
     }
 
     /**
-     * Create an instance of {@link FindGroupsByNameResponse }
+     * Create an instance of {@link AddToContainerResponse }
      * 
      */
-    public FindGroupsByNameResponse createFindGroupsByNameResponse() {
-        return new FindGroupsByNameResponse();
+    public AddToContainerResponse createAddToContainerResponse() {
+        return new AddToContainerResponse();
     }
 
     /**
-     * Create an instance of {@link FindLevelNamesByUserAndDimensionResponse }
+     * Create an instance of {@link AddToContainer }
      * 
      */
-    public FindLevelNamesByUserAndDimensionResponse createFindLevelNamesByUserAndDimensionResponse() {
-        return new FindLevelNamesByUserAndDimensionResponse();
+    public AddToContainer createAddToContainer() {
+        return new AddToContainer();
     }
 
     /**
-     * Create an instance of {@link GetUserByPk }
+     * Create an instance of {@link SendEmailForProcess }
      * 
      */
-    public GetUserByPk createGetUserByPk() {
-        return new GetUserByPk();
+    public SendEmailForProcess createSendEmailForProcess() {
+        return new SendEmailForProcess();
     }
 
     /**
-     * Create an instance of {@link CreateUserResponse }
+     * Create an instance of {@link FindItemContainersByItemTypeResponse }
      * 
      */
-    public CreateUserResponse createCreateUserResponse() {
-        return new CreateUserResponse();
+    public FindItemContainersByItemTypeResponse createFindItemContainersByItemTypeResponse() {
+        return new FindItemContainersByItemTypeResponse();
     }
 
     /**
-     * Create an instance of {@link FindExactNodesByLevelPKs }
+     * Create an instance of {@link SendEmailResponse }
      * 
      */
-    public FindExactNodesByLevelPKs createFindExactNodesByLevelPKs() {
-        return new FindExactNodesByLevelPKs();
+    public SendEmailResponse createSendEmailResponse() {
+        return new SendEmailResponse();
     }
 
     /**
-     * Create an instance of {@link GetGroupByName }
+     * Create an instance of {@link SendEmailWithAttachments }
      * 
      */
-    public GetGroupByName createGetGroupByName() {
-        return new GetGroupByName();
+    public SendEmailWithAttachments createSendEmailWithAttachments() {
+        return new SendEmailWithAttachments();
     }
 
     /**
-     * Create an instance of {@link GetNodeByLevelsResponse }
+     * Create an instance of {@link SendEmailForProcessWithAttachments }
      * 
      */
-    public GetNodeByLevelsResponse createGetNodeByLevelsResponse() {
-        return new GetNodeByLevelsResponse();
+    public SendEmailForProcessWithAttachments createSendEmailForProcessWithAttachments() {
+        return new SendEmailForProcessWithAttachments();
     }
 
     /**
-     * Create an instance of {@link FindLevelsByName }
+     * Create an instance of {@link SendEmailForProcessResponse }
      * 
      */
-    public FindLevelsByName createFindLevelsByName() {
-        return new FindLevelsByName();
+    public SendEmailForProcessResponse createSendEmailForProcessResponse() {
+        return new SendEmailForProcessResponse();
     }
 
     /**
-     * Create an instance of {@link GetUsersFromGroup }
+     * Create an instance of {@link GetItemName }
      * 
      */
-    public GetUsersFromGroup createGetUsersFromGroup() {
-        return new GetUsersFromGroup();
+    public GetItemName createGetItemName() {
+        return new GetItemName();
     }
 
     /**
-     * Create an instance of {@link CreateLevel }
+     * Create an instance of {@link SetActive }
      * 
      */
-    public CreateLevel createCreateLevel() {
-        return new CreateLevel();
+    public SetActive createSetActive() {
+        return new SetActive();
     }
 
     /**
-     * Create an instance of {@link FindLevelByDimentionAndLevelName }
+     * Create an instance of {@link GetItemResponse }
      * 
      */
-    public FindLevelByDimentionAndLevelName createFindLevelByDimentionAndLevelName() {
-        return new FindLevelByDimentionAndLevelName();
+    public GetItemResponse createGetItemResponse() {
+        return new GetItemResponse();
     }
 
     /**
-     * Create an instance of {@link FindParentLevel }
+     * Create an instance of {@link SendEmailWithAttachmentsResponse }
      * 
      */
-    public FindParentLevel createFindParentLevel() {
-        return new FindParentLevel();
+    public SendEmailWithAttachmentsResponse createSendEmailWithAttachmentsResponse() {
+        return new SendEmailWithAttachmentsResponse();
     }
 
     /**
-     * Create an instance of {@link AddUserToGroupResponse }
+     * Create an instance of {@link SendEmailForProcessWithAttachmentsResponse }
      * 
      */
-    public AddUserToGroupResponse createAddUserToGroupResponse() {
-        return new AddUserToGroupResponse();
+    public SendEmailForProcessWithAttachmentsResponse createSendEmailForProcessWithAttachmentsResponse() {
+        return new SendEmailForProcessWithAttachmentsResponse();
     }
 
     /**
-     * Create an instance of {@link FindChildrenLevelsResponse }
+     * Create an instance of {@link CheckPermissionResponse }
      * 
      */
-    public FindChildrenLevelsResponse createFindChildrenLevelsResponse() {
-        return new FindChildrenLevelsResponse();
-    }
-
-    /**
-     * Create an instance of {@link AddUserToOrganizationalNodeResponse }
-     * 
-     */
-    public AddUserToOrganizationalNodeResponse createAddUserToOrganizationalNodeResponse() {
-        return new AddUserToOrganizationalNodeResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindBasicNodesContaining }
-     * 
-     */
-    public FindBasicNodesContaining createFindBasicNodesContaining() {
-        return new FindBasicNodesContaining();
-    }
-
-    /**
-     * Create an instance of {@link AddUserToGroup }
-     * 
-     */
-    public AddUserToGroup createAddUserToGroup() {
-        return new AddUserToGroup();
-    }
-
-    /**
-     * Create an instance of {@link CreateUser }
-     * 
-     */
-    public CreateUser createCreateUser() {
-        return new CreateUser();
-    }
-
-    /**
-     * Create an instance of {@link CreateGroupResponse }
-     * 
-     */
-    public CreateGroupResponse createCreateGroupResponse() {
-        return new CreateGroupResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindDimensionNameByLevelNameResponse }
-     * 
-     */
-    public FindDimensionNameByLevelNameResponse createFindDimensionNameByLevelNameResponse() {
-        return new FindDimensionNameByLevelNameResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindNodesByLevels }
-     * 
-     */
-    public FindNodesByLevels createFindNodesByLevels() {
-        return new FindNodesByLevels();
-    }
-
-    /**
-     * Create an instance of {@link FindNodesByLevelsResponse }
-     * 
-     */
-    public FindNodesByLevelsResponse createFindNodesByLevelsResponse() {
-        return new FindNodesByLevelsResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindGroupsByName }
-     * 
-     */
-    public FindGroupsByName createFindGroupsByName() {
-        return new FindGroupsByName();
-    }
-
-    /**
-     * Create an instance of {@link FindUsersByNameResponse }
-     * 
-     */
-    public FindUsersByNameResponse createFindUsersByNameResponse() {
-        return new FindUsersByNameResponse();
-    }
-
-    /**
-     * Create an instance of {@link AgilesUser }
-     * 
-     */
-    public AgilesUser createAgilesUser() {
-        return new AgilesUser();
-    }
-
-    /**
-     * Create an instance of {@link LevelDimensionPair }
-     * 
-     */
-    public LevelDimensionPair createLevelDimensionPair() {
-        return new LevelDimensionPair();
-    }
-
-    /**
-     * Create an instance of {@link AgilesOrganizationalLevel }
-     * 
-     */
-    public AgilesOrganizationalLevel createAgilesOrganizationalLevel() {
-        return new AgilesOrganizationalLevel();
+    public CheckPermissionResponse createCheckPermissionResponse() {
+        return new CheckPermissionResponse();
     }
 
     /**
@@ -749,270 +275,154 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AgilesOrganizationalDimension }
+     * Create an instance of {@link AgilesUser }
      * 
      */
-    public AgilesOrganizationalDimension createAgilesOrganizationalDimension() {
-        return new AgilesOrganizationalDimension();
+    public AgilesUser createAgilesUser() {
+        return new AgilesUser();
     }
 
     /**
-     * Create an instance of {@link AgilesOrganizationalNode }
+     * Create an instance of {@link HashMap }
      * 
      */
-    public AgilesOrganizationalNode createAgilesOrganizationalNode() {
-        return new AgilesOrganizationalNode();
+    public HashMap createHashMap() {
+        return new HashMap();
     }
 
     /**
-     * Create an instance of {@link AgilesGroup }
+     * Create an instance of {@link JAXBElement }{@code <}{@link FindItemContainersByItemTypeResponse }{@code >}}
      * 
      */
-    public AgilesGroup createAgilesGroup() {
-        return new AgilesGroup();
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findItemContainersByItemTypeResponse")
+    public JAXBElement<FindItemContainersByItemTypeResponse> createFindItemContainersByItemTypeResponse(FindItemContainersByItemTypeResponse value) {
+        return new JAXBElement<FindItemContainersByItemTypeResponse>(_FindItemContainersByItemTypeResponse_QNAME, FindItemContainersByItemTypeResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindLevelByDimentionAndLevelName }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SendEmailResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findLevelByDimentionAndLevelName")
-    public JAXBElement<FindLevelByDimentionAndLevelName> createFindLevelByDimentionAndLevelName(FindLevelByDimentionAndLevelName value) {
-        return new JAXBElement<FindLevelByDimentionAndLevelName>(_FindLevelByDimentionAndLevelName_QNAME, FindLevelByDimentionAndLevelName.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "sendEmailResponse")
+    public JAXBElement<SendEmailResponse> createSendEmailResponse(SendEmailResponse value) {
+        return new JAXBElement<SendEmailResponse>(_SendEmailResponse_QNAME, SendEmailResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindParentLevel }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SendEmailWithAttachments }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findParentLevel")
-    public JAXBElement<FindParentLevel> createFindParentLevel(FindParentLevel value) {
-        return new JAXBElement<FindParentLevel>(_FindParentLevel_QNAME, FindParentLevel.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "sendEmailWithAttachments")
+    public JAXBElement<SendEmailWithAttachments> createSendEmailWithAttachments(SendEmailWithAttachments value) {
+        return new JAXBElement<SendEmailWithAttachments>(_SendEmailWithAttachments_QNAME, SendEmailWithAttachments.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindLevelsByName }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SendEmailForProcessWithAttachmentsResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findLevelsByName")
-    public JAXBElement<FindLevelsByName> createFindLevelsByName(FindLevelsByName value) {
-        return new JAXBElement<FindLevelsByName>(_FindLevelsByName_QNAME, FindLevelsByName.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "sendEmailForProcessWithAttachmentsResponse")
+    public JAXBElement<SendEmailForProcessWithAttachmentsResponse> createSendEmailForProcessWithAttachmentsResponse(SendEmailForProcessWithAttachmentsResponse value) {
+        return new JAXBElement<SendEmailForProcessWithAttachmentsResponse>(_SendEmailForProcessWithAttachmentsResponse_QNAME, SendEmailForProcessWithAttachmentsResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUsersFromGroup }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CheckPermissionResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getUsersFromGroup")
-    public JAXBElement<GetUsersFromGroup> createGetUsersFromGroup(GetUsersFromGroup value) {
-        return new JAXBElement<GetUsersFromGroup>(_GetUsersFromGroup_QNAME, GetUsersFromGroup.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "checkPermissionResponse")
+    public JAXBElement<CheckPermissionResponse> createCheckPermissionResponse(CheckPermissionResponse value) {
+        return new JAXBElement<CheckPermissionResponse>(_CheckPermissionResponse_QNAME, CheckPermissionResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CreateLevel }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetItemResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "createLevel")
-    public JAXBElement<CreateLevel> createCreateLevel(CreateLevel value) {
-        return new JAXBElement<CreateLevel>(_CreateLevel_QNAME, CreateLevel.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getItemResponse")
+    public JAXBElement<GetItemResponse> createGetItemResponse(GetItemResponse value) {
+        return new JAXBElement<GetItemResponse>(_GetItemResponse_QNAME, GetItemResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindExactNodesByLevelPKs }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SendEmailWithAttachmentsResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findExactNodesByLevelPKs")
-    public JAXBElement<FindExactNodesByLevelPKs> createFindExactNodesByLevelPKs(FindExactNodesByLevelPKs value) {
-        return new JAXBElement<FindExactNodesByLevelPKs>(_FindExactNodesByLevelPKs_QNAME, FindExactNodesByLevelPKs.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "sendEmailWithAttachmentsResponse")
+    public JAXBElement<SendEmailWithAttachmentsResponse> createSendEmailWithAttachmentsResponse(SendEmailWithAttachmentsResponse value) {
+        return new JAXBElement<SendEmailWithAttachmentsResponse>(_SendEmailWithAttachmentsResponse_QNAME, SendEmailWithAttachmentsResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CreateUserResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SendEmailForProcessResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "createUserResponse")
-    public JAXBElement<CreateUserResponse> createCreateUserResponse(CreateUserResponse value) {
-        return new JAXBElement<CreateUserResponse>(_CreateUserResponse_QNAME, CreateUserResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "sendEmailForProcessResponse")
+    public JAXBElement<SendEmailForProcessResponse> createSendEmailForProcessResponse(SendEmailForProcessResponse value) {
+        return new JAXBElement<SendEmailForProcessResponse>(_SendEmailForProcessResponse_QNAME, SendEmailForProcessResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetGroupByName }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SendEmailForProcessWithAttachments }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getGroupByName")
-    public JAXBElement<GetGroupByName> createGetGroupByName(GetGroupByName value) {
-        return new JAXBElement<GetGroupByName>(_GetGroupByName_QNAME, GetGroupByName.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "sendEmailForProcessWithAttachments")
+    public JAXBElement<SendEmailForProcessWithAttachments> createSendEmailForProcessWithAttachments(SendEmailForProcessWithAttachments value) {
+        return new JAXBElement<SendEmailForProcessWithAttachments>(_SendEmailForProcessWithAttachments_QNAME, SendEmailForProcessWithAttachments.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetNodeByLevelsResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SetActive }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getNodeByLevelsResponse")
-    public JAXBElement<GetNodeByLevelsResponse> createGetNodeByLevelsResponse(GetNodeByLevelsResponse value) {
-        return new JAXBElement<GetNodeByLevelsResponse>(_GetNodeByLevelsResponse_QNAME, GetNodeByLevelsResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "setActive")
+    public JAXBElement<SetActive> createSetActive(SetActive value) {
+        return new JAXBElement<SetActive>(_SetActive_QNAME, SetActive.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserByPk }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetItemName }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getUserByPk")
-    public JAXBElement<GetUserByPk> createGetUserByPk(GetUserByPk value) {
-        return new JAXBElement<GetUserByPk>(_GetUserByPk_QNAME, GetUserByPk.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getItemName")
+    public JAXBElement<GetItemName> createGetItemName(GetItemName value) {
+        return new JAXBElement<GetItemName>(_GetItemName_QNAME, GetItemName.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindNodesByLevels }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModifyItemResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findNodesByLevels")
-    public JAXBElement<FindNodesByLevels> createFindNodesByLevels(FindNodesByLevels value) {
-        return new JAXBElement<FindNodesByLevels>(_FindNodesByLevels_QNAME, FindNodesByLevels.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "modifyItemResponse")
+    public JAXBElement<ModifyItemResponse> createModifyItemResponse(ModifyItemResponse value) {
+        return new JAXBElement<ModifyItemResponse>(_ModifyItemResponse_QNAME, ModifyItemResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindNodesByLevelsResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetItem }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findNodesByLevelsResponse")
-    public JAXBElement<FindNodesByLevelsResponse> createFindNodesByLevelsResponse(FindNodesByLevelsResponse value) {
-        return new JAXBElement<FindNodesByLevelsResponse>(_FindNodesByLevelsResponse_QNAME, FindNodesByLevelsResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getItem")
+    public JAXBElement<GetItem> createGetItem(GetItem value) {
+        return new JAXBElement<GetItem>(_GetItem_QNAME, GetItem.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindUsersByNameResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CreateAuditTrailResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findUsersByNameResponse")
-    public JAXBElement<FindUsersByNameResponse> createFindUsersByNameResponse(FindUsersByNameResponse value) {
-        return new JAXBElement<FindUsersByNameResponse>(_FindUsersByNameResponse_QNAME, FindUsersByNameResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "createAuditTrailResponse")
+    public JAXBElement<CreateAuditTrailResponse> createCreateAuditTrailResponse(CreateAuditTrailResponse value) {
+        return new JAXBElement<CreateAuditTrailResponse>(_CreateAuditTrailResponse_QNAME, CreateAuditTrailResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindGroupsByName }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link FindItemContainersByItemType }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findGroupsByName")
-    public JAXBElement<FindGroupsByName> createFindGroupsByName(FindGroupsByName value) {
-        return new JAXBElement<FindGroupsByName>(_FindGroupsByName_QNAME, FindGroupsByName.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindBasicNodesContaining }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findBasicNodesContaining")
-    public JAXBElement<FindBasicNodesContaining> createFindBasicNodesContaining(FindBasicNodesContaining value) {
-        return new JAXBElement<FindBasicNodesContaining>(_FindBasicNodesContaining_QNAME, FindBasicNodesContaining.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CreateGroupResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "createGroupResponse")
-    public JAXBElement<CreateGroupResponse> createCreateGroupResponse(CreateGroupResponse value) {
-        return new JAXBElement<CreateGroupResponse>(_CreateGroupResponse_QNAME, CreateGroupResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindDimensionNameByLevelNameResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findDimensionNameByLevelNameResponse")
-    public JAXBElement<FindDimensionNameByLevelNameResponse> createFindDimensionNameByLevelNameResponse(FindDimensionNameByLevelNameResponse value) {
-        return new JAXBElement<FindDimensionNameByLevelNameResponse>(_FindDimensionNameByLevelNameResponse_QNAME, FindDimensionNameByLevelNameResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddUserToGroup }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "addUserToGroup")
-    public JAXBElement<AddUserToGroup> createAddUserToGroup(AddUserToGroup value) {
-        return new JAXBElement<AddUserToGroup>(_AddUserToGroup_QNAME, AddUserToGroup.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CreateUser }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "createUser")
-    public JAXBElement<CreateUser> createCreateUser(CreateUser value) {
-        return new JAXBElement<CreateUser>(_CreateUser_QNAME, CreateUser.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddUserToOrganizationalNodeResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "addUserToOrganizationalNodeResponse")
-    public JAXBElement<AddUserToOrganizationalNodeResponse> createAddUserToOrganizationalNodeResponse(AddUserToOrganizationalNodeResponse value) {
-        return new JAXBElement<AddUserToOrganizationalNodeResponse>(_AddUserToOrganizationalNodeResponse_QNAME, AddUserToOrganizationalNodeResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddUserToGroupResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "addUserToGroupResponse")
-    public JAXBElement<AddUserToGroupResponse> createAddUserToGroupResponse(AddUserToGroupResponse value) {
-        return new JAXBElement<AddUserToGroupResponse>(_AddUserToGroupResponse_QNAME, AddUserToGroupResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindChildrenLevelsResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findChildrenLevelsResponse")
-    public JAXBElement<FindChildrenLevelsResponse> createFindChildrenLevelsResponse(FindChildrenLevelsResponse value) {
-        return new JAXBElement<FindChildrenLevelsResponse>(_FindChildrenLevelsResponse_QNAME, FindChildrenLevelsResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CreateOrganizationalNodeResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "createOrganizationalNodeResponse")
-    public JAXBElement<CreateOrganizationalNodeResponse> createCreateOrganizationalNodeResponse(CreateOrganizationalNodeResponse value) {
-        return new JAXBElement<CreateOrganizationalNodeResponse>(_CreateOrganizationalNodeResponse_QNAME, CreateOrganizationalNodeResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CreateLevelInParentLevelResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "createLevelInParentLevelResponse")
-    public JAXBElement<CreateLevelInParentLevelResponse> createCreateLevelInParentLevelResponse(CreateLevelInParentLevelResponse value) {
-        return new JAXBElement<CreateLevelInParentLevelResponse>(_CreateLevelInParentLevelResponse_QNAME, CreateLevelInParentLevelResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindNodeByLevels }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findNodeByLevels")
-    public JAXBElement<FindNodeByLevels> createFindNodeByLevels(FindNodeByLevels value) {
-        return new JAXBElement<FindNodeByLevels>(_FindNodeByLevels_QNAME, FindNodeByLevels.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetNodeByLevels }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getNodeByLevels")
-    public JAXBElement<GetNodeByLevels> createGetNodeByLevels(GetNodeByLevels value) {
-        return new JAXBElement<GetNodeByLevels>(_GetNodeByLevels_QNAME, GetNodeByLevels.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindExactNodesByLevelPKsResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findExactNodesByLevelPKsResponse")
-    public JAXBElement<FindExactNodesByLevelPKsResponse> createFindExactNodesByLevelPKsResponse(FindExactNodesByLevelPKsResponse value) {
-        return new JAXBElement<FindExactNodesByLevelPKsResponse>(_FindExactNodesByLevelPKsResponse_QNAME, FindExactNodesByLevelPKsResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findItemContainersByItemType")
+    public JAXBElement<FindItemContainersByItemType> createFindItemContainersByItemType(FindItemContainersByItemType value) {
+        return new JAXBElement<FindItemContainersByItemType>(_FindItemContainersByItemType_QNAME, FindItemContainersByItemType.class, null, value);
     }
 
     /**
@@ -1025,381 +435,57 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindLevelNameByUserAndDimensionResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ModifyItem }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findLevelNameByUserAndDimensionResponse")
-    public JAXBElement<FindLevelNameByUserAndDimensionResponse> createFindLevelNameByUserAndDimensionResponse(FindLevelNameByUserAndDimensionResponse value) {
-        return new JAXBElement<FindLevelNameByUserAndDimensionResponse>(_FindLevelNameByUserAndDimensionResponse_QNAME, FindLevelNameByUserAndDimensionResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "modifyItem")
+    public JAXBElement<ModifyItem> createModifyItem(ModifyItem value) {
+        return new JAXBElement<ModifyItem>(_ModifyItem_QNAME, ModifyItem.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindGroupsByNameResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddToContainerResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findGroupsByNameResponse")
-    public JAXBElement<FindGroupsByNameResponse> createFindGroupsByNameResponse(FindGroupsByNameResponse value) {
-        return new JAXBElement<FindGroupsByNameResponse>(_FindGroupsByNameResponse_QNAME, FindGroupsByNameResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "addToContainerResponse")
+    public JAXBElement<AddToContainerResponse> createAddToContainerResponse(AddToContainerResponse value) {
+        return new JAXBElement<AddToContainerResponse>(_AddToContainerResponse_QNAME, AddToContainerResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindLevelNamesByUserAndDimensionResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetItemNameResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findLevelNamesByUserAndDimensionResponse")
-    public JAXBElement<FindLevelNamesByUserAndDimensionResponse> createFindLevelNamesByUserAndDimensionResponse(FindLevelNamesByUserAndDimensionResponse value) {
-        return new JAXBElement<FindLevelNamesByUserAndDimensionResponse>(_FindLevelNamesByUserAndDimensionResponse_QNAME, FindLevelNamesByUserAndDimensionResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getItemNameResponse")
+    public JAXBElement<GetItemNameResponse> createGetItemNameResponse(GetItemNameResponse value) {
+        return new JAXBElement<GetItemNameResponse>(_GetItemNameResponse_QNAME, GetItemNameResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindUsersByDimentionAndLevelName }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddToContainer }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findUsersByDimentionAndLevelName")
-    public JAXBElement<FindUsersByDimentionAndLevelName> createFindUsersByDimentionAndLevelName(FindUsersByDimentionAndLevelName value) {
-        return new JAXBElement<FindUsersByDimentionAndLevelName>(_FindUsersByDimentionAndLevelName_QNAME, FindUsersByDimentionAndLevelName.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "addToContainer")
+    public JAXBElement<AddToContainer> createAddToContainer(AddToContainer value) {
+        return new JAXBElement<AddToContainer>(_AddToContainer_QNAME, AddToContainer.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindChildrenLevels }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SendEmailForProcess }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findChildrenLevels")
-    public JAXBElement<FindChildrenLevels> createFindChildrenLevels(FindChildrenLevels value) {
-        return new JAXBElement<FindChildrenLevels>(_FindChildrenLevels_QNAME, FindChildrenLevels.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "sendEmailForProcess")
+    public JAXBElement<SendEmailForProcess> createSendEmailForProcess(SendEmailForProcess value) {
+        return new JAXBElement<SendEmailForProcess>(_SendEmailForProcess_QNAME, SendEmailForProcess.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindGroupsContaining }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CheckPermission }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findGroupsContaining")
-    public JAXBElement<FindGroupsContaining> createFindGroupsContaining(FindGroupsContaining value) {
-        return new JAXBElement<FindGroupsContaining>(_FindGroupsContaining_QNAME, FindGroupsContaining.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetNodesByLevels }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getNodesByLevels")
-    public JAXBElement<GetNodesByLevels> createGetNodesByLevels(GetNodesByLevels value) {
-        return new JAXBElement<GetNodesByLevels>(_GetNodesByLevels_QNAME, GetNodesByLevels.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ResetUserPasswordAndSendEmailResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "resetUserPasswordAndSendEmailResponse")
-    public JAXBElement<ResetUserPasswordAndSendEmailResponse> createResetUserPasswordAndSendEmailResponse(ResetUserPasswordAndSendEmailResponse value) {
-        return new JAXBElement<ResetUserPasswordAndSendEmailResponse>(_ResetUserPasswordAndSendEmailResponse_QNAME, ResetUserPasswordAndSendEmailResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindUsersByDimentionAndLevelNameResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findUsersByDimentionAndLevelNameResponse")
-    public JAXBElement<FindUsersByDimentionAndLevelNameResponse> createFindUsersByDimentionAndLevelNameResponse(FindUsersByDimentionAndLevelNameResponse value) {
-        return new JAXBElement<FindUsersByDimentionAndLevelNameResponse>(_FindUsersByDimentionAndLevelNameResponse_QNAME, FindUsersByDimentionAndLevelNameResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindLevelNamesByDimensionNameResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findLevelNamesByDimensionNameResponse")
-    public JAXBElement<FindLevelNamesByDimensionNameResponse> createFindLevelNamesByDimensionNameResponse(FindLevelNamesByDimensionNameResponse value) {
-        return new JAXBElement<FindLevelNamesByDimensionNameResponse>(_FindLevelNamesByDimensionNameResponse_QNAME, FindLevelNamesByDimensionNameResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CreateLevelResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "createLevelResponse")
-    public JAXBElement<CreateLevelResponse> createCreateLevelResponse(CreateLevelResponse value) {
-        return new JAXBElement<CreateLevelResponse>(_CreateLevelResponse_QNAME, CreateLevelResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUsersFromGroupResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getUsersFromGroupResponse")
-    public JAXBElement<GetUsersFromGroupResponse> createGetUsersFromGroupResponse(GetUsersFromGroupResponse value) {
-        return new JAXBElement<GetUsersFromGroupResponse>(_GetUsersFromGroupResponse_QNAME, GetUsersFromGroupResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetNodeByPkResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getNodeByPkResponse")
-    public JAXBElement<GetNodeByPkResponse> createGetNodeByPkResponse(GetNodeByPkResponse value) {
-        return new JAXBElement<GetNodeByPkResponse>(_GetNodeByPkResponse_QNAME, GetNodeByPkResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetActivityAssignee }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getActivityAssignee")
-    public JAXBElement<GetActivityAssignee> createGetActivityAssignee(GetActivityAssignee value) {
-        return new JAXBElement<GetActivityAssignee>(_GetActivityAssignee_QNAME, GetActivityAssignee.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ChangeUserPassword }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "changeUserPassword")
-    public JAXBElement<ChangeUserPassword> createChangeUserPassword(ChangeUserPassword value) {
-        return new JAXBElement<ChangeUserPassword>(_ChangeUserPassword_QNAME, ChangeUserPassword.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CreateGroup }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "createGroup")
-    public JAXBElement<CreateGroup> createCreateGroup(CreateGroup value) {
-        return new JAXBElement<CreateGroup>(_CreateGroup_QNAME, CreateGroup.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindLevelNameByUserAndDimension }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findLevelNameByUserAndDimension")
-    public JAXBElement<FindLevelNameByUserAndDimension> createFindLevelNameByUserAndDimension(FindLevelNameByUserAndDimension value) {
-        return new JAXBElement<FindLevelNameByUserAndDimension>(_FindLevelNameByUserAndDimension_QNAME, FindLevelNameByUserAndDimension.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CreateLevelInParentLevel }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "createLevelInParentLevel")
-    public JAXBElement<CreateLevelInParentLevel> createCreateLevelInParentLevel(CreateLevelInParentLevel value) {
-        return new JAXBElement<CreateLevelInParentLevel>(_CreateLevelInParentLevel_QNAME, CreateLevelInParentLevel.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddUserToOrganizationalNode }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "addUserToOrganizationalNode")
-    public JAXBElement<AddUserToOrganizationalNode> createAddUserToOrganizationalNode(AddUserToOrganizationalNode value) {
-        return new JAXBElement<AddUserToOrganizationalNode>(_AddUserToOrganizationalNode_QNAME, AddUserToOrganizationalNode.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindParentLevelResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findParentLevelResponse")
-    public JAXBElement<FindParentLevelResponse> createFindParentLevelResponse(FindParentLevelResponse value) {
-        return new JAXBElement<FindParentLevelResponse>(_FindParentLevelResponse_QNAME, FindParentLevelResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ResetUserPasswordAndSendEmail }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "resetUserPasswordAndSendEmail")
-    public JAXBElement<ResetUserPasswordAndSendEmail> createResetUserPasswordAndSendEmail(ResetUserPasswordAndSendEmail value) {
-        return new JAXBElement<ResetUserPasswordAndSendEmail>(_ResetUserPasswordAndSendEmail_QNAME, ResetUserPasswordAndSendEmail.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindBasicNodesContainingResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findBasicNodesContainingResponse")
-    public JAXBElement<FindBasicNodesContainingResponse> createFindBasicNodesContainingResponse(FindBasicNodesContainingResponse value) {
-        return new JAXBElement<FindBasicNodesContainingResponse>(_FindBasicNodesContainingResponse_QNAME, FindBasicNodesContainingResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindGroupsContainingResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findGroupsContainingResponse")
-    public JAXBElement<FindGroupsContainingResponse> createFindGroupsContainingResponse(FindGroupsContainingResponse value) {
-        return new JAXBElement<FindGroupsContainingResponse>(_FindGroupsContainingResponse_QNAME, FindGroupsContainingResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserPksFromParticipantResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getUserPksFromParticipantResponse")
-    public JAXBElement<GetUserPksFromParticipantResponse> createGetUserPksFromParticipantResponse(GetUserPksFromParticipantResponse value) {
-        return new JAXBElement<GetUserPksFromParticipantResponse>(_GetUserPksFromParticipantResponse_QNAME, GetUserPksFromParticipantResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindActiveUserByLogin }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findActiveUserByLogin")
-    public JAXBElement<FindActiveUserByLogin> createFindActiveUserByLogin(FindActiveUserByLogin value) {
-        return new JAXBElement<FindActiveUserByLogin>(_FindActiveUserByLogin_QNAME, FindActiveUserByLogin.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetGroupByNameResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getGroupByNameResponse")
-    public JAXBElement<GetGroupByNameResponse> createGetGroupByNameResponse(GetGroupByNameResponse value) {
-        return new JAXBElement<GetGroupByNameResponse>(_GetGroupByNameResponse_QNAME, GetGroupByNameResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindLevelNamesByDimensionName }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findLevelNamesByDimensionName")
-    public JAXBElement<FindLevelNamesByDimensionName> createFindLevelNamesByDimensionName(FindLevelNamesByDimensionName value) {
-        return new JAXBElement<FindLevelNamesByDimensionName>(_FindLevelNamesByDimensionName_QNAME, FindLevelNamesByDimensionName.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CreateOrganizationalNode }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "createOrganizationalNode")
-    public JAXBElement<CreateOrganizationalNode> createCreateOrganizationalNode(CreateOrganizationalNode value) {
-        return new JAXBElement<CreateOrganizationalNode>(_CreateOrganizationalNode_QNAME, CreateOrganizationalNode.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindNodesContainingResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findNodesContainingResponse")
-    public JAXBElement<FindNodesContainingResponse> createFindNodesContainingResponse(FindNodesContainingResponse value) {
-        return new JAXBElement<FindNodesContainingResponse>(_FindNodesContainingResponse_QNAME, FindNodesContainingResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetNodeByPk }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getNodeByPk")
-    public JAXBElement<GetNodeByPk> createGetNodeByPk(GetNodeByPk value) {
-        return new JAXBElement<GetNodeByPk>(_GetNodeByPk_QNAME, GetNodeByPk.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserByPkResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getUserByPkResponse")
-    public JAXBElement<GetUserByPkResponse> createGetUserByPkResponse(GetUserByPkResponse value) {
-        return new JAXBElement<GetUserByPkResponse>(_GetUserByPkResponse_QNAME, GetUserByPkResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserPksFromParticipant }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getUserPksFromParticipant")
-    public JAXBElement<GetUserPksFromParticipant> createGetUserPksFromParticipant(GetUserPksFromParticipant value) {
-        return new JAXBElement<GetUserPksFromParticipant>(_GetUserPksFromParticipant_QNAME, GetUserPksFromParticipant.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUsersFromParticipantResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getUsersFromParticipantResponse")
-    public JAXBElement<GetUsersFromParticipantResponse> createGetUsersFromParticipantResponse(GetUsersFromParticipantResponse value) {
-        return new JAXBElement<GetUsersFromParticipantResponse>(_GetUsersFromParticipantResponse_QNAME, GetUsersFromParticipantResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindLevelsByNameResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findLevelsByNameResponse")
-    public JAXBElement<FindLevelsByNameResponse> createFindLevelsByNameResponse(FindLevelsByNameResponse value) {
-        return new JAXBElement<FindLevelsByNameResponse>(_FindLevelsByNameResponse_QNAME, FindLevelsByNameResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindNodeByLevelsResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findNodeByLevelsResponse")
-    public JAXBElement<FindNodeByLevelsResponse> createFindNodeByLevelsResponse(FindNodeByLevelsResponse value) {
-        return new JAXBElement<FindNodeByLevelsResponse>(_FindNodeByLevelsResponse_QNAME, FindNodeByLevelsResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetActivityAssigneeResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getActivityAssigneeResponse")
-    public JAXBElement<GetActivityAssigneeResponse> createGetActivityAssigneeResponse(GetActivityAssigneeResponse value) {
-        return new JAXBElement<GetActivityAssigneeResponse>(_GetActivityAssigneeResponse_QNAME, GetActivityAssigneeResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetNodesByLevelsResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getNodesByLevelsResponse")
-    public JAXBElement<GetNodesByLevelsResponse> createGetNodesByLevelsResponse(GetNodesByLevelsResponse value) {
-        return new JAXBElement<GetNodesByLevelsResponse>(_GetNodesByLevelsResponse_QNAME, GetNodesByLevelsResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindLevelNamesByUserAndDimension }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findLevelNamesByUserAndDimension")
-    public JAXBElement<FindLevelNamesByUserAndDimension> createFindLevelNamesByUserAndDimension(FindLevelNamesByUserAndDimension value) {
-        return new JAXBElement<FindLevelNamesByUserAndDimension>(_FindLevelNamesByUserAndDimension_QNAME, FindLevelNamesByUserAndDimension.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindDimensionNameByLevelName }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findDimensionNameByLevelName")
-    public JAXBElement<FindDimensionNameByLevelName> createFindDimensionNameByLevelName(FindDimensionNameByLevelName value) {
-        return new JAXBElement<FindDimensionNameByLevelName>(_FindDimensionNameByLevelName_QNAME, FindDimensionNameByLevelName.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindNodesContaining }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findNodesContaining")
-    public JAXBElement<FindNodesContaining> createFindNodesContaining(FindNodesContaining value) {
-        return new JAXBElement<FindNodesContaining>(_FindNodesContaining_QNAME, FindNodesContaining.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ChangeUserPasswordResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "changeUserPasswordResponse")
-    public JAXBElement<ChangeUserPasswordResponse> createChangeUserPasswordResponse(ChangeUserPasswordResponse value) {
-        return new JAXBElement<ChangeUserPasswordResponse>(_ChangeUserPasswordResponse_QNAME, ChangeUserPasswordResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindLevelByDimentionAndLevelNameResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findLevelByDimentionAndLevelNameResponse")
-    public JAXBElement<FindLevelByDimentionAndLevelNameResponse> createFindLevelByDimentionAndLevelNameResponse(FindLevelByDimentionAndLevelNameResponse value) {
-        return new JAXBElement<FindLevelByDimentionAndLevelNameResponse>(_FindLevelByDimentionAndLevelNameResponse_QNAME, FindLevelByDimentionAndLevelNameResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "checkPermission")
+    public JAXBElement<CheckPermission> createCheckPermission(CheckPermission value) {
+        return new JAXBElement<CheckPermission>(_CheckPermission_QNAME, CheckPermission.class, null, value);
     }
 
     /**
@@ -1412,48 +498,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindActiveUserByLoginResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SetActiveResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findActiveUserByLoginResponse")
-    public JAXBElement<FindActiveUserByLoginResponse> createFindActiveUserByLoginResponse(FindActiveUserByLoginResponse value) {
-        return new JAXBElement<FindActiveUserByLoginResponse>(_FindActiveUserByLoginResponse_QNAME, FindActiveUserByLoginResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "setActiveResponse")
+    public JAXBElement<SetActiveResponse> createSetActiveResponse(SetActiveResponse value) {
+        return new JAXBElement<SetActiveResponse>(_SetActiveResponse_QNAME, SetActiveResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindNodesByNameResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CreateAuditTrail }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findNodesByNameResponse")
-    public JAXBElement<FindNodesByNameResponse> createFindNodesByNameResponse(FindNodesByNameResponse value) {
-        return new JAXBElement<FindNodesByNameResponse>(_FindNodesByNameResponse_QNAME, FindNodesByNameResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "createAuditTrail")
+    public JAXBElement<CreateAuditTrail> createCreateAuditTrail(CreateAuditTrail value) {
+        return new JAXBElement<CreateAuditTrail>(_CreateAuditTrail_QNAME, CreateAuditTrail.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindUsersByName }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link SendEmail }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findUsersByName")
-    public JAXBElement<FindUsersByName> createFindUsersByName(FindUsersByName value) {
-        return new JAXBElement<FindUsersByName>(_FindUsersByName_QNAME, FindUsersByName.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUsersFromParticipant }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "getUsersFromParticipant")
-    public JAXBElement<GetUsersFromParticipant> createGetUsersFromParticipant(GetUsersFromParticipant value) {
-        return new JAXBElement<GetUsersFromParticipant>(_GetUsersFromParticipant_QNAME, GetUsersFromParticipant.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindNodesByName }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "findNodesByName")
-    public JAXBElement<FindNodesByName> createFindNodesByName(FindNodesByName value) {
-        return new JAXBElement<FindNodesByName>(_FindNodesByName_QNAME, FindNodesByName.class, null, value);
+    @XmlElementDecl(namespace = "http://imagetechnology.com.br/agiles_services", name = "sendEmail")
+    public JAXBElement<SendEmail> createSendEmail(SendEmail value) {
+        return new JAXBElement<SendEmail>(_SendEmail_QNAME, SendEmail.class, null, value);
     }
 
 }

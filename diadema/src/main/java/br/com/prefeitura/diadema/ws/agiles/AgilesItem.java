@@ -12,7 +12,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 /**
  * <p>Classe Java de agilesItem complex type.
  * 
- * <p>O seguinte fragmento do esquema especifica o conteï¿½do esperado contido dentro desta classe.
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
  * 
  * <pre>
  * &lt;complexType name="agilesItem">
@@ -47,11 +47,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "primaryKey"
 })
 @XmlSeeAlso({
-    AgilesUser.class,
-    AgilesOrganizationalLevel.class,
-    AgilesOrganizationalDimension.class,
-    AgilesOrganizationalNode.class,
-    AgilesGroup.class
+    AgilesUser.class
 })
 public class AgilesItem {
 
@@ -67,7 +63,7 @@ public class AgilesItem {
     protected String primaryKey;
 
     /**
-     * Obtï¿½m o valor da propriedade active.
+     * Obtém o valor da propriedade active.
      * 
      */
     public boolean isActive() {
@@ -83,7 +79,7 @@ public class AgilesItem {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade created.
+     * Obtém o valor da propriedade created.
      * 
      * @return
      *     possible object is
@@ -107,7 +103,7 @@ public class AgilesItem {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade createdBy.
+     * Obtém o valor da propriedade createdBy.
      * 
      * @return
      *     possible object is
@@ -131,7 +127,7 @@ public class AgilesItem {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade description.
+     * Obtém o valor da propriedade description.
      * 
      * @return
      *     possible object is
@@ -155,7 +151,7 @@ public class AgilesItem {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade modified.
+     * Obtém o valor da propriedade modified.
      * 
      * @return
      *     possible object is
@@ -179,7 +175,7 @@ public class AgilesItem {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade modifiedBy.
+     * Obtém o valor da propriedade modifiedBy.
      * 
      * @return
      *     possible object is
@@ -203,7 +199,7 @@ public class AgilesItem {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade name.
+     * Obtém o valor da propriedade name.
      * 
      * @return
      *     possible object is
@@ -227,7 +223,7 @@ public class AgilesItem {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade primaryKey.
+     * Obtém o valor da propriedade primaryKey.
      * 
      * @return
      *     possible object is

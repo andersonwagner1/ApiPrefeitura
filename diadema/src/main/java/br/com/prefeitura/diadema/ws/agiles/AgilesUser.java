@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java de agilesUser complex type.
  * 
- * <p>O seguinte fragmento do esquema especifica o conteï¿½do esperado contido dentro desta classe.
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
  * 
  * <pre>
  * &lt;complexType name="agilesUser">
@@ -57,7 +57,7 @@ public class AgilesUser
     protected String timeZone;
 
     /**
-     * Obtï¿½m o valor da propriedade displayName.
+     * Obtém o valor da propriedade displayName.
      * 
      * @return
      *     possible object is
@@ -81,7 +81,7 @@ public class AgilesUser
     }
 
     /**
-     * Obtï¿½m o valor da propriedade email.
+     * Obtém o valor da propriedade email.
      * 
      * @return
      *     possible object is
@@ -105,7 +105,7 @@ public class AgilesUser
     }
 
     /**
-     * Obtï¿½m o valor da propriedade firstName.
+     * Obtém o valor da propriedade firstName.
      * 
      * @return
      *     possible object is
@@ -129,7 +129,7 @@ public class AgilesUser
     }
 
     /**
-     * Obtï¿½m o valor da propriedade language.
+     * Obtém o valor da propriedade language.
      * 
      * @return
      *     possible object is
@@ -153,7 +153,7 @@ public class AgilesUser
     }
 
     /**
-     * Obtï¿½m o valor da propriedade lastName.
+     * Obtém o valor da propriedade lastName.
      * 
      * @return
      *     possible object is
@@ -177,7 +177,7 @@ public class AgilesUser
     }
 
     /**
-     * Obtï¿½m o valor da propriedade locked.
+     * Obtém o valor da propriedade locked.
      * 
      */
     public boolean isLocked() {
@@ -193,7 +193,7 @@ public class AgilesUser
     }
 
     /**
-     * Obtï¿½m o valor da propriedade phone.
+     * Obtém o valor da propriedade phone.
      * 
      * @return
      *     possible object is
@@ -217,7 +217,7 @@ public class AgilesUser
     }
 
     /**
-     * Obtï¿½m o valor da propriedade timeZone.
+     * Obtém o valor da propriedade timeZone.
      * 
      * @return
      *     possible object is

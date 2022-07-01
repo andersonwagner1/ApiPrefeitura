@@ -44,7 +44,7 @@ public class RhDao {
     	if(rs.next()){
     		usuarioDto.setCodigoRh(rs.getInt("CONTRATOSTATUS"));
     		usuarioDto.setProntuarioRh(rs.getString("CONTRATOMATRICULANUMERICO"));    		
-    		usuarioDto.setNome(rs.getString("PESNOME"));
+    		//usuarioDto.setNome(rs.getString("PESNOME"));
     		usuarioDto.setSituacaoRh(rs.getString(4));
     		
     		return usuarioDto;

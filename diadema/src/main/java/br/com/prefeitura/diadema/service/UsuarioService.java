@@ -15,6 +15,7 @@ import br.com.prefeitura.diadema.repository.UsuarioRepository;
 import br.com.prefeitura.diadema.repository.dao.UsuarioDao;
 import br.com.prefeitura.diadema.security.Token;
 import br.com.prefeitura.diadema.security.TokenUtils;
+import br.com.prefeitura.diadema.ws.AgilesWs;
 import br.com.prefeitura.diadema.ws.agiles.AgilesUser;
 
 @Service
@@ -24,12 +25,20 @@ public class UsuarioService {
 	
 	private UsuarioRepository usuarioRepository;
 	private UsuarioDao usuarioDao = new UsuarioDao();
+	
 
 	@Autowired
 	public UsuarioService(UsuarioRepository usuarioRepository){
 		this.usuarioRepository = usuarioRepository;
 		
 	}
+	
+	public void updateUser(UsuarioDto usuario) throws SQLException {
+		usuarioDao.update(usuario);
+		
+		
+	}
+	
 
 	private UsuarioDto login(UsuarioDto usuario) {
 		Usuario user = usuarioRepository.findByLogin(usuario.getLogin());
@@ -62,6 +71,9 @@ public class UsuarioService {
 		return usuario;
 	}
 	
+	public void desactivatedUser(UsuarioDto user) throws SQLException{
+		usuarioDao.desactiaveteUser(user);
+	}
 	
 	
 	public UsuarioDto save(UsuarioDto usuario){
@@ -81,6 +93,7 @@ public class UsuarioService {
 		UsuarioDto user = usuarioDao.findUserInternById(id);		
 		return user;
 	}
+
 	
 	
 

@@ -18,6 +18,7 @@ import br.com.prefeitura.diadema.dto.UsuarioDto;
 import br.com.prefeitura.diadema.service.DepartamentService;
 import br.com.prefeitura.diadema.service.ProcessoService;
 import br.com.prefeitura.diadema.service.UsuarioService;
+import br.com.prefeitura.diadema.ws.AgilesWs;
 
 /**
  * Controle de acesso do usuario
@@ -35,13 +36,15 @@ public class UserController {
 	private final UsuarioService usuarioService;
 	private final DepartamentService departamentService;
 	private final ProcessoService processoService;
+	private final AgilesWs agilesWs;
 	
 	
 	@Autowired
-    public UserController(UsuarioService usuarioService, DepartamentService departamentService, ProcessoService processoService) {
+    public UserController(UsuarioService usuarioService, DepartamentService departamentService, ProcessoService processoService, AgilesWs agilesWs) {
         this.usuarioService = usuarioService;
         this.processoService = processoService;
         this.departamentService = departamentService;
+        this.agilesWs = agilesWs;
     }
 	
 	@PostMapping(value = "/add")
@@ -72,10 +75,13 @@ public class UserController {
 		return new ResponseEntity<Object>(user, HttpStatus.OK);
 	}
 	
-	@PutMapping(value = "/update")
-	public ResponseEntity<UsuarioDto> update(@RequestBody UsuarioDto usuario){
-		UsuarioDto user = usuarioService.save(usuario);		
-		return new ResponseEntity<UsuarioDto>(user, HttpStatus.OK);
+	@PostMapping(value = "/update")
+	public ResponseEntity<Object> update(@RequestBody UsuarioDto usuario) throws SQLException{
+		usuarioService.updateUser(usuario);
+		agilesWs.updateUser(usuario);
+		
+		//UsuarioDto user = usuarioService.save(usuario);		
+		return new ResponseEntity<Object>(usuario, HttpStatus.OK);
 	}
 	
 	@PostMapping(value ="/desativar")
@@ -92,6 +98,9 @@ public class UserController {
 		if(user.getProcessos() != null && user.getProcessos().size() > 0) {
 			throw new SQLException("Usuario tem processos cadastrado, por favor excluia as unidade primeiro");
 		}
+		
+		usuarioService.desactivatedUser(user);
+		agilesWs.desactiveUserAgiles(user.getPkUsuarioAgiles());
 		return new ResponseEntity<Object>(user, HttpStatus.OK);
 	}
 }
