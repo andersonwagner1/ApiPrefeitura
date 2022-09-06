@@ -57,7 +57,7 @@ public class UsuarioDao {
     public Integer update(UsuarioDto usuario) throws SQLException {
     	StringBuffer sql = new StringBuffer();
     	sql.append("UPDATE PROT_USUARIO_INTERNO SET ");
-    	sql.append("nome = '" + usuario.getEmail() + "'");
+    	sql.append("nome = '" + usuario.getNome() + "'");
     	sql.append(", email = '" + usuario.getEmail().toLowerCase() + "'");
     	sql.append(",cpf = '" + usuario.getCpf() + "'");
     	sql.append(",prontuario = '" + usuario.getProntuario() + "'");

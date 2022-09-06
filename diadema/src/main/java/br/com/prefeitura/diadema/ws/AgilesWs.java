@@ -54,9 +54,9 @@ public class AgilesWs {
 			AgilesUser agilesUser = port2.getUserByPk(pk);
 			agilesUser.setActive(false);
 			agilesUser.setDescription("Usuario desativado - " + data);
-			if(agilesUser.isActive()){
+			//if(agilesUser.isActive()){
 				port.modifyUser(agilesUser);
-			}
+			//}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

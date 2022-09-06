@@ -3,6 +3,7 @@ package br.com.prefeitura.diadema.repository.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import br.com.prefeitura.diadema.dto.HistoricoDto;
@@ -10,10 +11,59 @@ import br.com.prefeitura.diadema.dto.ProcessoEletronicoDto;
 import br.com.prefeitura.diadema.dto.SolicitanteDto;
 import br.com.prefeitura.diadema.dto.UnidadeDto;
 import br.com.prefeitura.diadema.dto.UsuarioInternoDto;
+import br.com.prefeitura.diadema.model.AGLHistoricoProcesso;
+import br.com.prefeitura.diadema.repository.RelatorioAGLRepository;
 
 public class ProcessoDao {
 	
 	private  OracleMobile connection = new OracleMobile();
+	
+
+	
+	
+	public ResultSet findPRocessoByHistorico() {
+
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT v.ID_DOCUMENTO_BASE,");
+		sql.append(" v.ID_UNIDADE_DESTINO,");
+		sql.append(" v.ID_USUARIO_DESTINO, v.id_evento,");
+		sql.append(" pe.id_tipo_solicitacao");
+		sql.append(" FROM VIEW_EVENTO_PROCESSO V");
+		sql.append(" INNER JOIN VIEW_PROCESSO_ELETRONICO PE ON PE.ID_DOCUMENTO_BASE =");
+		sql.append(" V.id_documento_base");
+		sql.append(" WHERE ASSUNTO <> 'RECURSO DE DEFESA PRÉVIA'");
+		sql.append(" AND ASSUNTO <> 'CMC - MEI (ABERTURA OU ALTERAÇÃO)'");
+		sql.append(" AND ASSUNTO <> 'INDICAÇÃO DO CONDUTOR'");
+		sql.append(" order by ID_DOCUMENTO_BASE asc, id_tipo_solicitacao asc, v.DATA asc ");
+		
+
+		ResultSet rs;
+		try {
+			rs = connection.executeQuery(sql.toString());
+
+			return rs;
+			
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+
+	}
+	
+	
+	public List<ProcessoEletronicoDto> listSubjectAndPeridStartAndEndDate(String idAssunto) throws SQLException {
+		ResultSet rs = connection.executeQuery(consultaView() + " WHERE ASSUNTO LIKE 'RECURSO DE DEFESA PRÉVIA'");
+    	List<ProcessoEletronicoDto> listProcessoEletronico = new ArrayList<ProcessoEletronicoDto>();
+    	while(rs.next()){
+    		ProcessoEletronicoDto processoEletronico = parseView(rs);
+    		listProcessoEletronico.add(processoEletronico);
+    	}    	
+    	return listProcessoEletronico;
+		
+	}
 	
 	/**
 	 * 
@@ -108,10 +158,12 @@ public class ProcessoDao {
 		
 		UsuarioInternoDto usuarioDto = new UsuarioInternoDto();
 		usuarioDto.setNome(rs.getString("USUARIO_NOME"));
+		usuarioDto.setId((rs.getLong("usuario_id")));
 		
 		UnidadeDto unidadeDto = new UnidadeDto();
 		unidadeDto.setNome(rs.getString("NOME_UNIDADE"));
 		unidadeDto.setArea(rs.getString("AREA_UNIDADE"));
+		unidadeDto.setId(rs.getLong(("UNIDADE_ID")));
 		
 		
 		HistoricoDto historico = new HistoricoDto();
@@ -134,6 +186,8 @@ public class ProcessoDao {
 		StringBuffer sql = new StringBuffer("SELECT * FROM VIEW_PROCESSO_ELETRONICO PE ");		
 		return sql.toString();
 	}
+
+
 
 
 	

@@ -3,6 +3,7 @@ package br.com.prefeitura.diadema.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.prefeitura.diadema.dto.UnidadeDto;
 import br.com.prefeitura.diadema.dto.UsuarioDto;
 import br.com.prefeitura.diadema.service.DepartamentService;
 import br.com.prefeitura.diadema.service.ProcessoService;
@@ -62,6 +64,44 @@ public class UserController {
 		return new ResponseEntity<List<UsuarioDto>>(user, HttpStatus.OK);
 	}
 	
+	@GetMapping(value ="/unidade/pesquisa/{name}")
+	public ResponseEntity<Object> findDepartamentoByName(@PathVariable(value="name") String name) throws SQLException{
+		List<UnidadeDto> departament = departamentService.findDepartmentByName(name);
+		return new ResponseEntity<Object>(departament, HttpStatus.OK);
+	}
+	
+	@PutMapping(value ="/unidade/add/{idUnidade}/{modo}")
+	public ResponseEntity<Object> addUserInDepartament(@PathVariable(value="idUnidade") Long idUnidade, @PathVariable(value="modo")Integer modo, @RequestBody UsuarioDto user) throws SQLException{
+		
+		//UsuarioDto user = usuarioService.findUserById(user.getId());
+		UnidadeDto unidade = departamentService.findDepartamentById(idUnidade);
+		
+		if(modo == 1){
+			unidade.setTipo("Analista");
+		}else{
+			unidade.setTipo("Lider");
+		}
+		
+		departamentService.addUserInDepartamento(user, unidade);
+		if(user == null){
+			return new ResponseEntity<Object>("Houve algum erro", HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Object>(user, HttpStatus.OK);
+	}
+	
+	
+	@PutMapping(value ="/unidade/remove/{idUnidade}")
+	public ResponseEntity<Object> removeUserIndDepartamento(@PathVariable(value="idUnidade") Long idUnidade, @RequestBody UsuarioDto user) throws SQLException{		
+		UnidadeDto unidade = departamentService.findDepartamentById(idUnidade);
+		
+		departamentService.removeUserInDepartamento(user, unidade);
+		
+		if(user == null){
+			return new ResponseEntity<Object>("Id do usuario não encontrado", HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Object>(user, HttpStatus.OK);
+	}
+	
 	
 	@GetMapping(value ="/detalhe/{id}")
 	public ResponseEntity<Object> findUserById(@PathVariable(value="id") Long id) throws SQLException{
@@ -103,4 +143,6 @@ public class UserController {
 		agilesWs.desactiveUserAgiles(user.getPkUsuarioAgiles());
 		return new ResponseEntity<Object>(user, HttpStatus.OK);
 	}
+	
+	
 }

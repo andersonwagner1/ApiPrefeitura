@@ -38,12 +38,45 @@ public class ProcessController {
 	private final ScheduleService scheduleService;
 	
 	
+	
+	
+	
 	@Autowired
     public ProcessController(ProcessoService processService, ScheduleService scheduleService) {
         this.processService = processService;
         this.scheduleService = scheduleService;
        
     }
+	
+	
+	@GetMapping(value="/listaTodosProcesso/{assunto}")
+	public ResponseEntity<List<ProcessoEletronicoDto>> listProcessByAssuntoAndPeridDataInicialAndDataFinal(
+			@PathVariable("assunto") String idAssunto) throws SQLException{
+		
+		List<ProcessoEletronicoDto> dtos = null;
+		
+		dtos = processService.listSubjectAndPeridStartAndEndDate(idAssunto);
+		
+		return new ResponseEntity<List<ProcessoEletronicoDto>>(dtos, HttpStatus.OK);	
+	}
+	
+	
+	
+	
+	@GetMapping(value="/historic")
+	public ResponseEntity<String> listarProcesso(){
+		
+		try {
+			processService.corrigir();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<String>("OK", HttpStatus.OK);
+		
+	}
+	
 	
 	@GetMapping(value ="/{idDocBase}")
 	public ResponseEntity<ProcessoEletronicoDto> getProcessByIdDocBase(@PathVariable(value = "idDocBase") Long idDocBase) {

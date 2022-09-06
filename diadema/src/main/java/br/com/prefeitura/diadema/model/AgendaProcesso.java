@@ -87,9 +87,4 @@ public class AgendaProcesso {
 	public void setIdDocumentoBase(Long idDocumentoBase) {
 		this.idDocumentoBase = idDocumentoBase;
 	}
-
-	
-	
-	
-	
 }
