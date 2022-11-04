@@ -1,9 +1,11 @@
 package br.com.prefeitura.diadema.repository.dao;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import br.com.prefeitura.diadema.dto.HistoricoDto;
@@ -11,14 +13,124 @@ import br.com.prefeitura.diadema.dto.ProcessoEletronicoDto;
 import br.com.prefeitura.diadema.dto.SolicitanteDto;
 import br.com.prefeitura.diadema.dto.UnidadeDto;
 import br.com.prefeitura.diadema.dto.UsuarioInternoDto;
-import br.com.prefeitura.diadema.model.AGLHistoricoProcesso;
-import br.com.prefeitura.diadema.repository.RelatorioAGLRepository;
 
 public class ProcessoDao {
 	
 	private  OracleMobile connection = new OracleMobile();
 	
+	
+	
+	
+	
+	
 
+	public static void main(String main[]) throws SQLException{
+		ProcessoDao p = new ProcessoDao();
+		ResultSet rs = p.usuarios();
+		
+		List<String>  linhas = new ArrayList<String>();
+		while(rs.next()){
+			
+			ResultSet rstUnidade = p.unidades(rs.getLong(1));
+			
+			StringBuffer ap = new StringBuffer();
+			while(rstUnidade.next()){
+				ap.append(rstUnidade.getLong(2) + ";");
+			}
+			
+			
+			String s = "";
+			if(ap.length() > 0){
+				s = ap.substring(0, ap.length()-1);
+			}
+			
+			String valor = rs.getLong(1) + ";" + 
+					rs.getObject(2) + ";" + 
+					rs.getObject(3) + ";" + 
+					rs.getObject(4) + ";" + 
+					rs.getObject(5) + ";" + 
+					rs.getObject(6) + ";" +
+					rs.getObject(7) + ";" +
+					rs.getObject(8) + ";" + s +"\n" ;
+					
+			
+			linhas.add(valor);
+			
+    	}   
+		
+		try {
+			p.gerarArquivo("003",linhas);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("Concluido");
+	}
+	
+	public void gerarArquivo(String nomeArquivo, List<String>  linhas) throws IOException{
+
+	    FileWriter arq = new FileWriter("E:\\Documentos\\softplan\\resultado\\" + nomeArquivo + ".txt");
+	    PrintWriter gravarArq = new PrintWriter(arq);
+	    for (String l : linhas) {
+	      gravarArq.printf(l);
+	    }
+	    arq.close();
+	    
+	  }
+	
+	
+	public ResultSet unidades(Long usuario) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT DISTINCT USU_FUNC_ID, UNIDADE_ID FROM ");
+		sql.append("(SELECT * FROM PROT_UNI_USU_FUN UUF ");
+		sql.append("UNION  ");
+		sql.append("SELECT * FROM PROT_UNI_USU_LID UUL) ");
+		sql.append("WHERE USU_FUNC_ID = " + usuario);
+		
+		
+		
+		ResultSet rs;
+		try {
+			rs = connection.executeQuery(sql.toString());
+
+			return rs;
+			
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+		
+	}
+	
+	
+	public ResultSet usuarios() {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT id, replace(email, '@diadema.sp.gov.br'), nome, 'F' AS TP_PESSOA, CPF AS CPF_CNPJ, EMAIL, DECODE(ACTIVE, 1, 'A','I') AS SITUACAO, 'TRAMITADOR;CONSULTA' AS PERFIL,");
+		sql.append("'A' AS SETOR ");
+		sql.append("FROM PROT_USUARIO_INTERNO ui");
+		
+		
+		ResultSet rs;
+		try {
+			rs = connection.executeQuery(sql.toString());
+
+			return rs;
+			
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+		
+	}
+	
+	
 	
 	
 	public ResultSet findPRocessoByHistorico() {

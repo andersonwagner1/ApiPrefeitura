@@ -8,6 +8,6 @@ import java.sql.Statement;
 
 public class OracleBpm extends Oracle {
 	public OracleBpm(){
-		super("bpms","14prodbpm");
+		super("bpms","d14prodbpm");
 	}
 }

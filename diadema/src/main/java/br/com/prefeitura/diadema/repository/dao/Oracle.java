@@ -30,6 +30,17 @@ class Oracle {
 		return x;
 	}
 	
+	public void close() throws SQLException{
+		connection.close();
+		connection = null;
+		
+	}
+	
+	public Connection conexao3 (){
+		connection(user,password);
+		return connection;
+	}
+	
 	
 	public ResultSet executeQuery(String sql) throws SQLException{
 		if(connection == null){
