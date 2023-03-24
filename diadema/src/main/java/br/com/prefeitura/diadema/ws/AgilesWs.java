@@ -1,13 +1,13 @@
 package br.com.prefeitura.diadema.ws;
-
+/*
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+*/
 import org.springframework.stereotype.Service;
 
-import br.com.prefeitura.diadema.dto.UsuarioDto;
+/*
 import br.com.prefeitura.diadema.ws.agiles.AgilesUser;
 import br.com.prefeitura.diadema.ws.agiles.RolesServices;
 import br.com.prefeitura.diadema.ws.agiles.RolesServices_Service;
@@ -15,12 +15,16 @@ import br.com.prefeitura.diadema.ws.agiles.SingleSignOnServices;
 import br.com.prefeitura.diadema.ws.agiles.SingleSignOnServices_Service;
 import br.com.prefeitura.diadema.ws.agiles.UtilServices;
 import br.com.prefeitura.diadema.ws.agiles.UtilServices_Service;
-
-
+*/
+/**
+ * CURIOSIDADE DE COMO O AGILES FUNCIONA AQUI RS
+ * @author anderson.oliveira
+ *
+ */
 @Service
 public class AgilesWs {
 
-	private final String AGILES = "agiles";
+	/*private final String AGILES = "agiles";
 
 	public AgilesWs() {
 		final String username = AGILES;

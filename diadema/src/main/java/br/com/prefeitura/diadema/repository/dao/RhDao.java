@@ -1,11 +1,5 @@
 package br.com.prefeitura.diadema.repository.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.prefeitura.diadema.dto.UsuarioDto;
 
 public class RhDao {
 	
@@ -17,7 +11,7 @@ public class RhDao {
 	 * @returnidDocumentoBase
 	 * @throws SQLException
 	 */
-    public UsuarioDto findUserRhByCpf(String cpf, UsuarioDto usuarioDto) throws SQLException {
+  /*  public UsuarioDto findUserRhByCpf(String cpf, UsuarioDto usuarioDto) throws SQLException {
     	StringBuffer sql = new StringBuffer();
     	sql.append("SELECT CTR.CONTRATOMATRICULANUMERICO, ");
     	sql.append(" PEQ.PESNOME, ");
@@ -52,6 +46,6 @@ public class RhDao {
     		usuarioDto.setSituacaoRh("Usuário não encontrado no sistema RH");
     	}
     	return usuarioDto;
-    }
+    }*/
 }
   

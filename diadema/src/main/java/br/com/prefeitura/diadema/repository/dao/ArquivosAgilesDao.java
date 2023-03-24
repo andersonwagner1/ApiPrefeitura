@@ -1,5 +1,6 @@
 package br.com.prefeitura.diadema.repository.dao;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,17 +17,190 @@ public class ArquivosAgilesDao {
 	
 	
 	
+	
+	
 	public static void main(String main[]) throws SQLException{
 		ArquivosAgilesDao p = new ArquivosAgilesDao();
 		//p.listarTabelasQueTemArquivosMobile();
-		p.insertAtualizacoesProcessos();
-		
+		//p.insertAtualizacoesProcessos();
+		//p.rodarOsqueEstaoNoSema1();
+		//p.rodarOsqueEstaoNoSema2();
+		p.rodarOsqueEstaoNoSema3();
 		System.out.println("finalizado ");
 	}
 	
 	
-
 	
+	private void rodarOsqueEstaoNoSema1(){
+		
+		Long posInicial = 24004L;
+		Long posFinal = 0L;
+		boolean p = true;
+		Long id = 0L;
+		while(p){
+			posFinal = posInicial + 6000L;
+			try {
+				//ResultSet rs = executarQuery(posInicial, posFinal);
+				
+				StringBuffer sql = new StringBuffer();
+				sql.append(" SELECT PKARQUIVO FROM  sema_arquivo_anexado WHERE PKARQUIVO IS NOT NULL" );
+				sql.append(" AND idArquivoAnexado BETWEEN " +posInicial + " AND " + posFinal);
+				
+				Connection conn = connectionMobile.conexao3();
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql.toString());
+				//ResultSet rs = connectioAgiles.executeQuery(sql.toString());
+				
+				
+				System.out.println("Lendo " + posInicial + " " + posFinal);
+				p = false;
+				while(rs.next()){
+					id++;
+					connectioBpms.execute("UPDATE com_versao VR_VERSON SET NR_VERSAO = 1, STR_VERSAO= 'sema_arquivo_anexado' wHERE DS_PROJETO = '" +rs.getString(1) + "'");
+					System.out.println(id);
+					p = true;
+				}
+				
+				connectioBpms.close();
+				
+				rs.close();				
+				conn.close();
+				posInicial = posFinal + 1;
+			} catch (SQLException e) {
+			// 	TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	private void rodarOsqueEstaoNoSema2(){
+		
+		Long posInicial = 0L;
+		Long posFinal = 0L;
+		boolean p = true;
+		Long id = 0L;
+		while(p){
+			posFinal = posInicial + 6000L;
+			try {
+				//ResultSet rs = executarQuery(posInicial, posFinal);
+				
+				StringBuffer sql = new StringBuffer();
+				sql.append(" SELECT FILEPK FROM  MOBILEPMD.pe_boletos WHERE FILEPK IS NOT NULL" );
+				sql.append(" AND id BETWEEN " +posInicial + " AND " + posFinal);
+				
+				Connection conn = connectionMobile.conexao3();
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql.toString());
+				//ResultSet rs = connectioAgiles.executeQuery(sql.toString());
+				
+				
+				System.out.println("Lendo " + posInicial + " " + posFinal);
+				p = false;
+				while(rs.next()){
+					id++;
+					connectioBpms.execute("UPDATE com_versao VR_VERSON SET NR_VERSAO = 1, STR_VERSAO= 'sema_arquivo_anexado' wHERE DS_PROJETO = '" +rs.getString(1) + "'");
+					System.out.println(id);
+					p = true;
+				}
+				
+				connectioBpms.close();
+				
+				rs.close();				
+				conn.close();
+				posInicial = posFinal + 1;
+			} catch (SQLException e) {
+			// 	TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void rodarOsqueEstaoNoSema3(){
+		
+		Long posInicial = 2207251L;
+		Long posFinal = 0L;
+		boolean p = true;
+		Long id = 0L;
+		while(p){
+			posFinal = posInicial + 6000L;
+			try {
+				//ResultSet rs = executarQuery(posInicial, posFinal);
+				
+				StringBuffer sql = new StringBuffer();
+				sql.append(" SELECT AGILESPK FROM  pmd_ce_msg_arquivo WHERE AGILESPK IS NOT NULL" );
+				sql.append(" AND id BETWEEN " +posInicial + " AND " + posFinal);
+				
+				Connection conn = connectionMobile.conexao3();
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql.toString());
+				//ResultSet rs = connectioAgiles.executeQuery(sql.toString());
+				
+				
+				System.out.println("Lendo " + posInicial + " " + posFinal);
+				p = false;
+				while(rs.next()){
+					id++;
+					connectioBpms.execute("UPDATE com_versao VR_VERSON SET NR_VERSAO = 1, STR_VERSAO= 'sema_arquivo_anexado' wHERE DS_PROJETO = '" +rs.getString(1) + "'");
+					System.out.println(id);
+					p = true;
+				}
+				
+				connectioBpms.close();
+				
+				rs.close();				
+				conn.close();
+				posInicial = posFinal + 1;
+			} catch (SQLException e) {
+			// 	TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
+	
+	
+
+
+
+
+	private void rodarOsQueEstaoNoSema() {
+		StringBuffer sql = new StringBuffer("SELECT PKARQUIVO FROM  sema_arquivo_anexado WHERE PKARQUIVO IS NOT NULL");
+		ResultSet rs;
+		try {
+			rs = connectionMobile.executeQuery(sql.toString());
+		
+			
+		while(rs.next()){
+			
+			String sqlString = "UPDATE com_versao VR_VERSON SET NR_VERSAO = 1, STR_VERSAO= 'sema_arquivo_anexado' wHERE DS_PROJETO = '" +rs.getString(1) + "'";
+			connectioBpms.execute(sqlString);
+			System.out.println("rodando");
+		}
+		
+		System.out.println("Finalizado");
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		//SELECT BLOB_ID FROM   MOBILEPMD.bpkprot_documento_base WHERE BLOB_ID IS NOT NULL;
+		//SELECT BLOB_ID_VRSNDO FROM  MOBILEPMD.bpkprot_documento_base WHERE BLOB_ID_VRSNDO IS NOT NULL;
+		//SELECT BLOB_ID_CRMBDO FROM  MOBILEPMD.bpkprot_documento_base WHERE BLOB_ID_CRMBDO IS NOT NULL;
+		//SELECT FILEPK FROM  MOBILEPMD.pe_boletos WHERE FILEPK IS NOT NULL;
+		//SELECT AGILESPK FROM  MOBILEPMD.pmd_ce_msg_arquivo WHERE AGILESPK IS NOT NULL;
+		
+	}
+
+
+
+
+
+
 	private ResultSet executarQuery(Long posicaoInicial, Long posicaoFinal) throws SQLException{
 		StringBuffer sql = new StringBuffer();
 		sql.append(" SELECT F.FILEVERSIONBLOBID AS CAMINHO,A.VERSIONABLETYPE || '-' ||A.VERSIONABLEID  AS PK_ARQUIVO,IT.NAME AS NOME_ARQUIVO, IT.ACTIVE AS ATIVO FROM  agiles.fileversiontable F" );
@@ -152,7 +326,7 @@ public class ArquivosAgilesDao {
 		String listaTablesMobile[] = tabelasMobile.split(",");
 		String listaTablesBpms[] = tabelasBpms.split(",");
 		String listaTablesAgiles[] = tabelasAgiles.split(",");
-		
+		System.out.println("MOBILE PMD");
 		
 		ResultSet rs;
 		for(String t : listaTablesMobile){
@@ -161,14 +335,14 @@ public class ArquivosAgilesDao {
 			gerarSqlParaListarArquivo(localizacaoArquivo, t, rs);
 		}
 		
-		
+		System.out.println("BPMS");
 		
 		for(String t : listaTablesBpms){
 			rs = executarQueryBpms(t);
 			Boolean[] localizacaoArquivo = pecorrerListaColunasParaSaberSeAColunaEhUmPonteiroArquivo(rs);	
 			gerarSqlParaListarArquivo(localizacaoArquivo, t, rs);
 		}
-		
+		System.out.println("AGILES");
 				
 		for(String t : listaTablesAgiles){
 			rs = executarQueryAgiles(t);
@@ -193,7 +367,7 @@ public class ArquivosAgilesDao {
 		int i = 0;
 		for(Boolean b : localizacaoArquivo){
 			if(b != null && b){
-				System.out.println("SELECT " + rs.getMetaData().getColumnLabel(i+1).trim() + " FROM " + t + ";");
+				System.out.println("SELECT " + rs.getMetaData().getColumnLabel(i+1).trim() + " FROM " + t + " WHERE " + rs.getMetaData().getColumnLabel(i+1).trim() + " IS NOT NULL;");
 			}
 			i++;
 		}		

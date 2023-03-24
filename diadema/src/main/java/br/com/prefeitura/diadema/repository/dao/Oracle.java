@@ -20,6 +20,13 @@ class Oracle {
 		this.user = user;
 	}
 	
+	public Oracle(String user, String password, String ip, String database){
+		this.password = password;
+		this.user = user;
+		this.SERVER = ip;
+		this.DATABESE = database;
+	}
+	
 	
 	public Integer execute(String sql) throws SQLException{
 		if(connection == null){
