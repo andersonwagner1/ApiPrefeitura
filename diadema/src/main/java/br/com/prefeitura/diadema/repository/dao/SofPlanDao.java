@@ -65,6 +65,16 @@ public class SofPlanDao{
 			formulario.setIdDocBase(idDocumentoBase);
 			formulario.setFormulario(resultadoFormulario);
 			formulario.setIdModelo(idModeloTabela);
+			if(resultadoFormulario != null){
+				String o = resultadoFormulario.replace("}{", "}\n{");
+				resultadoFormulario = resultadoFormulario.replace("{CAMPO=[", "");
+				resultadoFormulario = resultadoFormulario.replace("] VALOR=[]}", "=\"\"");
+				resultadoFormulario = resultadoFormulario.replace("{CAMPO=[", "");
+				resultadoFormulario = resultadoFormulario.replace("] VALOR=[", "=");
+				resultadoFormulario = resultadoFormulario.replace("]}", "");
+						
+				formulario.setObservacao(resultadoFormulario);
+			}
 			
 			System.out.println("sucesso " + formulario.getIdDocBase() + " " + formulario.getFormulario());
 			
@@ -110,10 +120,21 @@ public class SofPlanDao{
 			formulario.setFormulario(resultadoFormulario);
 			formulario.setIdModelo(idModeloTabela);
 			
+			if(resultadoFormulario != null){
+				String o = resultadoFormulario.replace("}{", "}\n{");
+				o = o.replace("{CAMPO=[", "");
+				o = o.replace("] VALOR=[]}", "=\"\"");
+				o = o.replace("{CAMPO=[", "");
+				o = o.replace("] VALOR=[", "=");
+				o = o.replace("]}", "");
+						
+				formulario.setObservacao(o);
+			}
+			
 			System.out.println("sucesso " + formulario.getIdDocBase() + " " + formulario.getFormulario());
 			
 			bargaAuxiliarRepository.save(formulario);
-		//	System.out.println(formulario.getIdDocBase() +  " - " +  formulario.getFormulario());
+			System.out.println(formulario.getIdDocBase() +  " - " +  formulario.getFormulario());
 			 
 		}
 		System.out.println("Finalizado");
