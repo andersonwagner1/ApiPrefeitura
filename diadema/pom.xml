@@ -28,7 +28,8 @@
 	
 	
 	<dependencies>
-		
+	
+
 		
 		
 		<dependency>
@@ -56,17 +57,88 @@
 			<groupId>org.springframework.boot</groupId>  
 			<artifactId>spring-boot-starter-tomcat</artifactId>  
 			<scope>provided</scope>  
-		</dependency>  
+		</dependency>   
 		
-
-<dependency>
-    <groupId>com.sun.mail</groupId>
-    <artifactId>javax.mail</artifactId>
-    <version>1.6.2</version>
+		
+		
+	    <dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.17.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>jfree</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.bouncycastle</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>bouncycastle</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>eclipse</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.codehaus.castor</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>	
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>	
+			</exclusions>
+		</dependency> 
+		
+		
+		<!-- C��digo de Barras -->
+		<dependency>
+    <groupId>net.sourceforge.barbecue</groupId>
+    <artifactId>barbecue</artifactId>
+    <version>1.5-beta1</version>
 </dependency>
-
+		
+		
+		<dependency>
+    <groupId>org.apache.pdfbox</groupId>
+    <artifactId>pdfbox</artifactId>
+    <version>2.0.27</version>
+</dependency>
 		
 
+
+		<!-- Testes do PDF 
+		<dependency>
+			<groupId>pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>0.7.3</version>
+			<scope>test</scope>
+		</dependency>
+		-->
+		
+		<!-- Boleto HTML -->
+		<dependency>
+		        <groupId>javax.servlet</groupId>
+		        <artifactId>javax.servlet-api</artifactId>
+		        <version>3.0.1</version>
+		        <scope>provided</scope>
+		        <optional>true</optional>
+		</dependency>		
+		
+	<!-- 
+		<dependency>
+    <groupId>net.sf.jasperreports</groupId>
+    <artifactId>jasperreports</artifactId>
+    <version>6.17.0</version>
+</dependency>
+ -->	
 <!--
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -128,6 +200,7 @@
 
 
 
+
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-impl</artifactId>
@@ -149,6 +222,10 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.36</version>
 		</dependency>
+		
+		
+	
+		
 	</dependencies>
 
 	<build>
