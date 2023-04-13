@@ -11,6 +11,7 @@ import br.com.prefeitura.diadema.boleto.Boletos;
 import br.com.prefeitura.diadema.boleto.RetBoleto;
 import br.com.prefeitura.diadema.boleto.transformer.GeradorDeBoleto;
 import br.com.prefeitura.diadema.ws.AbacoHomologacaoWs;
+import br.com.prefeitura.diadema.ws.AbacoLancamentoHomologacaoWs;
 import br.com.prefeitura.diadema.ws.AbacoWs;
 
 
@@ -37,6 +38,15 @@ public class BoletoService {
 		boletos = ws.realizarChamada(numeroProcesso);
 		return boletos;
 	}
+	
+	
+	private Boletos executarLancamentoNotaHmgWebService(Integer codigoTaxa, Double valorTaxa, Integer quantidadeTaxa, Integer tipoContribuinte, Long inscricao, String observacao) throws Exception {
+		Boletos boletos = null;
+		AbacoLancamentoHomologacaoWs ws = new AbacoLancamentoHomologacaoWs();
+		boletos = ws.executarHmg(codigoTaxa, valorTaxa, quantidadeTaxa, tipoContribuinte, inscricao, observacao);
+		return boletos;
+	}
+	
 	
 	private ConcurrentHashMap<String, Object> adicionarParametros(Boletos boletos){
 		ConcurrentHashMap<String, Object> parametros = new ConcurrentHashMap();
@@ -101,6 +111,7 @@ public class BoletoService {
 		ret.setSucesso(true);
 		ret.setCaminhoArquivo(caminho);
 		ret.setArquivo(arquivo);
+		ret.setNumeroProcesso(boletos.getProcessoContribuinte());
 		return ret;
 
 	}
@@ -142,6 +153,26 @@ public class BoletoService {
 		}
 
 		return ret;
-		
 	}
+	
+	
+	public RetBoleto executarLancamentoNotaHmg(Integer codigoTaxa, Double valorTaxa,Integer quantidadeTaxa, Integer tipoContribuinte, Long inscricao, String observacao)  {
+		Boletos boletos;
+		RetBoleto ret = null;
+		try {			
+			boletos = executarLancamentoNotaHmgWebService(codigoTaxa, valorTaxa, quantidadeTaxa, tipoContribuinte, inscricao, observacao);
+			ConcurrentHashMap<String, Object> parametros = adicionarParametros(boletos);
+			ret = gerarBoleto(Long.parseLong(inscricao+ "" + codigoTaxa) , boletos, parametros);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = new RetBoleto();
+			ret.setSucesso(false);
+			//ret.setResultado(e.getMessage());
+			ret.setResultado(e.getMessage());
+		}
+
+		return ret;
+	}
+	
 }

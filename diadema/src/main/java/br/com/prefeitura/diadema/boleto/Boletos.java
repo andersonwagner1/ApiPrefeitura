@@ -131,6 +131,8 @@ public class Boletos
   private String codigoBarras;
   private File fileBoleto;
   
+  private Long numeroRegistro;
+  
   public Boleto toStellaBoleto()
   {
     Datas datas = Datas.novasDatas().comDocumento(dateToCalendar(this.dataDocumento)).comProcessamento(dateToCalendar(this.dataProcessamento)).comVencimento(dateToCalendar(this.dataVencimento));
@@ -760,4 +762,14 @@ public class Boletos
   {
     this.fileBoleto = fileBoleto;
   }
+
+public Long getNumeroRegistro() {
+	return numeroRegistro;
+}
+
+public void setNumeroRegistro(Long numeroRegistro) {
+	this.numeroRegistro = numeroRegistro;
+}
+  
+  
 }

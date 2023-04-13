@@ -1,9 +1,5 @@
 package br.com.prefeitura.diadema.repository.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-
 public class OracleSoftplan extends Oracle {	
 	public OracleSoftplan() {
 		//super("solar", "dQAdXgCVouRE_ctk","10.0.2.76","sftpmdhmg");

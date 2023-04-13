@@ -6,6 +6,7 @@ public class RetBoleto {
 	private boolean sucesso;
 	private String caminhoArquivo;
 	private byte[] arquivo;
+	private String numeroProcesso;
 	public String getResultado() {
 		return resultado;
 	}
@@ -30,6 +31,14 @@ public class RetBoleto {
 	public void setArquivo(byte[] arquivo) {
 		this.arquivo = arquivo;
 	}
+	public String getNumeroProcesso() {
+		return numeroProcesso;
+	}
+	public void setNumeroProcesso(String numeroProcesso) {
+		this.numeroProcesso = numeroProcesso;
+	}
+	
+	
 	
 	
  

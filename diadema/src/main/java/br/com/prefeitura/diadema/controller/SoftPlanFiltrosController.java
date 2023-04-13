@@ -11,12 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.prefeitura.diadema.dto.Campo;
 import br.com.prefeitura.diadema.dto.ComboDto;
 import br.com.prefeitura.diadema.dto.Filtro;
+import br.com.prefeitura.diadema.dto.TreeDto;
 import br.com.prefeitura.diadema.enumerador.EnumCampo;
 import br.com.prefeitura.diadema.enumerador.EnumFiltro;
 import br.com.prefeitura.diadema.service.SoftPlanFiltroService;
@@ -134,6 +136,16 @@ public class SoftPlanFiltrosController {
 	public ResponseEntity<List<ComboDto>> listarSecretariasPrefeitura() throws SQLException{
 		List<ComboDto> resultado = softplan.listarSecretariaPreitura();		
 		return new ResponseEntity<List<ComboDto>>(resultado, HttpStatus.OK);
+	}
+	
+	
+	@GetMapping(value ="/listar/arvore/secretaria/{idSecretaria}")
+	public ResponseEntity<List<TreeDto>> listarArvoreSecretaria(@PathVariable("idSecretaria") Long idSecretaria) throws SQLException{
+		if(idSecretaria == 0){
+			idSecretaria = null;
+		}
+		List<TreeDto> resultado = softplan.listarArvoreArquivo(idSecretaria, 0);	
+		return new ResponseEntity<List<TreeDto>>(resultado, HttpStatus.OK);
 	}
 	
 	

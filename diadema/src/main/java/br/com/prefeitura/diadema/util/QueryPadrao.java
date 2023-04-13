@@ -64,7 +64,7 @@ public class QueryPadrao {
 		sql.append("                                                      S4.CDORGAOSETOR");
 		sql.append("                      INNER JOIN ECPAORGAOSETOR S6 ON S6.CDSETORPAI =");
 		sql.append("                                                      S5.CDORGAOSETOR");
-		sql.append("                      WHERE S1.CDSETORPAI = 1");
+		sql.append("                      WHERE S1.CDSETORPAI  IN(1,2,4,3)");
 		sql.append("                     UNION");
 		sql.append("                     SELECT S5.CDORGAOSETOR,");
 		sql.append("                            S5.NMORGAOSETOR,");
@@ -79,7 +79,7 @@ public class QueryPadrao {
 		sql.append("                                                      S3.CDORGAOSETOR");
 		sql.append("                      INNER JOIN ECPAORGAOSETOR S5 ON S5.CDSETORPAI =");
 		sql.append("                                                      S4.CDORGAOSETOR");
-		sql.append("                      WHERE S1.CDSETORPAI = 1");
+		sql.append("                      WHERE S1.CDSETORPAI  IN(1,2,4,3)");
 		sql.append("                     UNION");
 		sql.append("                     SELECT S4.CDORGAOSETOR,");
 		sql.append("                            S4.NMORGAOSETOR,");
@@ -92,7 +92,7 @@ public class QueryPadrao {
 		sql.append("                                                      S2.CDORGAOSETOR");
 		sql.append("                      INNER JOIN ECPAORGAOSETOR S4 ON S4.CDSETORPAI =");
 		sql.append("                                                      S3.CDORGAOSETOR");
-		sql.append("                      WHERE S1.CDSETORPAI = 1");
+		sql.append("                      WHERE S1.CDSETORPAI  IN(1,2,4,3)");
 		sql.append("                     UNION");
 		sql.append("                     SELECT S3.CDORGAOSETOR,");
 		sql.append("                            S3.NMORGAOSETOR,");
@@ -103,7 +103,7 @@ public class QueryPadrao {
 		sql.append("                                                      S1.CDORGAOSETOR");
 		sql.append("                      INNER JOIN ECPAORGAOSETOR S3 ON S3.CDSETORPAI =");
 		sql.append("                                                      S2.CDORGAOSETOR");
-		sql.append("                      WHERE S1.CDSETORPAI = 1");
+		sql.append("                      WHERE S1.CDSETORPAI  IN(1,2,4,3)");
 		sql.append("                     UNION");
 		sql.append("                     SELECT S2.CDORGAOSETOR,");
 		sql.append("                            S2.NMORGAOSETOR,");
@@ -112,7 +112,7 @@ public class QueryPadrao {
 		sql.append("                       FROM ECPAORGAOSETOR S1");
 		sql.append("                      INNER JOIN ECPAORGAOSETOR S2 ON S2.CDSETORPAI =");
 		sql.append("                                                      S1.CDORGAOSETOR");
-		sql.append("                      WHERE S1.CDSETORPAI = 1) SECRETARIA ON ORGAO.CDORGAOSETOR =");
+		sql.append("                      WHERE S1.CDSETORPAI  IN(1,2,4,3)) SECRETARIA ON ORGAO.CDORGAOSETOR =");
 		sql.append("                                                             SECRETARIA.ID");
 		sql.append("          WHERE TRAM.NUANO || LPAD(TRAM.NUPROCESSO, 9, 0) ||");
 		sql.append("                LPAD(TRAM.NUTRAMITE, 9, 0) IN");

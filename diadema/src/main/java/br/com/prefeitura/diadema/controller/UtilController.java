@@ -43,6 +43,22 @@ public class UtilController {
 		
 		return new ResponseEntity<RetBoleto>(fileBoelto, HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/lancarNotaHmg/{codigoTaxa}/{valorTaxa}/{quantidadeTaxa}/{tipoContribuinte}/{inscricao}/{observacao}")
+	public ResponseEntity<RetBoleto> lancarTaxaDiversars(
+			@PathVariable("codigoTaxa") Integer codigoTaxa,
+			@PathVariable("valorTaxa")Double valorTaxa,
+			@PathVariable("quantidadeTaxa")Integer quantidadeTaxa, 
+			@PathVariable("tipoContribuinte")Integer tipoContribuinte, 
+			@PathVariable("inscricao")Long inscricao, 
+			@PathVariable("observacao")String observacao)
+			{
+		RetBoleto fileBoelto = boletoService.executarLancamentoNotaHmg(codigoTaxa,valorTaxa, quantidadeTaxa ,tipoContribuinte,inscricao,observacao);
+		
+		return new ResponseEntity<RetBoleto>(fileBoelto, HttpStatus.OK);
+	}
+	
+	
 			//@PathVariable() String nomeRelatorio,			
 			//@RequestParam(value = "dataInicial") Long dataInicial,
 			//@RequestParam(value = "dataFinal") Long dataFinal,

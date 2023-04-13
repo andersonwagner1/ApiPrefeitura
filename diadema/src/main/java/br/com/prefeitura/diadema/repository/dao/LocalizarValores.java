@@ -8,7 +8,7 @@ public class LocalizarValores {
 	
 	
 	private OracleSoftplan coneection = new OracleSoftplan();
-	
+	//private OracleMobile coneection = new OracleMobile();
 
 	
 	
@@ -17,9 +17,10 @@ public class LocalizarValores {
 	public static void main(String arg[]) throws SQLException{
 		LocalizarValores l = new LocalizarValores();
 		System.out.println("Inicinando");
-		//l.localizarValor(30280L);
+		//l.localizarValor(39115894843l);
 		//l.localizarValor("[EXTERNO][FINANÇAS] UNIFICAÇÃO DE IPTU");
-		l.localizarValor("[EXTERNO]");
+		l.localizarValor("a2c929b3-bb4e-4ad7-aa96-caa42a6303ba");
+		System.out.println("Fim");
 	}
 	
 	private ResultSet listarTabelas(){
@@ -47,10 +48,16 @@ public class LocalizarValores {
 	
 	private ResultSet listarColunas(String tabela, String tipo) throws SQLException{		
 		StringBuffer sqlcoluna = new StringBuffer();
-		sqlcoluna.append("SELECT column_name, '1' ");
-		sqlcoluna.append("FROM   all_tab_cols ");
-		sqlcoluna.append("WHERE  table_name = '"+tabela+"' ");
-		sqlcoluna.append("and data_type = '"+tipo+"'");
+		sqlcoluna.append(" SELECT column_name, '1' ");
+		sqlcoluna.append(" FROM   all_tab_cols ");
+		sqlcoluna.append(" WHERE  table_name = '"+tabela+"' ");
+		sqlcoluna.append(" and data_type = '"+tipo+"'");
+		sqlcoluna.append(" and UPPER(column_name) <> 'VERSION'");
+		sqlcoluna.append(" and UPPER(table_name) <> 'EMIGFLYWAYSCHEMAVERSION'");
+		sqlcoluna.append(" and UPPER(column_name) not like 'SYS%'");
+		
+		
+		
 		ResultSet rsColunas = coneection.executeQuery(sqlcoluna.toString());
 		//System.out.print(rsColunas.getRow());
 		return rsColunas;
@@ -64,6 +71,7 @@ public class LocalizarValores {
 		sqlcoluna.append(" SELECT  count(*) ");
 		sqlcoluna.append(" FROM  " + tabela);
 		sqlcoluna.append(" WHERE " + coluna + " = " + valor);
+		//sqlcoluna.append(" and UPPER(column_name) <> 'VERSION'");
 		ResultSet rsColunas = coneection.executeQuery(sqlcoluna.toString());
 		
 		if(rsColunas.next()){

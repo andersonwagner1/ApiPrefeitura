@@ -1,22 +1,33 @@
 package br.com.prefeitura.diadema.service;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
-import br.com.prefeitura.diadema.dto.ComboDto;
-import br.com.prefeitura.diadema.repository.dao.OracleSoftplan;
 import br.com.prefeitura.diadema.util.ExecutarQuery;
 
 @Service
 public class SoftPlanTabelaService {
 	
 	public static void main(String main[]) {
-		SoftPlanTabelaService s = new SoftPlanTabelaService();
+	/*	SoftPlanTabelaService s = new SoftPlanTabelaService();
+		
+		HttpClient client = HttpClient.newHttpClient();
+		
+		
+		// criar a requisição
+		HttpRequest request = HttpRequest.newBuilder()
+		          .GET()
+		          .timeout(Duration.ofSeconds(10))
+		          .uri(URI.create(URL_GET))
+		          .build();
+		
+		
+		HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+		
+		*/
+		//imprimir o conteúdo recebido
+	//	System.out.println(response.statusCode());
+	//	System.out.println(response.body());
+		
 	//	s.listarQuantidadeProcessoPorAssuntoFiltradoPorDataInicialFinal(null,null,null);
 	}
 	
@@ -33,4 +44,7 @@ public class SoftPlanTabelaService {
 		
 		
 	}
+	
+	
+	
 }

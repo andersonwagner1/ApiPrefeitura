@@ -19,13 +19,12 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 
-import net.sf.jasperreports.engine.DefaultJasperReportsContext;
+
 import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
-import net.sf.jasperreports.engine.JasperReportsContext;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import br.com.prefeitura.diadema.boleto.Boleto;
 import br.com.prefeitura.diadema.boleto.exception.GeracaoBoletoException;
@@ -146,6 +145,9 @@ public class GeradorDeBoleto {
 			}
 		}
 	}
+
+	
+		// 	}
 
 	/**
 	 * Gera um boleto em PDF, e grava no caminho indicado.
