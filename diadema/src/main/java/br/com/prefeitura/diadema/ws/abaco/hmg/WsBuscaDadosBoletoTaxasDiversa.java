@@ -3,12 +3,15 @@ package br.com.prefeitura.diadema.ws.abaco.hmg;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import javax.xml.ws.WebEndpoint;
 import javax.xml.ws.WebServiceClient;
 import javax.xml.ws.WebServiceException;
 import javax.xml.ws.WebServiceFeature;
+
+import br.com.prefeitura.diadema.util.UrlEndereco;
 
 
 /**
@@ -17,7 +20,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "wsBuscaDadosBoletoTaxasDiversa", targetNamespace = "AGATA", wsdlLocation = "http://aplics-teste.diadema.sp.gov.br:8080/agataoracle/servlet/awsbuscadadosboletotaxasdiversa?WSDL")
+@WebServiceClient(name = "wsBuscaDadosBoletoTaxasDiversa", targetNamespace = "AGATA", wsdlLocation = UrlEndereco.WSDL + "agataoracle/servlet/awsbuscadadosboletotaxasdiversa?WSDL")
 public class WsBuscaDadosBoletoTaxasDiversa
     extends Service
 {
@@ -30,7 +33,7 @@ public class WsBuscaDadosBoletoTaxasDiversa
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://aplics-teste.diadema.sp.gov.br:8080/agataoracle/servlet/awsbuscadadosboletotaxasdiversa?WSDL");
+            url = new URL(UrlEndereco.WSDL + "agataoracle/servlet/awsbuscadadosboletotaxasdiversa?WSDL");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

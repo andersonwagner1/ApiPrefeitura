@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.com.prefeitura.diadema.repository.dao.OracleSoftplan;
 
+
 public class ExecutarQuery {
 	
 	

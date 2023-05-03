@@ -1,6 +1,7 @@
 package br.com.prefeitura.diadema.service;
 
 import java.io.File;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +11,24 @@ import br.com.prefeitura.diadema.boleto.Boleto;
 import br.com.prefeitura.diadema.boleto.Boletos;
 import br.com.prefeitura.diadema.boleto.RetBoleto;
 import br.com.prefeitura.diadema.boleto.transformer.GeradorDeBoleto;
+import br.com.prefeitura.diadema.model.PmdBoleto;
+import br.com.prefeitura.diadema.repository.BoletoRepository;
 import br.com.prefeitura.diadema.ws.AbacoHomologacaoWs;
 import br.com.prefeitura.diadema.ws.AbacoLancamentoHomologacaoWs;
 import br.com.prefeitura.diadema.ws.AbacoWs;
 
-
+@Deprecated
 @Service
 public class BoletoService {
+	
+	private BoletoRepository dao;
 	
 	
 	private final String CAMINHO_ARQUIVO = System.getProperty ("java.io.tmpdir");
 
 	@Autowired
-	public BoletoService(){
+	public BoletoService(BoletoRepository dao){
+		this.dao = dao;
 	}
 	
 	private Boletos executarWebServiceHmg(Long numeroProcesso) throws Exception {
@@ -116,7 +122,7 @@ public class BoletoService {
 
 	}
 	
-	
+	@Deprecated
 	public RetBoleto executarHmg(Long numeroProcesso)  {
 		Boletos boletos;
 		RetBoleto ret = null;
@@ -136,6 +142,11 @@ public class BoletoService {
 		
 	}
 
+	
+	
+	
+	
+	@Deprecated
 	public RetBoleto executar(Long numeroProcesso)  {
 		Boletos boletos;
 		RetBoleto ret = null;
@@ -155,14 +166,23 @@ public class BoletoService {
 		return ret;
 	}
 	
+	public PmdBoleto consultarBoletoHomologacao(Long numeroProcesso)  {
+		try {
+			AbacoHomologacaoWs ws = new AbacoHomologacaoWs();
+			return ws.localizarBoleto(numeroProcesso);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;	
+	}
 	
-	public RetBoleto executarLancamentoNotaHmg(Integer codigoTaxa, Double valorTaxa,Integer quantidadeTaxa, Integer tipoContribuinte, Long inscricao, String observacao)  {
+	@Deprecated
+	public RetBoleto consultarBoletoHmg(Long numeroProcesso)  {
 		Boletos boletos;
 		RetBoleto ret = null;
-		try {			
-			boletos = executarLancamentoNotaHmgWebService(codigoTaxa, valorTaxa, quantidadeTaxa, tipoContribuinte, inscricao, observacao);
-			ConcurrentHashMap<String, Object> parametros = adicionarParametros(boletos);
-			ret = gerarBoleto(Long.parseLong(inscricao+ "" + codigoTaxa) , boletos, parametros);
+		try {
+			boletos = executarWebServiceHmg(numeroProcesso);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -173,6 +193,64 @@ public class BoletoService {
 		}
 
 		return ret;
+	}
+	
+	
+	public PmdBoleto consultaBoletoPorNumeroProcessoEletronico(Long numerProcesso, String orgao, Integer ano){
+		List<PmdBoleto> boletos = dao.consultarBoletoPorNumeroProcesso(orgao, ano, numerProcesso);
+		
+		if(boletos.size() == 0){
+			PmdBoleto boleto = new PmdBoleto();
+			boleto.setCdSituacao(0);
+			boleto.setDsOrgao(orgao);
+			boleto.setNrAno(ano);
+			boleto.setNrProcesso(numerProcesso);
+			boleto.setDsSituacao("Não foi encontrado boleto consultando processo  na tabela auxiliar");
+			boleto.setDsBoleto("BOLETO_INVALIDO");
+			return boleto;
+		}
+		
+		return boletos.get(0);
+	}
+	
+	public PmdBoleto salvarRegistro(String numerProcesso, String orgao, Integer ano, Integer numeroProcesso){
+		PmdBoleto boleto = new PmdBoleto();
+		boleto.setDsOrgao(orgao);
+		boleto.setNrAno(ano);
+		boleto.setNrProcesso(numeroProcesso.longValue());
+		
+		boleto.setCdSituacao(0);
+		boleto.setDsBoleto("BOLETO_EM_ANDAMENTO");
+		
+		boleto.setDsSituacao("BOLETO_EM_ANDAMENTO");
+		boleto.setNrProcessoBoleto(Long.parseLong(numerProcesso));
+		return dao.save(boleto);
+	}
+	
+	public RetBoleto executarLancamentoNotaHmg(Integer codigoTaxa, Double valorTaxa,Integer quantidadeTaxa, Integer tipoContribuinte, Long inscricao, String observacao)  {
+		Boletos boletos;
+		RetBoleto ret = null;
+		try {			
+			boletos = executarLancamentoNotaHmgWebService(codigoTaxa, valorTaxa, quantidadeTaxa, tipoContribuinte, inscricao, observacao);
+			ConcurrentHashMap<String, Object> parametros = adicionarParametros(boletos);
+			ret = gerarBoleto(Long.parseLong(inscricao+ "" + codigoTaxa) , boletos, parametros);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ret = new RetBoleto();
+			ret.setSucesso(false);
+			//ret.setResultado(e.getMessage());
+			ret.setResultado(e.getMessage());
+		}
+		
+		
+
+		return ret;
+	}
+
+	public void salvarRegistro(PmdBoleto fileBoelto) {
+		dao.save(fileBoelto);
 	}
 	
 }

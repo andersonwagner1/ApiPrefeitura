@@ -17,12 +17,32 @@ import org.springframework.stereotype.Service;
 import br.com.prefeitura.diadema.boleto.Boletos;
 import br.com.prefeitura.diadema.boleto.bancos.Bradesco;
 import br.com.prefeitura.diadema.boleto.exception.BoletoException;
-import br.com.prefeitura.diadema.boleto.transformer.GeradorDeBoleto;
+import br.com.prefeitura.diadema.dto.InscricaoMunicipal;
+import br.com.prefeitura.diadema.model.PmdBoleto;
+import br.com.prefeitura.diadema.util.ParseInscricao;
 import br.com.prefeitura.diadema.ws.abaco.hmg.RetornoWSRetornoWSItem;
 import br.com.prefeitura.diadema.ws.abaco.hmg.WsBuscaDadosBoletoTaxasDiversa;
 import br.com.prefeitura.diadema.ws.abaco.hmg.WsBuscaDadosBoletoTaxasDiversaExecute;
 import br.com.prefeitura.diadema.ws.abaco.hmg.WsBuscaDadosBoletoTaxasDiversaExecuteResponse;
 import br.com.prefeitura.diadema.ws.abaco.hmg.WsBuscaDadosBoletoTaxasDiversaSoapPort;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.SdtDadosCadastraisEmpresa;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.SdtEmpresasporCnpjSdtEmpresasporCnpjItem;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsCadastroInscricaoMobiliario;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsCadastroInscricaoMobiliarioExecute;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsCadastroInscricaoMobiliarioExecuteResponse;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsCadastroInscricaoMobiliarioSoapPort;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsConsultaExistenciaEmpresa;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsConsultaExistenciaEmpresaExecute;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsConsultaExistenciaEmpresaExecuteResponse;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsConsultaExistenciaEmpresaSoapPort;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsConsultarExistenciaDaEmpresa;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsConsultarExistenciaDaEmpresaExecute;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsConsultarExistenciaDaEmpresaExecuteResponse;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsConsultarExistenciaDaEmpresaSoapPort;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsVerificaInscricaoImobiliaria;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsVerificaInscricaoImobiliariaExecute;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsVerificaInscricaoImobiliariaExecuteResponse;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsVerificaInscricaoImobiliariaSoapPort;
 import br.com.prefeitura.diadema.ws.abaco.hmg.lancar.ArrayOfSdtLancarTaxasDiversasTaxasItem;
 import br.com.prefeitura.diadema.ws.abaco.hmg.lancar.SdtLancarTaxasDiversas;
 import br.com.prefeitura.diadema.ws.abaco.hmg.lancar.SdtLancarTaxasDiversasTaxasItem;
@@ -37,8 +57,20 @@ public class AbacoHomologacaoWs {
 	
 	
 	public  static void main(String args[]) throws Exception{
-		AbacoHomologacaoWs w = new AbacoHomologacaoWs();
-		WsLancarTaxasDiversasExecuteResponse retorno = w.lancarTaxa(122, 150.0d,1, 2, 1206600102L, "desecrição");
+		
+		AbacoHomologacaoWs ws = new AbacoHomologacaoWs();
+		System.out.println(ws.localizarBoleto(2023093586L).getDsBoleto());
+		
+	//	AbacoLancamentoHomologacaoWs a = new AbacoLancamentoHomologacaoWs();
+	//	System.out.println(a.localizarBoleto(2023092383L).getDsBoleto());
+		
+		//AbacoHomologacaoWs w = new AbacoHomologacaoWs();
+		
+		
+		
+		//WsLancarTaxasDiversasExecuteResponse retorno = w.lancarTaxa(122, 150.0d,1, 2, 1206600102L, "desecrição");
+		//System.out.println(w.existeInscricaoMunicipal(1206600102L));
+		//System.out.println(w.existeCnpj(46523247000193L));
 		
 	//	ConversorLancamentoResponse rs = new ConversorLancamentoResponse(retorno);
 		
@@ -51,6 +83,138 @@ public class AbacoHomologacaoWs {
 		
 		
 	}
+	
+	
+	public WsCadastroInscricaoMobiliarioExecuteResponse enviarDadosParaAgata(InscricaoMunicipal inscricaoMunicipal) {
+		
+		
+		
+		WsCadastroInscricaoMobiliarioExecute param = new WsCadastroInscricaoMobiliarioExecute();
+		WsCadastroInscricaoMobiliario wsl = new WsCadastroInscricaoMobiliario();
+		WsCadastroInscricaoMobiliarioSoapPort port = wsl.getWsCadastroInscricaoMobiliarioSoapPort();
+		WsCadastroInscricaoMobiliarioExecuteResponse inscricaoCastradas = port.execute(param);	
+		return inscricaoCastradas;
+	}
+	
+	public SdtEmpresasporCnpjSdtEmpresasporCnpjItem consultarExistemEmpresaPorCnpj(Long cnpj) throws Exception{
+		WsConsultaExistenciaEmpresaExecute param = new WsConsultaExistenciaEmpresaExecute();
+		param.setCnpj(cnpj.toString());
+
+		WsConsultaExistenciaEmpresa ws1 = new WsConsultaExistenciaEmpresa();
+		WsConsultaExistenciaEmpresaSoapPort port = ws1.getWsConsultaExistenciaEmpresaSoapPort();
+		
+		WsConsultaExistenciaEmpresaExecuteResponse exisiteInscricaoMunicipal = port.execute(param);
+		return exisiteInscricaoMunicipal.getSdtEmpresasporcnpj().getSdtEmpresasporCnpjSdtEmpresasporCnpjItem().get(0);
+	}
+	
+	
+	
+	public boolean existeCnpj(Long cnpj) throws Exception{
+		WsConsultaExistenciaEmpresaExecute param = new WsConsultaExistenciaEmpresaExecute();
+		param.setCnpj(cnpj.toString());
+
+		WsConsultaExistenciaEmpresa ws1 = new WsConsultaExistenciaEmpresa();
+		WsConsultaExistenciaEmpresaSoapPort port = ws1.getWsConsultaExistenciaEmpresaSoapPort();
+		
+		WsConsultaExistenciaEmpresaExecuteResponse exisiteInscricaoMunicipal = port.execute(param);
+		return exisiteInscricaoMunicipal.getSdtEmpresasporcnpj().getSdtEmpresasporCnpjSdtEmpresasporCnpjItem().get(0).getIdRetorno() == 0;
+	}
+	
+	
+	public boolean existeInscricaoMobiliario(Long inscricaoMunicipal) throws Exception{
+		WsConsultarExistenciaDaEmpresaExecute parameters = new WsConsultarExistenciaDaEmpresaExecute();
+		parameters.setInscricaomunicipal(inscricaoMunicipal);
+
+		WsConsultarExistenciaDaEmpresa ws1 = new WsConsultarExistenciaDaEmpresa();
+		WsConsultarExistenciaDaEmpresaSoapPort port = ws1.getWsConsultarExistenciaDaEmpresaSoapPort();
+		
+		WsConsultarExistenciaDaEmpresaExecuteResponse inscricao = port.execute(parameters);
+		return inscricao.getSdtDadoscadastraisempresas().getIdRetorno() == 0;
+	}
+	
+	
+	
+	public boolean existeInscricaoImobiliario(Long inscricaoMunicipal) throws Exception{
+		WsVerificaInscricaoImobiliariaExecute param = new WsVerificaInscricaoImobiliariaExecute();
+		param.setInscricaoimobiliaria(inscricaoMunicipal.toString());
+
+		WsVerificaInscricaoImobiliaria ws1 = new WsVerificaInscricaoImobiliaria();
+		WsVerificaInscricaoImobiliariaSoapPort port = ws1.getWsVerificaInscricaoImobiliariaSoapPort();
+		
+		WsVerificaInscricaoImobiliariaExecuteResponse exisiteInscricaoMunicipal = port.execute(param);
+		return exisiteInscricaoMunicipal.getExiste() == 1;
+	}
+	
+	
+
+	
+	public PmdBoleto localizarBoleto(Long nrBoleto) throws Exception{
+		WsBuscaDadosBoletoTaxasDiversaExecute paramsWSBoleto = new WsBuscaDadosBoletoTaxasDiversaExecute();
+		paramsWSBoleto.setProcesso(nrBoleto.intValue());
+
+		WsBuscaDadosBoletoTaxasDiversa ws = new WsBuscaDadosBoletoTaxasDiversa();
+		WsBuscaDadosBoletoTaxasDiversaSoapPort port = ws.getWsBuscaDadosBoletoTaxasDiversaSoapPort();
+		WsBuscaDadosBoletoTaxasDiversaExecuteResponse retornoBoleto = port.execute(paramsWSBoleto);
+
+		if (retornoBoleto == null || retornoBoleto.getSdtboletotaxasdiversas() == null) {
+			throw new Exception("Boleto Não encontrado");
+		}
+		
+		
+		PmdBoleto pmd = new PmdBoleto();
+
+		if (retornoBoleto.getSdtboletotaxasdiversas().getValoraPagar() == 0.0D) {
+			if ((retornoBoleto.getRetornows() != null) && (retornoBoleto.getRetornows().getRetornoWSRetornoWSItem() != null) && (retornoBoleto.getRetornows().getRetornoWSRetornoWSItem().size() > 0)) {
+				String ret = "";
+				for (RetornoWSRetornoWSItem retorno : retornoBoleto.getRetornows().getRetornoWSRetornoWSItem()) {					
+					pmd.setCdSituacao((int) retorno.getIdRetorno());
+					pmd.setDsSituacao(retorno.getDesRetorno());
+					if("Erro: Taxas diversas informada inválida!".equals(retorno.getDesRetorno())){
+						pmd.setDsBoleto("BOLETO_INVALIDO");
+					}
+					
+					if(retorno.getDesRetorno().contains("Taxas diversas com validade vencida!")){
+						pmd.setDsBoleto("BOLETO_VENCIDO");
+					}
+					
+					
+					if(retorno.getDesRetorno().contains("Erro: Taxas diversas foi paga")){
+						pmd.setDsBoleto("BOLETO_PAGO");
+					}
+					
+					
+					if(retorno.getDesRetorno().contains("Consulta efetuada com sucesso!")){
+						pmd.setDsBoleto("BOLETO_EM_ANDAMENTO");
+					}
+				}
+			}
+		}else{
+			for (RetornoWSRetornoWSItem retorno : retornoBoleto.getRetornows().getRetornoWSRetornoWSItem()) {					
+				pmd.setCdSituacao((int) retorno.getIdRetorno());
+				pmd.setDsSituacao(retorno.getDesRetorno());
+				if(retorno.getDesRetorno().contains("Erro: Taxas diversas foi paga")){
+					pmd.setDsBoleto("BOLETO_PAGO");
+				}
+				
+				
+				if(retorno.getDesRetorno().contains("Consulta efetuada com sucesso!")){
+					pmd.setDsBoleto("BOLETO_EM_ANDAMENTO");
+				}
+				
+				
+				if("Erro: Taxas diversas informada inválida!".equals(retorno.getDesRetorno())){
+					pmd.setDsBoleto("BOLETO_INVALIDO");
+				}
+				
+				if(retorno.getDesRetorno().contains("Taxas diversas com validade vencida!")){
+					pmd.setDsBoleto("BOLETO_VENCIDO");
+				}
+			}
+		}
+		
+		return pmd;
+	}
+	
 	
 	
 	public WsLancarTaxasDiversasExecuteResponse lancarTaxa(Integer codigoTaxa, Double valorTaxa, Integer quantidadeTaxa, Integer tipoContribuinte, Long inscricao, String observacao ) throws Exception{

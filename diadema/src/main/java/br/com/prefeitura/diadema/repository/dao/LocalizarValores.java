@@ -16,10 +16,10 @@ public class LocalizarValores {
 	
 	public static void main(String arg[]) throws SQLException{
 		LocalizarValores l = new LocalizarValores();
-		System.out.println("Inicinando");
-		//l.localizarValor(39115894843l);
-		//l.localizarValor("[EXTERNO][FINANÇAS] UNIFICAÇÃO DE IPTU");
-		l.localizarValor("a2c929b3-bb4e-4ad7-aa96-caa42a6303ba");
+		System.out.println("i");
+		//l.localizarValor(188907l);
+		//l.localizarValor("São Paulo", true);
+		l.localizarValor(3015L);
 		System.out.println("Fim");
 	}
 	
@@ -84,14 +84,18 @@ public class LocalizarValores {
 	}
 	
 	
-	private void localizarValores(String tabela, String coluna, String valor) throws SQLException{	
+	private void localizarValores(String tabela, String coluna, String valor, boolean exato) throws SQLException{	
 		StringBuffer sqlcoluna = new StringBuffer();
 		sqlcoluna.append(" SELECT  count(*) ");
 		//sqlcoluna.append(" FROM  ECPAFORMULARIO" );
 		sqlcoluna.append(" FROM  " + tabela);
 		//sqlcoluna.append(" WHERE NMFORMULARIO LIKE upper('%" + valor +"%')");
 		
-		sqlcoluna.append(" WHERE upper(" + coluna + ") LIKE upper('%" + valor +"%')");
+		if(!exato){
+			sqlcoluna.append(" WHERE upper(" + coluna + ") LIKE upper('%" + valor +"%')");
+		}else{
+			sqlcoluna.append(" WHERE upper(" + coluna + ") = upper('" + valor +"')");
+		}
 		ResultSet rsColunas = coneection.executeQuery(sqlcoluna.toString());
 		
 		if(rsColunas.next()){
@@ -103,7 +107,7 @@ public class LocalizarValores {
 		rsColunas.close();		
 	}
 	
-	private void localizarValor(String valor) throws SQLException {
+	private void localizarValor(String valor, boolean exato) throws SQLException {
 		
 		ResultSet rs = listarTabelas();				
 		int tabelas = 0;
@@ -111,7 +115,7 @@ public class LocalizarValores {
 			tabelas ++;
 			ResultSet rsColunas = listarColunas(rs.getString(1),"VARCHAR2");
 			while(rsColunas.next()){
-				localizarValores(rs.getString(1), rsColunas.getString(1), valor);
+				localizarValores(rs.getString(1), rsColunas.getString(1), valor, exato);
 			}
 			rsColunas.close();
 		}	

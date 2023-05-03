@@ -1,11 +1,5 @@
-package br.com.prefeitura.diadema.controller;
+package br.com.prefeitura.diadema.boleto;
 
-import br.com.prefeitura.diadema.boleto.Banco;
-import br.com.prefeitura.diadema.boleto.Beneficiario;
-import br.com.prefeitura.diadema.boleto.Boleto;
-import br.com.prefeitura.diadema.boleto.Datas;
-import br.com.prefeitura.diadema.boleto.Endereco;
-import br.com.prefeitura.diadema.boleto.Pagador;
 import br.com.prefeitura.diadema.boleto.bancos.Bradesco;
 import br.com.prefeitura.diadema.boleto.transformer.GeradorDeBoleto;
 

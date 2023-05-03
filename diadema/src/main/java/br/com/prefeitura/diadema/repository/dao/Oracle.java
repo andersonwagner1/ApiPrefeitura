@@ -53,7 +53,7 @@ class Oracle {
 		if(connection == null){
 			connection(user,password);
 		}
-		Statement stmt = connection.createStatement();
+		Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		ResultSet res = stmt.executeQuery(sql);
 		return res;
 	}

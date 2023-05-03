@@ -19,6 +19,7 @@ import br.com.prefeitura.diadema.service.SoftPlanTabelaService;
  * @author anderson.oliveira
  *
  */
+@Deprecated
 @RestController
 @RequestMapping("/api/diadema/tabela")
 public class SoftPlanTabelaController {

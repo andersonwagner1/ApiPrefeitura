@@ -9,10 +9,5 @@ public class OracleSoftplan extends Oracle {
 		//super("agiles", "d14prodagl"/*,"10.0.2.76","sftpmdhmg"*/);
 		//super("agiles", "d14prodagl"/*,"10.0.2.76","sftpmdhmg"*/);
 
-	}
-	
-	
-	
-	
-	
+	}	
 }

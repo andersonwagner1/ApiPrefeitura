@@ -5,9 +5,8 @@ import java.net.PasswordAuthentication;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 */
-import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -18,11 +17,12 @@ import org.springframework.stereotype.Service;
 import br.com.prefeitura.diadema.boleto.Boletos;
 import br.com.prefeitura.diadema.boleto.bancos.Bradesco;
 import br.com.prefeitura.diadema.boleto.exception.BoletoException;
-import br.com.prefeitura.diadema.ws.abaco.RetornoWSRetornoWSItem;
-import br.com.prefeitura.diadema.ws.abaco.WsBuscaDadosBoletoTaxasDiversa;
-import br.com.prefeitura.diadema.ws.abaco.WsBuscaDadosBoletoTaxasDiversaExecute;
-import br.com.prefeitura.diadema.ws.abaco.WsBuscaDadosBoletoTaxasDiversaExecuteResponse;
-import br.com.prefeitura.diadema.ws.abaco.WsBuscaDadosBoletoTaxasDiversaSoapPort;
+import br.com.prefeitura.diadema.model.PmdBoleto;
+import br.com.prefeitura.diadema.ws.abaco.hmg.RetornoWSRetornoWSItem;
+import br.com.prefeitura.diadema.ws.abaco.hmg.WsBuscaDadosBoletoTaxasDiversa;
+import br.com.prefeitura.diadema.ws.abaco.hmg.WsBuscaDadosBoletoTaxasDiversaExecute;
+import br.com.prefeitura.diadema.ws.abaco.hmg.WsBuscaDadosBoletoTaxasDiversaExecuteResponse;
+import br.com.prefeitura.diadema.ws.abaco.hmg.WsBuscaDadosBoletoTaxasDiversaSoapPort;
 
 
 @Service
@@ -31,14 +31,76 @@ public class AbacoWs {
 	
 	public  static void main(String args[]) throws Exception{
 		AbacoWs w = new AbacoWs();
-		w.realizarChamada(123456789L);		
+		//PmdBoleto pmd = w.localizarBoleto(2022008307L); // TAXA VENCIDA
+		//PmdBoleto pmd = w.localizarBoleto(20220L); // BOLEOT INVALIDO
+		PmdBoleto pmd = w.localizarBoleto(2023091580L); // BOLEOT gerado
+		
+		System.out.println(pmd.getDsSituacao() + " " + pmd.getDsBoleto());
 	}
 	
 	
 	
+	public PmdBoleto localizarBoleto(Long nrBoleto) throws Exception{
+		WsBuscaDadosBoletoTaxasDiversaExecute paramsWSBoleto = new WsBuscaDadosBoletoTaxasDiversaExecute();
+		paramsWSBoleto.setProcesso(nrBoleto.intValue());
+
+		WsBuscaDadosBoletoTaxasDiversa ws = new WsBuscaDadosBoletoTaxasDiversa();
+		WsBuscaDadosBoletoTaxasDiversaSoapPort port = ws.getWsBuscaDadosBoletoTaxasDiversaSoapPort();
+		WsBuscaDadosBoletoTaxasDiversaExecuteResponse retornoBoleto = port.execute(paramsWSBoleto);
+
+		if (retornoBoleto == null || retornoBoleto.getSdtboletotaxasdiversas() == null) {
+			throw new Exception("Boleto Não encontrado");
+		}
+		
+		
+		PmdBoleto pmd = new PmdBoleto();
+
+		if (retornoBoleto.getSdtboletotaxasdiversas().getValoraPagar() == 0.0D) {
+			if ((retornoBoleto.getRetornows() != null) && (retornoBoleto.getRetornows().getRetornoWSRetornoWSItem() != null) && (retornoBoleto.getRetornows().getRetornoWSRetornoWSItem().size() > 0)) {
+				String ret = "";
+				for (RetornoWSRetornoWSItem retorno : retornoBoleto.getRetornows().getRetornoWSRetornoWSItem()) {					
+					pmd.setCdSituacao((int) retorno.getIdRetorno());
+					pmd.setDsSituacao(retorno.getDesRetorno());
+					if("Erro: Taxas diversas informada inválida!".equals(retorno.getDesRetorno())){
+						pmd.setDsBoleto("BOLETO_INVALIDO");
+					}
+					
+					if(retorno.getDesRetorno().contains("Taxas diversas com validade vencida!")){
+						pmd.setDsBoleto("BOLETO_VENCIDO");
+					}
+					
+					
+					if(retorno.getDesRetorno().contains("9999")){
+						pmd.setDsBoleto("BOLETO_PAGO");
+					}
+					
+					
+					if(retorno.getDesRetorno().contains("9999")){
+						pmd.setDsBoleto("BOLETO_EM_ANDAMENTO");
+					}
+				}
+			}
+		}else{
+			for (RetornoWSRetornoWSItem retorno : retornoBoleto.getRetornows().getRetornoWSRetornoWSItem()) {					
+				pmd.setCdSituacao((int) retorno.getIdRetorno());
+				pmd.setDsSituacao(retorno.getDesRetorno());
+				if(retorno.getDesRetorno().contains("9999")){
+					pmd.setDsBoleto("BOLETO_PAGO");
+				}
+				
+				
+				if(retorno.getDesRetorno().contains("Consulta efetuada com sucesso!")){
+					pmd.setDsBoleto("BOLETO_EM_ANDAMENTO");
+				}
+			}
+		}
+		
+		return pmd;
+	}
 	
 	
 	
+	@Deprecated
 	public Boletos realizarChamada(Long nrTaxaDiversaProcesso) throws Exception{
 		WsBuscaDadosBoletoTaxasDiversaExecuteResponse ws = buscarBoleto(nrTaxaDiversaProcesso);
 		
@@ -48,6 +110,9 @@ public class AbacoWs {
 		return boleto;
 	}
 	
+	
+	//O RETORNO DO ERRO NÃO É UTILIZADO
+	@Deprecated
 	private WsBuscaDadosBoletoTaxasDiversaExecuteResponse buscarBoleto(Long nrTaxaDiversaProcesso) throws Exception {
 
 		WsBuscaDadosBoletoTaxasDiversaExecute paramsWSBoleto = new WsBuscaDadosBoletoTaxasDiversaExecute();
