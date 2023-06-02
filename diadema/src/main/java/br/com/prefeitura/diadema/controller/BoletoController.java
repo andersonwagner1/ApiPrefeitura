@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.prefeitura.diadema.boleto.RetBoleto;
 import br.com.prefeitura.diadema.model.PmdBoleto;
+import br.com.prefeitura.diadema.model.PmdLogs;
 import br.com.prefeitura.diadema.service.BoletoHmgService;
+import br.com.prefeitura.diadema.service.LogsService;
 
 
 /**
@@ -28,6 +30,7 @@ import br.com.prefeitura.diadema.service.BoletoHmgService;
 public class BoletoController {
 
 	private BoletoHmgService boletoService;
+	private LogsService logsService;
 
 	/**
 	 * Sistema de teste para chamada de metodo
@@ -39,8 +42,9 @@ public class BoletoController {
 	}
 	
 	@Autowired
-    public BoletoController(BoletoHmgService boletoService) {
-        this.boletoService = boletoService;      
+    public BoletoController(BoletoHmgService boletoService, LogsService logsService) {
+        this.boletoService = boletoService;  
+        this.logsService = logsService;
     }
 	
 	
@@ -59,15 +63,43 @@ public class BoletoController {
 	 * 
 	 */
 	@GetMapping(value = "/consultarBoletoHmg/{tipo}/{numeroProcesso}/{anoProcesso}")
-	public ResponseEntity<PmdBoleto> consultarBoletoHmg(
+	public ResponseEntity<?> consultarBoletoHmg(
 			@PathVariable("tipo") String tipo,
 			@PathVariable("numeroProcesso") Long numeroProcesso,
 			@PathVariable("anoProcesso") Integer ano){
+		PmdLogs log = logsService.info("consultarBoletoHmg", tipo,numeroProcesso,ano );
 		
-		PmdBoleto boleot = boletoService.consultarSituacaoBoletoPorNumeroProtocolo(numeroProcesso, tipo, ano);
-		return new ResponseEntity<PmdBoleto>(boleot, HttpStatus.OK);
+		try{
+			PmdBoleto boleot = boletoService.consultarSituacaoBoletoPorNumeroProtocolo(numeroProcesso, tipo, ano);
+			return new ResponseEntity<PmdBoleto>(boleot, HttpStatus.OK);
+		}catch(Exception ex){
+			ex.printStackTrace();
+			logsService.falha(log, ex.getMessage());
+			return new ResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
+		}		
 	}
 	
+	
+	
+	
+/*	@GetMapping(value = "/consultarNumeroBoleto/{tipo}/{numeroProcesso}/{anoProcesso}/{numeroBoleto}")
+	public ResponseEntity<?> consultarNumeroBoleto(
+			@PathVariable("tipo") String tipo,
+			@PathVariable("numeroProcesso") Long numeroProcesso,
+			@PathVariable("anoProcesso") Integer ano,
+			@PathVariable("numeroBoleto") Integer numeroBoleto){
+		PmdLogs log = logsService.info("consultarNumeroBoleto", tipo,numeroBoleto,ano,numeroBoleto);
+		
+		try{
+			PmdBoleto boleot = boletoService.consultarSituacaoBoletoPorNumeroProtocolo(numeroProcesso, tipo, ano);
+			return new ResponseEntity<PmdBoleto>(boleot, HttpStatus.OK);
+		}catch(Exception ex){
+			ex.printStackTrace();
+			logsService.falha(log, ex.getMessage());
+			return new ResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
+		}		
+	}
+	*/
 	
 	/**
 	 * Realizar o lancamento do boleto, o sistema realizar o cadastro do registro do boleto pegando a informação do numero do protocolo do eprocesso e salva na tabela
@@ -81,7 +113,7 @@ public class BoletoController {
 	 * @return
 	 * @throws Exception
 	 */
-	@GetMapping(value = "/lancarNotaHmg2/{orgao}/{numeroProcesso}/{ano}/{codigoTaxa}/{tipoContribuinte}/{inscricao}")
+	@GetMapping(value = "/lancarNota/{orgao}/{numeroProcesso}/{ano}/{codigoTaxa}/{tipoContribuinte}/{inscricao}")
 	public ResponseEntity<RetBoleto> lancarTaxaDiversars(
 			@PathVariable("orgao") String orgao,
 			@PathVariable("numeroProcesso") Long numeroProcesso,
@@ -90,14 +122,66 @@ public class BoletoController {
 			@PathVariable("tipoContribuinte")Integer tipoContribuinte, 
 			@PathVariable("inscricao")Long inscricao) throws Exception
 			{
-		RetBoleto fileBoelto = boletoService.lancarTaxaHomologacao(orgao, numeroProcesso, ano, codigoTaxa,0.0, 1 ,tipoContribuinte,inscricao,"Prefeitura de diadema");
 		
-		return new ResponseEntity<RetBoleto>(fileBoelto, HttpStatus.OK);
+		
+		
+		PmdLogs log = logsService.info("lancarNota", orgao,numeroProcesso,ano,tipoContribuinte,inscricao );
+		RetBoleto fileBoelto;
+	try{																															
+			fileBoelto = boletoService.lancarTaxaHomologacao(orgao, numeroProcesso, ano, codigoTaxa,0.0, 1 ,tipoContribuinte,inscricao,"BOLETO REFERENTE A TAXA DE PROCESSO ADMINISTRATIVO - PAGAR A PARTIR DO DIA SEGUINTE A DATA DA EMISSÃO. NÃO PAGAR APÓS A DATA DE VENCIMENTO.");
+			return new ResponseEntity<RetBoleto>(fileBoelto, HttpStatus.OK);
+		}catch(Exception ex){
+			ex.printStackTrace();
+			fileBoelto = new RetBoleto();
+			fileBoelto.setSucesso(false);
+			fileBoelto.setResultado(ex.getMessage());
+			logsService.falha(log, ex.getMessage());
+			return new ResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		
+		
+		
 	}
-	
+										///PMD	/1/				2028/		122/		0/1/2/1206600102/observcao
 	
 	@Deprecated
 	@GetMapping(value = "/lancarNotaHmg/{orgao}/{numeroProcesso}/{ano}/{codigoTaxa}/{valorTaxa}/{quantidadeTaxa}/{tipoContribuinte}/{inscricao}/{observacao}")
+	public ResponseEntity<RetBoleto> lancarTaxaDiversarsHMG(
+			@PathVariable("orgao") String orgao,
+			@PathVariable("numeroProcesso") Long numeroProcesso,
+			@PathVariable("ano") Integer ano,
+			@PathVariable("codigoTaxa") Integer codigoTaxa,
+			@PathVariable("valorTaxa")Double valorTaxa,
+			@PathVariable("quantidadeTaxa")Integer quantidadeTaxa, 
+			@PathVariable("tipoContribuinte")Integer tipoContribuinte, 
+			@PathVariable("inscricao")Long inscricao, 
+			@PathVariable("observacao")String observacao) throws Exception
+			{
+		
+		
+		PmdLogs log = logsService.info("lancarTaxaDiversars", orgao,numeroProcesso,ano,tipoContribuinte,inscricao );
+		RetBoleto fileBoelto;
+		try{
+			fileBoelto = boletoService.lancarTaxaHomologacao(orgao, numeroProcesso, ano, codigoTaxa,0d, quantidadeTaxa ,tipoContribuinte,inscricao,"BOLETO REFERENTE A TAXA DE PROCESSO ADMINISTRATIVO - PAGAR A PARTIR DO DIA SEGUINTE A DATA EMISSÃO. NÃO PAGAR APÓS A DATA DE VENCIMENTO.");
+			//fileBoelto = boletoService.lancarTaxaHomologacao(orgao, numeroProcesso, ano, codigoTaxa,0d, quantidadeTaxa ,tipoContribuinte,inscricao,observacao);
+			return new ResponseEntity<RetBoleto>(fileBoelto, HttpStatus.OK);
+		}catch(Exception ex){
+			ex.printStackTrace();
+			logsService.falha(log, ex.getMessage());
+			fileBoelto = new RetBoleto();
+			fileBoelto.setSucesso(false);
+			
+			fileBoelto.setResultado(ex.getMessage());
+			return new ResponseEntity(fileBoelto, HttpStatus.BAD_REQUEST);
+		}
+		
+		
+	}
+	
+	
+	
+	
+	/*@GetMapping(value = "/lancarNota/{orgao}/{numeroProcesso}/{ano}/{codigoTaxa}/{valorTaxa}/{quantidadeTaxa}/{tipoContribuinte}/{inscricao}/{observacao}")
 	public ResponseEntity<RetBoleto> lancarTaxaDiversars(
 			@PathVariable("orgao") String orgao,
 			@PathVariable("numeroProcesso") Long numeroProcesso,
@@ -109,10 +193,25 @@ public class BoletoController {
 			@PathVariable("inscricao")Long inscricao, 
 			@PathVariable("observacao")String observacao) throws Exception
 			{
-		RetBoleto fileBoelto = boletoService.lancarTaxaHomologacao(orgao, numeroProcesso, ano, codigoTaxa,valorTaxa, quantidadeTaxa ,tipoContribuinte,inscricao,observacao);
 		
-		return new ResponseEntity<RetBoleto>(fileBoelto, HttpStatus.OK);
-	}
+		
+		PmdLogs log = logsService.info("lancarTaxaDiversars", orgao,numeroProcesso,ano,tipoContribuinte,inscricao );
+		RetBoleto fileBoelto;
+		try{
+			fileBoelto = boletoService.lancarTaxaHomologacao(orgao, numeroProcesso, ano, codigoTaxa,0d, quantidadeTaxa ,tipoContribuinte,inscricao,observacao);
+			return new ResponseEntity<RetBoleto>(fileBoelto, HttpStatus.OK);
+		}catch(Exception ex){
+			ex.printStackTrace();
+			logsService.falha(log, ex.getMessage());
+			fileBoelto = new RetBoleto();
+			fileBoelto.setSucesso(false);
+			
+			fileBoelto.setResultado(ex.getMessage());
+			return new ResponseEntity(fileBoelto, HttpStatus.BAD_REQUEST);
+		}
+		
+		
+	}*/
 	
 
 }

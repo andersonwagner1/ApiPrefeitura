@@ -3,6 +3,7 @@ package br.com.prefeitura.diadema.controller;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.elasticsearch.DataElasticsearchTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,10 +22,17 @@ public class UtilController {
 	
 	private final BoletoService boletoService;
 	
+	
+	
+	
+	
 	@Autowired
     public UtilController(BoletoService boletoService) {
         this.boletoService = boletoService;      
     }
+	
+	
+	
 	
 	
 	 @GetMapping("/hello")
@@ -50,6 +58,36 @@ public class UtilController {
 	}
 	
 	
+	@GetMapping(value = "/consultarBoleto/{tipo}/{numeroProcesso}/{anoProcesso}")
+	public ResponseEntity<PmdBoleto> consultarBoleto(
+			@PathVariable("tipo") String tipo,
+			@PathVariable("numeroProcesso") Long numeroProcesso,
+			@PathVariable("anoProcesso") Integer ano){
+		
+		//Localizar o boleto na tabela auxiliar
+		//verificar a situação do boleto
+		//	- pago, vencido, em aberto
+		
+		//retorna o numero o boleto
+		PmdBoleto boleot = boletoService.consultaBoletoPorNumeroProcessoEletronico(numeroProcesso, tipo, ano);
+		
+		
+		
+		if(boleot.getNrProcessoBoleto() == null){			
+			return new ResponseEntity<PmdBoleto>(boleot, HttpStatus.OK);
+		}
+		
+		 PmdBoleto fileBoelto = boletoService.consultarBoletoHomologacao(boleot.getNrProcessoBoleto());
+		 boleot.setCdSituacao(fileBoelto.getCdSituacao());
+		 boleot.setDsSituacao(fileBoelto.getDsSituacao());
+		 boleot.setDsBoleto(fileBoelto.getDsBoleto());
+		 boletoService.salvarRegistro(boleot);
+		 
+		return new ResponseEntity<PmdBoleto>(boleot, HttpStatus.OK);
+	}
+	
+	
+	@Deprecated
 	@GetMapping(value = "/consultarBoletoHmg/{tipo}/{numeroProcesso}/{anoProcesso}")
 	public ResponseEntity<PmdBoleto> consultarBoletoHmg(
 			@PathVariable("tipo") String tipo,
@@ -78,6 +116,7 @@ public class UtilController {
 		return new ResponseEntity<PmdBoleto>(boleot, HttpStatus.OK);
 	}
 	
+	@Deprecated
 	@GetMapping(value = "/lancarNotaHmg/{orgao}/{numeroProcesso}/{ano}/{codigoTaxa}/{valorTaxa}/{quantidadeTaxa}/{tipoContribuinte}/{inscricao}/{observacao}")
 	public ResponseEntity<RetBoleto> lancarTaxaDiversars(
 			@PathVariable("codigoTaxa") String orgao,

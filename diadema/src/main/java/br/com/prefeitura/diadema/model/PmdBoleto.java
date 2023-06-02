@@ -1,5 +1,7 @@
 package br.com.prefeitura.diadema.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -16,9 +18,13 @@ public class PmdBoleto {
 	private Integer nrAno;
 	private Long nrProcesso;
 
-	private String dsSituacao;
-	private Integer cdSituacao;
-	private String dsBoleto;
+	private String dsSituacao; // descreve a situação do boleto
+	private Integer cdSituacao; // codigo da situação do boleto
+	private String dsBoleto; //mostra a situação atual do boleot
+	private Date dtVencimento;
+	private Date dtPagamento;
+	private Date dtAtualizacao;
+	
 	
 	
 	public String getDsOrgao() {
@@ -63,5 +69,24 @@ public class PmdBoleto {
 	public void setDsBoleto(String dsBoleto) {
 		this.dsBoleto = dsBoleto;
 	}
+	public Date getDtVencimento() {
+		return dtVencimento;
+	}
+	public void setDtVencimento(Date dtVencimento) {
+		this.dtVencimento = dtVencimento;
+	}
+	public Date getDtPagamento() {
+		return dtPagamento;
+	}
+	public void setDtPagamento(Date dtPagamento) {
+		this.dtPagamento = dtPagamento;
+	}
+	public Date getDtAtualizacao() {
+		return dtAtualizacao;
+	}
+	public void setDtAtualizacao(Date dtAtualizacao) {
+		this.dtAtualizacao = dtAtualizacao;
+	}
+	
 	
 }

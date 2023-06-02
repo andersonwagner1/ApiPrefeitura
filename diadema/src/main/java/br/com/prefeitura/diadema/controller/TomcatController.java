@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.prefeitura.diadema.service.CargaService;
+import br.com.prefeitura.diadema.util.UrlEndereco;
 
 @RestController
 public class TomcatController {
@@ -22,7 +23,14 @@ public class TomcatController {
 	
     @GetMapping("/hello")
     public String sayHello() {
-        return "funcionou";
+    	if(UrlEndereco.WSDL_URL.equals("http://10.1.2.38:8080/")){
+    		return "homologação";
+    	}
+    	if(UrlEndereco.WSDL_URL.equals("http://webservice.diadema.sp.gov.br:8888/")){
+    		return "PRODUÇÃO";
+    	}
+    	return "enderçeo não encontrado";
+    	
     }
     
     

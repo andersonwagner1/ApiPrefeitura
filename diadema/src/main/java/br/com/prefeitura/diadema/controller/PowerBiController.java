@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.prefeitura.diadema.service.PowerBiService;
 
+@Deprecated
 @RestController
 @RequestMapping("/api/relatorioBI")
 public class PowerBiController {

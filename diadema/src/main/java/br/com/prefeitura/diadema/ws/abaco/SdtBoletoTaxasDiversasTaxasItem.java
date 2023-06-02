@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java de SdtBoletoTaxasDiversas.TaxasItem complex type.
  * 
- * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * <p>O seguinte fragmento do esquema especifica o conteï¿½do esperado contido dentro desta classe.
  * 
  * <pre>
  * &lt;complexType name="SdtBoletoTaxasDiversas.TaxasItem">
@@ -42,7 +42,7 @@ public class SdtBoletoTaxasDiversasTaxasItem {
     protected double valorTaxa;
 
     /**
-     * Obtém o valor da propriedade codigoTaxa.
+     * Obtï¿½m o valor da propriedade codigoTaxa.
      * 
      */
     public short getCodigoTaxa() {
@@ -58,7 +58,7 @@ public class SdtBoletoTaxasDiversasTaxasItem {
     }
 
     /**
-     * Obtém o valor da propriedade descricaoTaxa.
+     * Obtï¿½m o valor da propriedade descricaoTaxa.
      * 
      * @return
      *     possible object is
@@ -82,7 +82,7 @@ public class SdtBoletoTaxasDiversasTaxasItem {
     }
 
     /**
-     * Obtém o valor da propriedade valorTaxa.
+     * Obtï¿½m o valor da propriedade valorTaxa.
      * 
      */
     public double getValorTaxa() {

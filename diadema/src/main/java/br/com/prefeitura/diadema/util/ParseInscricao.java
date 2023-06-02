@@ -117,6 +117,7 @@ public class ParseInscricao {
 		}
 		
 	    dadosCadastraisEmpresa.setCodigoNaturezaJuridica(inscricaoMunicipal.getCodigoNaturezaJuridica());
+	    dadosCadastraisEmpresa.setCodigoTipoISSQN(inscricaoMunicipal.getEnquadramentoISS().getTipoISSQN());
 	    dadosCadastraisEmpresa.setDataCadastroPrefeitura(parseStringDate(new Date()));
 	    dadosCadastraisEmpresa.setNumeroCertificadoLicenciamentoIntegrado(inscricaoMunicipal.getNumeroProtocolo());
 	    dadosCadastraisEmpresa.setNumeroCNPJ(inscricaoMunicipal.getCnpj());
@@ -149,6 +150,9 @@ public class ParseInscricao {
 	    	dadosCadastraisEmpresa.setFLGACAO("NOVA");
 	    } else {
 	    	dadosCadastraisEmpresa.setFLGACAO("ALTERACAO");
+	    	  if(inscricaoMunicipal.getNumeroInscricaoMunicipal() == null){
+	    		  throw new NumberFormatException("Caso a empresa for uma alteração não é possivel o valro da getNumeroInscricaoMunicipal ser nulo");
+	    	  }
 	    	dadosCadastraisEmpresa.setInscricaoMunicipal(inscricaoMunicipal.getNumeroInscricaoMunicipal()); // se a emporesa for nova o campo é nulo
 	    }
 

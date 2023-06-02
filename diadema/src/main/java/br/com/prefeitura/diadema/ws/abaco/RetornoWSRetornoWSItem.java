@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java de RetornoWS.RetornoWSItem complex type.
  * 
- * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * <p>O seguinte fragmento do esquema especifica o conteï¿½do esperado contido dentro desta classe.
  * 
  * <pre>
  * &lt;complexType name="RetornoWS.RetornoWSItem">
@@ -39,7 +39,7 @@ public class RetornoWSRetornoWSItem {
     protected byte idRetorno;
 
     /**
-     * Obtém o valor da propriedade desRetorno.
+     * Obtï¿½m o valor da propriedade desRetorno.
      * 
      * @return
      *     possible object is
@@ -63,7 +63,7 @@ public class RetornoWSRetornoWSItem {
     }
 
     /**
-     * Obtém o valor da propriedade idRetorno.
+     * Obtï¿½m o valor da propriedade idRetorno.
      * 
      */
     public byte getIdRetorno() {

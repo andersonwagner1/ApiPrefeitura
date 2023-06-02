@@ -1,6 +1,7 @@
 package br.com.prefeitura.diadema.service;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -15,14 +16,19 @@ import br.com.prefeitura.diadema.model.PmdBoleto;
 import br.com.prefeitura.diadema.repository.BoletoRepository;
 import br.com.prefeitura.diadema.ws.AbacoHomologacaoWs;
 import br.com.prefeitura.diadema.ws.AbacoLancamentoHomologacaoWs;
+import br.com.prefeitura.diadema.ws.AbacoWs;
+import br.com.prefeitura.diadema.ws.AbacoWs.ConversorResponse;
+import br.com.prefeitura.diadema.ws.abaco.WsBuscaDadosBoletoTaxasDiversaExecuteResponse;
 
 
 @Service
 public class BoletoHmgService {
-	//private final String CAMINHO_ARQUIVO = System.getProperty ("java.io.tmpdir");
+	private final String CAMINHO_ARQUIVO = System.getProperty ("java.io.tmpdir");
 	
 	private BoletoRepository dao;
-
+	
+	
+	
 
 	@Autowired
 	public BoletoHmgService(BoletoRepository dao){
@@ -35,8 +41,9 @@ public class BoletoHmgService {
 	 * @param orgao
 	 * @param ano
 	 * @return
+	 * @throws Exception 
 	 */
-	public PmdBoleto consultarSituacaoBoletoPorNumeroProtocolo(Long numerProcesso, String orgao, Integer ano){
+	public PmdBoleto consultarSituacaoBoletoPorNumeroProtocolo(Long numerProcesso, String orgao, Integer ano) throws Exception{
 		PmdBoleto boleto = consultaBoletoPorNumeroProcessoEletronico(numerProcesso, orgao,ano);
 		
 		if(boleto == null){
@@ -45,6 +52,8 @@ public class BoletoHmgService {
 			boleto.setDsOrgao(orgao);
 			boleto.setNrAno(ano);
 			boleto.setNrProcesso(numerProcesso);
+			boleto.setDtAtualizacao(new Date());
+			boleto = dao.save(boleto);
 			return boleto;
 		}
 		
@@ -54,7 +63,8 @@ public class BoletoHmgService {
 		
 		PmdBoleto boletoSituacao = consultarBoletoHomologacao(boleto.getNrProcessoBoleto());
 		boleto.setDsBoleto(boletoSituacao.getDsBoleto());
-		boleto.setDsSituacao(boletoSituacao.getDsSituacao());
+		boleto.setDsSituacao(boletoSituacao.getDsSituacao());	
+		boleto.setDtAtualizacao(new Date());
 		dao.save(boleto);
 		return boleto;
 	}
@@ -106,12 +116,13 @@ public class BoletoHmgService {
 		RetBoleto ret = gerarBoleto(Long.parseLong(inscricao+ "" + codigoTaxa) , boletos, parametros);
 		
 		PmdBoleto boleto = new PmdBoleto();
-		boleto.setCdSituacao(0);
+		boleto.setCdSituacao(0);		
 		boleto.setDsBoleto("BOLETO_EM_ANDAMENTO");
 		boleto.setDsOrgao(orgao);
-		boleto.setDsSituacao("BOLETO_EM_ANDAMENTO");
+		boleto.setDsSituacao("boleto em andamento");
 		boleto.setNrAno(ano);
 		boleto.setNrProcesso(numeroProcesso);
+		boleto.setDtVencimento(boletos.getDataVencimento());		
 		boleto.setNrProcessoBoleto(Long.parseLong(ret.getNumeroProcesso()));
 		
 		dao.save(boleto);
@@ -138,18 +149,18 @@ public class BoletoHmgService {
 
 		Boleto boletoStella = boletos.toStellaBoleto();
 		GeradorDeBoleto gerador = new GeradorDeBoleto(parametros, boletoStella);
-	//	String caminho = CAMINHO_ARQUIVO + File.separator +  numeroProcesso + ".pdf";
+		String caminho = CAMINHO_ARQUIVO + File.separator +  numeroProcesso + ".pdf";
 	//	caminho = caminho.replace(":", "/");
 //		caminho = caminho.replace(";", "");
 
-	//	File pdf = new File(caminho); //desativadro o agerar arquivo no servidor, pois não é necessario
-	//	gerador.geraPDF(pdf);
+		File pdf = new File(caminho); //desativadro o agerar arquivo no servidor, pois não é necessario
+		gerador.geraPDF(pdf);
 		byte[] arquivo = gerador.geraPDF();
 
 		RetBoleto ret = new RetBoleto();
 		ret.setResultado("SUCESSO");
 		ret.setSucesso(true);
-	//	ret.setCaminhoArquivo(caminho);
+		//ret.setCaminhoArquivo(caminho);
 		ret.setArquivo(arquivo);
 		ret.setNumeroProcesso(boletos.getProcessoContribuinte());
 		return ret;
@@ -205,7 +216,7 @@ public class BoletoHmgService {
 	
 	
 	
-	private PmdBoleto consultaBoletoPorNumeroProcessoEletronico(Long numerProcesso, String orgao, Integer ano){		
+	private PmdBoleto consultaBoletoPorNumeroProcessoEletronico(Long numerProcesso, String orgao, Integer ano) throws Exception{		
 		List<PmdBoleto> boleto = dao.consultarBoletoPorNumeroProcesso(orgao, ano, numerProcesso);	
 		if(boleto.size() == 0){
 			PmdBoleto p = new PmdBoleto();
@@ -213,7 +224,8 @@ public class BoletoHmgService {
 			p.setDsBoleto("BOLETO_INVALIDO");
 			p.setDsSituacao("Não foi encontrado boleto para este numero de protocolo " + orgao + " " + numerProcesso + "/" + ano);
 			
-			return p;
+			
+			throw new Exception(p.getDsSituacao());
 		}
 		return boleto.get(0);
 	}

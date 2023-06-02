@@ -12,7 +12,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 /**
  * <p>Classe Java de SdtBoletoTaxasDiversas complex type.
  * 
- * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * <p>O seguinte fragmento do esquema especifica o conteï¿½do esperado contido dentro desta classe.
  * 
  * <pre>
  * &lt;complexType name="SdtBoletoTaxasDiversas">
@@ -155,7 +155,7 @@ public class SdtBoletoTaxasDiversas {
     protected ArrayOfSdtBoletoTaxasDiversasTaxasItem taxas;
 
     /**
-     * Obtém o valor da propriedade contribuinte.
+     * Obtï¿½m o valor da propriedade contribuinte.
      * 
      * @return
      *     possible object is
@@ -179,7 +179,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade cpfCnpj.
+     * Obtï¿½m o valor da propriedade cpfCnpj.
      * 
      * @return
      *     possible object is
@@ -203,7 +203,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade processo.
+     * Obtï¿½m o valor da propriedade processo.
      * 
      */
     public long getProcesso() {
@@ -219,7 +219,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade damReferentea.
+     * Obtï¿½m o valor da propriedade damReferentea.
      * 
      * @return
      *     possible object is
@@ -243,7 +243,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade referencia.
+     * Obtï¿½m o valor da propriedade referencia.
      * 
      * @return
      *     possible object is
@@ -267,7 +267,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade localDePagamento.
+     * Obtï¿½m o valor da propriedade localDePagamento.
      * 
      * @return
      *     possible object is
@@ -291,7 +291,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade beneficiario.
+     * Obtï¿½m o valor da propriedade beneficiario.
      * 
      * @return
      *     possible object is
@@ -315,7 +315,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade beneficiarioCNPJ.
+     * Obtï¿½m o valor da propriedade beneficiarioCNPJ.
      * 
      * @return
      *     possible object is
@@ -339,7 +339,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade dataEmissao.
+     * Obtï¿½m o valor da propriedade dataEmissao.
      * 
      * @return
      *     possible object is
@@ -363,7 +363,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade especieDocumento.
+     * Obtï¿½m o valor da propriedade especieDocumento.
      * 
      * @return
      *     possible object is
@@ -387,7 +387,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade aceite.
+     * Obtï¿½m o valor da propriedade aceite.
      * 
      * @return
      *     possible object is
@@ -411,7 +411,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade dataProcessamento.
+     * Obtï¿½m o valor da propriedade dataProcessamento.
      * 
      * @return
      *     possible object is
@@ -435,7 +435,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade cip.
+     * Obtï¿½m o valor da propriedade cip.
      * 
      * @return
      *     possible object is
@@ -459,7 +459,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade carteira.
+     * Obtï¿½m o valor da propriedade carteira.
      * 
      * @return
      *     possible object is
@@ -483,7 +483,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade moeda.
+     * Obtï¿½m o valor da propriedade moeda.
      * 
      * @return
      *     possible object is
@@ -507,7 +507,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade vencimento.
+     * Obtï¿½m o valor da propriedade vencimento.
      * 
      * @return
      *     possible object is
@@ -531,7 +531,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade inscricao.
+     * Obtï¿½m o valor da propriedade inscricao.
      * 
      */
     public long getInscricao() {
@@ -547,7 +547,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade tipoInscricao.
+     * Obtï¿½m o valor da propriedade tipoInscricao.
      * 
      * @return
      *     possible object is
@@ -571,7 +571,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade descricaoDAM1.
+     * Obtï¿½m o valor da propriedade descricaoDAM1.
      * 
      * @return
      *     possible object is
@@ -595,7 +595,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade descricaoDAM2.
+     * Obtï¿½m o valor da propriedade descricaoDAM2.
      * 
      * @return
      *     possible object is
@@ -619,7 +619,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade descricaoDAM3.
+     * Obtï¿½m o valor da propriedade descricaoDAM3.
      * 
      * @return
      *     possible object is
@@ -643,7 +643,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade descricaoDAM4.
+     * Obtï¿½m o valor da propriedade descricaoDAM4.
      * 
      * @return
      *     possible object is
@@ -667,7 +667,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade descricaoDAM5.
+     * Obtï¿½m o valor da propriedade descricaoDAM5.
      * 
      * @return
      *     possible object is
@@ -691,7 +691,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade descricaoDAM6.
+     * Obtï¿½m o valor da propriedade descricaoDAM6.
      * 
      * @return
      *     possible object is
@@ -715,7 +715,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade tsa.
+     * Obtï¿½m o valor da propriedade tsa.
      * 
      */
     public double getTSA() {
@@ -731,7 +731,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade correcao.
+     * Obtï¿½m o valor da propriedade correcao.
      * 
      */
     public double getCorrecao() {
@@ -747,7 +747,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade juros.
+     * Obtï¿½m o valor da propriedade juros.
      * 
      */
     public double getJuros() {
@@ -763,7 +763,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade multa.
+     * Obtï¿½m o valor da propriedade multa.
      * 
      */
     public double getMulta() {
@@ -779,7 +779,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade nossoNumero.
+     * Obtï¿½m o valor da propriedade nossoNumero.
      * 
      * @return
      *     possible object is
@@ -803,7 +803,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade nossoNumeroDV.
+     * Obtï¿½m o valor da propriedade nossoNumeroDV.
      * 
      * @return
      *     possible object is
@@ -827,7 +827,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade agencia.
+     * Obtï¿½m o valor da propriedade agencia.
      * 
      * @return
      *     possible object is
@@ -851,7 +851,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade cedente.
+     * Obtï¿½m o valor da propriedade cedente.
      * 
      * @return
      *     possible object is
@@ -875,7 +875,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade msgblt1.
+     * Obtï¿½m o valor da propriedade msgblt1.
      * 
      * @return
      *     possible object is
@@ -899,7 +899,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade msgblt2.
+     * Obtï¿½m o valor da propriedade msgblt2.
      * 
      * @return
      *     possible object is
@@ -923,7 +923,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade msgblt3.
+     * Obtï¿½m o valor da propriedade msgblt3.
      * 
      * @return
      *     possible object is
@@ -947,7 +947,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade msgblt4.
+     * Obtï¿½m o valor da propriedade msgblt4.
      * 
      * @return
      *     possible object is
@@ -971,7 +971,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade msgblt5.
+     * Obtï¿½m o valor da propriedade msgblt5.
      * 
      * @return
      *     possible object is
@@ -995,7 +995,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade valoraPagar.
+     * Obtï¿½m o valor da propriedade valoraPagar.
      * 
      */
     public double getValoraPagar() {
@@ -1011,7 +1011,7 @@ public class SdtBoletoTaxasDiversas {
     }
 
     /**
-     * Obtém o valor da propriedade taxas.
+     * Obtï¿½m o valor da propriedade taxas.
      * 
      * @return
      *     possible object is

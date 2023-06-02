@@ -14,12 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.prefeitura.diadema.dto.Cnae;
+import br.com.prefeitura.diadema.dto.DtoInscricao;
 import br.com.prefeitura.diadema.dto.EnquadramentoAtividadeEconomica;
 import br.com.prefeitura.diadema.dto.EnquadramentoAtividadeEconomicaComplemento;
 import br.com.prefeitura.diadema.dto.EnquadramentoISS;
 import br.com.prefeitura.diadema.dto.InscricaoMunicipal;
+import br.com.prefeitura.diadema.dto.RetornoDto;
+import br.com.prefeitura.diadema.model.PmdLogs;
 import br.com.prefeitura.diadema.service.InscricaoService;
-import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.SdtDadosCadastraisEmpresa;
+import br.com.prefeitura.diadema.service.LogsService;
+import br.com.prefeitura.diadema.ws.AbacoHomologacaoWs;
+import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsCadastroInscricaoMobiliarioExecuteResponse;
 
 @RestController
 @RequestMapping("/api/diadema/inscricao")
@@ -28,6 +33,8 @@ public class InscricaoController {
 	
 
 	private InscricaoService mobiliarioService;
+	
+	private LogsService logsService;
 
 
 	@GetMapping("/hello")
@@ -36,14 +43,14 @@ public class InscricaoController {
 	}
 	
 	@Autowired
-    public InscricaoController(InscricaoService mobiliarioService) {
-        this.mobiliarioService = mobiliarioService;      
+    public InscricaoController(InscricaoService mobiliarioService,LogsService logsService) {
+        this.mobiliarioService = mobiliarioService;  
+        this.logsService = logsService;
     }
 	
 	
 	public static void main(String args[]){
-		/*InscricaoService mobiliarioService = new InscricaoService();
-		InscricaoController c = new InscricaoController(mobiliarioService);
+		
 		InscricaoMunicipal inscricaoMunicipal = new InscricaoMunicipal();
 		inscricaoMunicipal.setBancaDeJornal(40f);
 		inscricaoMunicipal.setCodigoNaturezaJuridica(1);
@@ -74,58 +81,82 @@ public class InscricaoController {
 		inscricaoMunicipal.setEnquadramentoISS(enquadramentoISS );
 		
 		List<Cnae> cnae = new ArrayList<Cnae>();
-		inscricaoMunicipal.setCnaes(cnae );
+		inscricaoMunicipal.setCnaes(cnae);
 		
+		AbacoHomologacaoWs ws = new AbacoHomologacaoWs();
+		WsCadastroInscricaoMobiliarioExecuteResponse t = ws.enviarDadosParaAgata(inscricaoMunicipal);
+		System.out.println("Ttests");
+	}
+	
+	
+	@GetMapping(value = "/consultarInscricao/{cnpj}")
+	public ResponseEntity<Long> consultarInscricaoPorCnpj(
+			@PathVariable("cnpj") Long cnpj) {
 		
-		c.postBody(inscricaoMunicipal);*/
+		PmdLogs log = logsService.info("consultarInscricao", cnpj);
+		try{
+			Long existe = mobiliarioService.consultarCmcPorCnpj(cnpj);
+			return new ResponseEntity<Long>(existe, HttpStatus.OK);
+		}catch(Exception e){
+			logsService.falha(log, e.getMessage());
+			return new ResponseEntity<Long>(0L, HttpStatus.OK);
+		}		
 	}
 	
 	
 	@GetMapping(value = "/existeInscricao/{tipo}/{numero}")
 	public ResponseEntity<Boolean> existeInscricao(
 			@PathVariable("tipo") String tipo,
-			@PathVariable("numero") Long numero) throws Exception{
+			@PathVariable("numero") Long numero) {
 		
-		boolean existe = mobiliarioService.existeInscricaoMobiliario(tipo, numero);
-		return new ResponseEntity<Boolean>(existe, HttpStatus.OK);
+		PmdLogs log = logsService.info("existeInscricao", tipo, numero);
+		try{
+			boolean existe = mobiliarioService.existeInscricaoMobiliario(tipo, numero);
+			return new ResponseEntity<Boolean>(existe, HttpStatus.OK);
+		}catch(Exception e){
+			logsService.falha(log, e.getMessage());
+			return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+		}
+		
 	}
 	
 	
 	@PostMapping("/enviarDadosEmpresaAgata")
-	public ResponseEntity<String> enviarDadosEmpresaAgata(@RequestBody InscricaoMunicipal inscricaoMunicipal) {
-		System.out.println(inscricaoMunicipal.toString());
+	public ResponseEntity<RetornoDto<Long>> enviarDadosEmpresaAgata(@RequestBody DtoInscricao inscricao /*@RequestBody InscricaoMunicipal inscricaoMunicipal, 
+			@RequestBody EnquadramentoAtividadeEconomica enquadramentoAtividadeEconomica,
+			@RequestBody EnquadramentoISS enquadramentoISS*/) {
+		
+		//return new ResponseEntity<String>("chamada realizada com sucesso" , HttpStatus.OK);
+		PmdLogs log = logsService.info("enviarDadosEmpresaAgata", inscricao.getInscricaoMunicipal());
 		
 		try{
-			Integer resultado = mobiliarioService.enviarDadosAgata(inscricaoMunicipal);
+			//|-----------------------------------------------------------------------------------------|
+			//| NO SOLAR BPM ELE NÃO CONSEGUE entender este metodo OBJECT => OBJECTO => ARRY<objeto>	|
+			//|foi colocado como parametros para listar o array 										|
+			//|-----------------------------------------------------------------------------------------|
+			InscricaoMunicipal i = inscricao.getInscricaoMunicipal();
+			i.setEnquadramentoAtividadeEconomica(inscricao.getEnquadramentoAtividadeEconomica());
+			i.setEnquadramentoISS(inscricao.getEnquadramentoISS());
+			//-------------------------------------------------------------------------------------
 			
-			if(resultado == 1){
-				return new ResponseEntity<String>("Sucesso", HttpStatus.OK);
-			}
-			return new ResponseEntity<String>("Sucesso " + resultado, HttpStatus.OK);
+			Long resultado = mobiliarioService.enviarDadosAgata(i);
+			RetornoDto<Long> ret = new RetornoDto<Long>();
+			ret.setDescricao("Sucesso");
+			ret.setRetorno(1);
+			ret.setObjeto(resultado);
+					
+			return new ResponseEntity<RetornoDto<Long>>(ret, HttpStatus.OK);
+			
+			//return new ResponseEntity<String>("0", HttpStatus.OK);
+			
 		}catch(Exception ex){
-			System.out.println("Ocorreu um erro ao tentar envias os dados");
 			ex.printStackTrace();
-			return new ResponseEntity<String>("ocorreu um erro ao tentar cadastrar " + ex.getMessage(), HttpStatus.OK);
+			logsService.falha(log, ex.getMessage());
+			RetornoDto<Long> ret = new RetornoDto<Long>();
+			ret.setDescricao(ex.getMessage());
+			ret.setRetorno(0);
+			ret.setObjeto(-1L);
+			return new ResponseEntity<RetornoDto<Long>>(ret, HttpStatus.OK);
 		}
 	}
-	
-	//@PostMapping(value = "/enviarDados", method = RequestMethod.POST,consumes =MediaType.APPLICATION_JSON_VALUE ,
-    //        headers = MediaType.APPLICATION_JSON_VALUE )
-/*	public ResponseEntity<InscricaoMunicipal> save(@RequestBody InscricaoMunicipal inscricaoMunicipal){
-		InscricaoMunicipal i  = null;
-		try{
-			i= mobiliarioService.enviarDadosAgata(inscricaoMunicipal);
-		}catch(Exception ex){
-			ex.printStackTrace();
-		}
-		
-		return new ResponseEntity<InscricaoMunicipal>(i, HttpStatus.OK);
-	}*/
-	
-	
-	
-	
-
-	
-
 }

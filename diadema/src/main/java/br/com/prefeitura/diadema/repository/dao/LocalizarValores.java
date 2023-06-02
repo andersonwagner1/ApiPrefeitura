@@ -17,9 +17,9 @@ public class LocalizarValores {
 	public static void main(String arg[]) throws SQLException{
 		LocalizarValores l = new LocalizarValores();
 		System.out.println("i");
-		//l.localizarValor(188907l);
+		l.localizarValor(4112767l);
 		//l.localizarValor("São Paulo", true);
-		l.localizarValor(3015L);
+		//l.localizarValor(3015L);
 		System.out.println("Fim");
 	}
 	

@@ -315,7 +315,8 @@ public class SofPlanDao{
 		StringBuffer sql = new StringBuffer();
 		sql.append(" SELECT MODELO_ID, E.ID_DOCUMENTO_BASE, E.IDENTIFICACAOLABEL, E.ASSUNTO, E.IDENTIFICACAO_INSCRICAO, E.INCRICAO_IMOVEL " );
 		sql.append(" FROM VIEW_PROCESSO_ELETRONICO E");
-		sql.append(" Where e.DATA >= '25-abr-23'");
+		//sql.append(" Where e.DATA >= '15-mai-22'");
+		sql.append(" Where e.DATA >= '10-mai-20'");
 		sql.append(" ORDER BY IDMODELODOCUMENTAL DESC");
 		
 		//sql.append(" WHERE ID_DOCUMENTO_BASE = 1391419");//REMOVER ESTA LINHA

@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java de anonymous complex type.
  * 
- * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * <p>O seguinte fragmento do esquema especifica o conteï¿½do esperado contido dentro desta classe.
  * 
  * <pre>
  * &lt;complexType>
@@ -42,7 +42,7 @@ public class WsBuscaDadosBoletoTaxasDiversaExecuteResponse {
     protected RetornoWS retornows;
 
     /**
-     * Obtém o valor da propriedade sdtboletotaxasdiversas.
+     * Obtï¿½m o valor da propriedade sdtboletotaxasdiversas.
      * 
      * @return
      *     possible object is
@@ -66,7 +66,7 @@ public class WsBuscaDadosBoletoTaxasDiversaExecuteResponse {
     }
 
     /**
-     * Obtém o valor da propriedade retornows.
+     * Obtï¿½m o valor da propriedade retornows.
      * 
      * @return
      *     possible object is

@@ -20,7 +20,7 @@ import br.com.prefeitura.diadema.util.UrlEndereco;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "wsEnviarDadosEmpresa", targetNamespace = "AGATA", wsdlLocation = UrlEndereco.WSDL + "agataoracle/servlet/awsenviardadosempresa?WSDL")
+@WebServiceClient(name = "wsEnviarDadosEmpresa", targetNamespace = "AGATA", wsdlLocation = UrlEndereco.WSDL_Client + "agataoracle/servlet/awsenviardadosempresa?WSDL")
 public class WsEnviarDadosEmpresa
     extends Service
 {
@@ -33,7 +33,7 @@ public class WsEnviarDadosEmpresa
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL(UrlEndereco.WSDL + "agataoracle/servlet/awsenviardadosempresa?WSDL");
+            url = new URL(UrlEndereco.WSDL_URL + "agataoracle/servlet/awsenviardadosempresa?WSDL");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
