@@ -20,6 +20,7 @@ import br.com.prefeitura.diadema.dto.EnquadramentoAtividadeEconomicaComplemento;
 import br.com.prefeitura.diadema.dto.EnquadramentoISS;
 import br.com.prefeitura.diadema.dto.InscricaoMunicipal;
 import br.com.prefeitura.diadema.dto.RetornoDto;
+import br.com.prefeitura.diadema.dto.Socio;
 import br.com.prefeitura.diadema.model.PmdLogs;
 import br.com.prefeitura.diadema.service.InscricaoService;
 import br.com.prefeitura.diadema.service.LogsService;
@@ -82,6 +83,41 @@ public class InscricaoController {
 		
 		List<Cnae> cnae = new ArrayList<Cnae>();
 		inscricaoMunicipal.setCnaes(cnae);
+		
+		
+		List<Socio> socios = new ArrayList<Socio>();
+		Socio socio1 = new Socio();
+		socio1.setBairro("Bairro");
+		socio1.setCep("09921250");
+		socio1.setCidade("Diadema");
+		socio1.setComplementoEndereco("Teste");
+		socio1.setCpf("32379324859");
+		socio1.setEmail("andersonwo@gmail.com");
+		socio1.setEndereco("Endereço");
+		socio1.setNome("NOme Teste");
+		socio1.setNumeroEndereco("800");
+		socio1.setRg("433333");
+		socio1.setTelefone("09999212");
+		socio1.setUf("SP");
+		
+		socios.add(socio1 );
+		
+		Socio socio2 = new Socio();
+		socio2.setBairro("Bairro");
+		socio2.setCep("09921250");
+		socio2.setCidade("Diadema");
+		socio2.setComplementoEndereco("Teste");
+		socio2.setCpf("32379324859");
+		socio2.setEmail("andersonwo@gmail.com");
+		socio2.setEndereco("Endereço");
+		socio2.setNome("NOme Teste");
+		socio2.setNumeroEndereco("800");
+		socio2.setRg("433333");
+		socio2.setTelefone("09999212");
+		socio2.setUf("SP");
+		
+		socios.add(socio2);
+		inscricaoMunicipal.setSocios(socios );
 		
 		AbacoHomologacaoWs ws = new AbacoHomologacaoWs();
 		WsCadastroInscricaoMobiliarioExecuteResponse t = ws.enviarDadosParaAgata(inscricaoMunicipal);

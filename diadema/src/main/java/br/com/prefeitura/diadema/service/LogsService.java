@@ -1,0 +1,63 @@
+package br.com.prefeitura.diadema.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.prefeitura.diadema.dto.InscricaoMunicipal;
+import br.com.prefeitura.diadema.enumerador.EnumSimNao;
+import br.com.prefeitura.diadema.model.PmdLogs;
+import br.com.prefeitura.diadema.repository.LogRepository;
+import br.com.prefeitura.diadema.util.ParseInscricao;
+import br.com.prefeitura.diadema.ws.AbacoHomologacaoWs;
+import br.com.prefeitura.diadema.ws.abaco.hmg.enviar.RetornoWSRetornoWSItem;
+import br.com.prefeitura.diadema.ws.abaco.hmg.enviar.SdtDadosCadastraisEmpresa;
+import br.com.prefeitura.diadema.ws.abaco.hmg.enviar.WsEnviarDadosEmpresa;
+import br.com.prefeitura.diadema.ws.abaco.hmg.enviar.WsEnviarDadosEmpresaExecute;
+import br.com.prefeitura.diadema.ws.abaco.hmg.enviar.WsEnviarDadosEmpresaExecuteResponse;
+import br.com.prefeitura.diadema.ws.abaco.hmg.enviar.WsEnviarDadosEmpresaSoapPort;
+
+
+@Service
+public class LogsService {
+
+	
+
+
+	private LogRepository logRepository;
+
+
+
+
+	@Autowired
+	public LogsService(LogRepository logRepository){;
+		this.logRepository = logRepository;
+	}
+	
+	
+	public PmdLogs falha(PmdLogs log, String erro){
+		log.setIcSucesso(EnumSimNao.NAO);
+		log.setMotivo(erro);
+		return logRepository.save(log);
+		
+	}
+
+	public PmdLogs info(String metodo,  Object... parametros) {
+		PmdLogs log = new PmdLogs();
+		log.setIcSucesso(EnumSimNao.SIM);
+		
+		String valor = "";
+		for(Object o : parametros){
+			if(o == null){
+				valor += "nulo;";
+			}else{
+				valor += o.toString() +";";
+			}
+		}
+		log.setMetodo(metodo);
+		log.setParametros(valor);
+		return logRepository.save(log);
+	}
+
+}

@@ -1,0 +1,111 @@
+
+package br.com.prefeitura.diadema.ws.abaco.inscricao;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+
+/**
+ * <p>Classe Java de Sdt_DadosCadastraisEmpresa.ContratoItens complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="Sdt_DadosCadastraisEmpresa.ContratoItens">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;all>
+ *         &lt;element name="NumeroContrato" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="DataContrato" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *         &lt;element name="ObservacaoContrato" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *       &lt;/all>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "Sdt_DadosCadastraisEmpresa.ContratoItens", propOrder = {
+
+})
+public class SdtDadosCadastraisEmpresaContratoItens {
+
+    @XmlElement(name = "NumeroContrato")
+    protected int numeroContrato;
+    @XmlElement(name = "DataContrato", required = true)
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar dataContrato;
+    @XmlElement(name = "ObservacaoContrato", required = true)
+    protected String observacaoContrato;
+
+    /**
+     * Obtém o valor da propriedade numeroContrato.
+     * 
+     */
+    public int getNumeroContrato() {
+        return numeroContrato;
+    }
+
+    /**
+     * Define o valor da propriedade numeroContrato.
+     * 
+     */
+    public void setNumeroContrato(int value) {
+        this.numeroContrato = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade dataContrato.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getDataContrato() {
+        return dataContrato;
+    }
+
+    /**
+     * Define o valor da propriedade dataContrato.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setDataContrato(XMLGregorianCalendar value) {
+        this.dataContrato = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade observacaoContrato.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getObservacaoContrato() {
+        return observacaoContrato;
+    }
+
+    /**
+     * Define o valor da propriedade observacaoContrato.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setObservacaoContrato(String value) {
+        this.observacaoContrato = value;
+    }
+
+}

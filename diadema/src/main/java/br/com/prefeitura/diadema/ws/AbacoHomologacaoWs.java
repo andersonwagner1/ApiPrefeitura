@@ -18,7 +18,6 @@ import br.com.prefeitura.diadema.boleto.Boletos;
 import br.com.prefeitura.diadema.boleto.bancos.Bradesco;
 import br.com.prefeitura.diadema.boleto.exception.BoletoException;
 import br.com.prefeitura.diadema.dto.InscricaoMunicipal;
-
 import br.com.prefeitura.diadema.model.PmdBoleto;
 import br.com.prefeitura.diadema.ws.abaco.hmg.RetornoWSRetornoWSItem;
 import br.com.prefeitura.diadema.ws.abaco.hmg.WsBuscaDadosBoletoTaxasDiversa;
@@ -54,7 +53,7 @@ import br.com.prefeitura.diadema.ws.abaco.hmg.lancar.WsLancarTaxasDiversasSoapPo
 @Service
 public class AbacoHomologacaoWs {
 	
-	
+	/*
 	public  static void main(String args[]) throws Exception{
 		
 		AbacoHomologacaoWs ws = new AbacoHomologacaoWs();
@@ -81,7 +80,7 @@ public class AbacoHomologacaoWs {
 		
 		
 		
-	}
+	}*/
 	
 	public WsLancarTaxasDiversasExecuteResponse lancarTaxa(Integer codigoTaxa, Double valorTaxa, Integer quantidadeTaxa, Integer tipoContribuinte, Long inscricao, String observacao ) throws Exception{
 		WsLancarTaxasDiversas ws = new WsLancarTaxasDiversas();
@@ -181,6 +180,11 @@ public class AbacoHomologacaoWs {
 		
 		WsConsultaExistenciaEmpresaExecuteResponse exisiteInscricaoMunicipal = port.execute(param);
 		return exisiteInscricaoMunicipal.getSdtEmpresasporcnpj().getSdtEmpresasporCnpjSdtEmpresasporCnpjItem().get(0).getIdRetorno() == 0;
+	}
+	
+	public static void main(String args[]) throws Exception{
+		AbacoHomologacaoWs ws = new AbacoHomologacaoWs();
+		ws.existeInscricaoMobiliario(15574L);
 	}
 	
 	
