@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import br.com.prefeitura.diadema.boleto.Boleto;
 import br.com.prefeitura.diadema.boleto.Boletos;
 import br.com.prefeitura.diadema.boleto.RetBoleto;
@@ -19,6 +20,7 @@ import br.com.prefeitura.diadema.ws.AbacoLancamentoHomologacaoWs;
 import br.com.prefeitura.diadema.ws.AbacoWs;
 import br.com.prefeitura.diadema.ws.AbacoWs.ConversorResponse;
 import br.com.prefeitura.diadema.ws.abaco.WsBuscaDadosBoletoTaxasDiversaExecuteResponse;
+
 
 
 @Service
@@ -98,11 +100,29 @@ public class BoletoHmgService {
 		//verificar se existe algum protocolo ja aberto
 		PmdBoleto existeBoleto = dao.verificarSeExisteBoletoCadastradoPorNumeroProtocolo(orgao, ano, numeroProcesso);
 		if(existeBoleto != null){
-			RetBoleto ret = new RetBoleto();
-			ret.setResultado("SUCESSO - Boleto esta duplicado para este numero de processo");
+			// criar uma boleto novo aqui
+			
+			/// Caso exista o boleto o sistema apenas ira realizar a consulta do boleto e devolver para o usuario
+			AbacoLancamentoHomologacaoWs ws = new AbacoLancamentoHomologacaoWs();
+			Boletos boletos = ws.consultarSituacaoBoletoPorNumeroProtocolo(existeBoleto.getNrProcessoBoleto());
+			ConcurrentHashMap<String, Object> parametros = adicionarParametros(boletos);
+			RetBoleto ret = gerarBoleto(Long.parseLong(inscricao+ "" + codigoTaxa) , boletos, parametros);
+			ret.setResultado("Boleto duplicado");
 			ret.setSucesso(true);
-			ret.setArquivo(null);
-			ret.setNumeroProcesso(existeBoleto.getNrProcessoBoleto().toString());			
+			//ret.setArquivo(null);
+			ret.setNumeroProcesso(existeBoleto.getNrProcessoBoleto().toString());
+			
+			PmdBoleto boleto = new PmdBoleto();
+			boleto.setCdSituacao(0);		
+			boleto.setDsBoleto("BOLETO_EM_ANDAMENTO");
+			boleto.setDsOrgao(orgao);
+			boleto.setDsSituacao("boleto em andamento");
+			boleto.setNrAno(ano);
+			boleto.setNrProcesso(numeroProcesso);
+			boleto.setDtVencimento(boletos.getDataVencimento());		
+			boleto.setNrProcessoBoleto(Long.parseLong(ret.getNumeroProcesso()));
+			
+			dao.save(boleto);
 			return ret;
 		}
 		

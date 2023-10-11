@@ -8,18 +8,20 @@ public class LocalizarValores {
 	
 	
 	private OracleSoftplan coneection = new OracleSoftplan();
+	//private OracleBpm coneection = new OracleBpm();
+	//private OracleSoftplan coneection = new OracleSoftplan();
 	//private OracleMobile coneection = new OracleMobile();
 
 	
-	
+	 
 	
 	
 	public static void main(String arg[]) throws SQLException{
 		LocalizarValores l = new LocalizarValores();
-		System.out.println("i");
-		l.localizarValor(4112767l);
-		//l.localizarValor("São Paulo", true);
-		//l.localizarValor(3015L);
+		//l.localizarValor("");
+		//l.localizarValor("Buscar Informações Processos", true);
+		l.localizarValor("11703/2023", false);
+		//l.localizarValor(14175093l);
 		System.out.println("Fim");
 	}
 	
@@ -27,7 +29,7 @@ public class LocalizarValores {
 		System.out.println("----------------------- Iniciando ---------------------------");
 		StringBuffer sqltabela = new StringBuffer();
 		sqltabela.append("SELECT table_name FROM user_tables");
-		//sqltabela.append(" WHERE table_name LIKE 'ECPAPROCESSODOC%'");
+		sqltabela.append(" WHERE table_name NOT LIKE 'EMIG%'");
 		
 		System.out.println("- Buscando tabelas");
 		

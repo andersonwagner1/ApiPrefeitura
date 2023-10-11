@@ -24,8 +24,8 @@ import br.com.prefeitura.diadema.dto.Socio;
 import br.com.prefeitura.diadema.model.PmdLogs;
 import br.com.prefeitura.diadema.service.InscricaoService;
 import br.com.prefeitura.diadema.service.LogsService;
-import br.com.prefeitura.diadema.ws.AbacoHomologacaoWs;
-import br.com.prefeitura.diadema.ws.abaco.hmg.inscricao.WsCadastroInscricaoMobiliarioExecuteResponse;
+import br.com.prefeitura.diadema.ws.AbacoWs;
+import br.com.prefeitura.diadema.ws.egata.WSCadastroInscricaoMobiliarioExecuteResponse;
 
 @RestController
 @RequestMapping("/api/diadema/inscricao")
@@ -119,9 +119,21 @@ public class InscricaoController {
 		socios.add(socio2);
 		inscricaoMunicipal.setSocios(socios );
 		
-		AbacoHomologacaoWs ws = new AbacoHomologacaoWs();
-		WsCadastroInscricaoMobiliarioExecuteResponse t = ws.enviarDadosParaAgata(inscricaoMunicipal);
-		System.out.println("Ttests");
+		InscricaoService s = new InscricaoService();
+		try {
+			s.enviarDadosAgata(inscricaoMunicipal);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//AbacoWs ws = new AbacoWs();
+		//WSCadastroInscricaoMobiliarioExecuteResponse inscricao = ws.enviarDadosEmpresaAgata(inscricaoMunicipal);
+		//System.out.println(inscricao.getSdterros());
+		
+		//AbacoHomologacaoWs ws = new AbacoHomologacaoWs();
+		//WsCadastroInscricaoMobiliarioExecuteResponse t = ws.enviarDadosParaAgata(inscricaoMunicipal);
+		//System.out.println("Ttests") ;
 	}
 	
 	

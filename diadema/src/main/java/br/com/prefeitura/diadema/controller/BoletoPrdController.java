@@ -126,7 +126,7 @@ public class BoletoPrdController {
 		
 		
 	}*/
-	
+
 	@GetMapping(value = "/lancarNota/{orgao}/{numeroProcesso}/{ano}/{codigoTaxa}/{valorTaxa}/{quantidadeTaxa}/{tipoContribuinte}/{inscricao}/{observacao}")
 	public ResponseEntity<RetBoleto> lancarTaxaDiversars(
 			@PathVariable("orgao") String orgao,

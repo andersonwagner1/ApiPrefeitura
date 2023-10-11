@@ -10,13 +10,8 @@ import org.springframework.stereotype.Service;
 
 import br.com.prefeitura.diadema.boleto.Boletos;
 import br.com.prefeitura.diadema.boleto.exception.BoletoException;
-import br.com.prefeitura.diadema.model.PmdBoleto;
 import br.com.prefeitura.diadema.util.ConversorResponse;
-import br.com.prefeitura.diadema.ws.abaco.hmg.RetornoWSRetornoWSItem;
-import br.com.prefeitura.diadema.ws.abaco.hmg.WsBuscaDadosBoletoTaxasDiversa;
-import br.com.prefeitura.diadema.ws.abaco.hmg.WsBuscaDadosBoletoTaxasDiversaExecute;
 import br.com.prefeitura.diadema.ws.abaco.hmg.WsBuscaDadosBoletoTaxasDiversaExecuteResponse;
-import br.com.prefeitura.diadema.ws.abaco.hmg.WsBuscaDadosBoletoTaxasDiversaSoapPort;
 import br.com.prefeitura.diadema.ws.abaco.hmg.lancar.ArrayOfSdtLancarTaxasDiversasTaxasItem;
 import br.com.prefeitura.diadema.ws.abaco.hmg.lancar.SdtLancarTaxasDiversas;
 import br.com.prefeitura.diadema.ws.abaco.hmg.lancar.SdtLancarTaxasDiversasTaxasItem;
@@ -26,6 +21,7 @@ import br.com.prefeitura.diadema.ws.abaco.hmg.lancar.WsLancarTaxasDiversasExecut
 import br.com.prefeitura.diadema.ws.abaco.hmg.lancar.WsLancarTaxasDiversasSoapPort;
 
 
+@Deprecated
 @Service
 public class AbacoLancamentoHomologacaoWs {
 
@@ -42,6 +38,24 @@ public class AbacoLancamentoHomologacaoWs {
 	
 		ConversorResponse resposta = new ConversorResponse(retorno);
 		Boletos boleto = resposta.getWSBoleto();
+		return boleto;
+	}
+	
+	
+	/**
+	 * Realiza a pesquisa do boleto por numero do boleto
+	 * @param numeroBoleto
+	 * @return
+	 * @throws Exception
+	 */
+	public Boletos consultarSituacaoBoletoPorNumeroProtocolo(Long numeroBoleto) throws Exception {
+		AbacoWs ws = new AbacoWs();
+		
+		WsBuscaDadosBoletoTaxasDiversaExecuteResponse boletos = ws.localizarBoletoTeste(numeroBoleto);
+	
+		
+		ConversorResponse resposta = new ConversorResponse(boletos.getSdtboletotaxasdiversas());
+		Boletos boleto = resposta.getWSBoletoConsulta();
 		return boleto;
 	}
 	

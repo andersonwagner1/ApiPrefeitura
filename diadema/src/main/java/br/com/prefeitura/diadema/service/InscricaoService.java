@@ -16,6 +16,8 @@ import br.com.prefeitura.diadema.dto.EnquadramentoISSCodigoServico;
 import br.com.prefeitura.diadema.dto.InscricaoMunicipal;
 import br.com.prefeitura.diadema.dto.Publicidades;
 import br.com.prefeitura.diadema.dto.Socio;
+import br.com.prefeitura.diadema.model.PmdLogs;
+import br.com.prefeitura.diadema.util.ConverterDtoJson;
 import br.com.prefeitura.diadema.util.ParseInscricao;
 import br.com.prefeitura.diadema.ws.AbacoHomologacaoWs;
 import br.com.prefeitura.diadema.ws.abaco.hmg.enviar.RetornoWSRetornoWSItem;
@@ -25,147 +27,14 @@ import br.com.prefeitura.diadema.ws.abaco.hmg.enviar.WsEnviarDadosEmpresaExecute
 import br.com.prefeitura.diadema.ws.abaco.hmg.enviar.WsEnviarDadosEmpresaExecuteResponse;
 import br.com.prefeitura.diadema.ws.abaco.hmg.enviar.WsEnviarDadosEmpresaSoapPort;
 
-
+//BANCO DE DADOS (BASE DE TESTE) SIAP ETL
 @Service
 public class InscricaoService {
-
-	
-
 
 	@Autowired
 	public InscricaoService(){; 
 	}
 
-	
-/*	
-
-	  "inscricaoMunicipal" : {
-
-	    "id" : null,
-	    "numeroProtocolo" : null,
-	    "cnpj" : "70342476000196",
-	    "razaoSocial" : "Anderson Teste",
-	    "ultimoRegistroJucesp" : null,
-	    "numeroInscricaoMunicipal" : 630,
-	    "statusEmpresa" : "ALTERACAO",
-	    "nomeFantasia" : null,
-	    "codigoNaturezaJuridica" : 1,
-	    "dataAbertura" : 1685983669507,
-	    "inscricaoEstadual" : null,
-	    "objetoSocial" : null,
-	    "numeroFuncionario" : "10",
-	    "numeroProfissionais" : "50",
-	    "numeroInstrumentosMusicais" : 0,
-	    "bancaDeJornal" : 40.0,
-	    "numeroDeJogos" : 0,
-	    "numeroDeEletronicos" : 0,
-	    "quantidadePublicidadeNaoLuminioso" : 0,
-	    "quantidadePublicidadeLuminoso" : 0,
-	    "quantidadePublicidadeTerceiro" : 0,
-	    "empresacodigoLogradouroAgata" : 3100,
-	    "empresaLogradouro" : null,
-	    "empresaNumeroLogradouro" : "numero",
-	    "empresaComplementoLogradouro" : null,
-	    "empresaBairro" : null,
-	    "empresaCodigoBairro" : 5,
-	    "empresaMunicipio" : null,
-	    "empresaUF" : null,
-	    "empresaCep" : "09921250",
-	    "empresaEmail" : null,
-	    "empresaTelefone" : null,
-	    "empresaFax" : null,
-	    "registroJuntaComercial" : null,
-	    "dataEmissaoNIREInicial" : null,
-	    "detalhaUltimaAlteracaoJunta" : null,
-	    "dataUltimaAlteracaoJunta" : null,
-	    "capitalSocial" : null,
-	    "horaDeFuncionamentoSegundaASexta" : null,
-    "horaDeFuncionamentoSabado" : null,
-	    "horaDeFuncionamentoDomingo" : null,
-	    "dadosContadorCrc" : "1111",
-	    "dadosContadorNome" : "nome contador",
-	    "dadosContadorCPF" : "32379324859",
-	    "dadosContadorRG" : "789798",
-	    "dadosContadorNomeEscritorio" : "Escritorio do contador",
-	    "dadosContadorEndereco" : "endereço contador",
-	    "dadosContadorNumeroEndereco" : null,
-	    "dadosContadorComplementoEndereco" : "cOMPELEMNTO",
-	    "dadosContadorMunicipio" : "31080",
-	    "dadosContadorCEP" : "09921000",
-	    "dadosContadorTelefone" : "9999",
-	    "dadosContadorFax" : "12123",
-	    "dadosContadorEmail" : "contador@contador.com",
-	    "dadosContadorAtividadeEconomica" : "789798",
-	    "dadosContadorUf" : "SP",
-	    "dadosContadorBairro" : "BAIRRO DO CONTADOR",
-	    "representanteLegalNome" : "nome do representando",
-	    "representanteLegalCPF" : "32379324859",
-	    "representanteLegalRG" : "rg 33333",
-	    "representanteLegalEmail" : "abc@email.com",
-	    "representanteLegalTelefone" : "11111",
-	    "representanteLegalEndereco" : "Endereço do represente",
-	    "representanteLegalNumeroDoEndereco" : "99999",
-	    "representanteLegalComplementoDeEndereco" : "complemento",
-	    "representanteLegalBairro" : "Bairro",
-	    "representanteLegalMunicipio" : "31805",
-	    "representanteLegalUf" : "SP",
-	    "representanteLegalCEP" : "099921000",
-	    "tipoAlteracaoAtividades" : null,
-	    "tipoAlteracaoRazaoSocial" : null,
-	    "tipoAlteracaoSocios" : null,
-	    "tipoAlteracaoEndereco" : null,
-	    "tipoAlteracaoRenovacao" : null,
-	    "dataDeAlteracao" : null,
-	    "dataDeEntrada" : null,
-	    "publicidades" : null,
-	    "socios" : [ {
-	      "id" : null,
-	      "nome" : "nome",
-	      "cpf" : "32379324859",
-	      "rg" : "456789",
-	      "email" : "abc@abc.com.br",
-	      "telefone" : "78998898",
-	      "endereco" : "endereço de teste",
-	      "numeroEndereco" : "798",
-	      "complementoEndereco" : "Tests",
-	      "bairro" : "Bairro",
-	      "cidade" : "31805",
-	      "cep" : "09921250",
-	      "uf" : "SP"
-	    } ],
-	    "cnaes" : [ {
-	      "id" : null,
-	      "codigo" : "123456",
-	      "nome" : "Nome do cnae",
-	      "principal" : true
-	    } ]
-	  },
-
-	  "enquadramentoAtividadeEconomica" : {
-	    "id" : null,
-	    "classificacaoAtividade" : "Industria",
-	    "observacao" : "Observação para teste",
-	    "dataContrato" : null,
-	    "horaContrato" : null,
-	    "sequencia" : null,
-	    "numeroContrato" : null,
-	    "dataAlteracao" : 1685983669507,
-	    "observacaoContrato" : null,
-	    "enquadramentoAtividadeEconomicaComplementos" : [ ]
-	  },
-
-	  "enquadramentoISS" : {
-	    "id" : null,
-	    "processoDeveContinuar" : null,
-	    "tlfInicial" : null,
-	    "isentoTlf" : 1,
-	    "tipoISSQN" : "M",
-	    "enquadramentoISSCodigoServico" : null,
-	    "inscricaoMunicipal" : null
-	  }
-	}
-	*/
-	
 	public static void main(String args[]){
 		InscricaoMunicipal inscricaoMunicipal = new InscricaoMunicipal();
 		inscricaoMunicipal.setBancaDeJornal(40f);
@@ -174,7 +43,7 @@ public class InscricaoService {
 		inscricaoMunicipal.setCodigoNaturezaJuridica(1);
 		inscricaoMunicipal.setNumeroFuncionario(1);
 		inscricaoMunicipal.setNumeroProfissionais(1);
-		inscricaoMunicipal.setStatusEmpresa("ALTERACAO");
+		inscricaoMunicipal.setStatusEmpresa("ALTERAÇÃO");
 		inscricaoMunicipal.setDadosContadorTelefone("9999");
 		inscricaoMunicipal.setQuantidadePublicidadeLuminoso(0);
  		inscricaoMunicipal.setQuantidadePublicidadeNaoLuminioso(0);
@@ -189,9 +58,8 @@ public class InscricaoService {
  		inscricaoMunicipal.setEmpresaCodigoBairro(5);
  		inscricaoMunicipal.setEmpresacodigoLogradouroAgata(1030);
  		inscricaoMunicipal.setEmpresaCep("09921250");
- 		inscricaoMunicipal.setNumeroInscricaoMunicipal(6304L);
+ 		inscricaoMunicipal.setNumeroInscricaoMunicipal(68247L);
  		inscricaoMunicipal.setCnpj("32379324859");
- 		
  		inscricaoMunicipal.setNomeFantasia("Fantasia");
  		inscricaoMunicipal.setInscricaoEstadual("99999");
  		inscricaoMunicipal.setObjetoSocial("objeto social");
@@ -369,7 +237,7 @@ public class InscricaoService {
 		inscricaoMunicipal.setDadosContadorTelefone("9999");
 		inscricaoMunicipal.setDadosContadorUf("SP");
 		inscricaoMunicipal.setDataDeAlteracao(new Date());
-		
+		//BANCO DE DADOS (BASE DE TESTE) SIAP ETL
 		
 		//----------------------
 		//Representante
@@ -393,6 +261,8 @@ public class InscricaoService {
 		
 		ParseInscricao parse = new ParseInscricao();
 		
+		
+		
 		WsEnviarDadosEmpresa wsEnviarDadosEmpresa = new WsEnviarDadosEmpresa();
         WsEnviarDadosEmpresaSoapPort port = wsEnviarDadosEmpresa.getWsEnviarDadosEmpresaSoapPort();
         
@@ -400,7 +270,13 @@ public class InscricaoService {
         SdtDadosCadastraisEmpresa params = new SdtDadosCadastraisEmpresa();
         params = parse.parseAgata(inscricaoMunicipal);
         execute.setSdtDadoscadastraisempresas(params);
-
+        
+        ConverterDtoJson.converterParaJson(params);
+        
+        
+    	// converte objetos Java para JSON e retorna JSON como String
+    	//String json = gson.toJson(inscricaoMunicipal);
+//System.out.println(json);
         try {
             WsEnviarDadosEmpresaExecuteResponse response = port.execute(execute);
             
@@ -418,15 +294,13 @@ public class InscricaoService {
                     }
                 }
             } else {
+            	
                 throw new Exception("Não foi possível enviar dados ao àgata: Não houve resposta para a chamada do Webservice");
             }
         } catch (Exception e) {
         	System.out.println(e.getMessage());
         	//throw new Exception("Não é foi possivel enviar dados para o agata: " + e.toString());
         }
-
-		
-		
 	}
 	
 	public Long consultarCmcPorCnpj( Long cnpj) throws Exception{	
@@ -457,11 +331,6 @@ public class InscricaoService {
 	
 	public boolean existeInscricaoMobiliario(String tipo, Long numeroInscricao) throws Exception{
 		
-		
-		
-		
-		
-		
 		AbacoHomologacaoWs ws = new AbacoHomologacaoWs();
 		tipo = tipo.toLowerCase();
 		if(tipo.equals("cnpj")){
@@ -491,6 +360,8 @@ public class InscricaoService {
         SdtDadosCadastraisEmpresa params = new SdtDadosCadastraisEmpresa();
         params = parse.parseAgata(inscricaoMunicipal);
         execute.setSdtDadoscadastraisempresas(params);
+        
+        ConverterDtoJson.converterParaJson(params);
 
         try {
             WsEnviarDadosEmpresaExecuteResponse response = port.execute(execute);

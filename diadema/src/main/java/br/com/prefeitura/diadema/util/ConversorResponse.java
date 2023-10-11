@@ -8,15 +8,80 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import br.com.prefeitura.diadema.boleto.Boletos;
 import br.com.prefeitura.diadema.boleto.bancos.Bradesco;
+import br.com.prefeitura.diadema.ws.abaco.hmg.SdtBoletoTaxasDiversas;
 import br.com.prefeitura.diadema.ws.abaco.hmg.lancar.WsLancarTaxasDiversasExecuteResponse;
 
 public class ConversorResponse {
 	WsLancarTaxasDiversasExecuteResponse boletoResponse;
 	Boletos boleto = new Boletos();
+	private SdtBoletoTaxasDiversas boletoConsulta;
 
 	public ConversorResponse(WsLancarTaxasDiversasExecuteResponse retorno) {
 		this.boletoResponse = retorno;
 	}
+	
+	public ConversorResponse(SdtBoletoTaxasDiversas sdtboletotaxasdiversas) {
+		this.boletoConsulta = sdtboletotaxasdiversas;
+	}
+
+	public Boletos getWSBoletoConsulta() throws FileNotFoundException {
+		Bradesco bancoBradesco = new Bradesco();
+		this.boleto.setNumeroRegistro(this.boletoConsulta.getProcesso());
+		this.boleto.setAceite(this.boletoConsulta.getAceite());
+		this.boleto.setAgenciaBeneficiario(this.boletoConsulta.getAgencia());
+		this.boleto.setCodigoBeneficiario(this.boletoConsulta.getCedente());
+		this.boleto.setBanco(bancoBradesco);
+		this.boleto.setCarteiraBeneficiario(this.boletoConsulta
+				.getCarteira());
+		this.boleto.setCip(this.boletoConsulta.getCIP());
+		this.boleto.setCorrecao(String.valueOf(this.boletoConsulta.getCorrecao()));
+		this.boleto.setDamReferente(this.boletoConsulta.getDAMReferentea());
+		this.boleto.setDataDocumento(converteData(this.boletoConsulta.getDataEmissao()));
+		this.boleto.setDataProcessamento(converteData(this.boletoConsulta.getDataProcessamento()));
+		this.boleto.setDataVencimento(converteData(this.boletoConsulta.getVencimento()));
+
+		StringBuffer sb = new StringBuffer();
+		sb.append(this.boletoConsulta.getDescricaoDAM1() + "\n");
+		sb.append(this.boletoConsulta.getDescricaoDAM2() + "\n");
+		sb.append(this.boletoConsulta.getDescricaoDAM3() + "\n");
+		sb.append(this.boletoConsulta.getDescricaoDAM4() + "\n");
+		sb.append(this.boletoConsulta.getDescricaoDAM5() + "\n");
+		sb.append(this.boletoConsulta.getDescricaoDAM6());
+
+		this.boleto.setDescricaoDAM(sb.toString());
+
+		this.boleto.setDocumentoBeneficiario(this.boletoConsulta.getBeneficiarioCNPJ());
+		this.boleto.setDocumentoPagador(this.boletoConsulta.getCpfCnpj());
+		this.boleto.setEspecieMoeda(this.boletoConsulta.getMoeda());
+
+		this.boleto.setCodigoEspecieMoeda("9");
+
+		this.boleto.setInscricao(String.valueOf(this.boletoConsulta.getInscricao()));
+		this.boleto.setInstrucao1(this.boletoConsulta.getMsgblt1());
+		this.boleto.setInstrucao2(this.boletoConsulta.getMsgblt2());
+		this.boleto.setInstrucao3(this.boletoConsulta.getMsgblt3());
+		this.boleto.setInstrucao4(this.boletoConsulta.getMsgblt4());
+		this.boleto.setInstrucao5(this.boletoConsulta.getMsgblt5());
+		this.boleto.setLocaisPagamento(this.boletoConsulta.getLocalDePagamento());
+		//this.boleto.setLogoPrefeitura(new FileInputStream(
+		//		"/home/image/agiles-config/config/imgs/logo_pmd.jpg"));
+		this.boleto.setMulta(String.valueOf(this.boletoConsulta.getMulta()));
+		this.boleto.setNomeBeneficiario(this.boletoConsulta.getBeneficiario());
+		this.boleto.setNomePagador(this.boletoConsulta.getContribuinte());
+		this.boleto.setNossoNumero(this.boletoConsulta.getNossoNumero());
+		this.boleto.setNossoNumeroDV(this.boletoConsulta.getNossoNumeroDV());
+		this.boleto.setNumeroDocumento(this.boletoConsulta.getNossoNumero());
+		this.boleto.setProcessoContribuinte(String.valueOf(this.boletoConsulta.getProcesso()));
+		this.boleto.setReferencia(this.boletoConsulta.getReferencia());
+		this.boleto.setTipoInscricao(this.boletoConsulta.getTipoInscricao());
+		this.boleto.setTsa(String.valueOf(this.boletoConsulta.getTSA()));
+		this.boleto.setValorBoleto(String.valueOf(this.boletoConsulta.getValoraPagar()));
+
+		return this.boleto;
+	}
+
+
+	
 
 	public Boletos getWSBoleto() throws FileNotFoundException {
 		Bradesco bancoBradesco = new Bradesco();

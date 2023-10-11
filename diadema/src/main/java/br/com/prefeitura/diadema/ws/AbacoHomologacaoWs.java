@@ -49,12 +49,12 @@ import br.com.prefeitura.diadema.ws.abaco.hmg.lancar.WsLancarTaxasDiversasExecut
 import br.com.prefeitura.diadema.ws.abaco.hmg.lancar.WsLancarTaxasDiversasExecuteResponse;
 import br.com.prefeitura.diadema.ws.abaco.hmg.lancar.WsLancarTaxasDiversasSoapPort;
 
-
+@Deprecated
 @Service
 public class AbacoHomologacaoWs {
 	
-	/*
-	public  static void main(String args[]) throws Exception{
+	
+	/*public  static void main(String args[]) throws Exception{
 		
 		AbacoHomologacaoWs ws = new AbacoHomologacaoWs();
 		System.out.println(ws.localizarBoleto(2023093586L).getDsBoleto());
@@ -139,7 +139,9 @@ public class AbacoHomologacaoWs {
 	
 	
 	public WsCadastroInscricaoMobiliarioExecuteResponse enviarDadosParaAgata(InscricaoMunicipal inscricaoMunicipal) {
-
+		
+		
+		
 		WsCadastroInscricaoMobiliarioExecute param = new WsCadastroInscricaoMobiliarioExecute();
 		WsCadastroInscricaoMobiliario wsl = new WsCadastroInscricaoMobiliario();
 		WsCadastroInscricaoMobiliarioSoapPort port = wsl.getWsCadastroInscricaoMobiliarioSoapPort();
