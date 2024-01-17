@@ -3,12 +3,15 @@ package br.com.prefeitura.diadema.ws.egata;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import javax.xml.ws.WebEndpoint;
 import javax.xml.ws.WebServiceClient;
 import javax.xml.ws.WebServiceException;
 import javax.xml.ws.WebServiceFeature;
+
+import br.com.prefeitura.diadema.util.UrlEndereco;
 
 
 /**
@@ -17,7 +20,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "wsbuscabairrologradouro", targetNamespace = "eAgata", wsdlLocation = "http://hmg-abc.diadema.sp.gov.br/eagata/servlet/awsbuscabairrologradouro?WSDL")
+@WebServiceClient(name = "wsbuscabairrologradouro", targetNamespace = "eAgata", wsdlLocation =UrlEndereco.EWSDL_URL+ "awsbuscabairrologradouro?WSDL")
 public class Wsbuscabairrologradouro
     extends Service
 {
@@ -30,7 +33,7 @@ public class Wsbuscabairrologradouro
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://hmg-abc.diadema.sp.gov.br/eagata/servlet/awsbuscabairrologradouro?WSDL");
+            url = new URL(UrlEndereco.EWSDL_URL+ "awsbuscabairrologradouro?WSDL");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
