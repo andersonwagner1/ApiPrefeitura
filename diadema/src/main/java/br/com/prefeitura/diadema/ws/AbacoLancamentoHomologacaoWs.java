@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import br.com.prefeitura.diadema.boleto.Boletos;
 import br.com.prefeitura.diadema.boleto.exception.BoletoException;
+import br.com.prefeitura.diadema.dto.TaxaDiversas;
 import br.com.prefeitura.diadema.util.ConversorResponse;
+import br.com.prefeitura.diadema.util.ConverterDtoJson;
 import br.com.prefeitura.diadema.ws.abaco.hmg.WsBuscaDadosBoletoTaxasDiversaExecuteResponse;
 import br.com.prefeitura.diadema.ws.abaco.hmg.lancar.ArrayOfSdtLancarTaxasDiversasTaxasItem;
 import br.com.prefeitura.diadema.ws.abaco.hmg.lancar.SdtLancarTaxasDiversas;
@@ -30,14 +32,36 @@ public class AbacoLancamentoHomologacaoWs {
 		a.executarHmg(122, 0.0d,1, 2, 1206600102L, "observação");
 	}
 	
+	public Boletos executarTaxa(TaxaDiversas taxasDiversas)throws Exception {
+		AbacoHomologacaoWs w = new AbacoHomologacaoWs();
+		WsLancarTaxasDiversasExecuteResponse retorno = w.lancarTaxaDiversas(taxasDiversas);
+	
+		ConversorResponse resposta = new ConversorResponse(retorno);
+		Boletos boleto = resposta.getWSBoleto();
+		return boleto;
+	}
 	
 	
+	
+	/**
+	 * ITEM DESABILITADO
+	 * @param codigoTaxa
+	 * @param valorTaxa
+	 * @param quantidadeTaxa
+	 * @param tipoContribuinte
+	 * @param inscricao
+	 * @param observacao
+	 * @return
+	 * @throws Exception
+	 */
+	@Deprecated
 	public Boletos executarHmg(Integer codigoTaxa, Double valorTaxa, Integer quantidadeTaxa, Integer tipoContribuinte, Long inscricao, String observacao ) throws Exception{
 		AbacoHomologacaoWs w = new AbacoHomologacaoWs();
 		WsLancarTaxasDiversasExecuteResponse retorno = w.lancarTaxa(codigoTaxa, valorTaxa, quantidadeTaxa,  tipoContribuinte, inscricao, observacao);
 	
 		ConversorResponse resposta = new ConversorResponse(retorno);
 		Boletos boleto = resposta.getWSBoleto();
+		ConverterDtoJson.mostarJson(retorno);
 		return boleto;
 	}
 	
@@ -114,6 +138,10 @@ public class AbacoLancamentoHomologacaoWs {
 		return retornoBoleto;
 		
 	}
+
+
+
+
 	
 	
 	

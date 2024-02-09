@@ -5,13 +5,76 @@ import java.sql.SQLException;
 
 public class LocalizarValores {
 
-	
+	String views[] = {"ecpaassunto", 
+			"ecpaassuntowflaux", 
+			"ecpacalculoassunto", 
+			"ecpagrupoassunto", 
+			"ecpaprocedeassunto", 
+			"ecpatipotaxaproc", 
+			"eswfautorizusuario", 
+			"pmdvprocessoativos", 
+			"pmdvsetores", 
+			"vbpmatividadeinst", 
+			"vbpmgrupo", 
+			"vbpmgrupoemail", 
+			"vbpmservicoassinc", 
+			"vbpmusuario", 
+			"vbpmusuariogrupo", 
+			"vcdtenderecotipo", 
+			"vcdtestadomunicipio", 
+			"vcdtpessoa", 
+			"vcdtpessoafisica", 
+			"vcdtpessoajuridica", 
+			"vcpaclasseorgaousuario", 
+			"vcpaclasseperfilusuario", 
+			"vcpaconsassunto", 
+			"vcpaconsmenorass", 
+			"vcpaconstramic", 
+			"vcpaconstramiproc", 
+			"vcpaconsultaproc", 
+			"vcpaconsultaproc2", 
+			"vcpaconsultatrami", 
+			"vcpainteremail", 
+			"vcpainteressado", 
+			"vcpaintermatricula", 
+			"vcpamenorassunto", 
+			"vcpaorgaosetor", 
+			"vcpapowerbi_munhoz", 
+			"vcpaprocesso", 
+			"vcpaprocessopendente", 
+			"vcpaprocsetor", 
+			"vcpaprontapenso", 
+			"vcpatarefaspowerbi_munhoz", 
+			"vcpatramiteusuario", 
+			"vcpaultimafase", 
+			"vcpaultimotramite", 
+			"vcpaultimotramitec", 
+			"vcpaulttramitecirc", 
+			"vcpaulttramiteproc", 
+			"vcpaulttramitevol", 
+			"vcpaulttratinter", 
+			"vcpausuarioorgao", 
+			"vcpavaasclasse", 
+			"vcpavaasinteressadoprocesso", 
+			"vcpavaasprocesso", 
+			"vecmautpasta", 
+			"vecmmodeloversao", 
+			"vecmmodelultversao", 
+			"vecmsegmentacao", 
+			"vjbpmtarefausuario", 
+			"vmigtempclassesecundaria", 
+			"vpclutilizacaoclasseusuario", 
+			"vsamcandiinter", 
+			"vsamcargointer", 
+			"vsammunicinter", 
+			"vsrhcadsimpfunc", 
+			"vsrhfuncionario"};
 	
 	private OracleSoftplan coneection = new OracleSoftplan();
 	//private OracleBpm coneection = new OracleBpm();
 	//private OracleSoftplan coneection = new OracleSoftplan();
 	//private OracleMobile coneection = new OracleMobile();
-
+	//private OracleAgiles coneection = new OracleAgiles();
 	
 	 
 	
@@ -19,9 +82,9 @@ public class LocalizarValores {
 	public static void main(String arg[]) throws SQLException{
 		LocalizarValores l = new LocalizarValores();
 		//l.localizarValor("");
-		//l.localizarValor("Buscar Informações Processos", true);
-		l.localizarValor("11703/2023", false);
-		//l.localizarValor(14175093l);
+		l.localizarValor("", false);
+		//l.localizarValor("56502569",false);
+		//l.localizarValor(56502569l);
 		System.out.println("Fim");
 	}
 	
@@ -120,7 +183,20 @@ public class LocalizarValores {
 				localizarValores(rs.getString(1), rsColunas.getString(1), valor, exato);
 			}
 			rsColunas.close();
-		}	
+		}
+		
+		for(String view : views){
+			tabelas ++;
+			ResultSet rsColunas = listarColunas(view,"VARCHAR2");
+			while(rsColunas.next()){
+				localizarValores(rs.getString(1), rsColunas.getString(1), valor, exato);
+			}
+			rsColunas.close();
+		}
+		
+		
+		
+		
 		rs.close();
 		System.out.println("--- total de tabelas " + tabelas);
 		
@@ -143,6 +219,17 @@ public class LocalizarValores {
 			rsColunas.close();
 		}	
 		rs.close();
+		
+		
+		for(String view : views){
+			tabelas ++;
+			ResultSet rsColunas = listarColunas(view,"VARCHAR2");
+			while(rsColunas.next()){
+				localizarValores(rs.getString(1), rsColunas.getString(1), valor);
+			}
+			rsColunas.close();
+		}
+		
 		System.out.println("--- total de tabelas " + tabelas);
 		
 		

@@ -123,9 +123,14 @@ public class ParseInscricaoEgata {
 			throw new NumberFormatException("Campo CodigoNaturezaJuridica esta nulo");
 		}
 		
+		if(inscricaoMunicipal.getEnquadramentoISS() != null){
+			dadosCadastraisEmpresa.setCodigoTipoISSQN(inscricaoMunicipal.getEnquadramentoISS().getTipoISSQN());
+		}
+		
 	    dadosCadastraisEmpresa.setCodigoNaturezaJuridica(inscricaoMunicipal.getCodigoNaturezaJuridica());
-	    dadosCadastraisEmpresa.setCodigoTipoISSQN(inscricaoMunicipal.getEnquadramentoISS().getTipoISSQN());
+	    dadosCadastraisEmpresa.setDataRegistroJunta(parseStringDate(new Date()));
 	    dadosCadastraisEmpresa.setDataCadastroPrefeitura(parseStringDate(new Date()));
+	    dadosCadastraisEmpresa.setDataUltimaAlteracaoJunta(parseStringDate(inscricaoMunicipal.getDataUltimaAlteracaoJunta()));
 	    dadosCadastraisEmpresa.setNumeroCertificadoLicenciamentoIntegrado(inscricaoMunicipal.getNumeroProtocolo());
 	    dadosCadastraisEmpresa.setNumeroCNPJ(inscricaoMunicipal.getCnpj());
         dadosCadastraisEmpresa.setRazaoSocial(inscricaoMunicipal.getRazaoSocial());
@@ -158,7 +163,7 @@ public class ParseInscricaoEgata {
 	    } else {
 	    	dadosCadastraisEmpresa.setFLGACAO("ALTERACAO");
 	    	  if(inscricaoMunicipal.getNumeroInscricaoMunicipal() == null){
-	    		  throw new NumberFormatException("Caso a empresa for uma alteração não é possivel o valro da getNumeroInscricaoMunicipal ser nulo");
+	    		  throw new NumberFormatException("Caso a empresa for uma alteração não é possivel o valro da NumeroInscricaoMunicipal ser nulo");
 	    	  }
 	    	dadosCadastraisEmpresa.setInscricaoMunicipal(inscricaoMunicipal.getNumeroInscricaoMunicipal()); // se a emporesa for nova o campo é nulo
 	    }

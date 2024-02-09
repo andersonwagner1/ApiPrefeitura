@@ -5,7 +5,6 @@ import java.util.List;
 
 
 public class DtoInscricao {
-	private String teste;
 	private InscricaoMunicipal inscricaoMunicipal;
 	private EnquadramentoAtividadeEconomica enquadramentoAtividadeEconomica;
 	private EnquadramentoISS enquadramentoISS;
@@ -29,14 +28,7 @@ public class DtoInscricao {
 		this.enquadramentoISS = enquadramentoISS;
 	}
 
-	public String getTeste() {
-		return teste;
-	}
 
-	public void setTeste(String teste) {
-		this.teste = teste;
-	}
-	
 	
 	
  

@@ -16,6 +16,7 @@ import br.com.prefeitura.diadema.boleto.RetBoleto;
 import br.com.prefeitura.diadema.dto.DtoInscricao;
 import br.com.prefeitura.diadema.dto.InscricaoMunicipal;
 import br.com.prefeitura.diadema.dto.Logradouro;
+import br.com.prefeitura.diadema.dto.Municipio;
 import br.com.prefeitura.diadema.dto.RetornoDto;
 import br.com.prefeitura.diadema.model.PmdBoleto;
 import br.com.prefeitura.diadema.model.PmdLogs;
@@ -23,7 +24,7 @@ import br.com.prefeitura.diadema.service.LogsService;
 import br.com.prefeitura.diadema.ws.EgataInscricaoWS;
 
 @RestController
-@RequestMapping("/api/diadema/einscricao")
+@RequestMapping("/api/diadema/inscricao")
 public class EInscricaoController {
 
 	private EgataInscricaoWS egataWs;
@@ -49,7 +50,7 @@ public class EInscricaoController {
 	public ResponseEntity<Long> consultarInscricaoPorCnpj(
 			@PathVariable("cnpj") Long cnpj) {
 		
-		PmdLogs log = logsService.info("consultarInscricao", cnpj);
+		PmdLogs log = logsService.infoJson("consultarInscricao", cnpj);
 		try{
 			Long existe = egataWs.consultarCmcPorCnpj(cnpj);
 			return new ResponseEntity<Long>(existe, HttpStatus.OK);
@@ -65,7 +66,7 @@ public class EInscricaoController {
 			@PathVariable("tipo") String tipo,
 			@PathVariable("numero") Long numero) {
 		
-		PmdLogs log = logsService.info("existeInscricao", tipo, numero);
+		PmdLogs log = logsService.infoJson("existeInscricao", numero);
 		try{
 			boolean existe = egataWs.existeInscricaoMobiliario(tipo, numero);
 			return new ResponseEntity<Boolean>(existe, HttpStatus.OK);
@@ -78,7 +79,7 @@ public class EInscricaoController {
 	
 	@PostMapping("/localizarEndereco")
 	public ResponseEntity<RetornoDto<List<Logradouro>>> localizarEndereco(@RequestBody String endereco) {
-		PmdLogs log = logsService.info("localizarEndereco", endereco);
+		PmdLogs log = logsService.infoJson("localizarEndereco", endereco);
 		
 		try{
 			List<Logradouro> resultado = egataWs.listarEnderecoPorNomeLogradouro(endereco);
@@ -99,9 +100,70 @@ public class EInscricaoController {
 	}
 	
 	
+	@PostMapping("/localizarMunicipio")
+	public ResponseEntity<RetornoDto<List<Municipio>>> localizarMuncipioPorUfouCidade(@RequestBody Municipio municipio) {
+		PmdLogs log = logsService.infoJson("localizarMuncipioPorUfouCidade", municipio);
+		
+		try{
+			List<Municipio> resultado = egataWs.listarMunicipioPorUfOuCidade(municipio);
+			RetornoDto<List<Municipio>> ret = new RetornoDto<List<Municipio>>();
+			ret.setDescricao("Sucesso");
+			ret.setRetorno(1);
+			ret.setObjeto(resultado);
+			return new ResponseEntity<RetornoDto<List<Municipio>>>(ret, HttpStatus.OK);
+		}catch(Exception ex){
+			ex.printStackTrace();
+			logsService.falha(log, ex.getMessage());
+			RetornoDto<List<Municipio>> ret = new RetornoDto<List<Municipio>>();
+			ret.setDescricao(ex.getMessage());
+			ret.setRetorno(0);
+			ret.setObjeto(null);
+			return new ResponseEntity<RetornoDto<List<Municipio>>>(ret, HttpStatus.OK);
+		}
+	}
+	
+	
+	@PostMapping("/enviarDadosEmpresaAgata")
+	public ResponseEntity<RetornoDto<Long>> enviarDadosEmpresaAgata(@RequestBody DtoInscricao inscricao) {
+		
+		//return new ResponseEntity<String>("chamada realizada com sucesso" , HttpStatus.OK);
+		PmdLogs log = logsService.infoJson("enviarDadosEmpresaAgata", inscricao.getInscricaoMunicipal());
+		  
+		try{
+			//|-----------------------------------------------------------------------------------------|
+			//| NO SOLAR BPM ELE NÃO CONSEGUE entender este metodo OBJECT => OBJECTO => ARRY<objeto>	|
+			//|foi colocado como parametros para listar o array 										|
+			//|-----------------------------------------------------------------------------------------|
+			InscricaoMunicipal i = inscricao.getInscricaoMunicipal();
+			i.setEnquadramentoAtividadeEconomica(inscricao.getEnquadramentoAtividadeEconomica());
+			i.setEnquadramentoISS(inscricao.getEnquadramentoISS());
+			//-------------------------------------------------------------------------------------
+			
+			Long resultado = egataWs.enviarDadosAgata(i);
+			RetornoDto<Long> ret = new RetornoDto<Long>();
+			ret.setDescricao("Sucesso");
+			ret.setRetorno(1);
+			ret.setObjeto(resultado);
+					
+			return new ResponseEntity<RetornoDto<Long>>(ret, HttpStatus.OK);
+			
+		}catch(Exception ex){
+			ex.printStackTrace();
+			logsService.falha(log, ex.getMessage());
+			RetornoDto<Long> ret = new RetornoDto<Long>();
+			ret.setDescricao(ex.getMessage());
+			ret.setRetorno(0);
+			ret.setObjeto(-1L);
+			return new ResponseEntity<RetornoDto<Long>>(ret, HttpStatus.OK);
+		}
+	}
+	
+	
+	/*
+	
 	@PostMapping("/enviarDadosEmpresaAgata")
 	public ResponseEntity<RetornoDto<Long>> enviarDadosEmpresaAgata(@RequestBody DtoInscricao inscricao){ 	
-		PmdLogs log = logsService.info("enviarDadosEmpresaAgata", inscricao.getInscricaoMunicipal());
+		PmdLogs log = logsService.infoJson("enviarDadosEmpresaAgata", inscricao.getInscricaoMunicipal());
 		
 		try{
 			//|-----------------------------------------------------------------------------------------|
@@ -130,7 +192,7 @@ public class EInscricaoController {
 			return new ResponseEntity<RetornoDto<Long>>(ret, HttpStatus.OK);
 		}
 	}
-	
+	*/
 	
 	
 	//--------------------------------------------------------------------------------------------------------------

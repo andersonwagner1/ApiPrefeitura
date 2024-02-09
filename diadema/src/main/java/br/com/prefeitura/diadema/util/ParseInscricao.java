@@ -147,7 +147,7 @@ public class ParseInscricao {
 		}
         
         if (inscricaoMunicipal.getStatusEmpresa().equalsIgnoreCase("nova")) {
-	    	dadosCadastraisEmpresa.setFLGACAO("NOVA");
+	    	dadosCadastraisEmpresa.setFLGACAO("ALTERACAO");//NOVA
 	    } else {
 	    	dadosCadastraisEmpresa.setFLGACAO("ALTERACAO");
 	    	  if(inscricaoMunicipal.getNumeroInscricaoMunicipal() == null){
@@ -161,6 +161,7 @@ public class ParseInscricao {
         dadosCadastraisEmpresa.setDataRegistroJunta(parseStringDate(inscricaoMunicipal.getDataEmissaoNIREInicial()));
         dadosCadastraisEmpresa.setProcessoUltimaAlteracaoJunta(inscricaoMunicipal.getUltimoRegistroJucesp());
         dadosCadastraisEmpresa.setDataUltimaAlteracaoJunta(parseStringDate(inscricaoMunicipal.getDataUltimaAlteracaoJunta()));
+        
         if(inscricaoMunicipal.getCapitalSocial() == null){
         	dadosCadastraisEmpresa.setValorCapitalSocial(0.0d);            	
         }else{
@@ -206,8 +207,7 @@ public class ParseInscricao {
         dadosCadastraisEmpresa.setCEPLocalizacaoEmpresa(inscricaoMunicipal.getEmpresaCep());
         dadosCadastraisEmpresa.setNumeroTelefoneEmpresa(somenteNumeros(inscricaoMunicipal.getEmpresaTelefone()));
         dadosCadastraisEmpresa.setComplementoLocalizacaoEmpresa(inscricaoMunicipal.getEmpresaComplementoLogradouro());
-	    
-	
+        
 	    
 	        
 	    //------------------------------------------------------------------
@@ -228,6 +228,7 @@ public class ParseInscricao {
 	                	 	dadosPublicidadario.setCodigoCaracteristicaFuncionamento(p.getTipo().byteValue());                	 
 	                	 	dadosPublicidadario.setQuantidadeCaracteristicaFuncionamento(p.getQuantidade().shortValue());                    	
 	                	 	listaCaracteristicas.add(dadosPublicidadario);
+	                	 	System.out.println("" + p.getM2() +  " " + p.getQuantidade().shortValue());
 	                	}
 	                }
 	            }

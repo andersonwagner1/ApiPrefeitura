@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+
 import br.com.prefeitura.diadema.boleto.Boleto;
 import br.com.prefeitura.diadema.boleto.Boletos;
 import br.com.prefeitura.diadema.boleto.RetBoleto;
 import br.com.prefeitura.diadema.boleto.transformer.GeradorDeBoleto;
+import br.com.prefeitura.diadema.dto.TaxaDiversas;
 import br.com.prefeitura.diadema.model.PmdBoleto;
 import br.com.prefeitura.diadema.repository.BoletoRepository;
 import br.com.prefeitura.diadema.ws.AbacoHomologacaoWs;
@@ -72,8 +74,74 @@ public class BoletoHmgService {
 	}
 	
 	
+	public RetBoleto lancarTaxa(TaxaDiversas taxasDiversas) throws Exception {
+		
+		
+		//verificar se existe algum protocolo ja aberto
+		PmdBoleto existeBoleto = dao.verificarSeExisteBoletoCadastradoPorNumeroProtocolo(taxasDiversas.getOrgao(), taxasDiversas.getAno(), taxasDiversas.getNumeroProcesso());
+		if(existeBoleto != null){
+			// criar uma boleto novo aqui
+			
+			/// Caso exista o boleto o sistema apenas ira realizar a consulta do boleto e devolver para o usuario
+			AbacoLancamentoHomologacaoWs ws = new AbacoLancamentoHomologacaoWs();
+			Boletos boletos = ws.consultarSituacaoBoletoPorNumeroProtocolo(existeBoleto.getNrProcessoBoleto());
+			ConcurrentHashMap<String, Object> parametros = adicionarParametros(boletos);
+			RetBoleto ret = gerarBoleto(Long.parseLong(taxasDiversas.getInscricao()+ "" + taxasDiversas.getTaxas().get(0).getCodigoTaxa()) , boletos, parametros);
+			ret.setResultado("Boleto duplicado");
+			ret.setSucesso(true);
+			//ret.setArquivo(null);
+			ret.setNumeroProcesso(existeBoleto.getNrProcessoBoleto().toString());
+			
+			PmdBoleto boleto = new PmdBoleto();
+			boleto.setCdSituacao(0);		
+			boleto.setDsBoleto("BOLETO_EM_ANDAMENTO");
+			boleto.setDsOrgao(taxasDiversas.getOrgao());
+			boleto.setDsSituacao("boleto em andamento");
+			boleto.setNrAno(taxasDiversas.getAno());
+			boleto.setNrProcesso(taxasDiversas.getNumeroProcesso());
+			boleto.setDtVencimento(boletos.getDataVencimento());		
+			boleto.setNrProcessoBoleto(Long.parseLong(ret.getNumeroProcesso()));
+			
+			dao.save(boleto);
+			return ret;
+		}
+		
+		
+		
+		
+		//consultaBoletoPorNumeroProcessoEletronico(numeroProcesso, orgao, ano);
+		
+		Boletos boletos = lancarBoletoTaxaDiversas(taxasDiversas);
+		ConcurrentHashMap<String, Object> parametros = adicionarParametros(boletos);
+		RetBoleto ret = gerarBoleto(Long.parseLong(taxasDiversas.getInscricao() + "" + taxasDiversas.getTaxas().get(0).getCodigoTaxa()) , boletos, parametros);
+		
+		PmdBoleto boleto = new PmdBoleto();
+		boleto.setCdSituacao(0);		
+		boleto.setDsBoleto("BOLETO_EM_ANDAMENTO");
+		boleto.setDsOrgao(taxasDiversas.getOrgao());
+		boleto.setDsSituacao("boleto em andamento");
+		boleto.setNrAno(taxasDiversas.getAno());
+		boleto.setNrProcesso(taxasDiversas.getNumeroProcesso());
+		boleto.setDtVencimento(boletos.getDataVencimento());		
+		boleto.setNrProcessoBoleto(Long.parseLong(ret.getNumeroProcesso()));
+		
+		dao.save(boleto);
+		
+		return ret;
+	}
+	
+	
+	private Boletos lancarBoletoTaxaDiversas(TaxaDiversas taxasDiversas) throws Exception{
+		
+		Boletos boletos = null;
+		AbacoLancamentoHomologacaoWs ws = new AbacoLancamentoHomologacaoWs();
+		boletos = ws.executarTaxa(taxasDiversas);
+		return boletos;
+	}
+	
+	
 	/**
-	 * 
+	 * Este metodo sera excluindo e trocapor por lancarTaxa
 	 * @param orgao
 	 * @param numeroProcesso
 	 * @param ano
@@ -86,6 +154,7 @@ public class BoletoHmgService {
 	 * @return
 	 * @throws Exception
 	 */
+	@Deprecated
 	public RetBoleto lancarTaxaHomologacao(String orgao, 
 			Long numeroProcesso, 
 			Integer ano, 

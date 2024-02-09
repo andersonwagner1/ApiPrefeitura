@@ -12,7 +12,7 @@ import br.com.prefeitura.diadema.model.PmdBoleto;
 @Repository
 public abstract interface BoletoRepository extends JpaRepository<PmdBoleto, Long>{
 	
-	@Query(value = "select x from PmdBoleto x where x.dsOrgao =:orgao AND x.nrAno= :nrAno  and x.nrProcesso = :nrProcesso order by x.nrProcessoBoleto"  )
+	@Query(value = "select x from PmdBoleto x where x.dsOrgao =:orgao AND x.nrAno= :nrAno  and x.nrProcesso = :nrProcesso order by x.nrProcessoBoleto DESC"  )
 	public List<PmdBoleto> consultarBoletoPorNumeroProcesso(
 			@Param("orgao") String orgao, 
 			@Param("nrAno") Integer nrAno, 
@@ -24,5 +24,9 @@ public abstract interface BoletoRepository extends JpaRepository<PmdBoleto, Long
 	public PmdBoleto verificarSeExisteBoletoCadastradoPorNumeroProtocolo(
 			@Param("orgao") String orgao, 
 			@Param("nrAno") Integer nrAno, 
-			@Param("nrProcesso") Long nrProcesso);	
+			@Param("nrProcesso") Long nrProcesso);
+
+
+	@Query(value = "select x from PmdBoleto x where x.nrProcessoBoleto = :nrProcesso")
+	public PmdBoleto consultarBoletoPorNumeroBoleto(@Param("nrProcesso") Long nrProcesso);
 }

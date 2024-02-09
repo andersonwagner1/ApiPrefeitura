@@ -20,7 +20,7 @@ import br.com.prefeitura.diadema.util.UrlEndereco;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "wsbuscabairrologradouro", targetNamespace = "eAgata", wsdlLocation =UrlEndereco.EWSDL_URL+ "awsbuscabairrologradouro?WSDL")
+@WebServiceClient(name = "wsbuscabairrologradouro", targetNamespace = "eAgata", wsdlLocation = UrlEndereco.EWSDL_URL + "awsbuscabairrologradouro?WSDL")
 public class Wsbuscabairrologradouro
     extends Service
 {
@@ -33,7 +33,7 @@ public class Wsbuscabairrologradouro
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL(UrlEndereco.EWSDL_URL+ "awsbuscabairrologradouro?WSDL");
+            url = new URL(UrlEndereco.EWSDL_URL + "awsbuscabairrologradouro?WSDL");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

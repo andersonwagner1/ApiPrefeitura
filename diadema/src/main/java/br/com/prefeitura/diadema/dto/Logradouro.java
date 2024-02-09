@@ -9,6 +9,7 @@ public class Logradouro {
 	private Long cdBairro;
 	private String dsBairro;
 	private String dsLogradouro;
+	
 	public String getDsTipoLogradouro() {
 		return dsTipoLogradouro;
 	}

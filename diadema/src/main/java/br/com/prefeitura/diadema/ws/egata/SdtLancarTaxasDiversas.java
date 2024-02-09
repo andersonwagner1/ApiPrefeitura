@@ -294,6 +294,11 @@ public class SdtLancarTaxasDiversas {
             return this.taxasItem;
         }
 
+		public void setTaxasItem(List<SdtLancarTaxasDiversasTaxasItem> taxasItem) {
+			this.taxasItem = taxasItem;
+		}
+
+        
     }
 
 }

@@ -3,7 +3,6 @@ package br.com.prefeitura.diadema.controller;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.elasticsearch.DataElasticsearchTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +16,11 @@ import br.com.prefeitura.diadema.service.BoletoService;
 
 @Deprecated
 @RestController
-@RequestMapping("/api/diadema/util")
+@RequestMapping("/api/diadema/utilEXCLUIDO")
 public class UtilController {
+	
+	
+	
 	
 	private final BoletoService boletoService;
 	

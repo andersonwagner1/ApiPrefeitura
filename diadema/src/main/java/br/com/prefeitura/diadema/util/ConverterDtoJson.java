@@ -11,13 +11,23 @@ public class ConverterDtoJson {
 		
 	}
 	
-
+	public static String json(Object dto){
+		ObjectMapper objectMapper = new ObjectMapper();
+		try {
+	
+			String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(dto);
+	        return json;		
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return "erro ao converter para json";
+	}
 	
 	
-	public static void converterParaJson(Object dto){
+	public static void mostarJson(Object dto){
 		ObjectMapper objectMapper = new ObjectMapper();
 try {
-			
+	
 			String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(dto);
 	        System.out.println(json);
 			//String json = objectMapper.writeValueAsString(dto);

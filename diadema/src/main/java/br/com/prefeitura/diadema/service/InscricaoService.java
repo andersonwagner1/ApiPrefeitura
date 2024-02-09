@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.prefeitura.diadema.dto.Cnae;
 import br.com.prefeitura.diadema.dto.ComplementoAtividade;
+import br.com.prefeitura.diadema.dto.DtoInscricao;
 import br.com.prefeitura.diadema.dto.EnquadramentoAtividadeEconomica;
 import br.com.prefeitura.diadema.dto.EnquadramentoAtividadeEconomicaComplemento;
 import br.com.prefeitura.diadema.dto.EnquadramentoISS;
@@ -37,13 +38,138 @@ public class InscricaoService {
 
 	public static void main(String args[]){
 		InscricaoMunicipal inscricaoMunicipal = new InscricaoMunicipal();
-		inscricaoMunicipal.setBancaDeJornal(40f);
-		inscricaoMunicipal.setNumeroProtocolo("SPM123132");
-		inscricaoMunicipal.setUltimoRegistroJucesp("SPM999999");
+		inscricaoMunicipal.setStatusEmpresa("ALTERACAO");
+		inscricaoMunicipal.setNumeroInscricaoMunicipal(6304l);
+		inscricaoMunicipal.setRazaoSocial("Anderson 132");
+		inscricaoMunicipal.setNomeFantasia("Fantasia");
 		inscricaoMunicipal.setCodigoNaturezaJuridica(1);
+		inscricaoMunicipal.setNumeroProtocolo("SPM123132");
+		inscricaoMunicipal.setInscricaoEstadual("9999");
+		inscricaoMunicipal.setCnpj("01462765000106");
+		
+		
+		EnquadramentoISS enquadramentoISS = new EnquadramentoISS();
+ 		enquadramentoISS.setTipoISSQN("A");
+ 		enquadramentoISS.setTlfInicial(1);
+		inscricaoMunicipal.setEnquadramentoISS(enquadramentoISS);
+		
+		
+		inscricaoMunicipal.setDataAbertura(new Date());
+		
+		inscricaoMunicipal.setDadosContadorCrc("111");
+		inscricaoMunicipal.setDadosContadorNomeEscritorio("contabil");
+		inscricaoMunicipal.setDadosContadorNome("nome contador");
+		inscricaoMunicipal.setDadosContadorCPF("56169904003");
+		inscricaoMunicipal.setDadosContadorRG("543534");
+		inscricaoMunicipal.setDadosContadorEndereco("Avenida José Aparecido de Melo");
+		inscricaoMunicipal.setDadosContadorBairro("Jardim Mase");
+		inscricaoMunicipal.setDadosContadorTelefone("1156353453");
+		inscricaoMunicipal.setDadosContadorNumeroEndereco("66");
+		inscricaoMunicipal.setDadosContadorComplementoEndereco("casa");
+		inscricaoMunicipal.setDadosContadorCEP("09921000");
+		inscricaoMunicipal.setDadosContadorMunicipio("0");
+		inscricaoMunicipal.setDadosContadorUf("SP");
+		inscricaoMunicipal.setDadosContadorFax("000");
+		inscricaoMunicipal.setDadosContadorEmail("teste@gmail.com");
+		
 		inscricaoMunicipal.setNumeroFuncionario(1);
 		inscricaoMunicipal.setNumeroProfissionais(1);
-		inscricaoMunicipal.setStatusEmpresa("ALTERAÇÃO");
+		inscricaoMunicipal.setCapitalSocial(44.44);
+		inscricaoMunicipal.setRegistroJuntaComercial("9990987");
+		inscricaoMunicipal.setDataUltimaAlteracaoJunta(new Date());
+		inscricaoMunicipal.setUltimoRegistroJucesp("SPM88974");
+		inscricaoMunicipal.setDataUltimaAlteracaoJunta(new Date());
+		inscricaoMunicipal.setEmpresaTelefone("11534534534");
+		inscricaoMunicipal.setEmpresaEmail("casa");
+		inscricaoMunicipal.setBancaDeJornal(5.0f);
+		inscricaoMunicipal.setEmpresacodigoLogradouroAgata(5);
+		inscricaoMunicipal.setEmpresaCodigoBairro(6);
+		inscricaoMunicipal.setEmpresaNumeroLogradouro("100");
+		inscricaoMunicipal.setEmpresaCep("09910170");
+		inscricaoMunicipal.setEmpresaComplementoLogradouro("casa");
+		
+		Cnae cna1 = new Cnae();
+		cna1.setCodigo("1412601");
+		cna1.setPrincipal(true);
+		
+		List<Cnae> cnaes = new ArrayList<Cnae>();
+		
+		cnaes.add(cna1);
+		inscricaoMunicipal.setCnaes(cnaes);;
+		
+		
+		EnquadramentoAtividadeEconomica enquadramento = new EnquadramentoAtividadeEconomica();
+		enquadramento.setClassificacaoAtividade("industria");
+
+		inscricaoMunicipal.setEnquadramentoAtividadeEconomica(enquadramento );
+		inscricaoMunicipal.setObjetoSocial("12");
+		
+		Publicidades publicidade = new Publicidades();
+		publicidade.setTipo(1);
+		publicidade.setM2(6d);
+		publicidade.setQuantidade(2);
+		
+		List<Publicidades> publicidades = new ArrayList<Publicidades>();
+		publicidades.add(publicidade);
+		inscricaoMunicipal.setPublicidades(publicidades );
+
+		//Isso repete no item pulibidade
+		inscricaoMunicipal.setQuantidadePublicidadeLuminoso(2);
+		inscricaoMunicipal.setQuantidadePublicidadeNaoLuminioso(2);
+		inscricaoMunicipal.setQuantidadePublicidadeTerceiro(2);
+		inscricaoMunicipal.setNumeroDeJogos(2);
+		inscricaoMunicipal.setNumeroDeEletronicos(2);
+		inscricaoMunicipal.setNumeroFuncionario(2);
+		inscricaoMunicipal.setNumeroInstrumentosMusicais(2);
+		
+		
+		Socio socio2 = new Socio();		
+		socio2.setCpf("05398178806");
+		socio2.setNome("socio");
+		socio2.setEndereco("TESTE");
+		socio2.setBairro("TESTE");
+		
+		List<Socio> socios = new ArrayList<Socio>();
+		socios.add(socio2);
+		inscricaoMunicipal.setSocios(socios);
+		
+		
+		List<EnquadramentoISSCodigoServico> enquadramentoISSCodigoServico = new ArrayList<EnquadramentoISSCodigoServico>();
+ 		EnquadramentoISSCodigoServico enquadramentoISSCodigoServico1 = new EnquadramentoISSCodigoServico();
+ 		enquadramentoISSCodigoServico1.setCodigoServico("10.01");
+ 		enquadramentoISSCodigoServico1.setTipo("P");
+ 		enquadramentoISSCodigoServico1.setSituacao("M");
+ 		enquadramentoISSCodigoServico1.setDataInicial(new Date());
+		enquadramentoISSCodigoServico.add(enquadramentoISSCodigoServico1 );		
+		enquadramentoISS.setEnquadramentoISSCodigoServico(enquadramentoISSCodigoServico);
+		inscricaoMunicipal.setEnquadramentoISS(enquadramentoISS);
+		
+		
+		List<EnquadramentoAtividadeEconomicaComplemento> enquadramentoAtividadeEconomicaComplementos = new ArrayList<EnquadramentoAtividadeEconomicaComplemento>();
+ 		EnquadramentoAtividadeEconomicaComplemento encontradmento = new EnquadramentoAtividadeEconomicaComplemento();
+		ComplementoAtividade complemento = new ComplementoAtividade();
+		complemento.setGrupo(2);
+		complemento.setSubgrupo(0);		
+		complemento.setAtividade(3);
+		encontradmento.setComplementoAtividade(complemento);
+		encontradmento.setTipo("P");
+		enquadramentoAtividadeEconomicaComplementos.add(encontradmento);
+		
+		//continuação
+		enquadramento.setEnquadramentoAtividadeEconomicaComplementos(enquadramentoAtividadeEconomicaComplementos);		
+		inscricaoMunicipal.setEnquadramentoAtividadeEconomica(enquadramento );
+		
+		
+ 		/*List<EnquadramentoISSCodigoServico> enquadramentoISSCodigoServico = new ArrayList<EnquadramentoISSCodigoServico>();
+		enquadramentoISS.setEnquadramentoISSCodigoServico(enquadramentoISSCodigoServico );
+		
+		//	inscricaoMunicipal.setBancaDeJornal(40f);
+		
+		inscricaoMunicipal.setUltimoRegistroJucesp("SPM999999");
+		
+		inscricaoMunicipal.setNumeroFuncionario(1);
+		inscricaoMunicipal.setNumeroProfissionais(1);
+		inscricaoMunicipal.setStatusEmpresa("NOVA");
 		inscricaoMunicipal.setDadosContadorTelefone("9999");
 		inscricaoMunicipal.setQuantidadePublicidadeLuminoso(0);
  		inscricaoMunicipal.setQuantidadePublicidadeNaoLuminioso(0);
@@ -52,15 +178,15 @@ public class InscricaoService {
  		inscricaoMunicipal.setNumeroDeJogos(0);
  		inscricaoMunicipal.setNumeroDeEletronicos(0);
  		inscricaoMunicipal.setNumeroInstrumentosMusicais(0);
- 		inscricaoMunicipal.setRazaoSocial("Anderson Teste");
- 		inscricaoMunicipal.setDataAbertura(new Date());
+ 		
+ 	
  		inscricaoMunicipal.setEmpresaNumeroLogradouro("numero");
  		inscricaoMunicipal.setEmpresaCodigoBairro(5);
  		inscricaoMunicipal.setEmpresacodigoLogradouroAgata(1030);
  		inscricaoMunicipal.setEmpresaCep("09921250");
- 		inscricaoMunicipal.setNumeroInscricaoMunicipal(68247L);
- 		inscricaoMunicipal.setCnpj("32379324859");
- 		inscricaoMunicipal.setNomeFantasia("Fantasia");
+ 		
+ 		
+ 		
  		inscricaoMunicipal.setInscricaoEstadual("99999");
  		inscricaoMunicipal.setObjetoSocial("objeto social");
  		
@@ -88,7 +214,7 @@ public class InscricaoService {
  		inscricaoMunicipal.setDataAbertura(new Date());
  		inscricaoMunicipal.setDataDeEntrada(new Date());
  		inscricaoMunicipal.setId(0L);
- 		inscricaoMunicipal.setEmpresaMunicipio("Diadema");
+ 		inscricaoMunicipal.setEmpresaMunicipio("2");
  		inscricaoMunicipal.setEmpresaTelefone("11-40970101");
  		inscricaoMunicipal.setTipoAlteracaoEndereco(0);
  		
@@ -103,7 +229,7 @@ public class InscricaoService {
  		
  		List<Publicidades> publicidades = new ArrayList<Publicidades>();
  		publicidades.add(p);
-		inscricaoMunicipal.setPublicidades(publicidades );
+		inscricaoMunicipal.setPublicidades(publicidades);
  		
  		
  		//ENQUANTRAMENTO aTIVIDADE 
@@ -149,8 +275,7 @@ public class InscricaoService {
 		enquadramentoISSCodigoServico.add(enquadramentoISSCodigoServico1 );		
  		
  		//Enquatramento de ISS
- 		EnquadramentoISS enquadramentoISS = new EnquadramentoISS();
- 		enquadramentoISS.setTipoISSQN("I");
+ 		
  		
 		enquadramentoISS.setEnquadramentoISSCodigoServico(enquadramentoISSCodigoServico);
  		enquadramentoISS.setIsentoTlf(1);
@@ -195,33 +320,15 @@ public class InscricaoService {
 		socio1.setRg("456789");
 		socio1.setTelefone("78998898");
 		socio1.setUf("SP");
+		*/
 		
-		Socio socio2 = new Socio();
-		socio2.setId(0L);
-		socio2.setBairro("Bairro");
-		socio2.setCep("09921250");
-		socio2.setCidade("31805");
-		socio2.setComplementoEndereco("Tests");
-		socio2.setCpf("32379324859");
-		socio2.setEmail("abc@abc.com.br");
-		socio2.setEndereco("endereço de teste");
-		socio2.setNome("nome");
-		socio2.setNumeroEndereco("798");
-		socio2.setRg("456789");
-		socio2.setTelefone("78998898");
-		socio2.setUf("SP");
-		
-		List<Socio> socios = new ArrayList<Socio>();
-		socios.add(socio1);
-		socios.add(socio2);
-		inscricaoMunicipal.setSocios(socios);
 		
 		//----------------------
 		//CONTATODR
 		//----------------------
 		//----------------------
 		//----------------------
-		inscricaoMunicipal.setDadosContadorAtividadeEconomica("789798");
+		/*inscricaoMunicipal.setDadosContadorAtividadeEconomica("789798");
 		inscricaoMunicipal.setDadosContadorBairro("BAIRRO DO CONTADOR");
 		inscricaoMunicipal.setDadosContadorCEP("09921000");
 		inscricaoMunicipal.setDadosContadorComplementoEndereco("cOMPELEMNTO");
@@ -236,7 +343,7 @@ public class InscricaoService {
 		inscricaoMunicipal.setDadosContadorRG("789798");
 		inscricaoMunicipal.setDadosContadorTelefone("9999");
 		inscricaoMunicipal.setDadosContadorUf("SP");
-		inscricaoMunicipal.setDataDeAlteracao(new Date());
+		inscricaoMunicipal.setDataDeAlteracao(new Date());*/
 		//BANCO DE DADOS (BASE DE TESTE) SIAP ETL
 		
 		//----------------------
@@ -245,7 +352,7 @@ public class InscricaoService {
 		//----------------------
 		//----------------------
 		
-		inscricaoMunicipal.setRepresentanteLegalBairro("Bairro");
+	/*	inscricaoMunicipal.setRepresentanteLegalBairro("Bairro");
 		inscricaoMunicipal.setRepresentanteLegalCEP("099921000");
 		inscricaoMunicipal.setRepresentanteLegalComplementoDeEndereco("complemento");
 		inscricaoMunicipal.setRepresentanteLegalCPF("32379324859");
@@ -258,9 +365,16 @@ public class InscricaoService {
 		inscricaoMunicipal.setRepresentanteLegalTelefone("11111");
 		inscricaoMunicipal.setRepresentanteLegalUf("SP");
 		
-		
+		*/
 		ParseInscricao parse = new ParseInscricao();
 		
+		
+		/* DtoInscricao i = new DtoInscricao();
+	        i.setEnquadramentoAtividadeEconomica(inscricaoMunicipal.getEnquadramentoAtividadeEconomica());
+	        i.setInscricaoMunicipal(inscricaoMunicipal);
+	        i.setEnquadramentoISS(inscricaoMunicipal.getEnquadramentoISS());
+	      */
+	        ConverterDtoJson.mostarJson(inscricaoMunicipal);
 		
 		
 		WsEnviarDadosEmpresa wsEnviarDadosEmpresa = new WsEnviarDadosEmpresa();
@@ -271,7 +385,8 @@ public class InscricaoService {
         params = parse.parseAgata(inscricaoMunicipal);
         execute.setSdtDadoscadastraisempresas(params);
         
-        ConverterDtoJson.converterParaJson(params);
+        
+        
         
         
     	// converte objetos Java para JSON e retorna JSON como String
@@ -328,6 +443,12 @@ public class InscricaoService {
 		return false;
 	}
 	
+	public boolean buscarCodigoMunicipio(String tipo, Long numeroInscricao) throws Exception{
+		
+		//Quando nenhuma opção for selecionado o dados retoranr true
+		return false;
+	}
+	
 	
 	public boolean existeInscricaoMobiliario(String tipo, Long numeroInscricao) throws Exception{
 		
@@ -348,6 +469,9 @@ public class InscricaoService {
 		//Quando nenhuma opção for selecionado o dados retoranr true
 		return false;
 	}
+	
+	
+	
 
 
 	public Long enviarDadosAgata(InscricaoMunicipal inscricaoMunicipal) throws Exception {
@@ -358,10 +482,12 @@ public class InscricaoService {
         
         WsEnviarDadosEmpresaExecute execute = new WsEnviarDadosEmpresaExecute();
         SdtDadosCadastraisEmpresa params = new SdtDadosCadastraisEmpresa();
+        params.setSituacaoCadastral("ALTERACAO"); /// codigo provisorio para realiza o cadastro do sistema
         params = parse.parseAgata(inscricaoMunicipal);
         execute.setSdtDadoscadastraisempresas(params);
         
-        ConverterDtoJson.converterParaJson(params);
+        String valor = ConverterDtoJson.json(execute);
+       System.out.println(valor);
 
         try {
             WsEnviarDadosEmpresaExecuteResponse response = port.execute(execute);

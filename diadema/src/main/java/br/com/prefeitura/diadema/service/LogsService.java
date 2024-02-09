@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import br.com.prefeitura.diadema.enumerador.EnumSimNao;
 import br.com.prefeitura.diadema.model.PmdLogs;
 import br.com.prefeitura.diadema.repository.LogRepository;
+import br.com.prefeitura.diadema.util.ConverterDtoJson;
 
 
 @Service
@@ -28,12 +29,27 @@ public class LogsService {
 	
 	
 	public PmdLogs falha(PmdLogs log, String erro){
+		//return null;
 		log.setIcSucesso(EnumSimNao.NAO);
 		log.setMotivo(erro);
 		return logRepository.save(log);
 		
 	}
-
+	
+	public PmdLogs infoJson(String metodos, Object parametro){
+		
+		//return null;
+		PmdLogs log = new PmdLogs();
+		log.setIcSucesso(EnumSimNao.SIM);
+		
+		String valor = ConverterDtoJson.json(parametro);
+		log.setMetodo(metodos);
+		log.setParametros(valor);
+		System.out.println(valor);
+		return logRepository.save(log);
+		
+	}
+@Deprecated
 	public PmdLogs info(String metodo,  Object... parametros) {
 		PmdLogs log = new PmdLogs();
 		log.setIcSucesso(EnumSimNao.SIM);
@@ -49,6 +65,8 @@ public class LogsService {
 		log.setMetodo(metodo);
 		log.setParametros(valor);
 		return logRepository.save(log);
+		//return null;
+	
 	}
 
 }

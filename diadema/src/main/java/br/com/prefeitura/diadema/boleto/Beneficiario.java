@@ -147,6 +147,19 @@ public class Beneficiario implements Serializable {
 	 * @return este beneficiario
 	 */	
 	public Beneficiario comNossoNumero(String nossoNumero) {
+		if(nossoNumero != null){
+			nossoNumero = nossoNumero.trim();
+			
+			//existe um problema na abaco que quando o sistema ja envia o codigo da moeda junto com o nosso numero
+			//a abaco não quer remover esse "9" na frente, então foi adicinoado um comando para remover o primeiro caracteres
+			//para poder gerar o boleto sem problemas
+			if(nossoNumero.length() == 12){
+				nossoNumero = nossoNumero.substring(1); // remove o primeiro caracter quando for maior que 13 (o correto é 12)
+			}
+		}
+		
+		
+		
 		this.nossoNumero = nossoNumero;
 		return this;
 	}

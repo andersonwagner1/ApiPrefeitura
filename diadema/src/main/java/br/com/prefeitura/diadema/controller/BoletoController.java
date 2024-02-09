@@ -26,7 +26,7 @@ import br.com.prefeitura.diadema.service.LogsService;
  *
  */
 @RestController
-@RequestMapping("/api/diadema/boleto")
+@RequestMapping("/api/diadema/boletoExcluido")
 public class BoletoController {
 
 	private BoletoHmgService boletoService;
@@ -123,9 +123,12 @@ public class BoletoController {
 			@PathVariable("inscricao")Long inscricao) throws Exception
 			{
 		
+		StringBuffer s = new StringBuffer();
+		s.append("Processo: " + orgao + " " + numeroProcesso + "/" + ano);
+		s.append(" Taxa: " + codigoTaxa);
+		s.append(" Contribuinte: [" + tipoContribuinte + "] " + inscricao);
 		
-		
-		PmdLogs log = logsService.info("lancarNota", orgao,numeroProcesso,ano,tipoContribuinte,inscricao );
+		PmdLogs log = logsService.info("lancarNota", s.toString());
 		RetBoleto fileBoelto;
 	try{																															
 			fileBoelto = boletoService.lancarTaxaHomologacao(orgao, numeroProcesso, ano, codigoTaxa,0.0, 1 ,tipoContribuinte,inscricao,"BOLETO REFERENTE A TAXA DE PROCESSO ADMINISTRATIVO - PAGAR A PARTIR DO DIA SEGUINTE A DATA DA EMISSÃO. NÃO PAGAR APÓS A DATA DE VENCIMENTO.");
@@ -159,7 +162,7 @@ public class BoletoController {
 			{
 		
 		
-		PmdLogs log = logsService.info("lancarTaxaDiversars", orgao,numeroProcesso,ano,tipoContribuinte,inscricao );
+		PmdLogs log = logsService.info("lancarTaxaDiversars Hmg", orgao,numeroProcesso,ano,tipoContribuinte,inscricao );
 		RetBoleto fileBoelto;
 		try{
 			fileBoelto = boletoService.lancarTaxaHomologacao(orgao, numeroProcesso, ano, codigoTaxa,0d, quantidadeTaxa ,tipoContribuinte,inscricao,"BOLETO REFERENTE A TAXA DE PROCESSO ADMINISTRATIVO - PAGAR A PARTIR DO DIA SEGUINTE A DATA EMISSÃO. NÃO PAGAR APÓS A DATA DE VENCIMENTO.");

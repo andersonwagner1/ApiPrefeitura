@@ -1,18 +1,26 @@
 package br.com.prefeitura.diadema.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.prefeitura.diadema.boleto.RetBoleto;
+import br.com.prefeitura.diadema.dto.Taxa;
+import br.com.prefeitura.diadema.dto.TaxaDiversas;
 import br.com.prefeitura.diadema.model.PmdBoleto;
 import br.com.prefeitura.diadema.model.PmdLogs;
 import br.com.prefeitura.diadema.service.BoletoHmgService;
 import br.com.prefeitura.diadema.service.LogsService;
+import br.com.prefeitura.diadema.util.ConverterDtoJson;
 
 
 /**
@@ -26,7 +34,7 @@ import br.com.prefeitura.diadema.service.LogsService;
  *
  */
 @RestController
-@RequestMapping("/api/diadema/boleto")
+@RequestMapping("/api/diadema/excluidoBoleto")
 public class BoletoPrdController {
 
 	private BoletoHmgService boletoService;
@@ -66,7 +74,7 @@ public class BoletoPrdController {
 			return new ResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
 		}		
 	}*/
-	
+	//não realizar consuta na webservice
 	@GetMapping(value = "/consultarBoleto/{tipo}/{numeroProcesso}/{anoProcesso}")
 	public ResponseEntity<?> consultarBoletoHmg(
 			@PathVariable("tipo") String tipo,
@@ -126,6 +134,30 @@ public class BoletoPrdController {
 		
 		
 	}*/
+	
+	@PostMapping(value = "/lancarNota")
+	public ResponseEntity<RetBoleto> lancarTaxasDiversasParametrizado(@RequestBody TaxaDiversas taxaDiversas)throws Exception{
+		
+		//a classe TaxasDiversas tem valores padrões, verifique a classe
+
+		PmdLogs log = logsService.infoJson("lancarTaxasDiversasParametrizado", taxaDiversas);
+		RetBoleto fileBoelto;
+		try{
+			fileBoelto = boletoService.lancarTaxa(taxaDiversas);
+			return new ResponseEntity<RetBoleto>(fileBoelto, HttpStatus.OK);
+		}catch(Exception ex){
+			ex.printStackTrace();
+			logsService.falha(log, ex.getMessage());
+			fileBoelto = new RetBoleto();
+			fileBoelto.setSucesso(false);
+			
+			fileBoelto.setResultado(ex.getMessage());
+			return new ResponseEntity(fileBoelto, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	
+	
 
 	@GetMapping(value = "/lancarNota/{orgao}/{numeroProcesso}/{ano}/{codigoTaxa}/{valorTaxa}/{quantidadeTaxa}/{tipoContribuinte}/{inscricao}/{observacao}")
 	public ResponseEntity<RetBoleto> lancarTaxaDiversars(
@@ -142,7 +174,16 @@ public class BoletoPrdController {
 		
 		
 		observacao = "BOLETO REFERENTE TAXA DE PROCESSOS ADMINISTRATIVO - PAGAR A PARTIR DO DIA SEGUINTE A DA DE EMISSAO.";
-		PmdLogs log = logsService.info("lancarTaxaDiversars", orgao,numeroProcesso,ano,tipoContribuinte,inscricao );
+		
+		StringBuffer s = new StringBuffer();
+		s.append("Processo: " + orgao + " " + numeroProcesso + "/" + ano);
+		s.append(" Taxa: [" + codigoTaxa + "]");
+		s.append(" Valor: [" + valorTaxa + "] ");
+		s.append(" quantidadeTaxa: [" + quantidadeTaxa + "] ");
+		s.append(" Contribuinte: [" + tipoContribuinte + "] " + inscricao);
+		s.append(" observacao: [" + observacao + "] ");
+		
+		PmdLogs log = logsService.info("LancarTaxaDiversas", s.toString());
 		RetBoleto fileBoelto;
 		try{
 			fileBoelto = boletoService.lancarTaxaHomologacao(orgao, numeroProcesso, ano, codigoTaxa,0d, quantidadeTaxa ,tipoContribuinte,inscricao,observacao);

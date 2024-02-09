@@ -18,6 +18,8 @@ import br.com.prefeitura.diadema.boleto.Boletos;
 import br.com.prefeitura.diadema.boleto.bancos.Bradesco;
 import br.com.prefeitura.diadema.boleto.exception.BoletoException;
 import br.com.prefeitura.diadema.dto.InscricaoMunicipal;
+import br.com.prefeitura.diadema.dto.Taxa;
+import br.com.prefeitura.diadema.dto.TaxaDiversas;
 import br.com.prefeitura.diadema.model.PmdBoleto;
 import br.com.prefeitura.diadema.ws.abaco.hmg.RetornoWSRetornoWSItem;
 import br.com.prefeitura.diadema.ws.abaco.hmg.WsBuscaDadosBoletoTaxasDiversa;
@@ -82,6 +84,78 @@ public class AbacoHomologacaoWs {
 		
 	}*/
 	
+
+	
+	
+	public WsLancarTaxasDiversasExecuteResponse lancarTaxaDiversas(TaxaDiversas taxasDiversas) throws Exception{
+		WsLancarTaxasDiversas ws = new WsLancarTaxasDiversas();
+		WsLancarTaxasDiversasSoapPort port = ws.getWsLancarTaxasDiversasSoapPort();
+
+		
+		//------------------------------------   PARAMETROS
+		SdtLancarTaxasDiversas sdtLancarTaxasDiversas = new SdtLancarTaxasDiversas();
+		sdtLancarTaxasDiversas.setTipoContribuinte(taxasDiversas.getTipoContibuinte().byteValue());
+		sdtLancarTaxasDiversas.setInscricao(taxasDiversas.getInscricao());
+		sdtLancarTaxasDiversas.setCodigoSetor(taxasDiversas.getCodigoSetor());
+		sdtLancarTaxasDiversas.setCodigoQuadra(taxasDiversas.getCodigoQuadra());
+		sdtLancarTaxasDiversas.setCodigoLote(taxasDiversas.getCodigoLote());
+		sdtLancarTaxasDiversas.setObservacao(taxasDiversas.getObservacao());
+		sdtLancarTaxasDiversas.setValorTaxaAdministrativa(taxasDiversas.getValorTaxaAdministrativa());
+		
+		
+		ArrayOfSdtLancarTaxasDiversasTaxasItem taxas = new ArrayOfSdtLancarTaxasDiversasTaxasItem();		
+		for(Taxa taxa : taxasDiversas.getTaxas()){
+			SdtLancarTaxasDiversasTaxasItem lancarTaxasDiversasTaxasItem = new SdtLancarTaxasDiversasTaxasItem();
+			lancarTaxasDiversasTaxasItem.setCodigoTaxa(taxa.getCodigoTaxa().shortValue());
+			lancarTaxasDiversasTaxasItem.setQuantidadeTaxa(taxa.getQuantidadeTaxa());
+			//lancarTaxasDiversasTaxasItem.setValorTaxa(taxa.getValorTaxa());
+			taxas.getSdtLancarTaxasDiversasTaxasItem().add(lancarTaxasDiversasTaxasItem);
+		}
+		sdtLancarTaxasDiversas.setTaxas(taxas);
+		
+		//-----------------------------------------------------------------
+		
+		
+		WsLancarTaxasDiversasExecute parameters = new WsLancarTaxasDiversasExecute();		
+		parameters.setSdtlancartaxasdiversas(sdtLancarTaxasDiversas);
+		
+		WsLancarTaxasDiversasExecuteResponse retornoBoleto = port.execute(parameters);
+		
+
+		if (retornoBoleto == null || retornoBoleto.getSdtboletotaxasdiversas() == null) {
+			throw new Exception("Boleto não lançado");
+		}
+
+		if (retornoBoleto.getSdtboletotaxasdiversas().getValoraPagar() == 0.0D) {
+			if ((retornoBoleto.getRetornows() != null) && (retornoBoleto.getRetornows().getRetornoWSRetornoWSItem() != null) && (retornoBoleto.getRetornows().getRetornoWSRetornoWSItem().size() > 0)) {
+				String ret = "";
+				for (br.com.prefeitura.diadema.ws.abaco.hmg.lancar.RetornoWSRetornoWSItem retorno : retornoBoleto.getRetornows().getRetornoWSRetornoWSItem()) {
+					ret = ret + "\n Erro ao gerar o boleto: "
+							+ retorno.getIdRetorno() + " - "
+							+ retorno.getDesRetorno();
+				}
+				throw new BoletoException(ret);
+			}
+			throw new BoletoException("Retorno do WS boleto: null - Falha desconhecida");
+		}	
+		
+		return retornoBoleto;
+		
+	}
+	
+	
+	/**
+	 * Metodo será removido pois não tem mais utilidade, trocar por LancarTaxaDiveras
+	 * @param codigoTaxa
+	 * @param valorTaxa
+	 * @param quantidadeTaxa
+	 * @param tipoContribuinte
+	 * @param inscricao
+	 * @param observacao
+	 * @return
+	 * @throws Exception
+	 */
+	@Deprecated
 	public WsLancarTaxasDiversasExecuteResponse lancarTaxa(Integer codigoTaxa, Double valorTaxa, Integer quantidadeTaxa, Integer tipoContribuinte, Long inscricao, String observacao ) throws Exception{
 		WsLancarTaxasDiversas ws = new WsLancarTaxasDiversas();
 		WsLancarTaxasDiversasSoapPort port = ws.getWsLancarTaxasDiversasSoapPort();
