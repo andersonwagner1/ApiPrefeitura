@@ -545,7 +545,7 @@ public class EgataBoletoWS {
 		Wsregistroboleto ws = new Wsregistroboleto();
 		WsregistroboletoSoapPort port = ws.getWsregistroboletoSoapPort();
 		WsregistroboletoExecuteResponse retornoBoleto = port.execute(paramsWSBoleto);
-
+		System.out.println("Registrar Boleto");
 		System.out.println(retornoBoleto.getSdtretornoregistrostring());
 		return true;
 	}

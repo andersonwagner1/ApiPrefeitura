@@ -42,6 +42,7 @@ import br.com.prefeitura.diadema.ws.egata.RetornoWSRetornoWSItem;
 import br.com.prefeitura.diadema.ws.egata.SdtBairroLogradourosSdtBairroLogradouroItem;
 import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresa;
 import br.com.prefeitura.diadema.ws.egata.SdtEmpresasporCnpjSdtEmpresasporCnpjItem;
+import br.com.prefeitura.diadema.ws.egata.SdtLogradouroporBairroSdtLogradouroporBairroItem;
 import br.com.prefeitura.diadema.ws.egata.SdtMunicipiosSdtMunicipiosItem;
 import br.com.prefeitura.diadema.ws.egata.WSEnviarDadosEmpresa;
 import br.com.prefeitura.diadema.ws.egata.WSEnviarDadosEmpresaExecute;
@@ -55,6 +56,14 @@ import br.com.prefeitura.diadema.ws.egata.WsBuscaMunicipio;
 import br.com.prefeitura.diadema.ws.egata.WsBuscaMunicipioExecute;
 import br.com.prefeitura.diadema.ws.egata.WsBuscaMunicipioExecuteResponse;
 import br.com.prefeitura.diadema.ws.egata.WsBuscaMunicipioSoapPort;
+import br.com.prefeitura.diadema.ws.egata.WsConsultarExistenciaDaEmpresa;
+import br.com.prefeitura.diadema.ws.egata.WsConsultarExistenciaDaEmpresaExecute;
+import br.com.prefeitura.diadema.ws.egata.WsConsultarExistenciaDaEmpresaExecuteResponse;
+import br.com.prefeitura.diadema.ws.egata.WsConsultarExistenciaDaEmpresaSoapPort;
+import br.com.prefeitura.diadema.ws.egata.WsEnderecamento;
+import br.com.prefeitura.diadema.ws.egata.WsEnderecamentoExecute;
+import br.com.prefeitura.diadema.ws.egata.WsEnderecamentoExecuteResponse;
+import br.com.prefeitura.diadema.ws.egata.WsEnderecamentoSoapPort;
 import br.com.prefeitura.diadema.ws.egata.Wsbuscabairrologradouro;
 import br.com.prefeitura.diadema.ws.egata.WsbuscabairrologradouroExecute;
 import br.com.prefeitura.diadema.ws.egata.WsbuscabairrologradouroExecuteResponse;
@@ -67,10 +76,6 @@ import br.com.prefeitura.diadema.ws.egata.Wsverificainscricaoimobiliaria;
 import br.com.prefeitura.diadema.ws.egata.WsverificainscricaoimobiliariaExecute;
 import br.com.prefeitura.diadema.ws.egata.WsverificainscricaoimobiliariaExecuteResponse;
 import br.com.prefeitura.diadema.ws.egata.WsverificainscricaoimobiliariaSoapPort;
-import br.com.prefeitura.diadema.ws.egata.WsConsultarExistenciaDaEmpresa;
-import br.com.prefeitura.diadema.ws.egata.WsConsultarExistenciaDaEmpresaSoapPort;
-import br.com.prefeitura.diadema.ws.egata.WsConsultarExistenciaDaEmpresaExecute;
-import br.com.prefeitura.diadema.ws.egata.WsConsultarExistenciaDaEmpresaExecuteResponse;
 
 
 
@@ -82,7 +87,7 @@ public class EgataInscricaoWS {
 	private BoletoRepository dao;
 	
 	
-	public static InscricaoMunicipal paramentroInsrciao2(){
+	private  InscricaoMunicipal paramentroInsrciao2(){
 		InscricaoMunicipal inscricaoMunicipal = new InscricaoMunicipal();
 		inscricaoMunicipal.setStatusEmpresa("ALTERACAO");
 		inscricaoMunicipal.setNumeroInscricaoMunicipal(6304l);
@@ -214,7 +219,7 @@ public class EgataInscricaoWS {
 		return inscricaoMunicipal;
 	}
 	
-	public static InscricaoMunicipal parametroInscricao(){
+	private InscricaoMunicipal parametroInscricao(){
 		InscricaoMunicipal inscricaoMunicipal = new InscricaoMunicipal();
 		inscricaoMunicipal.setStatusEmpresa("ALTERACAO");
 		inscricaoMunicipal.setNumeroInscricaoMunicipal(6304L);
@@ -577,6 +582,37 @@ public class EgataInscricaoWS {
 	
 	
 	/**
+	 * Lista a quantidade de endereços por nome da rua
+	 * @param logradouro
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Logradouro> listarTodosEnderecos(String logradouro) throws Exception{
+		WsEnderecamentoExecute param = new WsEnderecamentoExecute();
+		param.setTrechologradouro(logradouro);
+		param.setUfsiglaQ("SP");
+				
+		WsEnderecamento wsl = new WsEnderecamento();
+		WsEnderecamentoSoapPort port = wsl.getWsEnderecamentoSoapPort();
+		
+		WsEnderecamentoExecuteResponse er = port.execute(param);
+		
+		List<Logradouro> logradouros = new ArrayList<Logradouro>();
+		for(SdtLogradouroporBairroSdtLogradouroporBairroItem item : er.getSdtLogradouroporbairro().getSdtLogradouroporBairroSdtLogradouroporBairroItem()){
+			Logradouro logradouroItem =  new Logradouro();
+			logradouroItem.setCdBairro(item.getBairroCodigo());
+			logradouroItem.setCdLogradouro(item.getLogradouroCodigo());
+			logradouroItem.setDsBairro(item.getBairroNome());
+			logradouroItem.setDsLogradouro(item.getLogradouroNome());
+			logradouroItem.setDsTipoLogradouro(item.getLogradouroTipo());
+			logradouros.add(logradouroItem);
+		}
+			
+		return logradouros;
+	}
+	
+	
+	/**
 	 * Retornar o numero do CMC por CNPJ
 	 * @param cnpj
 	 * @return
@@ -594,78 +630,9 @@ public class EgataInscricaoWS {
 		return exisiteInscricaoMunicipal.getSdtEmpresasporcnpj().getSdtEmpresasporCnpjSdtEmpresasporCnpjItem().get(0).getInscricaoMunicipal();
 	}
 	
-
 	
-	/**
-	 * Lancamento de Taxa
-	 * @param codigoTaxa
-	 * @param valorTaxa
-	 * @param quantidadeTaxa
-	 * @param tipoContribuinte
-	 * @param inscricao
-	 * @param observacao
-	 * @return
-	 * @throws Exception
-	 *//*
-	private WsLancarTaxasDiversasExecuteResponse lancarTaxa(Integer codigoTaxa, Double valorTaxa, Integer quantidadeTaxa, Integer tipoContribuinte, Long inscricao, String observacao ) throws Exception{
-		WsLancarTaxasDiversas ws = new WsLancarTaxasDiversas();
-		WsLancarTaxasDiversasSoapPort port = ws.getWsLancarTaxasDiversasSoapPort();
-
-		
-		//------------------------------------   PARAMETROS
-		SdtLancarTaxasDiversas sdtLancarTaxasDiversas = new SdtLancarTaxasDiversas();
-		sdtLancarTaxasDiversas.setTipoContribuinte(tipoContribuinte.byteValue());
-		sdtLancarTaxasDiversas.setInscricao(inscricao);
-		sdtLancarTaxasDiversas.setCodigoSetor(0);
-		sdtLancarTaxasDiversas.setCodigoQuadra("0");
-		sdtLancarTaxasDiversas.setCodigoLote("0");
-		sdtLancarTaxasDiversas.setObservacao(observacao);
-		sdtLancarTaxasDiversas.setValorTaxaAdministrativa(valorTaxa);
-		
-		SdtLancarTaxasDiversasTaxasItem lancarTaxasDiversasTaxasItem = new SdtLancarTaxasDiversasTaxasItem();
-		lancarTaxasDiversasTaxasItem.setCodigoTaxa(codigoTaxa.shortValue());
-		lancarTaxasDiversasTaxasItem.setQuantidadeTaxa(quantidadeTaxa);
-		//lancarTaxasDiversasTaxasItem.setValorTaxa(valorTaxa);
-		
-		//ArrayOfSdtLancarTaxasDiversasTaxasItem taxas = new ArrayOfSdtLancarTaxasDiversasTaxasItem();		
-		//taxas.getSdtLancarTaxasDiversasTaxasItem().add(lancarTaxasDiversasTaxasItem);
-				
-		Taxas taxas = new Taxas();
-		taxas.getTaxasItem().add(lancarTaxasDiversasTaxasItem);		
-		sdtLancarTaxasDiversas.setTaxas(taxas );
-		
-		//-----------------------------------------------------------------
-		
-		
-		WsLancarTaxasDiversasExecute parameters = new WsLancarTaxasDiversasExecute();		
-		parameters.setSdtlancartaxasdiversas(sdtLancarTaxasDiversas);
-		
-		WsLancarTaxasDiversasExecuteResponse retornoBoleto = port.execute(parameters);
-		
-
-		if (retornoBoleto == null || retornoBoleto.getSdtboletotaxasdiversas() == null) {
-			throw new Exception("Boleto não lançado");
-		}
-
-		if (retornoBoleto.getSdtboletotaxasdiversas().getValoraPagar() == 0.0D) {
-			if ((retornoBoleto.getRetornows() != null) && (retornoBoleto.getRetornows().getRetornoWSRetornoWSItem() != null) && (retornoBoleto.getRetornows().getRetornoWSRetornoWSItem().size() > 0)) {
-				String ret = "";
-				
-				for (br.com.prefeitura.diadema.ws.egata.RetornoWSRetornoWSItem retorno :retornoBoleto.getRetornows().getRetornoWSRetornoWSItem()) {
-					ret = ret + "\n Erro ao gerar o boleto: "
-							+ retorno.getIdRetorno() + " - "
-							+ retorno.getDesRetorno();
-				}
-				throw new BoletoException(ret);
-			}
-			throw new BoletoException("Retorno do WS boleto: null - Falha desconhecida");
-		}	
-		
-		return retornoBoleto;
-		
-	}
-	*/
 	
+
 	
 	public Long enviarDadosAgata(InscricaoMunicipal inscricaoMunicipal) throws Exception {
 		ParseInscricaoEgata parse = new ParseInscricaoEgata();

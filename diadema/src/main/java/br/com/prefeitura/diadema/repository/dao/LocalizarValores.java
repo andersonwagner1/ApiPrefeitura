@@ -82,7 +82,7 @@ public class LocalizarValores {
 	public static void main(String arg[]) throws SQLException{
 		LocalizarValores l = new LocalizarValores();
 		//l.localizarValor("");
-		l.localizarValor("", false);
+		l.localizarValor("IRIS.MOREIRA", false);
 		//l.localizarValor("56502569",false);
 		//l.localizarValor(56502569l);
 		System.out.println("Fim");

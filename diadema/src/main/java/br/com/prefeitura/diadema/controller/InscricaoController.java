@@ -1,5 +1,6 @@
 package br.com.prefeitura.diadema.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,6 @@ import br.com.prefeitura.diadema.dto.RetornoDto;
 import br.com.prefeitura.diadema.model.PmdLogs;
 import br.com.prefeitura.diadema.service.InscricaoService;
 import br.com.prefeitura.diadema.service.LogsService;
-import br.com.prefeitura.diadema.util.ConverterDtoJson;
 import br.com.prefeitura.diadema.ws.EgataInscricaoWS;
 
 @RestController
@@ -116,6 +116,58 @@ public class InscricaoController {
 			ret.setRetorno(0);
 			ret.setObjeto(-1L);
 			return new ResponseEntity<RetornoDto<Long>>(ret, HttpStatus.OK);
+		}
+	}
+	
+	
+		@GetMapping("/localizarEndereco/lista/{enderecos}")
+		public ResponseEntity<RetornoDto<List<Logradouro>>> localizarEnderecoGet(@PathVariable("enderecos") List<String> enderecos) {
+			PmdLogs log = logsService.infoJson("localizarEnderecoGet", enderecos);
+			
+			try{
+				List<Logradouro> resultado = new ArrayList<Logradouro>();
+				for(String endereco : enderecos){
+					resultado.addAll(egataWs.listarEnderecoPorNomeLogradouro(endereco));
+				}
+				RetornoDto<List<Logradouro>> ret = new RetornoDto<List<Logradouro>>();
+				ret.setDescricao("Sucesso");
+				ret.setRetorno(1);
+				ret.setObjeto(resultado);
+				return new ResponseEntity<RetornoDto<List<Logradouro>>>(ret, HttpStatus.OK);
+			}catch(Exception ex){
+				ex.printStackTrace();
+				logsService.falha(log, ex.getMessage());
+				RetornoDto<List<Logradouro>> ret = new RetornoDto<List<Logradouro>>();
+				ret.setDescricao(ex.getMessage());
+				ret.setRetorno(0);
+				ret.setObjeto(null);
+				return new ResponseEntity<RetornoDto<List<Logradouro>>>(ret, HttpStatus.OK);
+			}
+		}
+		
+	
+	
+	
+	//APARTIR DESTE PONTO ESTA CHAMANDO O METODO NOVO
+	@GetMapping("/localizarEndereco/{endereco}")
+	public ResponseEntity<RetornoDto<List<Logradouro>>> localizarEnderecoGet(@RequestBody String endereco) {
+		PmdLogs log = logsService.infoJson("localizarEnderecoGet", endereco);
+		
+		try{
+			List<Logradouro> resultado = egataWs.listarEnderecoPorNomeLogradouro(endereco);
+			RetornoDto<List<Logradouro>> ret = new RetornoDto<List<Logradouro>>();
+			ret.setDescricao("Sucesso");
+			ret.setRetorno(1);
+			ret.setObjeto(resultado);
+			return new ResponseEntity<RetornoDto<List<Logradouro>>>(ret, HttpStatus.OK);
+		}catch(Exception ex){
+			ex.printStackTrace();
+			logsService.falha(log, ex.getMessage());
+			RetornoDto<List<Logradouro>> ret = new RetornoDto<List<Logradouro>>();
+			ret.setDescricao(ex.getMessage());
+			ret.setRetorno(0);
+			ret.setObjeto(null);
+			return new ResponseEntity<RetornoDto<List<Logradouro>>>(ret, HttpStatus.OK);
 		}
 	}
 	

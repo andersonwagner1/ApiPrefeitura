@@ -14,6 +14,7 @@ public class InscricaoMunicipal {
     private String statusEmpresa;
     private String nomeFantasia;
     private Integer codigoNaturezaJuridica;
+    private Integer situacaoCadastral;
 
     private Date dataAbertura;
 
@@ -685,6 +686,12 @@ public class InscricaoMunicipal {
 	}
 	public void setCnaes(List<Cnae> cnaes) {
 		this.cnaes = cnaes;
+	}
+	public Integer getSituacaoCadastral() {
+		return situacaoCadastral;
+	}
+	public void setSituacaoCadastral(Integer situacaoCadastral) {
+		this.situacaoCadastral = situacaoCadastral;
 	}
 	
 	

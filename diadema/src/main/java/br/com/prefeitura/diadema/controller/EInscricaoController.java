@@ -1,5 +1,6 @@
 package br.com.prefeitura.diadema.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,10 +78,39 @@ public class EInscricaoController {
 		
 	}
 	
-	@PostMapping("/localizarEndereco")
-	public ResponseEntity<RetornoDto<List<Logradouro>>> localizarEndereco(@RequestBody String endereco) {
-		PmdLogs log = logsService.infoJson("localizarEndereco", endereco);
+	@GetMapping("/localizarEndereco/lista")
+	public ResponseEntity<RetornoDto<List<Logradouro>>> localizarEndereco() {
+		PmdLogs log = logsService.infoJson("localizarEndereco", "vazio");
 		
+		try{
+			// = new ArrayList<Logradouro>();
+			//for(String endereco : enderecos){
+				
+			List<Logradouro> resultado= egataWs.listarTodosEnderecos("");
+			//}
+			RetornoDto<List<Logradouro>> ret = new RetornoDto<List<Logradouro>>();
+			ret.setDescricao("Sucesso");
+			ret.setRetorno(1);
+			ret.setObjeto(resultado);
+			return new ResponseEntity<RetornoDto<List<Logradouro>>>(ret, HttpStatus.OK);
+		}catch(Exception ex){
+			ex.printStackTrace();
+			logsService.falha(log, ex.getMessage());
+			RetornoDto<List<Logradouro>> ret = new RetornoDto<List<Logradouro>>();
+			ret.setDescricao(ex.getMessage());
+			ret.setRetorno(0);
+			ret.setObjeto(null);
+			return new ResponseEntity<RetornoDto<List<Logradouro>>>(ret, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping("/localizarEndereco/{endereco}")
+	public ResponseEntity<RetornoDto<List<Logradouro>>> localizarEnderecoGEt(@PathVariable("endereco") String endereco) {
+		PmdLogs log = logsService.infoJson("localizarEndereco GET", endereco);
+		if(endereco != null){
+			endereco = endereco.toUpperCase();
+			endereco = endereco.replace("+", " ");
+		}
 		try{
 			List<Logradouro> resultado = egataWs.listarEnderecoPorNomeLogradouro(endereco);
 			RetornoDto<List<Logradouro>> ret = new RetornoDto<List<Logradouro>>();
@@ -99,6 +129,32 @@ public class EInscricaoController {
 		}
 	}
 	
+	
+	
+	@PostMapping("/localizarEndereco")
+	public ResponseEntity<RetornoDto<List<Logradouro>>> localizarEndereco(@RequestBody String endereco) {
+		PmdLogs log = logsService.infoJson("localizarEndereco", endereco);
+		if(endereco != null){
+			endereco = endereco.toUpperCase();
+			endereco = endereco.replace("+", " ");
+		}
+		try{
+			List<Logradouro> resultado = egataWs.listarEnderecoPorNomeLogradouro(endereco);
+			RetornoDto<List<Logradouro>> ret = new RetornoDto<List<Logradouro>>();
+			ret.setDescricao("Sucesso");
+			ret.setRetorno(1);
+			ret.setObjeto(resultado);
+			return new ResponseEntity<RetornoDto<List<Logradouro>>>(ret, HttpStatus.OK);
+		}catch(Exception ex){
+			ex.printStackTrace();
+			logsService.falha(log, ex.getMessage());
+			RetornoDto<List<Logradouro>> ret = new RetornoDto<List<Logradouro>>();
+			ret.setDescricao(ex.getMessage());
+			ret.setRetorno(0);
+			ret.setObjeto(null);
+			return new ResponseEntity<RetornoDto<List<Logradouro>>>(ret, HttpStatus.OK);
+		}
+	}
 	
 	@PostMapping("/localizarMunicipio")
 	public ResponseEntity<RetornoDto<List<Municipio>>> localizarMuncipioPorUfouCidade(@RequestBody Municipio municipio) {
@@ -137,6 +193,8 @@ public class EInscricaoController {
 			InscricaoMunicipal i = inscricao.getInscricaoMunicipal();
 			i.setEnquadramentoAtividadeEconomica(inscricao.getEnquadramentoAtividadeEconomica());
 			i.setEnquadramentoISS(inscricao.getEnquadramentoISS());
+			inscricao.getInscricaoMunicipal().setCnpj("12373198000138");
+			inscricao.getInscricaoMunicipal().setStatusEmpresa("ALTERACAO");
 			//-------------------------------------------------------------------------------------
 			
 			Long resultado = egataWs.enviarDadosAgata(i);
@@ -144,6 +202,8 @@ public class EInscricaoController {
 			ret.setDescricao("Sucesso");
 			ret.setRetorno(1);
 			ret.setObjeto(resultado);
+			
+			 //ConverterDtoJson.mostarJson(inscricao);
 					
 			return new ResponseEntity<RetornoDto<Long>>(ret, HttpStatus.OK);
 			

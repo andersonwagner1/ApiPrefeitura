@@ -482,12 +482,12 @@ public class InscricaoService {
         
         WsEnviarDadosEmpresaExecute execute = new WsEnviarDadosEmpresaExecute();
         SdtDadosCadastraisEmpresa params = new SdtDadosCadastraisEmpresa();
-        params.setSituacaoCadastral("ALTERACAO"); /// codigo provisorio para realiza o cadastro do sistema
+       // params.setSituacaoCadastral("ALTERACAO"); /// codigo provisorio para realiza o cadastro do sistema
         params = parse.parseAgata(inscricaoMunicipal);
         execute.setSdtDadoscadastraisempresas(params);
         
-        String valor = ConverterDtoJson.json(execute);
-       System.out.println(valor);
+        //String valor = ConverterDtoJson.json(execute);
+       //System.out.println(valor);
 
         try {
             WsEnviarDadosEmpresaExecuteResponse response = port.execute(execute);

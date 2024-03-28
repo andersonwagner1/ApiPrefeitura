@@ -4,28 +4,28 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import java.text.Normalizer;
 import br.com.prefeitura.diadema.dto.Cnae;
 import br.com.prefeitura.diadema.dto.EnquadramentoAtividadeEconomica;
 import br.com.prefeitura.diadema.dto.EnquadramentoAtividadeEconomicaComplemento;
 import br.com.prefeitura.diadema.dto.EnquadramentoISS;
 import br.com.prefeitura.diadema.dto.EnquadramentoISSCodigoServico;
 import br.com.prefeitura.diadema.dto.InscricaoMunicipal;
+import br.com.prefeitura.diadema.dto.Logradouro;
 import br.com.prefeitura.diadema.dto.Publicidades;
 import br.com.prefeitura.diadema.dto.Socio;
 import br.com.prefeitura.diadema.ws.egata.ArrayOfSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens;
 import br.com.prefeitura.diadema.ws.egata.ArrayOfSdtDadosCadastraisEmpresaCnaeItens;
 import br.com.prefeitura.diadema.ws.egata.ArrayOfSdtDadosCadastraisEmpresaContratoItens;
 import br.com.prefeitura.diadema.ws.egata.ArrayOfSdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens;
-import br.com.prefeitura.diadema.ws.egata.ArrayOfSdtDadosCadastraisEmpresaRepresentanteLegalItens;
 import br.com.prefeitura.diadema.ws.egata.ArrayOfSdtDadosCadastraisEmpresaServicoItens;
 import br.com.prefeitura.diadema.ws.egata.ArrayOfSdtDadosCadastraisEmpresaSocioItens;
+import br.com.prefeitura.diadema.ws.egata.SdtBairroLogradourosSdtBairroLogradouroItem;
 import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresa;
 import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresa.CaracteristicasFuncionamento;
 import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresa.Contratos;
 import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresa.GrupoSubgrupoAtividades;
 import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresa.RepresentantesLegais;
-import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresa.Servicos;
 import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresa.Socios;
 import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens;
 import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresaCnaeItens;
@@ -34,6 +34,12 @@ import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresaGrupoSubgrupo
 import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresaRepresentanteLegalItens;
 import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresaServicoItens;
 import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresaSocioItens;
+import br.com.prefeitura.diadema.ws.egata.SdtLogradouroporBairroSdtLogradouroporBairroItem;
+import br.com.prefeitura.diadema.ws.egata.WsEnderecamento;
+import br.com.prefeitura.diadema.ws.egata.WsEnderecamentoExecute;
+import br.com.prefeitura.diadema.ws.egata.WsEnderecamentoExecuteResponse;
+import br.com.prefeitura.diadema.ws.egata.WsEnderecamentoSoapPort;
+import br.com.prefeitura.diadema.ws.egata.WsbuscabairrologradouroExecuteResponse;
 
 
 public class ParseInscricaoEgata {
@@ -108,6 +114,55 @@ public class ParseInscricaoEgata {
 	        }
 	        return builder.toString();
 	    }
+	  
+	  private Long codigoBairro(String tipoEndereco, String uf) {
+		  if(tipoEndereco == null){
+			  return 0L;
+		  }
+		 try{
+			 tipoEndereco = tipoEndereco.toUpperCase();
+			 
+			 tipoEndereco=  Normalizer.normalize(tipoEndereco, Normalizer.Form.NFD)
+                     .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+			 
+  		tipoEndereco= tipoEndereco.replace("RUA ", "");
+  		tipoEndereco= tipoEndereco.replace("PRACA ", "");
+  		tipoEndereco= tipoEndereco.replace("TRAVESSA ", "");
+  		tipoEndereco= tipoEndereco.replace("AVENIDA ", "");
+  		tipoEndereco= tipoEndereco.replace("PASSAGEM ", "");
+  		tipoEndereco= tipoEndereco.replace("ESTRADA ", "");
+  		tipoEndereco= tipoEndereco.replace("RODOVIA ", "");
+  		tipoEndereco= tipoEndereco.replace("VIELA ", "");
+  		tipoEndereco= tipoEndereco.replace("PASSAGEM DE PEDESTRES ", "");
+  		tipoEndereco= tipoEndereco.replace("RUA PARTICULAR ", "");
+  		tipoEndereco= tipoEndereco.replace("ALAMEDA ", "");
+  		tipoEndereco= tipoEndereco.replace("LARGO ", "");
+  		tipoEndereco= tipoEndereco.replace("AREA ", "");
+  		tipoEndereco= tipoEndereco.replace("CORREDOR ", "");
+		  
+			WsEnderecamentoExecute param = new WsEnderecamentoExecute();
+			//param.setMunidQ(7384);
+			param.setUfsiglaQ(uf.toUpperCase());
+			param.setTrechologradouro(tipoEndereco);
+					
+			WsEnderecamento wsl = new WsEnderecamento();
+			WsEnderecamentoSoapPort port = wsl.getWsEnderecamentoSoapPort();
+			
+			 WsEnderecamentoExecuteResponse er = port.execute(param);
+			
+
+			
+			
+			
+			for(SdtLogradouroporBairroSdtLogradouroporBairroItem item :  er.getSdtLogradouroporbairro().getSdtLogradouroporBairroSdtLogradouroporBairroItem()){
+				return item.getBairroCodigo();
+			}
+				return 0L;
+			}catch(Exception ex){
+				return 0L;
+			}
+		}
+	 
 	
 	public SdtDadosCadastraisEmpresa parseAgata(InscricaoMunicipal inscricaoMunicipal) {
 		
@@ -138,7 +193,9 @@ public class ParseInscricaoEgata {
         dadosCadastraisEmpresa.setDataAberturaEmpresa(parseStringDate(inscricaoMunicipal.getDataAbertura()));
         dadosCadastraisEmpresa.setInscricaoEstadual(inscricaoMunicipal.getInscricaoEstadual());
         dadosCadastraisEmpresa.setDescricaoClassificacaoAtividadeEconomica(inscricaoMunicipal.getObjetoSocial());
-        
+
+        dadosCadastraisEmpresa.setSituacaoCadastral(Byte.valueOf("5")); // situaão sempre ativa
+       // dadosCadastraisEmpresa.setSituacaoCadastral(inscricaoMunicipal.getSituacaoCadastral().byteValue());
         if(inscricaoMunicipal.getNumeroFuncionario() == null){
 			throw new NumberFormatException("Campo NumeroFuncionario esta nulo");
 		}
@@ -193,6 +250,7 @@ public class ParseInscricaoEgata {
         dadosCadastraisEmpresa.setMunicipioCodigoContador(parseInt(inscricaoMunicipal.getDadosContadorMunicipio()));
         dadosCadastraisEmpresa.setMunicipioUFContador(inscricaoMunicipal.getDadosContadorUf());
         dadosCadastraisEmpresa.setCEPContador(inscricaoMunicipal.getDadosContadorCEP());
+      //  dadosCadastraisEmpresa.setBairroCodigoContador(27352);
         
         
         if(inscricaoMunicipal.getDadosContadorTelefone() == null){
@@ -416,6 +474,7 @@ public class ParseInscricaoEgata {
 	                    socio.setNumeroLogradouroSocio(s.getNumeroEndereco());
 	                    socio.setComplementoLogradouroSocio(s.getComplementoEndereco());
 	                    socio.setBairroNomeSocio(s.getBairro().toUpperCase());
+	                    socio.setBairroCodigoSocio(codigoBairro(s.getEndereco(), s.getUf()));//#BAIRRO
 	                    socio.setMunicipioCodigoSocio(parseInt(s.getCidade()));
 	                    socio.setCEPSocio(s.getCep());
 	                    socio.setMunicipioUfSocio(s.getUf());
@@ -446,6 +505,7 @@ public class ParseInscricaoEgata {
 	            representante.setNumeroLogradouroRepresentanteLegal(inscricaoMunicipal.getRepresentanteLegalNumeroDoEndereco());
 	            representante.setComplementoLogradouroRepresentanteLegal(inscricaoMunicipal.getRepresentanteLegalComplementoDeEndereco());
 	            representante.setBairroNomeRepresentanteLegal(inscricaoMunicipal.getRepresentanteLegalBairro());
+	            representante.setBairroCodigoRepresentanteLegal(codigoBairro(inscricaoMunicipal.getRepresentanteLegalEndereco(), inscricaoMunicipal.getRepresentanteLegalUf()));
 	            representante.setMunicipioCodigoRepresentanteLegal(parseInt(inscricaoMunicipal.getRepresentanteLegalMunicipio()));
 	            representante.setMunicipioUFRepresentanteLegal(inscricaoMunicipal.getRepresentanteLegalUf());
 	            representante.setCEPRepresentanteLegal(inscricaoMunicipal.getRepresentanteLegalCEP());

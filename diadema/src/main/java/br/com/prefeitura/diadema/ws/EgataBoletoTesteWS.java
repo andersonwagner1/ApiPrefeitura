@@ -41,7 +41,7 @@ import br.com.prefeitura.diadema.ws.egata.WsregistroboletoSoapPort;
 public class EgataBoletoTesteWS {
 	
 	private BoletoRepository dao;
-	private final String CAMINHO_ARQUIVO = System.getProperty ("java.io.tmpdir");
+//	private final String CAMINHO_ARQUIVO = System.getProperty ("java.io.tmpdir");
 	
 	public EgataBoletoTesteWS(BoletoRepository dao){
 		this.dao = dao;
@@ -359,12 +359,13 @@ public class EgataBoletoTesteWS {
 	private RetBoleto gerarBoletoModeloBradesco(Long numeroProcesso, Boletos boletos,	ConcurrentHashMap<String, Object> parametros) throws Exception{
 		Boleto boletoStella = boletos.toStellaBoleto();
 		GeradorDeBoleto gerador = new GeradorDeBoleto(parametros, boletoStella);
-		String caminho = CAMINHO_ARQUIVO + File.separator +  numeroProcesso + ".pdf";
+		//String caminho = CAMINHO_ARQUIVO + File.separator +  numeroProcesso + ".pdf";
 	//	caminho = caminho.replace(":", "/");
 //		caminho = caminho.replace(";", "");
 
-		File pdf = new File(caminho); //desativadro o agerar arquivo no servidor, pois não é necessario
-		gerador.geraPDF(pdf);
+		//File pdf = new File(caminho); //desativadro o agerar arquivo no servidor, pois não é necessario
+		//gerador.geraPDF(pdf);
+		
 		byte[] arquivo = gerador.geraPDF();
 
 		RetBoleto ret = new RetBoleto();
