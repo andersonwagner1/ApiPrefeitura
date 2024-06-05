@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import br.com.prefeitura.diadema.repository.dao.OracleSoftplan;
+import br.com.prefeitura.diadema.repository.dao.OracleSoftplanHomolog;
 
 
 public class ExecutarQuery {
 	
 	
 	public List<Object[]> executarQuery(String sql) {
-		OracleSoftplan dao = new OracleSoftplan();
+		OracleSoftplanHomolog dao = new OracleSoftplanHomolog();
 
 		try {
 			ResultSet rs = dao.executeQuery(sql);
@@ -38,7 +38,7 @@ public class ExecutarQuery {
 	}
 
 	public Object[][] executarQueryMatriz(String sql) {
-		OracleSoftplan dao = new OracleSoftplan();
+		OracleSoftplanHomolog dao = new OracleSoftplanHomolog();
 
 		try {
 			ResultSet rs = dao.executeQuery(sql);

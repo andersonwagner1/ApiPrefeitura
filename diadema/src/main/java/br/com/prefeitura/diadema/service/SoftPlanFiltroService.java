@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.prefeitura.diadema.dto.ComboDto;
 import br.com.prefeitura.diadema.dto.TreeDto;
-import br.com.prefeitura.diadema.repository.dao.OracleSoftplan;
+import br.com.prefeitura.diadema.repository.dao.OracleSoftplanHomolog;
 
 @Service
 public class SoftPlanFiltroService {
@@ -34,7 +34,7 @@ public class SoftPlanFiltroService {
 		sql.append(" ORDER BY S1.NMORGAOSETOR");
 		
 		List<ComboDto> listaCombo = new ArrayList<ComboDto>();
-		OracleSoftplan dao = new OracleSoftplan();
+		OracleSoftplanHomolog dao = new OracleSoftplanHomolog();
 		ResultSet rs = dao.executeQuery(sql.toString());
 		while (rs.next()) {
 			ComboDto combo = new ComboDto();
@@ -65,7 +65,7 @@ public class SoftPlanFiltroService {
 		
 		
 		List<TreeDto> listaCombo = new ArrayList<TreeDto>();
-		OracleSoftplan dao = new OracleSoftplan();
+		OracleSoftplanHomolog dao = new OracleSoftplanHomolog();
 		ResultSet rs = dao.executeQuery(sql.toString());
 		
 		while (rs.next()) {

@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LocalizarValores {
-
-	String views[] = {"ecpaassunto", 
+	String views[] = {};
+	String views5[] = {"ecpaassunto", 
 			"ecpaassuntowflaux", 
 			"ecpacalculoassunto", 
 			"ecpagrupoassunto", 
@@ -69,10 +69,177 @@ public class LocalizarValores {
 			"vsammunicinter", 
 			"vsrhcadsimpfunc", 
 			"vsrhfuncionario"};
+			
+			
+			
+			
+			
+			
+			/*,
+		/*	"ACL_PERMISSIONS",
+			"ACL_PERMISSION_TYPES",
+			"ACL_RELATIONSHIP",
+		
+			"AGILES_PARAMETERS",
+		//	"AGILES_SETUP_TASKS",
+		//	"AGL_DB_CHANGELOG",
+		//	"AGL_DB_CHANGELOG_LOCK",
+			"AT_ATTRIBUTE_TYPE",
+			"AT_CUSTOM",
+						"DATE",
+			"AT_ITEM",
+						"SCRIPT",
+			"AT_SELECT",
+						"ITTRAIL",
+			//"BLOBDATA",
+						"ENDAR",
+			"CALENDARDAYXREFS",
+			"CALENDARWEEKDAYXREFS",
+			"CHECKOUTFILEVERSION",
+			"CHECKOUTVERSION",
+			"CHOOSEQUERY",
+			"CHOOSEQUERYPARAMS",
+			"CLASSLIBRARY",
+			"CONNECTION_POOLS",
+			"CONTAINERMEMBERS",
+			/*"DAY",
+			"DAYPERIODXREFS",
+			"DBMAP",
+			"DOCUMENTSERVER",
+			"DOCUMENTSERVERUSERS",
+			"DOCUMENT_TYPE",*/
+	/*		"DTPROPERTIES",
+			"EVENT_HANDLING",
+			"EVENT_HANDLING_PUBLISHED",
+			"EXTERNALMODULES",*/
+		/*	"FILEFULLTEXT",
+			"FILEVERSIONTABLE",
+			"FIXEDINFORMATION",*/
+		//	"FORM",
+		/*	"FORMATTRIBUTE",
+			"FORMATTRIBUTEXREF",
+			"FORMAUTONUMBER",
+			"FORMMODIFIERS",
+			"FORMTEMPLATE",
+			"FORMVIEW",
+						"M_OPTION_VALUES",
+			"FORM_VALUE_BOOLEAN",
+			"FORM_VALUE_DATE",
+			"FORM_VALUE_FLOAT",
+			"FORM_VALUE_INT",
+			"FORM_VALUE_ITEM",
+			"FORM_VALUE_OPTION",
+			"FORM_VALUE_TEXT",*/
+		/*	"FUNCTIONLIBRARY",
+			"HTMLFORMINSTANCE",
+			"HTMLFORMTEMPLATE",*/
+	//		"ITEM",
+	/*		"ITEMMETADATATABLE",
+			"ITEM_TYPE_VALUES",
+			//"LOGINHISTORY",
+			"MD_INSTANCE",
+			"MD_INSTANCE_VALUES",
+			"MD_TEMPLATE",
+			"MIMETYPETABLE",
+			"MODULE",
+			"NM_CHANNEL",
+			"NM_CHANNELAUDIENCE",
+			"NM_CHANNELNEWSXREF",
+			"NM_CHANNELOWNERS",
+			"NM_NEWS",
+						"E",
+			"ORGANIZATIONALDIMENSION",
+			"ORGANIZATIONALLEVEL",
+			"OTI_INSTANCE",
+			"OTI_INSTANCE_STAGE",
+			"OTT_ACTION",
+			"OTT_SCREEN",
+			"OTT_STAGE",
+						"_STAGE_TYPE",
+			"OTT_TEMPLATE",
+			"OTT_TEMPORAL_EVENT",
+			"PDFFORMINSTANCE",
+			"PDFFORMTEMPLATE",
+			"PERIOD",
+		//	"PERMISSIONS",
+			"PERSISTENTCOMMAND",
+			"PORTLETDEFINITION",
+			"PORTLETS",
+						"ACTIVITYASSIGNEES",
+			"PR_ACTIVITYASSIGNEES_HIST",
+			"PR_ACTIVITYINSTANCE",
+			"PR_ACTIVITYINSTANCELOG",
+			"PR_ACTIVITYINSTANCE_EVENTS",
+			"PR_ACTIVITYTEMPLATE",
+			"PR_ACTIVITYTEMPLATE_EVENTS",
+			"PR_AUTOMATICACTIVITY",
+			"PR_AUTOMATICACTIVITYTEMPLATE",
+		//	"PR_AUTOMATIC_ACTIVATION",
+			"PR_EVENTACTIVITYINSTANCE",
+			"PR_EVENTACTIVITYTEMPLATE",
+			"PR_FORMTASKTEMPLATETABLE",
+			"PR_GATEWAYTEMPLATE",
+			"PR_NOTACTIVITYTEMPLATE",
+			"PR_NOTIFICATIONACTIVITY",
+			"PR_NOTIFICATION_RECIPIENTS",
+			"PR_POOLTEMPLATE_LANES",
+			"PR_PREV_ACTIVITIES",
+			"PR_PROCESSINSTANCE",
+			"PR_PROCESSINSTANCECONTEXT",
+			"PR_PROCESSINSTANCEFORMS",
+			"PR_PROCESSINSTANCENOTES",
+			"PR_PROCESSINSTANCERESP",
+			"PR_PROCESSTEMPLATEVERSIONTABLE",
+			"PR_PROCESSTEMPLATE_ACTIVITIES",
+			"PR_PROCESSTEMPLATE_FORM",
+			"PR_PROCESSTEMPLATE_RESPONSIBLE",
+			"PR_PROCESSTEMPLATE_START",
+			"PR_PROCESSTEMPLATE_TRANSITIONS",*/
+		//	"PR_SIGNALACTIVATION",
+		//	"PR_SIGNALEVENT",
+		//	"PR_SIGNALEVENTLISTENER",
+		//	"PR_SIGNALEVENTLISTENERPROPS",
+	//		"PR_SIGNALEVENTPROPS",
+	//		"PR_SIGNALIZEDACTIVITIES",
+	//		"PR_SUBPROCESSACTIVITY",
+	//		"PR_SUBPROCESSACTIVITYTEMPLATE",
+		/*	"PR_TASKINSTANCE",
+			"PR_TASKTEMPLATETABLE",
+			"PR_USERACTIVITY",
+			"PR_USERACTIVITYTEMPLATETABLE",*/
+		//	"PR_USERACTIVITY_INDEX",
+		//	"PR_USERACTIVITY_INDEX_HIST",
+		//	"PR_USERACTIVITY_MYACTIVITIES",
+	//		"PR_WEBFORMTASKTEMPLATETABLE",
+		/*	"PUBLISHEDITEMS",
+			"QUERIES",
+			"ATEDITEMS",
+			"SCHEDULERTASK",
+			"SCHEDULERTASK_ACTIVITY",
+			"SCHEDULERTASK_DUEDATE",
+			"SCHEDULERTASK_TEMPORALEVENT",
+			"SCHEDULERTASK_TIMEDINVOCATION",
+			"SCREEN",
+			"SEQUENCIAL",*/
+	/*		"SUBMODULE",
+			"KMESSAGES",
+			"TASKMESSAGESNODES",
+			"USERFOLDERTABLE",
+			"USERPASSWORDS",
+			"USERREPLACEMENT",
+			"USERTABLE",
+			"RVISITORFILTERS",
+			"VERSIONABLETABLE",
+			"VERSIONTABLE",
+			"WEEKDAY",
+			"KDAYPERIODSXREFS"
 	
-	private OracleSoftplan coneection = new OracleSoftplan();
+	
+	};*/
+	
+	private OracleSoftplanProd coneection = new OracleSoftplanProd();
 	//private OracleBpm coneection = new OracleBpm();
-	//private OracleSoftplan coneection = new OracleSoftplan();
+//	private OracleSoftplanHomolog coneection = new OracleSoftplanHomolog();
 	//private OracleMobile coneection = new OracleMobile();
 	//private OracleAgiles coneection = new OracleAgiles();
 	
@@ -82,9 +249,10 @@ public class LocalizarValores {
 	public static void main(String arg[]) throws SQLException{
 		LocalizarValores l = new LocalizarValores();
 		//l.localizarValor("");
-		l.localizarValor("IRIS.MOREIRA", false);
-		//l.localizarValor("56502569",false);
-		//l.localizarValor(56502569l);
+		//l.localizarValor("904", false);
+		l.localizarValor("REJANE.CALIXTO",true);
+		
+		//l.localizarValor(56887L);
 		System.out.println("Fim");
 	}
 	
@@ -101,6 +269,7 @@ public class LocalizarValores {
 		
 		try {
 			rs = coneection.executeQuery(sqltabela.toString());
+			
 			return rs;
 			
 		} catch (SQLException e) {
@@ -140,6 +309,7 @@ public class LocalizarValores {
 		ResultSet rsColunas = coneection.executeQuery(sqlcoluna.toString());
 		
 		if(rsColunas.next()){
+			
 			if(rsColunas.getInt(1) > 0){
 				System.out.println("SELECT * FROM " + tabela + " WHERE " + coluna + " = " + valor + ";");
 			}
@@ -162,7 +332,7 @@ public class LocalizarValores {
 			sqlcoluna.append(" WHERE upper(" + coluna + ") = upper('" + valor +"')");
 		}
 		ResultSet rsColunas = coneection.executeQuery(sqlcoluna.toString());
-		
+		//System.out.println(sqlcoluna.toString());
 		if(rsColunas.next()){
 			if(rsColunas.getInt(1) > 0){
 				System.out.println("SELECT * FROM " + tabela + " WHERE upper(" + coluna + ") like upper('%" + valor + "%');");
@@ -178,16 +348,41 @@ public class LocalizarValores {
 		int tabelas = 0;
 		while(rs.next()){
 			tabelas ++;
-			ResultSet rsColunas = listarColunas(rs.getString(1),"VARCHAR2");
+			String tabela = rs.getString(1);
+			ResultSet rsColunas = listarColunas(tabela,"VARCHAR2");
 			while(rsColunas.next()){
+			//	System.out.println(rs.getString(1));
 				localizarValores(rs.getString(1), rsColunas.getString(1), valor, exato);
 			}
 			rsColunas.close();
+			
+			ResultSet rsColunas2 = listarColunas(tabela,"NVARCHAR2");
+			while(rsColunas2.next()){
+				//System.out.println(rs.getString(1));
+				localizarValores(rs.getString(1), rsColunas2.getString(1), valor, exato);
+			}
+			rsColunas2.close();
+			
+			
+		/*	ResultSet rsColunas3 = listarColunas(tabela,"CLOB");
+			while(rsColunas3.next()){
+				
+				localizarValores(rs.getString(1), rsColunas3.getString(1), valor, exato);
+			}*/
+		//	rsColunas3.close();
+			//rsColunas2.close();
 		}
+		
 		
 		for(String view : views){
 			tabelas ++;
 			ResultSet rsColunas = listarColunas(view,"VARCHAR2");
+			//System.out.println(view);
+		/*	
+			if("PR_USERACTIVITY_MYACTIVITIES".equals(view)){
+				System.out.println("estou aqui");
+			}
+		*/	
 			while(rsColunas.next()){
 				localizarValores(rs.getString(1), rsColunas.getString(1), valor, exato);
 			}

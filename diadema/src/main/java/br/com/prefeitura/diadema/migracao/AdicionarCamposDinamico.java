@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 
 import br.com.prefeitura.diadema.repository.dao.OracleMobile;
-import br.com.prefeitura.diadema.repository.dao.OracleSoftplan;
+import br.com.prefeitura.diadema.repository.dao.OracleSoftplanHomolog;
 
 
 /**
@@ -97,7 +97,7 @@ public class AdicionarCamposDinamico {
 	 */
 	private void procurarCodigoSolar(String campo, String valor, String orgao, String numeroPorcesso, Integer anoProcesso) throws SQLException {
 		
-		OracleSoftplan cnn = new OracleSoftplan();
+		OracleSoftplanHomolog cnn = new OracleSoftplanHomolog();
 		
 		//String sql = "SELECT NUPROCFORMATADO, CDPROCESSO FROM ECPAFILATRABALHO WHERE ROWNUM <= 5";
 		String sql = "SELECT NUFORMATADO,CDPROCESSO FROM ECPASERVPROCESSO WHERE NUFORMATADO = '" + orgao + " " + converteDecimalParaBinario(numeroPorcesso) + "/" + anoProcesso + "'";
@@ -131,7 +131,7 @@ public class AdicionarCamposDinamico {
 	 * @throws SQLException
 	 */
 	private void inserirCampoDinamico(String codigo, String campo, String valor) throws SQLException	{
-		OracleSoftplan cnn = new OracleSoftplan();
+		OracleSoftplanHomolog cnn = new OracleSoftplanHomolog();
 		
 		String sqlInsertMetadaDao = "INSERT INTO ECPAMETADADO (NMMETADADO, CDTIPOMETADADO) VALUES ('"+campo+"', 1)";
 		String sql_last_id_metadado = "SELECT scpametadado.currval as id FROM dual";
@@ -147,7 +147,7 @@ public class AdicionarCamposDinamico {
 	}
 	
 	private void inserirValorDinamico(int id, String codigo, String valor) throws SQLException {
-		OracleSoftplan cnn = new OracleSoftplan();
+		OracleSoftplanHomolog cnn = new OracleSoftplanHomolog();
 		
 		String sql_insert_campo = "INSERT INTO ECPAMETADADOVALOR (CDMETADADO, DEMETADADO) VALUES ("+id+", '"+valor+"')";
 		String sql_last_id_metadado = "SELECT SCPAMETADADOVALOR.currval as id FROM dual";
@@ -162,7 +162,7 @@ public class AdicionarCamposDinamico {
 		cnn.close();
 	}
 	private void vincularProcessoComCampo(int id2, String codigo) throws SQLException {
-		OracleSoftplan cnn = new OracleSoftplan();
+		OracleSoftplanHomolog cnn = new OracleSoftplanHomolog();
 		String sql_insert_campo = "INSERT INTO ECPAMETADADOVALORPROCESSO (CDMETADADOVALORPROCESSO, CDMETADADOVALOR, CDPROCESSO) VALUES ("+id2+","+id2+",'"+codigo+"')";
 		cnn.execute(sql_insert_campo);
 		System.out.println("ID DO VALOR = " + id2 + "CODIGO DO PROCESSO = " + codigo);

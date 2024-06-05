@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SofPlanRelatorioDao{
 	
-	private  OracleSoftplan connectioAgiles = new OracleSoftplan();
+	private  OracleSoftplanHomolog connectioAgiles = new OracleSoftplanHomolog();
 	
 	
 	

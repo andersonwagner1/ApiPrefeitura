@@ -1,9 +1,9 @@
 package br.com.prefeitura.diadema.repository.dao;
 
-public class OracleSoftplan extends Oracle {	
-	public OracleSoftplan() {
-		//super("solar", "dQAdXgCVouRE_ctk","10.0.2.76","sftpmdhmg");
-		super("solar", "aPhxoJNxwud4IMmS","10.1.2.252","SFTPMDPRO");
+public class OracleSoftplanHomolog extends Oracle {	
+	public OracleSoftplanHomolog() {
+		super("solar", "dQAdXgCVouRE_ctk","10.0.2.76","sftpmdhmg");
+		//super("solar", "aPhxoJNxwud4IMmS","10.1.2.252","SFTPMDPRO");
 		//super("mobilepmd", "mobilepmd2016"/*,"10.0.2.76","sftpmdhmg"*/);
 		//super("BPMS", "d14prodbpm"/*,"10.0.2.76","sftpmdhmg"*/);
 		//super("agiles", "d14prodagl"/*,"10.0.2.76","sftpmdhmg"*/);

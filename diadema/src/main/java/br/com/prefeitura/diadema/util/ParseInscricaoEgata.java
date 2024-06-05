@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.text.Normalizer;
+
+import org.springframework.aop.ThrowsAdvice;
+
 import br.com.prefeitura.diadema.dto.Cnae;
 import br.com.prefeitura.diadema.dto.EnquadramentoAtividadeEconomica;
 import br.com.prefeitura.diadema.dto.EnquadramentoAtividadeEconomicaComplemento;
@@ -178,9 +181,30 @@ public class ParseInscricaoEgata {
 			throw new NumberFormatException("Campo CodigoNaturezaJuridica esta nulo");
 		}
 		
+		
+		
 		if(inscricaoMunicipal.getEnquadramentoISS() != null){
 			dadosCadastraisEmpresa.setCodigoTipoISSQN(inscricaoMunicipal.getEnquadramentoISS().getTipoISSQN());
 		}
+		
+		
+		///campos obrigatorios no sistema que não é no dtm mas e no vre, então é colocado campo para arrumar
+		if(inscricaoMunicipal.getInscricaoEstadual() == null){
+			inscricaoMunicipal.setInscricaoEstadual("0");
+		}
+		
+		if(inscricaoMunicipal.getNumeroInscricaoMunicipal() == null){
+			inscricaoMunicipal.setNumeroInscricaoMunicipal(1L);
+		}
+		
+		
+		
+		if(inscricaoMunicipal.getObjetoSocial() == null){
+			inscricaoMunicipal.setObjetoSocial("");
+		}
+		
+		
+		
 		
 	    dadosCadastraisEmpresa.setCodigoNaturezaJuridica(inscricaoMunicipal.getCodigoNaturezaJuridica());
 	    dadosCadastraisEmpresa.setDataRegistroJunta(parseStringDate(new Date()));
@@ -237,28 +261,34 @@ public class ParseInscricaoEgata {
         }
         
         
+        
         //CONTADOR
-        dadosCadastraisEmpresa.setNumeroCRCContador(inscricaoMunicipal.getDadosContadorCrc());
-        dadosCadastraisEmpresa.setNomeContador(inscricaoMunicipal.getDadosContadorNome());
-        dadosCadastraisEmpresa.setNumeroCPFContador(somenteNumeros(inscricaoMunicipal.getDadosContadorCPF()));
-        dadosCadastraisEmpresa.setNumeroRGContador(inscricaoMunicipal.getDadosContadorRG());
-        dadosCadastraisEmpresa.setNomeEscritorioContador(inscricaoMunicipal.getDadosContadorNomeEscritorio());
-        dadosCadastraisEmpresa.setLogradouroNomeContador(inscricaoMunicipal.getDadosContadorEndereco());
-        dadosCadastraisEmpresa.setNumeroLogradouroContador(inscricaoMunicipal.getDadosContadorNumeroEndereco());
-        dadosCadastraisEmpresa.setComplementoLogradouroContador(inscricaoMunicipal.getDadosContadorComplementoEndereco());
-        dadosCadastraisEmpresa.setBairroNomeContador(inscricaoMunicipal.getDadosContadorBairro());
-        dadosCadastraisEmpresa.setMunicipioCodigoContador(parseInt(inscricaoMunicipal.getDadosContadorMunicipio()));
-        dadosCadastraisEmpresa.setMunicipioUFContador(inscricaoMunicipal.getDadosContadorUf());
-        dadosCadastraisEmpresa.setCEPContador(inscricaoMunicipal.getDadosContadorCEP());
+        if(inscricaoMunicipal.getDadosContadorNome() != null){
+        	if(!inscricaoMunicipal.getDadosContadorNome().endsWith("")){
+        		dadosCadastraisEmpresa.setNumeroCRCContador(inscricaoMunicipal.getDadosContadorCrc());
+        		dadosCadastraisEmpresa.setNomeContador(inscricaoMunicipal.getDadosContadorNome());
+        		dadosCadastraisEmpresa.setNumeroCPFContador(somenteNumeros(inscricaoMunicipal.getDadosContadorCPF()));
+        		dadosCadastraisEmpresa.setNumeroRGContador(inscricaoMunicipal.getDadosContadorRG());
+        		dadosCadastraisEmpresa.setNomeEscritorioContador(inscricaoMunicipal.getDadosContadorNomeEscritorio());
+        		dadosCadastraisEmpresa.setLogradouroNomeContador(inscricaoMunicipal.getDadosContadorEndereco());
+        		dadosCadastraisEmpresa.setNumeroLogradouroContador(inscricaoMunicipal.getDadosContadorNumeroEndereco());
+        		dadosCadastraisEmpresa.setComplementoLogradouroContador(inscricaoMunicipal.getDadosContadorComplementoEndereco());
+        		dadosCadastraisEmpresa.setBairroNomeContador(inscricaoMunicipal.getDadosContadorBairro());
+        		dadosCadastraisEmpresa.setMunicipioCodigoContador(parseInt(inscricaoMunicipal.getDadosContadorMunicipio()));
+        		dadosCadastraisEmpresa.setMunicipioUFContador(inscricaoMunicipal.getDadosContadorUf());
+        		dadosCadastraisEmpresa.setCEPContador(inscricaoMunicipal.getDadosContadorCEP());
+        		dadosCadastraisEmpresa.setTelefoneContador(somenteNumeros(inscricaoMunicipal.getDadosContadorTelefone()));
+                dadosCadastraisEmpresa.setFAXContador(somenteNumeros(inscricaoMunicipal.getDadosContadorFax()));
+                dadosCadastraisEmpresa.setEmailContador(inscricaoMunicipal.getDadosContadorEmail());
+        	}
+        }
       //  dadosCadastraisEmpresa.setBairroCodigoContador(27352);
         
         
-        if(inscricaoMunicipal.getDadosContadorTelefone() == null){
-			throw new NumberFormatException("Campo DadosContadorTelefone esta nulo");
-		}
-        dadosCadastraisEmpresa.setTelefoneContador(somenteNumeros(inscricaoMunicipal.getDadosContadorTelefone()));
-        dadosCadastraisEmpresa.setFAXContador(somenteNumeros(inscricaoMunicipal.getDadosContadorFax()));
-        dadosCadastraisEmpresa.setEmailContador(inscricaoMunicipal.getDadosContadorEmail());
+      //  if(inscricaoMunicipal.getDadosContadorTelefone() == null){
+	//		throw new NumberFormatException("Campo DadosContadorTelefone esta nulo");
+	//	}
+        
 
         // ENDEREÇO DA EMPRESA
         
@@ -425,10 +455,10 @@ public class ParseInscricaoEgata {
 	    	    //-------------------------------------------------------------------
 	            
 	            if(inscricaoMunicipal.getEnquadramentoAtividadeEconomica() == null || inscricaoMunicipal.getEnquadramentoAtividadeEconomica().getClassificacaoAtividade() == null){
-	    			throw new NumberFormatException("Campo ClassificacaoAtividade esta nulo");
+	    			throw new NumberFormatException("Campo ClassificacaoAtividade esta nulo é um campo obrigatorio");
 	    		}
 	            
-	            String classificacaoAtividade = inscricaoMunicipal.getEnquadramentoAtividadeEconomica().getClassificacaoAtividade();
+	            String classificacaoAtividade = inscricaoMunicipal.getEnquadramentoAtividadeEconomica().getClassificacaoAtividade().toLowerCase();
 	            dadosCadastraisEmpresa.setDescricaoClassificacaoAtividadeEconomica(classificacaoAtividade);
 	
 	            if (classificacaoAtividade.equalsIgnoreCase("industria")) {
@@ -475,6 +505,10 @@ public class ParseInscricaoEgata {
 	                    socio.setComplementoLogradouroSocio(s.getComplementoEndereco());
 	                    socio.setBairroNomeSocio(s.getBairro().toUpperCase());
 	                    socio.setBairroCodigoSocio(codigoBairro(s.getEndereco(), s.getUf()));//#BAIRRO
+	                    
+	                    if(s.getCidade() == null || s.getCidade().equals("0")){
+	                    	throw new NumberFormatException("Nome do socio " + s.getNome() + " esta com o codigo do municipio nulo favor selecione o municipio");
+	                    }
 	                    socio.setMunicipioCodigoSocio(parseInt(s.getCidade()));
 	                    socio.setCEPSocio(s.getCep());
 	                    socio.setMunicipioUfSocio(s.getUf());
@@ -550,21 +584,40 @@ public class ParseInscricaoEgata {
 	
 	            dadosCadastraisEmpresa.setComplementoAtividadeEconomica(inscricaoMunicipal.getObjetoSocial());
 	
+	            
+	            /* REMOVIDO POIS NÃO ESTA SENDO ADICIONADO CONTRATO
 	            if (enquadramentoAtividadeEconomica.getNumeroContrato() != null) {
-	                ArrayOfSdtDadosCadastraisEmpresaContratoItens contratos = new ArrayOfSdtDadosCadastraisEmpresaContratoItens();
+	              //  ArrayOfSdtDadosCadastraisEmpresaContratoItens contratos = new ArrayOfSdtDadosCadastraisEmpresaContratoItens();
 	                List<SdtDadosCadastraisEmpresaContratoItens> contratoItensList = new ArrayList<SdtDadosCadastraisEmpresaContratoItens>();
 	
 	                SdtDadosCadastraisEmpresaContratoItens contratoItem = new SdtDadosCadastraisEmpresaContratoItens();
 	                contratoItem.setDataContrato(parseStringDate(enquadramentoAtividadeEconomica.getDataContrato()));
 	                contratoItem.setNumeroContrato(enquadramentoAtividadeEconomica.getNumeroContrato());
+	                
+	                
+	                //observação de contrato é campo obrigatório na webservice então
+	                if(enquadramentoAtividadeEconomica.getObservacao() == null || enquadramentoAtividadeEconomica.getObservacao().length() < 7){
+	                	enquadramentoAtividadeEconomica.setObservacao("(Sem informação)"); 
+	                }
+	                
+	                if(enquadramentoAtividadeEconomica.getDataAlteracao() == null){
+	                	enquadramentoAtividadeEconomica.setDataAlteracao(new Date());
+	                }
+	                
+	                if(enquadramentoAtividadeEconomica.getObservacaoContrato() == null || enquadramentoAtividadeEconomica.getObservacaoContrato().length() < 7){
+	                	enquadramentoAtividadeEconomica.setObservacaoContrato("(Sem informação)");
+	                }
+	                	 
+	                
 	                contratoItem.setObservacaoContrato(enquadramentoAtividadeEconomica.getObservacaoContrato());
 	                contratoItensList.add(contratoItem);
 	                //contratos.setSdtDadosCadastraisEmpresaContratoItens(contratoItensList);
 	                Contratos contratosStatico = new Contratos();
 	                contratosStatico.setContratoItens(contratoItensList);
 					dadosCadastraisEmpresa.setContratos(contratosStatico );
+					
 	            }
-	
+	*/
 	            //atividades.setSdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens(atividadeItensList);
 	            GrupoSubgrupoAtividades atividadesEstatico = new GrupoSubgrupoAtividades();
 	            atividadesEstatico.setGrupoSubgrupoAtividadeItens(atividadeItensList);

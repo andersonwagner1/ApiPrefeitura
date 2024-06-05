@@ -11,8 +11,8 @@ public class UrlEndereco {
 	
 //	
 	//public static final String EWSDL_Client = "https://hmg-abc.diadema.sp.gov.br/eagata/servlet/" ;
-	//public static final String EWSDL_URL = "https://hmg-abc.diadema.sp.gov.br/eagata/servlet/" ; //TESTE
+	public static final String EWSDL_URL = "https://hmg-abc.diadema.sp.gov.br/eagata/servlet/" ; //TESTE
 	//
 	
-	public static final String EWSDL_URL = "https://abc-grp.diadema.sp.gov.br/eagata/servlet/" ; //PRODUÇAO // NÃO ESQUECER DE TIRAR O ALTERAÇÃO QUE ESTA CHAPADO NO CODIGO
+	//public static final String EWSDL_URL = "https://abc-grp.diadema.sp.gov.br/eagata/servlet/" ; //PRODUÇAO // NÃO ESQUECER DE TIRAR O ALTERAÇÃO QUE ESTA CHAPADO NO CODIGO
 }

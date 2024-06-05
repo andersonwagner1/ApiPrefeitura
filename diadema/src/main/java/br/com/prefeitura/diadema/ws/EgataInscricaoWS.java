@@ -494,10 +494,17 @@ public class EgataInscricaoWS {
 	}
 	
 	
-	public  static void main(String args[]) throws Exception{
+	public  static void main(String args[]) throws Exception {
 		
 		EgataInscricaoWS w = new EgataInscricaoWS();
-		w.consultarCmcPorCnpj(32379324859L);
+		/*try {
+			boolean t = w.existeInscricaoMobiliario(83597L);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		//w.consultarCmcPorCnpj(32379324859L);
 		w.consultarExistemEmpresaPorCnpj(32379324859L);
 		
 		//w.enviarDadosAgata(paramentroInsrciao2());
@@ -591,6 +598,8 @@ public class EgataInscricaoWS {
 		WsEnderecamentoExecute param = new WsEnderecamentoExecute();
 		param.setTrechologradouro(logradouro);
 		param.setUfsiglaQ("SP");
+		param.setTrechologradouro("A");
+		
 				
 		WsEnderecamento wsl = new WsEnderecamento();
 		WsEnderecamentoSoapPort port = wsl.getWsEnderecamentoSoapPort();
@@ -660,7 +669,7 @@ public class EgataInscricaoWS {
                         if (item.getIdRetorno() != 0) {
                             throw new Exception("Não foi possível enviar dados ao àgata: " + item.getDesRetorno());
                         } else {
-                        	ConverterDtoJson.mostarJson(item);
+                        	//ConverterDtoJson.mostarJson(item);
                         	return Long.parseLong(item.getDesRetorno().split(":")[1].trim());
                             //break;
                         }
@@ -670,7 +679,7 @@ public class EgataInscricaoWS {
                 throw new Exception("Não foi possível enviar dados ao àgata: Não houve resposta para a chamada do Webservice");
             }
         } catch (Exception e) {
-        	ConverterDtoJson.mostarJson(params);
+        	//ConverterDtoJson.mostarJson(params);
             throw new Exception("Não é foi possivel enviar dados para o agata: " + e.toString());
         }
         return -1L;
@@ -761,6 +770,23 @@ public class EgataInscricaoWS {
 		
 		
 		return resposta.getSdtDadoscadastraisempresas().getIdRetorno() == 0; //0 = existe emporesa; 1 = não existe emporesa;
+	}
+	
+	
+	public WsConsultarExistenciaDaEmpresaExecuteResponse consultaInformacaoDaInscricaoMobiliario(Long inscricaoMunicipal) throws Exception{
+		
+		WsConsultarExistenciaDaEmpresaExecute parameters = new WsConsultarExistenciaDaEmpresaExecute();
+		parameters.setInscricaomunicipal(inscricaoMunicipal);
+		
+		
+		
+		WsConsultarExistenciaDaEmpresa wsdl = new WsConsultarExistenciaDaEmpresa();
+		WsConsultarExistenciaDaEmpresaSoapPort port = wsdl.getWsConsultarExistenciaDaEmpresaSoapPort();
+		
+		WsConsultarExistenciaDaEmpresaExecuteResponse resposta = port.execute(parameters);
+		
+		
+		return resposta;
 	}
 		
 		
