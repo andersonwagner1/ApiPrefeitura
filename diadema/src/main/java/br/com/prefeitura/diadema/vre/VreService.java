@@ -360,7 +360,7 @@ public class VreService {
 		if(dadosEmpresaAbaco != null){
 			if(!dadosEmpresaAbaco.getNumeroCNPJ().equals("")){
 				DadosEmpresa dadosEmpresa = dadosJucesp.getDadosEmpresa();
-				dadosEmpresa.setObjetoSocial(dadosEmpresaAbaco.getObservacaoEmpresa());
+				dadosEmpresa.setObjetoSocial(dadosEmpresaAbaco.getComplementoAtividadeEconomica());
 				dadosEmpresa.setDataCriacao(dadosEmpresaAbaco.getDataCadastroPrefeitura());
 				dadosEmpresa.setDataInicioOperacao(dadosEmpresaAbaco.getDataAberturaEmpresa());
 				//dadosEmpresa.setCapitalSocial(dadosEmpresaAbaco.getValorCapitalSocial());
@@ -538,6 +538,13 @@ public class VreService {
 			return jsonString;
 	
 	}
+	
+	 private String[] removerProtoocolosQueNaoSejaSPMeSPP(String[] inputArray) {
+	        return Arrays.stream(inputArray)
+	                     .filter(s -> s.startsWith("SPM") || s.startsWith("SPP"))
+	                     .toArray(String[]::new);
+	    }
+	
 
 	
 	
@@ -564,12 +571,13 @@ public class VreService {
 	
 	private String[] verificaSituacaoNovasInscricao(String token, String[] inscricoes)  throws IOException{		
 		 List<String> inscricoesList = new ArrayList<>(Arrays.asList(inscricoes));	
-		
+		System.out.println("Total " + inscricoesList.size());
 		 //Verificar protocolo por protocolo para ver se existe um protocolo com o codigo
 		 for (String inscricao : inscricoes){
 			 
 			 //Consulta o protocolo
-			String resposta  = consultarEmpresaPorProtocolo(token, inscricao);		
+			String resposta  = consultarEmpresaPorProtocolo(token, inscricao);	
+			//System.out.println(resposta);
 			Gson gson = new Gson();
 			//System.out.println(inscricao);
 			ResultadoDto dataEmpresaResponse = gson.fromJson(resposta, ResultadoDto.class);
@@ -583,8 +591,54 @@ public class VreService {
 			v.setNrProcessoBoleto(inscricao);
 			
 			
+			boolean continua = true; // variavel auxiliar para ajudar se continua ou não
+			
+			
+			//------------------ Verifica se possui codiog 209 [mudança de municipio]  ------------------------------------
+			boolean hasSpecificCodigo = false;
+			List<String> codigosEspecificos = Arrays.asList("101", "102", "209", "210", "211", "220", "225", "244");
+
+			if(dataEmpresaResponse.getEventos() != null){
+			    hasSpecificCodigo = dataEmpresaResponse.getEventos().stream()
+			        .anyMatch(event -> codigosEspecificos.contains(event.getCodigo()));
+			    
+			    // Se o protocolo tiver um dos codigos especificos no evento, realizar as operações
+			    if(!hasSpecificCodigo){
+			        v.setDsSituacao(EnumVreSituacao.NAO_ENVIAR_SOLAR);
+			        inscricoesList.removeIf(valor -> valor.equals(inscricao)); 
+			        v.setMotivo(dataEmpresaResponse.getEventos().get(0).getDescricao()); // coloca a descrição do motivo de não pode enviar para o SOLAR
+			        continua = false;
+			        //System.out.println(dataEmpresaResponse.getEventos().get(0).getCodigo() + " Codigo invalido");
+			    }/*else{
+			    	System.out.println(dataEmpresaResponse.getEventos().get(0).getCodigo()  + "Codigo valido");
+			    }*/
+			}
+			
+			// -------------------- Verifica se possui codiog 209 [mudança de municipio]  ---------------------------------------------
+			// verifica se o municipio e de Diadema se houve mudança de municipio
+			
+			if(continua){				
+				if(dataEmpresaResponse.getEventos() != null){
+					//6377 -- é codigo de Diadema
+					boolean temDiadema = dataEmpresaResponse.getDadosEstabelecimento().getEnderecos().stream().anyMatch(endereco -> "6377".equalsIgnoreCase(endereco.getMunicipio().getCdMunicipioRfb()));
+					
+					
+					if(!temDiadema){
+						v.setDsSituacao(EnumVreSituacao.NAO_ENVIAR_SOLAR);
+						inscricoesList.removeIf(valor -> valor.equals(inscricao)); 
+						v.setMotivo("Alteração de Municipio");
+						continua = false;
+						//System.out.println(dataEmpresaResponse.getDadosEstabelecimento().getEnderecos().get(0).getMunicipio().getCdMunicipioRfb() + "Municipio invalido");
+					}//else{
+						//System.out.println(dataEmpresaResponse.getDadosEstabelecimento().getEnderecos().get(0).getMunicipio().getCdMunicipioRfb() + "Municipio valido");
+					//}
+				}
+			}
+			
+			
+			
 	       //------------------ Verifica se possui codiog 209 [mudança de municipio]  ------------------------------------
-			boolean hasCodigo209 = false;
+			/*boolean hasCodigo209 = false;
 			if(dataEmpresaResponse.getEventos() != null){
 				 hasCodigo209 = dataEmpresaResponse.getEventos().stream().anyMatch(event -> "209".equals(event.getCodigo()));
 				 
@@ -596,10 +650,12 @@ public class VreService {
 					 inscricoesList.removeIf(valor -> valor.equals(inscricao)); 
 					 v.setMotivo("Alteração de Municipio");
 				 }
-			}
+			}*/
 			
 			//------------------ Verifique se a empresa esta ativa na prefeitura de diadema  ------------------------------------
-			if(!hasCodigo209){ // caso a empresa tenha o codigo 209 apenas considera que a empresa não precisa realizar consulta no webservice
+			
+			//
+			if(continua){ // caso a empresa tenha o codigo 209 apenas considera que a empresa não precisa realizar consulta no webservice
 				try {
 					SdtEmpresasporCnpjSdtEmpresasporCnpjItem empresaAgata = egataWs.consultarExistemEmpresaPorCnpj(Long.parseLong(dataEmpresaResponse.getDadosEmpresa().getCnpj()));
 					
@@ -628,10 +684,14 @@ public class VreService {
 					e.printStackTrace();
 				}
 			}
+			
+			
+			//------------------ Verifique apenas os codigo de evento valido  ------------------------------------
 			dao.save(v); //salva as informaçõa
 			//--------------------------------------------------------------------------------------------------------------
 		}
 		inscricoes = inscricoesList.toArray(new String[0]);
+		System.out.println("Final " + inscricoesList.size());
 		return inscricoes;
 	}
 	
@@ -673,12 +733,21 @@ public class VreService {
 	
 	private String[] listarProtocolosValidosSemRepeticao(String token, String dataInicial,	String dataFinal) throws IOException {
 		String[] inscricoes = listarProtocolosJucesp(token, dataInicial,dataFinal);
+		inscricoes = removerProtoocolosQueNaoSejaSPMeSPP(inscricoes); //Mudar Apenas o SPP		
 		inscricoes = removerInscricaoesJaVerificadas(inscricoes);
+		//inscricoes = filtrarApenasProtocolosNosEventosValido(inscricoes); // 101 102 209 210 211 220 225 244 
 		inscricoes = verificaSituacaoNovasInscricao(token, inscricoes);
 		return inscricoes;
 	}
 	
 	
+	private String[] filtrarApenasProtocolosNosEventosValido(String[] inscricoes) {
+		
+		
+		return null;
+	}
+
+
 	private String consultarEmpresaPorProtocolo(String token, String protocolo) throws IOException {
         String url = "https://www.jucesp.sp.gov.br/inscricaomunicipal20.services/api/v1/consultar-inscricao-municipal";
 

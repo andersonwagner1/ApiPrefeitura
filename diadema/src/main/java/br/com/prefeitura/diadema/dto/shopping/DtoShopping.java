@@ -4,6 +4,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 import br.com.prefeitura.diadema.enumerador.EnumShoppingSituacao;
+import br.com.prefeitura.diadema.enumerador.EnumSimNao;
 
 public class DtoShopping {
 	private String cpf; // identificador
@@ -12,8 +13,9 @@ public class DtoShopping {
 	private Integer ano; // ano do processo
 	private Integer criterioDePontuacao; // pontuaçao do usuario
 	private Long criterioDeDesempate; // prontuacções
-	private Integer posicao;	
-	private String[] pontuacaoDetalhada;
+	private EnumSimNao aprovado;
+	private Integer posicao;
+	private DtoJsonDados jsonDados;
 	
 	
 	@Enumerated(EnumType.STRING)
@@ -85,15 +87,23 @@ public class DtoShopping {
 		this.posicao = posicao;
 	}
 
-	public String[] getPontuacaoDetalhada() {
-		return pontuacaoDetalhada;
+	public DtoJsonDados getJsonDados() {
+		return jsonDados;
 	}
 
-	public void setPontuacaoDetalhada(String[] pontuacaoDetalhada) {
-		this.pontuacaoDetalhada = pontuacaoDetalhada;
+	public void setJsonDados(DtoJsonDados jsonDados) {
+		this.jsonDados = jsonDados;
 	}
-	
-	
+
+	public EnumSimNao getAprovado() {
+		return aprovado;
+	}
+
+	public void setAprovado(EnumSimNao aprovado) {
+		this.aprovado = aprovado;
+	}
+
+
 	
 	
 	

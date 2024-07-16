@@ -237,6 +237,7 @@ public class LocalizarValores {
 	
 	};*/
 	
+	//private OracleAbaco coneection = new OracleAbaco();
 	private OracleSoftplanProd coneection = new OracleSoftplanProd();
 	//private OracleBpm coneection = new OracleBpm();
 //	private OracleSoftplanHomolog coneection = new OracleSoftplanHomolog();
@@ -250,7 +251,7 @@ public class LocalizarValores {
 		LocalizarValores l = new LocalizarValores();
 		//l.localizarValor("");
 		//l.localizarValor("904", false);
-		l.localizarValor("REJANE.CALIXTO",true);
+		l.localizarValor("SF-311_PE",true);
 		
 		//l.localizarValor(56887L);
 		System.out.println("Fim");

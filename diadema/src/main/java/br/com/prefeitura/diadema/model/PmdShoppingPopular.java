@@ -4,8 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import br.com.prefeitura.diadema.dto.shopping.DtoJsonDados;
 import br.com.prefeitura.diadema.enumerador.EnumShoppingSituacao;
 
 
@@ -13,6 +15,9 @@ import br.com.prefeitura.diadema.enumerador.EnumShoppingSituacao;
 @Table(name="PMD_SHOPPING_POPULAR")
 public class PmdShoppingPopular {
 	
+	
+	
+
 	private String cpf; // identificador
 	private String nome; //nome de confirmação
 	
@@ -22,10 +27,14 @@ public class PmdShoppingPopular {
 	private Integer criterioDePontuacao; // pontuaçao do usuario
 	private Long criterioDeDesempate; // prontuacções
 	private Integer posicao;	
-	private String pontuacaoDetalhada; // essa pontuação estara separado por ponto e virgular para facilitar a leitura
+	
 	
 	@Enumerated(EnumType.STRING)
 	private EnumShoppingSituacao icSituacao;
+	
+	@Lob
+	private DtoJsonDados jsonDosDados; 
+	
 	
 	public String getCpf() {
 		return cpf;
@@ -69,18 +78,23 @@ public class PmdShoppingPopular {
 	public void setPosicao(Integer posicao) {
 		this.posicao = posicao;
 	}
-	public String getPontuacaoDetalhada() {
-		return pontuacaoDetalhada;
-	}
-	public void setPontuacaoDetalhada(String pontuacaoDetalhada) {
-		this.pontuacaoDetalhada = pontuacaoDetalhada;
-	}
+	
 	public EnumShoppingSituacao getIcSituacao() {
 		return icSituacao;
 	}
 	public void setIcSituacao(EnumShoppingSituacao icSituacao) {
 		this.icSituacao = icSituacao;
 	}
+	public DtoJsonDados getJsonDosDados() {
+		return jsonDosDados;
+	}
+	public void setJsonDosDados(DtoJsonDados jsonDosDados) {
+		this.jsonDosDados = jsonDosDados;
+	}
+	
+	
+	
+	
 	
 	
 	

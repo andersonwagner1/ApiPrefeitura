@@ -22,7 +22,10 @@ import br.com.prefeitura.diadema.dto.RetornoDto;
 import br.com.prefeitura.diadema.model.PmdBoleto;
 import br.com.prefeitura.diadema.model.PmdLogs;
 import br.com.prefeitura.diadema.service.LogsService;
+import br.com.prefeitura.diadema.util.ConverterDtoJson;
+import br.com.prefeitura.diadema.util.ParseInscricaoEgata;
 import br.com.prefeitura.diadema.ws.EgataInscricaoWS;
+import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresa;
 import br.com.prefeitura.diadema.ws.egata.SdtEmpresasporCnpjSdtEmpresasporCnpjItem;
 import br.com.prefeitura.diadema.ws.egata.WsConsultarExistenciaDaEmpresaExecuteResponse;
 
@@ -268,6 +271,9 @@ public class EInscricaoController {
 		
 		//return new ResponseEntity<String>("chamada realizada com sucesso" , HttpStatus.OK);
 		PmdLogs log = logsService.infoJson("enviarDadosEmpresaAgata", inscricao);
+		PmdLogs logAgata = null;
+		
+		
 		  
 		try{
 			//|-----------------------------------------------------------------------------------------|
@@ -279,6 +285,13 @@ public class EInscricaoController {
 			i.setEnquadramentoISS(inscricao.getEnquadramentoISS());
 		//	inscricao.getInscricaoMunicipal().setCnpj("12373198000138");
 	//		inscricao.getInscricaoMunicipal().setStatusEmpresa("ALTERACAO");
+
+			//primeiro teste
+			ParseInscricaoEgata parse = new ParseInscricaoEgata();
+			SdtDadosCadastraisEmpresa oi = parse.parseAgata(i);
+			
+	        logAgata = logsService.infoJson("enviarDadosEmpresa(modelo XML)",  oi);
+	        //segundo teste
 			//-------------------------------------------------------------------------------------
 			
 			Long resultado = egataWs.enviarDadosAgata(i);
@@ -294,6 +307,9 @@ public class EInscricaoController {
 		}catch(Exception ex){
 			ex.printStackTrace();
 			logsService.falha(log, ex.getMessage());
+			if(logAgata !=null){
+				logsService.falha(logAgata, ex.getMessage());
+			}
 			RetornoDto<Long> ret = new RetornoDto<Long>();
 			ret.setDescricao(ex.getMessage());
 			ret.setRetorno(0);

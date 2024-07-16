@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.text.Normalizer;
 
 import org.springframework.aop.ThrowsAdvice;
@@ -17,6 +18,7 @@ import br.com.prefeitura.diadema.dto.InscricaoMunicipal;
 import br.com.prefeitura.diadema.dto.Logradouro;
 import br.com.prefeitura.diadema.dto.Publicidades;
 import br.com.prefeitura.diadema.dto.Socio;
+import br.com.prefeitura.diadema.dto.grafico.Converter;
 import br.com.prefeitura.diadema.ws.egata.ArrayOfSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens;
 import br.com.prefeitura.diadema.ws.egata.ArrayOfSdtDadosCadastraisEmpresaCnaeItens;
 import br.com.prefeitura.diadema.ws.egata.ArrayOfSdtDadosCadastraisEmpresaContratoItens;
@@ -62,6 +64,14 @@ public class ParseInscricaoEgata {
     	 //Integer maisUm = 1;
     	 return 1;
     	// return  (short) (codigo.shortValue()+ maisUm.shortValue());
+    }
+    
+    private  String removerAcentos(String texto) {
+        // Normaliza a string para separar os caracteres diacríticos
+        String textoNormalizado = Normalizer.normalize(texto, Normalizer.Form.NFD);
+        // Remove os caracteres diacríticos usando expressão regular
+        Pattern padrao = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return padrao.matcher(textoNormalizado).replaceAll("").replace("ç", "c").replace("Ç", "C");
     }
 	
 	
@@ -171,6 +181,7 @@ public class ParseInscricaoEgata {
 		
 		
 		SdtDadosCadastraisEmpresa dadosCadastraisEmpresa = new SdtDadosCadastraisEmpresa();
+		
 		
 		//------------------------------------------------------------------
 	    // EMPPRESA
@@ -459,6 +470,7 @@ public class ParseInscricaoEgata {
 	    		}
 	            
 	            String classificacaoAtividade = inscricaoMunicipal.getEnquadramentoAtividadeEconomica().getClassificacaoAtividade().toLowerCase();
+	            classificacaoAtividade = removerAcentos(classificacaoAtividade);
 	            dadosCadastraisEmpresa.setDescricaoClassificacaoAtividadeEconomica(classificacaoAtividade);
 	
 	            if (classificacaoAtividade.equalsIgnoreCase("industria")) {
@@ -510,7 +522,7 @@ public class ParseInscricaoEgata {
 	                    	throw new NumberFormatException("Nome do socio " + s.getNome() + " esta com o codigo do municipio nulo favor selecione o municipio");
 	                    }
 	                    socio.setMunicipioCodigoSocio(parseInt(s.getCidade()));
-	                    socio.setCEPSocio(s.getCep());
+	                    socio.setCEPSocio(s.getCep().replace("-", ""));
 	                    socio.setMunicipioUfSocio(s.getUf());
 	                    sociosList.add(socio);
 	                }
@@ -579,6 +591,15 @@ public class ParseInscricaoEgata {
 	                } else {
 	                    item.setTipoAtividade("S");
 	                }
+	                
+	                if (enquadramentoAtividadeEconomicaComplemento.getTipo().equals("1")) {
+	                    item.setTipoAtividade("P");
+	                }
+	                if (enquadramentoAtividadeEconomicaComplemento.getTipo().equals("2")) {
+	                    item.setTipoAtividade("S");
+	                }
+	                
+	                
 	                atividadeItensList.add(item);
 	            }
 	
@@ -651,22 +672,23 @@ public class ParseInscricaoEgata {
 	
 	            if (enquadramentoISSCodigoServicos != null) {
 	                for (EnquadramentoISSCodigoServico codigoServico : enquadramentoISSCodigoServicos) {
-	                    SdtDadosCadastraisEmpresaServicoItens item = new SdtDadosCadastraisEmpresaServicoItens();
-	                    item.setCodigoServico(codigoServico.getCodigoServico().toString());
-	                    item.setDataInicioServico(parseStringDate(codigoServico.getDataInicial()));
-	                    item.setDataFimServico(parseStringDate(codigoServico.getDataFinal()));
-	                    if (codigoServico.getTipo().equalsIgnoreCase("anual")) {
-	                        item.setSituacaoServico("A");
-	                    } else {
-	                        item.setSituacaoServico("M");
-	                    }
-	                    if (codigoServico.getSituacao().equalsIgnoreCase("primario")) {
-	                        item.setTipoServico("P");
-	                    } else {
-	                        item.setTipoServico("S");
-	                    }
-	
-	                    servicoItensList.add(item);
+	                	if(codigoServico.getCodigoServico() != null){
+	                		SdtDadosCadastraisEmpresaServicoItens item = new SdtDadosCadastraisEmpresaServicoItens();
+	                		item.setCodigoServico(codigoServico.getCodigoServico().toString());
+	                		item.setDataInicioServico(parseStringDate(codigoServico.getDataInicial()));
+	                		item.setDataFimServico(parseStringDate(codigoServico.getDataFinal()));
+	                		if (codigoServico.getTipo().equalsIgnoreCase("anual")) {
+	                			item.setSituacaoServico("A");
+	                		} else {
+	                			item.setSituacaoServico("M");
+	                		}
+	                		if (codigoServico.getSituacao().equalsIgnoreCase("primario")) {
+	                			item.setTipoServico("P");
+	                		} else {
+	                			item.setTipoServico("S");
+	                		}
+	                		servicoItensList.add(item);
+	                	}
 	                }
 	            }
 	
@@ -698,7 +720,7 @@ public class ParseInscricaoEgata {
 	            SdtDadosCadastraisEmpresa.Cnaes cnaesEstatico = new SdtDadosCadastraisEmpresa.Cnaes();
 	            cnaesEstatico.setCnaeItens(cnaeItensList);
 	            dadosCadastraisEmpresa.setCnaes(cnaesEstatico);
-	            
+	           // ConverterDtoJson.mostarJson(dadosCadastraisEmpresa);
 	        return dadosCadastraisEmpresa;
 	    }
 

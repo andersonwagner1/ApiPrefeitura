@@ -147,6 +147,7 @@ public class EgataInscricaoWS {
 		cna1.setCodigo("1412601");
 		cna1.setPrincipal(true);
 		
+		
 		List<Cnae> cnaes = new ArrayList<Cnae>();
 		
 		cnaes.add(cna1);
@@ -644,17 +645,20 @@ public class EgataInscricaoWS {
 
 	
 	public Long enviarDadosAgata(InscricaoMunicipal inscricaoMunicipal) throws Exception {
-		ParseInscricaoEgata parse = new ParseInscricaoEgata();
+		
 		
 		WSEnviarDadosEmpresa wsEnviarDadosEmpresa = new WSEnviarDadosEmpresa();
         WSEnviarDadosEmpresaSoapPort port = wsEnviarDadosEmpresa.getWSEnviarDadosEmpresaSoapPort();
         
         WSEnviarDadosEmpresaExecute execute = new WSEnviarDadosEmpresaExecute();
         SdtDadosCadastraisEmpresa params = new SdtDadosCadastraisEmpresa();
+        
+        ParseInscricaoEgata parse = new ParseInscricaoEgata();
         params = parse.parseAgata(inscricaoMunicipal);
         
         
         //ConverterDtoJson.mostarJson(params);
+        
         
         execute.setSdtDadoscadastraisempresas(params);
         

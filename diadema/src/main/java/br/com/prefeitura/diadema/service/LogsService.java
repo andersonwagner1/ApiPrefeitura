@@ -9,6 +9,7 @@ import br.com.prefeitura.diadema.enumerador.EnumSimNao;
 import br.com.prefeitura.diadema.model.PmdLogs;
 import br.com.prefeitura.diadema.repository.LogRepository;
 import br.com.prefeitura.diadema.util.ConverterDtoJson;
+import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresa;
 
 
 @Service
@@ -45,7 +46,7 @@ public class LogsService {
 		String valor = ConverterDtoJson.json(parametro);
 		log.setMetodo(metodos);
 		log.setParametros(valor);
-		System.out.println(valor);
+		//System.out.println(valor);
 		return logRepository.save(log);
 		
 	}
@@ -68,5 +69,8 @@ public class LogsService {
 		//return null;
 	
 	}
+
+
+
 
 }

@@ -58,30 +58,28 @@ public class EgataBoletoTesteWS {
 	 * @param texto
 	 * @return
 	 */
-    public String verificaSeDataVencimentoBoleto(String texto) {
+	
+	public static String verificaSeDataVencimentoBoleto(String texto) {
         // Regex para encontrar a data no formato dd/MM/yyyy
         String regex = "\\b(\\d{2}/\\d{2}/\\d{4})\\b";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(texto);
-        
 
         if (matcher.find()) {
             // Extrai a data do texto
-            String dataTexto = matcher.group(1);
+            String dataVencimentoTexto = matcher.group(1);
             // Formata o texto da data para LocalDate
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate data = LocalDate.parse(dataTexto, formatter);
-            
+            LocalDate dataVencimento = LocalDate.parse(dataVencimentoTexto, formatter);
+
             LocalDate dataAtual = LocalDate.now();
-            dataAtual = dataAtual.plusDays(4); //garantia que o processo seja carregado
-            if(data.isAfter(dataAtual)){
-            	return "BOLETO_VENCIDO"; ///boleto vencido
-            }else{
-            	return "BOLETO_EM_ANDAMENTO"; //boleto andamento
+            dataVencimento = dataVencimento.plusDays(4); //garantia que o processo seja carregado
+            // Se a data de vencimento é antes da data atual, o boleto está vencido
+            if (dataVencimento.isBefore(dataAtual)) {
+                return "BOLETO_VENCIDO"; // boleto vencido
+            } else {
+                return "BOLETO_EM_ANDAMENTO"; // boleto em andamento
             }
-            
-           // System.out.println("Novo texto: " + novoTexto);
-           // return true;
         } else {
             // Não encontrou uma data válida no texto
             return "BOLETO_EM_ANDAMENTO";
@@ -89,26 +87,32 @@ public class EgataBoletoTesteWS {
     }
 	
 	public static void main(String args[]) throws Exception {
-		/*String s[] = {
-				"19/04/2024",
-				"20/04/2024",
-				"21/04/2024",
-				"22/04/2024",
-				"23/04/2024",
-				"24/04/2024",
-				"25/04/2024",
-				"26/04/2024",
-				"27/04/2024",
-				"28/04/2024",
-				"29/04/2024",
-				"30/04/2024",
-				"01/05/2024"
+		String s[] = {
+				"19/06/2024",
+				"20/06/2024",
+				"21/06/2024",
+				"22/06/2024",
+				"23/06/2024",
+				"24/06/2024",
+				"25/06/2024",
+				"26/06/2024",
+				"27/06/2024",
+				"28/06/2024",
+				"29/06/2024",
+				"30/06/2024",
+				"01/07/2024",
+				"02/07/2024",
+				"03/07/2024",
+				"04/07/2024",
+				"05/07/2024",
+				"06/07/2024"
+				
 				};
 		
 		for(String si : s){
 			System.out.println(si + " - " + verificaSeDataVencimentoBoleto(si));
 		}
-		*/
+		
 		
 		
 		
@@ -117,9 +121,9 @@ public class EgataBoletoTesteWS {
 		System.out.println(verificaSeDataVencimentoBoleto("24/05/2025"));
 		System.out.println(verificaSeDataVencimentoBoleto("24/05/2029"));
 		System.out.println(verificaSeDataVencimentoBoleto("24/06/2027"));*/
-		EgataBoletoTesteWS wss = new EgataBoletoTesteWS(null);
-		WsBuscaDadosBoletoTaxasDiversasExecuteResponse ws = wss.buscarDadosBoletoTaxasDiversasPeloNumeroProcessoAgata(2024094285L);
-		PmdBoleto auxBoleto = wss.verificarQualSituacaoEstaTaxaDiversasAgata(ws);
+		//EgataBoletoTesteWS wss = new EgataBoletoTesteWS(null);
+		//WsBuscaDadosBoletoTaxasDiversasExecuteResponse ws = wss.buscarDadosBoletoTaxasDiversasPeloNumeroProcessoAgata(2024094285L);
+		//PmdBoleto auxBoleto = wss.verificarQualSituacaoEstaTaxaDiversasAgata(ws);
 	}
 	
 	
@@ -531,6 +535,39 @@ public class EgataBoletoTesteWS {
 		return textoSituacao;
 	}
 
+
+	
+	
+	/*
+	 public  String verificaSeDataVencimentoBoleto2(String texto) {
+	        // Regex para encontrar a data no formato dd/MM/yyyy
+	        String regex = "\\b(\\d{2}/\\d{2}/\\d{4})\\b";
+	        Pattern pattern = Pattern.compile(regex);
+	        Matcher matcher = pattern.matcher(texto);
+	        
+
+	        if (matcher.find()) {
+	            // Extrai a data do texto
+	            String dataTexto = matcher.group(1);
+	            // Formata o texto da data para LocalDate
+	            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	            LocalDate data = LocalDate.parse(dataTexto, formatter);
+	            
+	            LocalDate dataAtual = LocalDate.now();
+	            data = data.plusDays(4); //garantia que o processo seja carregado
+	            if(data.isAfter(dataAtual)){
+	            	return "BOLETO_VENCIDO"; ///boleto vencido
+	            }else{
+	            	return "BOLETO_EM_ANDAMENTO"; //boleto andamento
+	            }
+	            
+	           // System.out.println("Novo texto: " + novoTexto);
+	           // return true;
+	        } else {
+	            // Não encontrou uma data válida no texto
+	            return "BOLETO_EM_ANDAMENTO";
+	        }
+	    }*/
 
 	
 }
