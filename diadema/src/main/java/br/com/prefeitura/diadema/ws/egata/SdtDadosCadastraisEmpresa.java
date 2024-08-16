@@ -100,6 +100,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="CodigoClassificacaoAtividadeEconomica" type="{http://www.w3.org/2001/XMLSchema}byte"/>
  *         &lt;element name="DescricaoClassificacaoAtividadeEconomica" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="ComplementoAtividadeEconomica" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="EmpresaAutonomo" type="{http://www.w3.org/2001/XMLSchema}byte"/>
  *         &lt;element name="Contratos">
  *           &lt;complexType>
  *             &lt;complexContent>
@@ -277,6 +278,7 @@ import javax.xml.bind.annotation.XmlType;
     "codigoClassificacaoAtividadeEconomica",
     "descricaoClassificacaoAtividadeEconomica",
     "complementoAtividadeEconomica",
+    "empresaAutonomo",
     "contratos",
     "cnaes",
     "caracteristicasFuncionamento",
@@ -452,6 +454,8 @@ public class SdtDadosCadastraisEmpresa {
     protected String descricaoClassificacaoAtividadeEconomica;
     @XmlElement(name = "ComplementoAtividadeEconomica", required = true)
     protected String complementoAtividadeEconomica;
+    @XmlElement(name = "EmpresaAutonomo")
+    protected byte empresaAutonomo;
     @XmlElement(name = "Contratos", required = true)
     protected SdtDadosCadastraisEmpresa.Contratos contratos;
     @XmlElement(name = "Cnaes", required = true)
@@ -2238,6 +2242,22 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
+     * Obt�m o valor da propriedade empresaAutonomo.
+     * 
+     */
+    public byte getEmpresaAutonomo() {
+        return empresaAutonomo;
+    }
+
+    /**
+     * Define o valor da propriedade empresaAutonomo.
+     * 
+     */
+    public void setEmpresaAutonomo(byte value) {
+        this.empresaAutonomo = value;
+    }
+
+    /**
      * Obt�m o valor da propriedade contratos.
      * 
      * @return
@@ -2458,12 +2478,7 @@ public class SdtDadosCadastraisEmpresa {
         @XmlElement(name = "CaracteristicaFuncionamentoItens")
         protected List<SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens> caracteristicaFuncionamentoItens;
 
-        public void setCaracteristicaFuncionamentoItens(
-				List<SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens> caracteristicaFuncionamentoItens) {
-			this.caracteristicaFuncionamentoItens = caracteristicaFuncionamentoItens;
-		}
-
-		/**
+        /**
          * Gets the value of the caracteristicaFuncionamentoItens property.
          * 
          * <p>
@@ -2491,6 +2506,13 @@ public class SdtDadosCadastraisEmpresa {
             }
             return this.caracteristicaFuncionamentoItens;
         }
+
+		public void setCaracteristicaFuncionamentoItens(
+				List<SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens> caracteristicaFuncionamentoItens) {
+			this.caracteristicaFuncionamentoItens = caracteristicaFuncionamentoItens;
+		}
+        
+        
 
     }
 
@@ -2520,11 +2542,7 @@ public class SdtDadosCadastraisEmpresa {
     })
     public static class Cnaes {
 
-        public void setCnaeItens(List<SdtDadosCadastraisEmpresaCnaeItens> cnaeItens) {
-			this.cnaeItens = cnaeItens;
-		}
-
-		@XmlElement(name = "CnaeItens")
+        @XmlElement(name = "CnaeItens")
         protected List<SdtDadosCadastraisEmpresaCnaeItens> cnaeItens;
 
         /**
@@ -2556,6 +2574,12 @@ public class SdtDadosCadastraisEmpresa {
             return this.cnaeItens;
         }
 
+		public void setCnaeItens(List<SdtDadosCadastraisEmpresaCnaeItens> cnaeItens) {
+			this.cnaeItens = cnaeItens;
+		}
+        
+        
+
     }
 
 
@@ -2584,12 +2608,7 @@ public class SdtDadosCadastraisEmpresa {
     })
     public static class Contratos {
 
-        public void setContratoItens(
-				List<SdtDadosCadastraisEmpresaContratoItens> contratoItens) {
-			this.contratoItens = contratoItens;
-		}
-
-		@XmlElement(name = "ContratoItens")
+        @XmlElement(name = "ContratoItens")
         protected List<SdtDadosCadastraisEmpresaContratoItens> contratoItens;
 
         /**
@@ -2649,12 +2668,7 @@ public class SdtDadosCadastraisEmpresa {
     })
     public static class GrupoSubgrupoAtividades {
 
-        public void setGrupoSubgrupoAtividadeItens(
-				List<SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens> grupoSubgrupoAtividadeItens) {
-			this.grupoSubgrupoAtividadeItens = grupoSubgrupoAtividadeItens;
-		}
-
-		@XmlElement(name = "GrupoSubgrupoAtividadeItens")
+        @XmlElement(name = "GrupoSubgrupoAtividadeItens")
         protected List<SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens> grupoSubgrupoAtividadeItens;
 
         /**
@@ -2685,6 +2699,13 @@ public class SdtDadosCadastraisEmpresa {
             }
             return this.grupoSubgrupoAtividadeItens;
         }
+
+		public void setGrupoSubgrupoAtividadeItens(
+				List<SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens> grupoSubgrupoAtividadeItens) {
+			this.grupoSubgrupoAtividadeItens = grupoSubgrupoAtividadeItens;
+		}
+        
+        
 
     }
 
@@ -2717,12 +2738,7 @@ public class SdtDadosCadastraisEmpresa {
         @XmlElement(name = "ProcuradorItens")
         protected List<SdtDadosCadastraisEmpresaProcuradorItens> procuradorItens;
 
-        public void setProcuradorItens(
-				List<SdtDadosCadastraisEmpresaProcuradorItens> procuradorItens) {
-			this.procuradorItens = procuradorItens;
-		}
-
-		/**
+        /**
          * Gets the value of the procuradorItens property.
          * 
          * <p>
@@ -2815,6 +2831,8 @@ public class SdtDadosCadastraisEmpresa {
 				List<SdtDadosCadastraisEmpresaRepresentanteLegalItens> representanteLegalItens) {
 			this.representanteLegalItens = representanteLegalItens;
 		}
+        
+        
 
     }
 
@@ -2880,6 +2898,8 @@ public class SdtDadosCadastraisEmpresa {
 				List<SdtDadosCadastraisEmpresaServicoItens> servicoItens) {
 			this.servicoItens = servicoItens;
 		}
+        
+        
 
     }
 
@@ -2944,6 +2964,9 @@ public class SdtDadosCadastraisEmpresa {
 		public void setSocioItens(List<SdtDadosCadastraisEmpresaSocioItens> socioItens) {
 			this.socioItens = socioItens;
 		}
+		
+		
+        
 
     }
 

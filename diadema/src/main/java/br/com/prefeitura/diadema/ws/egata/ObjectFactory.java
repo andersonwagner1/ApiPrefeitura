@@ -30,35 +30,235 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link WsEnderecamentoExecuteResponse }
+     * Create an instance of {@link SdtDadosCadastraisEmpresa }
      * 
      */
-    public WsEnderecamentoExecuteResponse createWsEnderecamentoExecuteResponse() {
-        return new WsEnderecamentoExecuteResponse();
+    public SdtDadosCadastraisEmpresa createSdtDadosCadastraisEmpresa() {
+        return new SdtDadosCadastraisEmpresa();
     }
 
     /**
-     * Create an instance of {@link SdtLogradouroporBairro }
+     * Create an instance of {@link WSEnviarDadosEmpresaExecute }
      * 
      */
-    public SdtLogradouroporBairro createSdtLogradouroporBairro() {
-        return new SdtLogradouroporBairro();
+    public WSEnviarDadosEmpresaExecute createWSEnviarDadosEmpresaExecute() {
+        return new WSEnviarDadosEmpresaExecute();
     }
 
     /**
-     * Create an instance of {@link WsEnderecamentoExecute }
+     * Create an instance of {@link WSEnviarDadosEmpresaExecuteResponse }
      * 
      */
-    public WsEnderecamentoExecute createWsEnderecamentoExecute() {
-        return new WsEnderecamentoExecute();
+    public WSEnviarDadosEmpresaExecuteResponse createWSEnviarDadosEmpresaExecuteResponse() {
+        return new WSEnviarDadosEmpresaExecuteResponse();
     }
 
     /**
-     * Create an instance of {@link SdtLogradouroporBairroSdtLogradouroporBairroItem }
+     * Create an instance of {@link RetornoWS }
      * 
      */
-    public SdtLogradouroporBairroSdtLogradouroporBairroItem createSdtLogradouroporBairroSdtLogradouroporBairroItem() {
-        return new SdtLogradouroporBairroSdtLogradouroporBairroItem();
+    public RetornoWS createRetornoWS() {
+        return new RetornoWS();
+    }
+
+    /**
+     * Create an instance of {@link RetornoWSRetornoWSItem }
+     * 
+     */
+    public RetornoWSRetornoWSItem createRetornoWSRetornoWSItem() {
+        return new RetornoWSRetornoWSItem();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens }
+     * 
+     */
+    public SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens createSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens() {
+        return new SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresaProcuradorItens }
+     * 
+     */
+    public SdtDadosCadastraisEmpresaProcuradorItens createSdtDadosCadastraisEmpresaProcuradorItens() {
+        return new SdtDadosCadastraisEmpresaProcuradorItens();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresaServicoItens }
+     * 
+     */
+    public SdtDadosCadastraisEmpresaServicoItens createSdtDadosCadastraisEmpresaServicoItens() {
+        return new SdtDadosCadastraisEmpresaServicoItens();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfSdtDadosCadastraisEmpresaServicoItens }
+     * 
+     */
+    public ArrayOfSdtDadosCadastraisEmpresaServicoItens createArrayOfSdtDadosCadastraisEmpresaServicoItens() {
+        return new ArrayOfSdtDadosCadastraisEmpresaServicoItens();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresaRepresentanteLegalItens }
+     * 
+     */
+    public SdtDadosCadastraisEmpresaRepresentanteLegalItens createSdtDadosCadastraisEmpresaRepresentanteLegalItens() {
+        return new SdtDadosCadastraisEmpresaRepresentanteLegalItens();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens }
+     * 
+     */
+    public ArrayOfSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens createArrayOfSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens() {
+        return new ArrayOfSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfSdtDadosCadastraisEmpresaCnaeItens }
+     * 
+     */
+    public ArrayOfSdtDadosCadastraisEmpresaCnaeItens createArrayOfSdtDadosCadastraisEmpresaCnaeItens() {
+        return new ArrayOfSdtDadosCadastraisEmpresaCnaeItens();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfSdtDadosCadastraisEmpresaProcuradorItens }
+     * 
+     */
+    public ArrayOfSdtDadosCadastraisEmpresaProcuradorItens createArrayOfSdtDadosCadastraisEmpresaProcuradorItens() {
+        return new ArrayOfSdtDadosCadastraisEmpresaProcuradorItens();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresaContratoItens }
+     * 
+     */
+    public SdtDadosCadastraisEmpresaContratoItens createSdtDadosCadastraisEmpresaContratoItens() {
+        return new SdtDadosCadastraisEmpresaContratoItens();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresaSocioItens }
+     * 
+     */
+    public SdtDadosCadastraisEmpresaSocioItens createSdtDadosCadastraisEmpresaSocioItens() {
+        return new SdtDadosCadastraisEmpresaSocioItens();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens }
+     * 
+     */
+    public SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens createSdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens() {
+        return new SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfSdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens }
+     * 
+     */
+    public ArrayOfSdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens createArrayOfSdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens() {
+        return new ArrayOfSdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfSdtDadosCadastraisEmpresaSocioItens }
+     * 
+     */
+    public ArrayOfSdtDadosCadastraisEmpresaSocioItens createArrayOfSdtDadosCadastraisEmpresaSocioItens() {
+        return new ArrayOfSdtDadosCadastraisEmpresaSocioItens();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresaCnaeItens }
+     * 
+     */
+    public SdtDadosCadastraisEmpresaCnaeItens createSdtDadosCadastraisEmpresaCnaeItens() {
+        return new SdtDadosCadastraisEmpresaCnaeItens();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfSdtDadosCadastraisEmpresaRepresentanteLegalItens }
+     * 
+     */
+    public ArrayOfSdtDadosCadastraisEmpresaRepresentanteLegalItens createArrayOfSdtDadosCadastraisEmpresaRepresentanteLegalItens() {
+        return new ArrayOfSdtDadosCadastraisEmpresaRepresentanteLegalItens();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfSdtDadosCadastraisEmpresaContratoItens }
+     * 
+     */
+    public ArrayOfSdtDadosCadastraisEmpresaContratoItens createArrayOfSdtDadosCadastraisEmpresaContratoItens() {
+        return new ArrayOfSdtDadosCadastraisEmpresaContratoItens();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.Contratos }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.Contratos createSdtDadosCadastraisEmpresaContratos() {
+        return new SdtDadosCadastraisEmpresa.Contratos();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.Cnaes }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.Cnaes createSdtDadosCadastraisEmpresaCnaes() {
+        return new SdtDadosCadastraisEmpresa.Cnaes();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.CaracteristicasFuncionamento }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.CaracteristicasFuncionamento createSdtDadosCadastraisEmpresaCaracteristicasFuncionamento() {
+        return new SdtDadosCadastraisEmpresa.CaracteristicasFuncionamento();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.Socios }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.Socios createSdtDadosCadastraisEmpresaSocios() {
+        return new SdtDadosCadastraisEmpresa.Socios();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.Procuradores }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.Procuradores createSdtDadosCadastraisEmpresaProcuradores() {
+        return new SdtDadosCadastraisEmpresa.Procuradores();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.RepresentantesLegais }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.RepresentantesLegais createSdtDadosCadastraisEmpresaRepresentantesLegais() {
+        return new SdtDadosCadastraisEmpresa.RepresentantesLegais();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.Servicos }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.Servicos createSdtDadosCadastraisEmpresaServicos() {
+        return new SdtDadosCadastraisEmpresa.Servicos();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.GrupoSubgrupoAtividades }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.GrupoSubgrupoAtividades createSdtDadosCadastraisEmpresaGrupoSubgrupoAtividades() {
+        return new SdtDadosCadastraisEmpresa.GrupoSubgrupoAtividades();
     }
 
 }

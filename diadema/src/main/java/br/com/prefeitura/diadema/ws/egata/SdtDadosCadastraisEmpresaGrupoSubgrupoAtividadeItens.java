@@ -149,5 +149,7 @@ public class SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens {
     public void setDataInicioAtividade(String value) {
         this.dataInicioAtividade = value;
     }
+    
+    
 
 }

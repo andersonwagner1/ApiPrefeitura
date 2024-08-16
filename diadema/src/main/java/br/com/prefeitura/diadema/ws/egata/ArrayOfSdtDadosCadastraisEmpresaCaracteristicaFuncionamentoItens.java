@@ -34,12 +34,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ArrayOfSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens {
 
-    public void setSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens(
-			List<SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens> sdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens) {
-		this.sdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens = sdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens;
-	}
-
-	@XmlElement(name = "Sdt_DadosCadastraisEmpresa.CaracteristicaFuncionamentoItens")
+    @XmlElement(name = "Sdt_DadosCadastraisEmpresa.CaracteristicaFuncionamentoItens")
     protected List<SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens> sdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens;
 
     /**
@@ -70,5 +65,12 @@ public class ArrayOfSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens {
         }
         return this.sdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens;
     }
+
+	public void setSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens(
+			List<SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens> sdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens) {
+		this.sdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens = sdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens;
+	}
+    
+    
 
 }

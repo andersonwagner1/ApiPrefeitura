@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java de ArrayOfSdt_DadosCadastraisEmpresa.CnaeItens complex type.
  * 
- * <p>O seguinte fragmento do esquema especifica o conteï¿½do esperado contido dentro desta classe.
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
  * 
  * <pre>
  * &lt;complexType name="ArrayOfSdt_DadosCadastraisEmpresa.CnaeItens">
@@ -65,12 +65,5 @@ public class ArrayOfSdtDadosCadastraisEmpresaCnaeItens {
         }
         return this.sdtDadosCadastraisEmpresaCnaeItens;
     }
-
-	public void setSdtDadosCadastraisEmpresaCnaeItens(
-			List<SdtDadosCadastraisEmpresaCnaeItens> sdtDadosCadastraisEmpresaCnaeItens) {
-		this.sdtDadosCadastraisEmpresaCnaeItens = sdtDadosCadastraisEmpresaCnaeItens;
-	}
-    
-    
 
 }

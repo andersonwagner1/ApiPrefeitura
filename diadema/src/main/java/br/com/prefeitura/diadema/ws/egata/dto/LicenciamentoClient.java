@@ -59,7 +59,7 @@ public class LicenciamentoClient {
             ListarSolicitacoesPorDataOut response = port.listarSolicitacoesPorData(request);
 
             // Handle response
-            System.out.println("Response: " + response);
+           // System.out.println("Response: " + response);
 
         } catch (Exception e) {
             e.printStackTrace();

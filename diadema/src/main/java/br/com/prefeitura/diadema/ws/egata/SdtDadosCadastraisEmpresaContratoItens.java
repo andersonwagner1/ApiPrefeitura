@@ -6,13 +6,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
  * <p>Classe Java de Sdt_DadosCadastraisEmpresa.ContratoItens complex type.
  * 
- * <p>O seguinte fragmento do esquema especifica o conteï¿½do esperado contido dentro desta classe.
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
  * 
  * <pre>
  * &lt;complexType name="Sdt_DadosCadastraisEmpresa.ContratoItens">
@@ -42,12 +42,12 @@ public class SdtDadosCadastraisEmpresaContratoItens {
     protected long numeroContrato;
     @XmlElement(name = "DataContrato", required = true, nillable = true)
     @XmlSchemaType(name = "date")
-    protected String dataContrato;
+    protected XMLGregorianCalendar dataContrato;
     @XmlElement(name = "ObservacaoContrato", required = true)
     protected String observacaoContrato;
 
     /**
-     * Obtï¿½m o valor da propriedade numeroContrato.
+     * Obtém o valor da propriedade numeroContrato.
      * 
      */
     public long getNumeroContrato() {
@@ -63,14 +63,14 @@ public class SdtDadosCadastraisEmpresaContratoItens {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade dataContrato.
+     * Obtém o valor da propriedade dataContrato.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public String getDataContrato() {
+    public XMLGregorianCalendar getDataContrato() {
         return dataContrato;
     }
 
@@ -79,15 +79,15 @@ public class SdtDadosCadastraisEmpresaContratoItens {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setDataContrato(String value) {
+    public void setDataContrato(XMLGregorianCalendar value) {
         this.dataContrato = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade observacaoContrato.
+     * Obtém o valor da propriedade observacaoContrato.
      * 
      * @return
      *     possible object is
