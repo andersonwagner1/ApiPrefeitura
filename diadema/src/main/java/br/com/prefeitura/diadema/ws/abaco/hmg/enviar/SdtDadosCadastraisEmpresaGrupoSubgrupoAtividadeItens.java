@@ -12,29 +12,33 @@ import javax.xml.datatype.XMLGregorianCalendar;
 /**
  * <p>Classe Java de Sdt_DadosCadastraisEmpresa.GrupoSubgrupoAtividadeItens complex type.
  * 
- * <p>O seguinte fragmento do esquema especifica o conteï¿½do esperado contido dentro desta classe.
+ * <p>O seguinte fragmento do esquema especifica o conte�do esperado contido dentro desta classe.
  * 
  * <pre>
- * &lt;complexType name="Sdt_DadosCadastraisEmpresa.GrupoSubgrupoAtividadeItens"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;all&gt;
- *         &lt;element name="CodigoGrupoAtividade" type="{http://www.w3.org/2001/XMLSchema}short"/&gt;
- *         &lt;element name="CodigoSubgrupoAtividade" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="CodigoAtividade" type="{http://www.w3.org/2001/XMLSchema}short"/&gt;
- *         &lt;element name="TipoAtividade" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="DataInicioAtividade" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
- *       &lt;/all&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;complexType name="Sdt_DadosCadastraisEmpresa.GrupoSubgrupoAtividadeItens">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="CodigoGrupoAtividade" type="{http://www.w3.org/2001/XMLSchema}short"/>
+ *         &lt;element name="CodigoSubgrupoAtividade" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="CodigoAtividade" type="{http://www.w3.org/2001/XMLSchema}short"/>
+ *         &lt;element name="TipoAtividade" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="DataInicioAtividade" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
  * </pre>
  * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Sdt_DadosCadastraisEmpresa.GrupoSubgrupoAtividadeItens", propOrder = {
-
+    "codigoGrupoAtividade",
+    "codigoSubgrupoAtividade",
+    "codigoAtividade",
+    "tipoAtividade",
+    "dataInicioAtividade"
 })
 public class SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens {
 
@@ -46,12 +50,12 @@ public class SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens {
     protected short codigoAtividade;
     @XmlElement(name = "TipoAtividade", required = true)
     protected String tipoAtividade;
-    @XmlElement(name = "DataInicioAtividade", required = true)
+    @XmlElement(name = "DataInicioAtividade", required = true, nillable = true)
     @XmlSchemaType(name = "date")
-    protected String dataInicioAtividade;
+    protected XMLGregorianCalendar dataInicioAtividade;
 
     /**
-     * Obtï¿½m o valor da propriedade codigoGrupoAtividade.
+     * Obt�m o valor da propriedade codigoGrupoAtividade.
      * 
      */
     public short getCodigoGrupoAtividade() {
@@ -67,7 +71,7 @@ public class SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade codigoSubgrupoAtividade.
+     * Obt�m o valor da propriedade codigoSubgrupoAtividade.
      * 
      */
     public int getCodigoSubgrupoAtividade() {
@@ -83,7 +87,7 @@ public class SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade codigoAtividade.
+     * Obt�m o valor da propriedade codigoAtividade.
      * 
      */
     public short getCodigoAtividade() {
@@ -99,7 +103,7 @@ public class SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade tipoAtividade.
+     * Obt�m o valor da propriedade tipoAtividade.
      * 
      * @return
      *     possible object is
@@ -123,14 +127,14 @@ public class SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade dataInicioAtividade.
+     * Obt�m o valor da propriedade dataInicioAtividade.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public String getDataInicioAtividade() {
+    public XMLGregorianCalendar getDataInicioAtividade() {
         return dataInicioAtividade;
     }
 
@@ -139,10 +143,10 @@ public class SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setDataInicioAtividade(String value) {
+    public void setDataInicioAtividade(XMLGregorianCalendar value) {
         this.dataInicioAtividade = value;
     }
 

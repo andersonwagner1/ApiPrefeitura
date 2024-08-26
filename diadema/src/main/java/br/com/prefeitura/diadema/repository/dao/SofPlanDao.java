@@ -39,7 +39,7 @@ public class SofPlanDao{
 	}
 	
 	public void montagemDosDadosV2() throws SQLException{
-		System.out.println(new Date());
+		//System.out.println(new Date());
 		ResultSet resultSet = localizarTodosProcessos();
 		
 		

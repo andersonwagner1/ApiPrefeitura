@@ -16,6 +16,12 @@ public abstract interface VreSolicitacaoRespository extends JpaRepository<PmdVre
 	public PmdVreSolicitacao consultarSolicitacao(@Param("protocolo") String orgao);
 
 	//verifica todos os protocolos que foram carregados no sistema
-	@Query(value = "SELECT x from PmdVreSolicitacao x where x.dtCarga >= trunc(sysdate) - 7"  )
+	@Query(value = "SELECT x from PmdVreSolicitacao x where x.dtCarga >= trunc(sysdate) - 50"  ) //O 50 DIAS ATRAS PARA EVITAR CARREGAR OS PROTOCOLOS
 	public List<PmdVreSolicitacao> listarProtocolosDeUmPeriodoCarga();	
+	
+	
+	
+	@Query(value = "select x from PmdVreSolicitacao x where x.dsSituacao = 'CARREGAR'"  )
+	public List<PmdVreSolicitacao> listarProtocolosAguardandoParaCarregar();
+	
 }

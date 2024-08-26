@@ -16,10 +16,10 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="RetornoWS.RetornoWSItem">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;all>
+ *       &lt;sequence>
  *         &lt;element name="DesRetorno" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="IdRetorno" type="{http://www.w3.org/2001/XMLSchema}byte"/>
- *       &lt;/all>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -29,7 +29,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "RetornoWS.RetornoWSItem", propOrder = {
-
+    "desRetorno",
+    "idRetorno"
 })
 public class RetornoWSRetornoWSItem {
 

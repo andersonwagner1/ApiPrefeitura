@@ -16,7 +16,7 @@ import br.com.prefeitura.diadema.service.LogsService;
 import br.com.prefeitura.diadema.vre.VreService;
 import br.com.prefeitura.diadema.vre.dto.EmpresaDTO;
 import br.com.prefeitura.diadema.vre.dto.ResultadoDto;
-
+///api/diadema/vre/consulta-protocolo/{protocolo}
 @RestController
 @RequestMapping("/api/diadema/vre")
 public class VreController {

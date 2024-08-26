@@ -1,6 +1,5 @@
 package br.com.prefeitura.diadema.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,6 @@ import br.com.prefeitura.diadema.dto.RetornoDto;
 import br.com.prefeitura.diadema.model.PmdBoleto;
 import br.com.prefeitura.diadema.model.PmdLogs;
 import br.com.prefeitura.diadema.service.LogsService;
-import br.com.prefeitura.diadema.util.ConverterDtoJson;
 import br.com.prefeitura.diadema.util.ParseInscricaoEgata;
 import br.com.prefeitura.diadema.ws.EgataInscricaoWS;
 import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresa;
@@ -56,7 +54,7 @@ public class EInscricaoController {
 	 * @param cnpj
 	 * @return
 	 */
-	@Deprecated
+	/*@Deprecated
 	@GetMapping(value = "/observacao/{cnpj}")
 	public String pegarInformacaoDaEmpresa(@PathVariable("cnpj") Long cnpj){
 		
@@ -66,14 +64,12 @@ public class EInscricaoController {
 			WsConsultarExistenciaDaEmpresaExecuteResponse restornoInforamcaoEmpresa = egataWs.consultaInformacaoDaInscricaoMobiliario(dadosEmpresaAbaco.getInscricaoMunicipal());
 			return restornoInforamcaoEmpresa.getSdtDadoscadastraisempresas().getObservacaoEmpresa();
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "";
-	}
+	}*/
 
 	
 	@GetMapping(value = "/consultarInscricao/{cnpj}")
@@ -96,7 +92,7 @@ public class EInscricaoController {
 	 * @return
 	 */
 	@GetMapping(value = "/consultar-situacao/{cnpj}")
-	public ResponseEntity<SdtEmpresasporCnpjSdtEmpresasporCnpjItem> consultaSituacaoEmpresaPorCnj(@PathVariable("cnpj") Long cnpj) {
+	public ResponseEntity<SdtEmpresasporCnpjSdtEmpresasporCnpjItem> consultaSituacaoEmpresaPorCnj(@PathVariable("cnpj") String cnpj) {
 		
 		PmdLogs log = logsService.infoJson("consultaSituacaoEmpresaPorCnj", cnpj);
 		SdtEmpresasporCnpjSdtEmpresasporCnpjItem existe = null;
@@ -404,9 +400,6 @@ public class EInscricaoController {
 			
 			fileBoelto.setResultado(ex.getMessage());
 			return new ResponseEntity(fileBoelto, HttpStatus.BAD_REQUEST);
-		}
-		
-		
-	}
-	
+		}	
+	}	
 }

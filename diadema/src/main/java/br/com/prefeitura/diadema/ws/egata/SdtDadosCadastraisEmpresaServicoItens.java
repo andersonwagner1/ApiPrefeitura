@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="CodigoServico" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="DescricaoServico" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="TipoServico" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="SituacaoServico" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="DataInicioServico" type="{http://www.w3.org/2001/XMLSchema}date"/>
@@ -35,6 +36,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Sdt_DadosCadastraisEmpresa.ServicoItens", propOrder = {
     "codigoServico",
+    "descricaoServico",
     "tipoServico",
     "situacaoServico",
     "dataInicioServico",
@@ -44,6 +46,8 @@ public class SdtDadosCadastraisEmpresaServicoItens {
 
     @XmlElement(name = "CodigoServico", required = true)
     protected String codigoServico;
+    @XmlElement(name = "DescricaoServico", required = true)
+    protected String descricaoServico;
     @XmlElement(name = "TipoServico", required = true)
     protected String tipoServico;
     @XmlElement(name = "SituacaoServico", required = true)
@@ -77,6 +81,30 @@ public class SdtDadosCadastraisEmpresaServicoItens {
      */
     public void setCodigoServico(String value) {
         this.codigoServico = value;
+    }
+
+    /**
+     * Obt�m o valor da propriedade descricaoServico.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDescricaoServico() {
+        return descricaoServico;
+    }
+
+    /**
+     * Define o valor da propriedade descricaoServico.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDescricaoServico(String value) {
+        this.descricaoServico = value;
     }
 
     /**

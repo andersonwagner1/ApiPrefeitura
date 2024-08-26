@@ -9,6 +9,7 @@ public class InscricaoMunicipal {
     private String cnpj;
     private String razaoSocial;
     private String ultimoRegistroJucesp;
+    private byte empresaAutonoma;
 
 	private Long numeroInscricaoMunicipal;
     private String statusEmpresa;
@@ -692,6 +693,12 @@ public class InscricaoMunicipal {
 	}
 	public void setSituacaoCadastral(Integer situacaoCadastral) {
 		this.situacaoCadastral = situacaoCadastral;
+	}
+	public byte getEmpresaAutonoma() {
+		return empresaAutonoma;
+	}
+	public void setEmpresaAutonoma(byte empresaAutonoma) {
+		this.empresaAutonoma = empresaAutonoma;
 	}
 	
 	

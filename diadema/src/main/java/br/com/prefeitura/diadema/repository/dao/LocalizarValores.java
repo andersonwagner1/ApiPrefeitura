@@ -238,9 +238,9 @@ public class LocalizarValores {
 	};*/
 	
 	//private OracleAbaco coneection = new OracleAbaco();
-	private OracleSoftplanProd coneection = new OracleSoftplanProd();
+	//private OracleSoftplanProd coneection = new OracleSoftplanProd();
 	//private OracleBpm coneection = new OracleBpm();
-//	private OracleSoftplanHomolog coneection = new OracleSoftplanHomolog();
+	private OracleSoftplanHomolog coneection = new OracleSoftplanHomolog();
 	//private OracleMobile coneection = new OracleMobile();
 	//private OracleAgiles coneection = new OracleAgiles();
 	
@@ -251,9 +251,9 @@ public class LocalizarValores {
 		LocalizarValores l = new LocalizarValores();
 		//l.localizarValor("");
 		//l.localizarValor("904", false);
-		l.localizarValor("SF-311_PE",true);
+		//l.localizarValor("SEHAB-421",true);
 		
-		//l.localizarValor(56887L);
+		l.localizarValor("FATIMA.QUEIROZ", true);
 		System.out.println("Fim");
 	}
 	
@@ -365,13 +365,13 @@ public class LocalizarValores {
 			rsColunas2.close();
 			
 			
-		/*	ResultSet rsColunas3 = listarColunas(tabela,"CLOB");
+			/*ResultSet rsColunas3 = listarColunas(tabela,"CLOB");
 			while(rsColunas3.next()){
 				
 				localizarValores(rs.getString(1), rsColunas3.getString(1), valor, exato);
-			}*/
-		//	rsColunas3.close();
-			//rsColunas2.close();
+			}
+			rsColunas3.close();
+*/
 		}
 		
 		

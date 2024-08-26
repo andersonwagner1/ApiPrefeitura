@@ -54,7 +54,7 @@ public class SoftPlanGraficoService {
 		sql.append(q.filtroPeriodo(dtInicial, dtFinal));
 		sql.append(") GROUP BY situacao ");
 		
-		System.out.println(sql.toString());
+		//System.out.println(sql.toString());
 		return e.executarQueryMatriz(sql.toString());
 	}
 	

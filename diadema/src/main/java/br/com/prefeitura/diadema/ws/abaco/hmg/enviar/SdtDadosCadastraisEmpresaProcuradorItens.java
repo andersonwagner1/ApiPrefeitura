@@ -16,27 +16,27 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="Sdt_DadosCadastraisEmpresa.ProcuradorItens">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;all>
+ *       &lt;sequence>
  *         &lt;element name="NumeroCpfProcurador" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="NumeroRgProcurador" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="NomeProcurador" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="OrgaoExpedidorProcurador" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="LogradouroCodigoProcurador" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="LogradouroCodigoProcurador" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="LogradouroTipoProcurador" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="LogradouroNomeProcurador" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="BairroCodigoProcurador" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="BairroCodigoProcurador" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="BairroNomeProcurador" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="TelefoneProcurador" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="NumeroLogradouroProcurador" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="ComplementoLogradouroProcurador" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="EmailProcurador" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="CEPProcurador" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="MunicipioCodigoProcurador" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="MunicipioCodigoProcurador" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="MunicipioNomeProcurador" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="MunicipioUfProcurador" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="PaisCodigoProcurador" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="PaisCodigoProcurador" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="PaisNomeProcurador" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *       &lt;/all>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -46,7 +46,25 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Sdt_DadosCadastraisEmpresa.ProcuradorItens", propOrder = {
-
+    "numeroCpfProcurador",
+    "numeroRgProcurador",
+    "nomeProcurador",
+    "orgaoExpedidorProcurador",
+    "logradouroCodigoProcurador",
+    "logradouroTipoProcurador",
+    "logradouroNomeProcurador",
+    "bairroCodigoProcurador",
+    "bairroNomeProcurador",
+    "telefoneProcurador",
+    "numeroLogradouroProcurador",
+    "complementoLogradouroProcurador",
+    "emailProcurador",
+    "cepProcurador",
+    "municipioCodigoProcurador",
+    "municipioNomeProcurador",
+    "municipioUfProcurador",
+    "paisCodigoProcurador",
+    "paisNomeProcurador"
 })
 public class SdtDadosCadastraisEmpresaProcuradorItens {
 
@@ -59,13 +77,13 @@ public class SdtDadosCadastraisEmpresaProcuradorItens {
     @XmlElement(name = "OrgaoExpedidorProcurador", required = true)
     protected String orgaoExpedidorProcurador;
     @XmlElement(name = "LogradouroCodigoProcurador")
-    protected int logradouroCodigoProcurador;
+    protected long logradouroCodigoProcurador;
     @XmlElement(name = "LogradouroTipoProcurador", required = true)
     protected String logradouroTipoProcurador;
     @XmlElement(name = "LogradouroNomeProcurador", required = true)
     protected String logradouroNomeProcurador;
     @XmlElement(name = "BairroCodigoProcurador")
-    protected int bairroCodigoProcurador;
+    protected long bairroCodigoProcurador;
     @XmlElement(name = "BairroNomeProcurador", required = true)
     protected String bairroNomeProcurador;
     @XmlElement(name = "TelefoneProcurador", required = true)
@@ -79,13 +97,13 @@ public class SdtDadosCadastraisEmpresaProcuradorItens {
     @XmlElement(name = "CEPProcurador", required = true)
     protected String cepProcurador;
     @XmlElement(name = "MunicipioCodigoProcurador")
-    protected int municipioCodigoProcurador;
+    protected long municipioCodigoProcurador;
     @XmlElement(name = "MunicipioNomeProcurador", required = true)
     protected String municipioNomeProcurador;
     @XmlElement(name = "MunicipioUfProcurador", required = true)
     protected String municipioUfProcurador;
     @XmlElement(name = "PaisCodigoProcurador")
-    protected int paisCodigoProcurador;
+    protected long paisCodigoProcurador;
     @XmlElement(name = "PaisNomeProcurador", required = true)
     protected String paisNomeProcurador;
 
@@ -189,7 +207,7 @@ public class SdtDadosCadastraisEmpresaProcuradorItens {
      * Obt�m o valor da propriedade logradouroCodigoProcurador.
      * 
      */
-    public int getLogradouroCodigoProcurador() {
+    public long getLogradouroCodigoProcurador() {
         return logradouroCodigoProcurador;
     }
 
@@ -197,7 +215,7 @@ public class SdtDadosCadastraisEmpresaProcuradorItens {
      * Define o valor da propriedade logradouroCodigoProcurador.
      * 
      */
-    public void setLogradouroCodigoProcurador(int value) {
+    public void setLogradouroCodigoProcurador(long value) {
         this.logradouroCodigoProcurador = value;
     }
 
@@ -253,7 +271,7 @@ public class SdtDadosCadastraisEmpresaProcuradorItens {
      * Obt�m o valor da propriedade bairroCodigoProcurador.
      * 
      */
-    public int getBairroCodigoProcurador() {
+    public long getBairroCodigoProcurador() {
         return bairroCodigoProcurador;
     }
 
@@ -261,7 +279,7 @@ public class SdtDadosCadastraisEmpresaProcuradorItens {
      * Define o valor da propriedade bairroCodigoProcurador.
      * 
      */
-    public void setBairroCodigoProcurador(int value) {
+    public void setBairroCodigoProcurador(long value) {
         this.bairroCodigoProcurador = value;
     }
 
@@ -413,7 +431,7 @@ public class SdtDadosCadastraisEmpresaProcuradorItens {
      * Obt�m o valor da propriedade municipioCodigoProcurador.
      * 
      */
-    public int getMunicipioCodigoProcurador() {
+    public long getMunicipioCodigoProcurador() {
         return municipioCodigoProcurador;
     }
 
@@ -421,7 +439,7 @@ public class SdtDadosCadastraisEmpresaProcuradorItens {
      * Define o valor da propriedade municipioCodigoProcurador.
      * 
      */
-    public void setMunicipioCodigoProcurador(int value) {
+    public void setMunicipioCodigoProcurador(long value) {
         this.municipioCodigoProcurador = value;
     }
 
@@ -477,7 +495,7 @@ public class SdtDadosCadastraisEmpresaProcuradorItens {
      * Obt�m o valor da propriedade paisCodigoProcurador.
      * 
      */
-    public int getPaisCodigoProcurador() {
+    public long getPaisCodigoProcurador() {
         return paisCodigoProcurador;
     }
 
@@ -485,7 +503,7 @@ public class SdtDadosCadastraisEmpresaProcuradorItens {
      * Define o valor da propriedade paisCodigoProcurador.
      * 
      */
-    public void setPaisCodigoProcurador(int value) {
+    public void setPaisCodigoProcurador(long value) {
         this.paisCodigoProcurador = value;
     }
 

@@ -16,27 +16,27 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="Sdt_DadosCadastraisEmpresa.RepresentanteLegalItens">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;all>
+ *       &lt;sequence>
  *         &lt;element name="NumeroCpfRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="NumeroRgRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="NomeRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="OrgaoExpedidorRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="LogradouroCodigoRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="LogradouroCodigoRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="LogradouroTipoRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="LogradouroNomeRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="BairroCodigoRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="BairroCodigoRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="BairroNomeRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="TelefoneRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="NumeroLogradouroRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="ComplementoLogradouroRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="EmailRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="CEPRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="MunicipioCodigoRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="MunicipioCodigoRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="MunicipioNomeRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="MunicipioUFRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="PaisCodigoRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="PaisCodigoRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="PaisNomeRepresentanteLegal" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *       &lt;/all>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -46,7 +46,25 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Sdt_DadosCadastraisEmpresa.RepresentanteLegalItens", propOrder = {
-
+    "numeroCpfRepresentanteLegal",
+    "numeroRgRepresentanteLegal",
+    "nomeRepresentanteLegal",
+    "orgaoExpedidorRepresentanteLegal",
+    "logradouroCodigoRepresentanteLegal",
+    "logradouroTipoRepresentanteLegal",
+    "logradouroNomeRepresentanteLegal",
+    "bairroCodigoRepresentanteLegal",
+    "bairroNomeRepresentanteLegal",
+    "telefoneRepresentanteLegal",
+    "numeroLogradouroRepresentanteLegal",
+    "complementoLogradouroRepresentanteLegal",
+    "emailRepresentanteLegal",
+    "cepRepresentanteLegal",
+    "municipioCodigoRepresentanteLegal",
+    "municipioNomeRepresentanteLegal",
+    "municipioUFRepresentanteLegal",
+    "paisCodigoRepresentanteLegal",
+    "paisNomeRepresentanteLegal"
 })
 public class SdtDadosCadastraisEmpresaRepresentanteLegalItens {
 
@@ -59,13 +77,13 @@ public class SdtDadosCadastraisEmpresaRepresentanteLegalItens {
     @XmlElement(name = "OrgaoExpedidorRepresentanteLegal", required = true)
     protected String orgaoExpedidorRepresentanteLegal;
     @XmlElement(name = "LogradouroCodigoRepresentanteLegal")
-    protected int logradouroCodigoRepresentanteLegal;
+    protected long logradouroCodigoRepresentanteLegal;
     @XmlElement(name = "LogradouroTipoRepresentanteLegal", required = true)
     protected String logradouroTipoRepresentanteLegal;
     @XmlElement(name = "LogradouroNomeRepresentanteLegal", required = true)
     protected String logradouroNomeRepresentanteLegal;
     @XmlElement(name = "BairroCodigoRepresentanteLegal")
-    protected int bairroCodigoRepresentanteLegal;
+    protected long bairroCodigoRepresentanteLegal;
     @XmlElement(name = "BairroNomeRepresentanteLegal", required = true)
     protected String bairroNomeRepresentanteLegal;
     @XmlElement(name = "TelefoneRepresentanteLegal", required = true)
@@ -79,13 +97,13 @@ public class SdtDadosCadastraisEmpresaRepresentanteLegalItens {
     @XmlElement(name = "CEPRepresentanteLegal", required = true)
     protected String cepRepresentanteLegal;
     @XmlElement(name = "MunicipioCodigoRepresentanteLegal")
-    protected int municipioCodigoRepresentanteLegal;
+    protected long municipioCodigoRepresentanteLegal;
     @XmlElement(name = "MunicipioNomeRepresentanteLegal", required = true)
     protected String municipioNomeRepresentanteLegal;
     @XmlElement(name = "MunicipioUFRepresentanteLegal", required = true)
     protected String municipioUFRepresentanteLegal;
     @XmlElement(name = "PaisCodigoRepresentanteLegal")
-    protected int paisCodigoRepresentanteLegal;
+    protected long paisCodigoRepresentanteLegal;
     @XmlElement(name = "PaisNomeRepresentanteLegal", required = true)
     protected String paisNomeRepresentanteLegal;
 
@@ -189,7 +207,7 @@ public class SdtDadosCadastraisEmpresaRepresentanteLegalItens {
      * Obt�m o valor da propriedade logradouroCodigoRepresentanteLegal.
      * 
      */
-    public int getLogradouroCodigoRepresentanteLegal() {
+    public long getLogradouroCodigoRepresentanteLegal() {
         return logradouroCodigoRepresentanteLegal;
     }
 
@@ -197,7 +215,7 @@ public class SdtDadosCadastraisEmpresaRepresentanteLegalItens {
      * Define o valor da propriedade logradouroCodigoRepresentanteLegal.
      * 
      */
-    public void setLogradouroCodigoRepresentanteLegal(int value) {
+    public void setLogradouroCodigoRepresentanteLegal(long value) {
         this.logradouroCodigoRepresentanteLegal = value;
     }
 
@@ -253,7 +271,7 @@ public class SdtDadosCadastraisEmpresaRepresentanteLegalItens {
      * Obt�m o valor da propriedade bairroCodigoRepresentanteLegal.
      * 
      */
-    public int getBairroCodigoRepresentanteLegal() {
+    public long getBairroCodigoRepresentanteLegal() {
         return bairroCodigoRepresentanteLegal;
     }
 
@@ -261,7 +279,7 @@ public class SdtDadosCadastraisEmpresaRepresentanteLegalItens {
      * Define o valor da propriedade bairroCodigoRepresentanteLegal.
      * 
      */
-    public void setBairroCodigoRepresentanteLegal(int value) {
+    public void setBairroCodigoRepresentanteLegal(long value) {
         this.bairroCodigoRepresentanteLegal = value;
     }
 
@@ -413,7 +431,7 @@ public class SdtDadosCadastraisEmpresaRepresentanteLegalItens {
      * Obt�m o valor da propriedade municipioCodigoRepresentanteLegal.
      * 
      */
-    public int getMunicipioCodigoRepresentanteLegal() {
+    public long getMunicipioCodigoRepresentanteLegal() {
         return municipioCodigoRepresentanteLegal;
     }
 
@@ -421,7 +439,7 @@ public class SdtDadosCadastraisEmpresaRepresentanteLegalItens {
      * Define o valor da propriedade municipioCodigoRepresentanteLegal.
      * 
      */
-    public void setMunicipioCodigoRepresentanteLegal(int value) {
+    public void setMunicipioCodigoRepresentanteLegal(long value) {
         this.municipioCodigoRepresentanteLegal = value;
     }
 
@@ -477,7 +495,7 @@ public class SdtDadosCadastraisEmpresaRepresentanteLegalItens {
      * Obt�m o valor da propriedade paisCodigoRepresentanteLegal.
      * 
      */
-    public int getPaisCodigoRepresentanteLegal() {
+    public long getPaisCodigoRepresentanteLegal() {
         return paisCodigoRepresentanteLegal;
     }
 
@@ -485,7 +503,7 @@ public class SdtDadosCadastraisEmpresaRepresentanteLegalItens {
      * Define o valor da propriedade paisCodigoRepresentanteLegal.
      * 
      */
-    public void setPaisCodigoRepresentanteLegal(int value) {
+    public void setPaisCodigoRepresentanteLegal(long value) {
         this.paisCodigoRepresentanteLegal = value;
     }
 

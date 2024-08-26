@@ -23,13 +23,13 @@ public class TomcatController {
 	
     @GetMapping("/hello")
     public String sayHello() {
-    	if(UrlEndereco.WSDL_URL.equals("http://10.1.2.38:8080/")){
+    	if(UrlEndereco.EWSDL_URL.equals("http://10.1.2.38:8080/")){
     		return "homologação";
     	}
-    	if(UrlEndereco.WSDL_URL.equals("http://webservice.diadema.sp.gov.br:8888/")){
+    	if(UrlEndereco.EWSDL_URL.equals("http://webservice.diadema.sp.gov.br:8888/")){
     		return "PRODUÇÃO";
     	}
-    	return "enderçeo não encontrado";
+    	return "enderçeo não encontrado - " + UrlEndereco.EWSDL_URL;
     	
     }
     

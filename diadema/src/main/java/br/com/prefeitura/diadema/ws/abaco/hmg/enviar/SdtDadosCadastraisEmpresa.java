@@ -1,6 +1,8 @@
 
 package br.com.prefeitura.diadema.ws.abaco.hmg.enviar;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -12,112 +14,279 @@ import javax.xml.datatype.XMLGregorianCalendar;
 /**
  * <p>Classe Java de Sdt_DadosCadastraisEmpresa complex type.
  * 
- * <p>O seguinte fragmento do esquema especifica o conteï¿½do esperado contido dentro desta classe.
+ * <p>O seguinte fragmento do esquema especifica o conte�do esperado contido dentro desta classe.
  * 
  * <pre>
- * &lt;complexType name="Sdt_DadosCadastraisEmpresa"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;all&gt;
- *         &lt;element name="FLGACAO" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="DesRetorno" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="IdRetorno" type="{http://www.w3.org/2001/XMLSchema}byte"/&gt;
- *         &lt;element name="InscricaoMunicipal" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
- *         &lt;element name="SituacaoCadastral" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="DescSituacaoCadastral" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="RazaoSocial" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="NomeFantasia" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="CodigoNaturezaJuridica" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="DescricaoNaturezaJuridica" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="ValidadeCertificadoLicenciamentoIntegrado" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
- *         &lt;element name="NumeroCertificadoLicenciamentoIntegrado" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="InscricaoEstadual" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="DataInicalMEI" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
- *         &lt;element name="NumeroCNPJ" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="CodigoTipoISSQN" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="DescricaoTipoISSQN" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="SituacaoTLFInicial" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="DataAberturaEmpresa" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
- *         &lt;element name="DataCadastroPrefeitura" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
- *         &lt;element name="NumeroCRCContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="UFCRCContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="NomeEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="LogradouroNomeEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="NumeroEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="BairroNomeEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="MunicipioCodigoEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="MunicipioNomeEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="MunicipioUFEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="TelefoneEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="CEPEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="NomeContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="NumeroCPFContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="NumeroRGContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="OrgaoExpedidorContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="LogradouroCodigoContador" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="LogradouroTipoContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="LogradouroNomeContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="BairroCodigoContador" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="BairroNomeContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="TelefoneContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="NumeroLogradouroContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="ComplementoLogradouroContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="CEPContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="MunicipioCodigoContador" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="MunicipioNomeContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="MunicipioUFContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="FAXContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="EmailContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="CNPJContador" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="QtdeFuncionarios" type="{http://www.w3.org/2001/XMLSchema}short"/&gt;
- *         &lt;element name="QtdeProfissionais" type="{http://www.w3.org/2001/XMLSchema}short"/&gt;
- *         &lt;element name="ValorCapitalSocial" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
- *         &lt;element name="NumeroRegistroJunta" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="Nmrregjun" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="DataRegistroJunta" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
- *         &lt;element name="ProcessoUltimaAlteracaoJunta" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="DataUltimaAlteracaoJunta" type="{http://www.w3.org/2001/XMLSchema}date"/&gt;
- *         &lt;element name="InscricaoImobiliaria" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="NumeroTelefoneEmpresa" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="HoraEntradaPrimario" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="HoraSaidaPrimario" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="HoraEntradaSecundario" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="HoraSaidaSecundario" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="HoraEntradaSabado" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="HoraSaidaSabado" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="HoraEntradaDomingo" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="HoraSaidaDomingo" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="ObservacaoEmpresa" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="EmailEmpresa" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="MediaAreaOcupada" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
- *         &lt;element name="LogradouroCodigoLocalizacaoEmpresa" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="BairroCodigoLocalizacaoEmpresa" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="NumeroLocalizacaoEmpresa" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="CEPLocalizacaoEmpresa" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="MunicipioCodigoLocalizacaoEmpresa" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="ComplementoLocalizacaoEmpresa" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="Contratos" type="{AGATA}ArrayOfSdt_DadosCadastraisEmpresa.ContratoItens"/&gt;
- *         &lt;element name="Cnaes" type="{AGATA}ArrayOfSdt_DadosCadastraisEmpresa.CnaeItens"/&gt;
- *         &lt;element name="CodigoClassificacaoAtividadeEconomica" type="{http://www.w3.org/2001/XMLSchema}byte"/&gt;
- *         &lt;element name="DescricaoClassificacaoAtividadeEconomica" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="ComplementoAtividadeEconomica" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="CaracteristicasFuncionamento" type="{AGATA}ArrayOfSdt_DadosCadastraisEmpresa.CaracteristicaFuncionamentoItens"/&gt;
- *         &lt;element name="Socios" type="{AGATA}ArrayOfSdt_DadosCadastraisEmpresa.SocioItens"/&gt;
- *         &lt;element name="Procuradores" type="{AGATA}ArrayOfSdt_DadosCadastraisEmpresa.ProcuradorItens"/&gt;
- *         &lt;element name="RepresentantesLegais" type="{AGATA}ArrayOfSdt_DadosCadastraisEmpresa.RepresentanteLegalItens"/&gt;
- *         &lt;element name="Servicos" type="{AGATA}ArrayOfSdt_DadosCadastraisEmpresa.ServicoItens"/&gt;
- *         &lt;element name="GrupoSubgrupoAtividades" type="{AGATA}ArrayOfSdt_DadosCadastraisEmpresa.GrupoSubgrupoAtividadeItens"/&gt;
- *       &lt;/all&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
+ * &lt;complexType name="Sdt_DadosCadastraisEmpresa">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="FLGACAO" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="DesRetorno" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="IdRetorno" type="{http://www.w3.org/2001/XMLSchema}byte"/>
+ *         &lt;element name="InscricaoMunicipal" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="SituacaoCadastral" type="{http://www.w3.org/2001/XMLSchema}byte"/>
+ *         &lt;element name="DescSituacaoCadastral" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="RazaoSocial" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="NomeFantasia" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CodigoNaturezaJuridica" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="DescricaoNaturezaJuridica" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="ValidadeCertificadoLicenciamentoIntegrado" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *         &lt;element name="NumeroCertificadoLicenciamentoIntegrado" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="InscricaoEstadual" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="DataInicalMEI" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *         &lt;element name="NumeroCNPJ" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CodigoTipoISSQN" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="DescricaoTipoISSQN" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="SituacaoTLFInicial" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="DataAberturaEmpresa" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *         &lt;element name="DataCadastroPrefeitura" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *         &lt;element name="NumeroCRCContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="UFCRCContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="NomeEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="LogradouroNomeEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="NumeroEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="BairroNomeEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="MunicipioCodigoEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="MunicipioNomeEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="MunicipioUFEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="TelefoneEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CEPEscritorioContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="NomeContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="NumeroCPFContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="NumeroRGContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="OrgaoExpedidorContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="LogradouroCodigoContador" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="LogradouroTipoContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="LogradouroNomeContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="BairroCodigoContador" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="BairroNomeContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="TelefoneContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="NumeroLogradouroContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="ComplementoLogradouroContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CEPContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="MunicipioCodigoContador" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="MunicipioNomeContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="MunicipioUFContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="FAXContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="EmailContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CNPJContador" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="QtdeFuncionarios" type="{http://www.w3.org/2001/XMLSchema}short"/>
+ *         &lt;element name="QtdeProfissionais" type="{http://www.w3.org/2001/XMLSchema}short"/>
+ *         &lt;element name="ValorCapitalSocial" type="{http://www.w3.org/2001/XMLSchema}double"/>
+ *         &lt;element name="NumeroRegistroJunta" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="DataRegistroJunta" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *         &lt;element name="ProcessoUltimaAlteracaoJunta" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="DataUltimaAlteracaoJunta" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *         &lt;element name="InscricaoImobiliaria" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="NumeroTelefoneEmpresa" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="HoraEntradaPrimario" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="HoraSaidaPrimario" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="HoraEntradaSecundario" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="HoraSaidaSecundario" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="HoraEntradaSabado" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="HoraSaidaSabado" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="HoraEntradaDomingo" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="HoraSaidaDomingo" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="ObservacaoEmpresa" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="EmailEmpresa" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="MediaAreaOcupada" type="{http://www.w3.org/2001/XMLSchema}double"/>
+ *         &lt;element name="LogradouroCodigoLocalizacaoEmpresa" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="BairroCodigoLocalizacaoEmpresa" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="NumeroLocalizacaoEmpresa" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CEPLocalizacaoEmpresa" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="MunicipioCodigoLocalizacaoEmpresa" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="ComplementoLocalizacaoEmpresa" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="CodigoClassificacaoAtividadeEconomica" type="{http://www.w3.org/2001/XMLSchema}byte"/>
+ *         &lt;element name="DescricaoClassificacaoAtividadeEconomica" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="ComplementoAtividadeEconomica" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="EmpresaAutonomo" type="{http://www.w3.org/2001/XMLSchema}byte"/>
+ *         &lt;element name="Contratos">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="ContratoItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.ContratoItens" maxOccurs="unbounded" minOccurs="0"/>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="Cnaes">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="CnaeItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.CnaeItens" maxOccurs="unbounded" minOccurs="0"/>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="CaracteristicasFuncionamento">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="CaracteristicaFuncionamentoItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.CaracteristicaFuncionamentoItens" maxOccurs="unbounded" minOccurs="0"/>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="Socios">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="SocioItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.SocioItens" maxOccurs="unbounded" minOccurs="0"/>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="Procuradores">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="ProcuradorItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.ProcuradorItens" maxOccurs="unbounded" minOccurs="0"/>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="RepresentantesLegais">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="RepresentanteLegalItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.RepresentanteLegalItens" maxOccurs="unbounded" minOccurs="0"/>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="Servicos">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="ServicoItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.ServicoItens" maxOccurs="unbounded" minOccurs="0"/>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="GrupoSubgrupoAtividades">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="GrupoSubgrupoAtividadeItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.GrupoSubgrupoAtividadeItens" maxOccurs="unbounded" minOccurs="0"/>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
  * </pre>
  * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Sdt_DadosCadastraisEmpresa", propOrder = {
-
+    "flgacao",
+    "desRetorno",
+    "idRetorno",
+    "inscricaoMunicipal",
+    "situacaoCadastral",
+    "descSituacaoCadastral",
+    "razaoSocial",
+    "nomeFantasia",
+    "codigoNaturezaJuridica",
+    "descricaoNaturezaJuridica",
+    "validadeCertificadoLicenciamentoIntegrado",
+    "numeroCertificadoLicenciamentoIntegrado",
+    "inscricaoEstadual",
+    "dataInicalMEI",
+    "numeroCNPJ",
+    "codigoTipoISSQN",
+    "descricaoTipoISSQN",
+    "situacaoTLFInicial",
+    "dataAberturaEmpresa",
+    "dataCadastroPrefeitura",
+    "numeroCRCContador",
+    "ufcrcContador",
+    "nomeEscritorioContador",
+    "logradouroNomeEscritorioContador",
+    "numeroEscritorioContador",
+    "bairroNomeEscritorioContador",
+    "municipioCodigoEscritorioContador",
+    "municipioNomeEscritorioContador",
+    "municipioUFEscritorioContador",
+    "telefoneEscritorioContador",
+    "cepEscritorioContador",
+    "nomeContador",
+    "numeroCPFContador",
+    "numeroRGContador",
+    "orgaoExpedidorContador",
+    "logradouroCodigoContador",
+    "logradouroTipoContador",
+    "logradouroNomeContador",
+    "bairroCodigoContador",
+    "bairroNomeContador",
+    "telefoneContador",
+    "numeroLogradouroContador",
+    "complementoLogradouroContador",
+    "cepContador",
+    "municipioCodigoContador",
+    "municipioNomeContador",
+    "municipioUFContador",
+    "faxContador",
+    "emailContador",
+    "cnpjContador",
+    "qtdeFuncionarios",
+    "qtdeProfissionais",
+    "valorCapitalSocial",
+    "numeroRegistroJunta",
+    "dataRegistroJunta",
+    "processoUltimaAlteracaoJunta",
+    "dataUltimaAlteracaoJunta",
+    "inscricaoImobiliaria",
+    "numeroTelefoneEmpresa",
+    "horaEntradaPrimario",
+    "horaSaidaPrimario",
+    "horaEntradaSecundario",
+    "horaSaidaSecundario",
+    "horaEntradaSabado",
+    "horaSaidaSabado",
+    "horaEntradaDomingo",
+    "horaSaidaDomingo",
+    "observacaoEmpresa",
+    "emailEmpresa",
+    "mediaAreaOcupada",
+    "logradouroCodigoLocalizacaoEmpresa",
+    "bairroCodigoLocalizacaoEmpresa",
+    "numeroLocalizacaoEmpresa",
+    "cepLocalizacaoEmpresa",
+    "municipioCodigoLocalizacaoEmpresa",
+    "complementoLocalizacaoEmpresa",
+    "codigoClassificacaoAtividadeEconomica",
+    "descricaoClassificacaoAtividadeEconomica",
+    "complementoAtividadeEconomica",
+    "empresaAutonomo",
+    "contratos",
+    "cnaes",
+    "caracteristicasFuncionamento",
+    "socios",
+    "procuradores",
+    "representantesLegais",
+    "servicos",
+    "grupoSubgrupoAtividades"
 })
 public class SdtDadosCadastraisEmpresa {
 
@@ -129,8 +298,8 @@ public class SdtDadosCadastraisEmpresa {
     protected byte idRetorno;
     @XmlElement(name = "InscricaoMunicipal")
     protected long inscricaoMunicipal;
-    @XmlElement(name = "SituacaoCadastral", required = true)
-    protected String situacaoCadastral;
+    @XmlElement(name = "SituacaoCadastral")
+    protected byte situacaoCadastral;
     @XmlElement(name = "DescSituacaoCadastral", required = true)
     protected String descSituacaoCadastral;
     @XmlElement(name = "RazaoSocial", required = true)
@@ -141,16 +310,16 @@ public class SdtDadosCadastraisEmpresa {
     protected int codigoNaturezaJuridica;
     @XmlElement(name = "DescricaoNaturezaJuridica", required = true)
     protected String descricaoNaturezaJuridica;
-    @XmlElement(name = "ValidadeCertificadoLicenciamentoIntegrado", required = true)
+    @XmlElement(name = "ValidadeCertificadoLicenciamentoIntegrado", required = true, nillable = true)
     @XmlSchemaType(name = "date")
-    protected String validadeCertificadoLicenciamentoIntegrado;
+    protected XMLGregorianCalendar validadeCertificadoLicenciamentoIntegrado;
     @XmlElement(name = "NumeroCertificadoLicenciamentoIntegrado", required = true)
     protected String numeroCertificadoLicenciamentoIntegrado;
     @XmlElement(name = "InscricaoEstadual", required = true)
     protected String inscricaoEstadual;
-    @XmlElement(name = "DataInicalMEI", required = true)
+    @XmlElement(name = "DataInicalMEI", required = true, nillable = true)
     @XmlSchemaType(name = "date")
-    protected String dataInicalMEI;
+    protected XMLGregorianCalendar dataInicalMEI;
     @XmlElement(name = "NumeroCNPJ", required = true)
     protected String numeroCNPJ;
     @XmlElement(name = "CodigoTipoISSQN", required = true)
@@ -159,12 +328,12 @@ public class SdtDadosCadastraisEmpresa {
     protected String descricaoTipoISSQN;
     @XmlElement(name = "SituacaoTLFInicial", required = true)
     protected String situacaoTLFInicial;
-    @XmlElement(name = "DataAberturaEmpresa", required = true)
+    @XmlElement(name = "DataAberturaEmpresa", required = true, nillable = true)
     @XmlSchemaType(name = "date")
-    protected String dataAberturaEmpresa;
-    @XmlElement(name = "DataCadastroPrefeitura", required = true)
+    protected XMLGregorianCalendar dataAberturaEmpresa;
+    @XmlElement(name = "DataCadastroPrefeitura", required = true, nillable = true)
     @XmlSchemaType(name = "date")
-    protected String dataCadastroPrefeitura;
+    protected XMLGregorianCalendar dataCadastroPrefeitura;
     @XmlElement(name = "NumeroCRCContador", required = true)
     protected String numeroCRCContador;
     @XmlElement(name = "UFCRCContador", required = true)
@@ -178,7 +347,7 @@ public class SdtDadosCadastraisEmpresa {
     @XmlElement(name = "BairroNomeEscritorioContador", required = true)
     protected String bairroNomeEscritorioContador;
     @XmlElement(name = "MunicipioCodigoEscritorioContador")
-    protected int municipioCodigoEscritorioContador;
+    protected long municipioCodigoEscritorioContador;
     @XmlElement(name = "MunicipioNomeEscritorioContador", required = true)
     protected String municipioNomeEscritorioContador;
     @XmlElement(name = "MunicipioUFEscritorioContador", required = true)
@@ -196,13 +365,13 @@ public class SdtDadosCadastraisEmpresa {
     @XmlElement(name = "OrgaoExpedidorContador", required = true)
     protected String orgaoExpedidorContador;
     @XmlElement(name = "LogradouroCodigoContador")
-    protected int logradouroCodigoContador;
+    protected long logradouroCodigoContador;
     @XmlElement(name = "LogradouroTipoContador", required = true)
     protected String logradouroTipoContador;
     @XmlElement(name = "LogradouroNomeContador", required = true)
     protected String logradouroNomeContador;
     @XmlElement(name = "BairroCodigoContador")
-    protected int bairroCodigoContador;
+    protected long bairroCodigoContador;
     @XmlElement(name = "BairroNomeContador", required = true)
     protected String bairroNomeContador;
     @XmlElement(name = "TelefoneContador", required = true)
@@ -214,7 +383,7 @@ public class SdtDadosCadastraisEmpresa {
     @XmlElement(name = "CEPContador", required = true)
     protected String cepContador;
     @XmlElement(name = "MunicipioCodigoContador")
-    protected int municipioCodigoContador;
+    protected long municipioCodigoContador;
     @XmlElement(name = "MunicipioNomeContador", required = true)
     protected String municipioNomeContador;
     @XmlElement(name = "MunicipioUFContador", required = true)
@@ -233,16 +402,14 @@ public class SdtDadosCadastraisEmpresa {
     protected double valorCapitalSocial;
     @XmlElement(name = "NumeroRegistroJunta", required = true)
     protected String numeroRegistroJunta;
-    @XmlElement(name = "Nmrregjun", required = true)
-    protected String nmrregjun;
-    @XmlElement(name = "DataRegistroJunta", required = true)
+    @XmlElement(name = "DataRegistroJunta", required = true, nillable = true)
     @XmlSchemaType(name = "date")
-    protected String dataRegistroJunta;
+    protected XMLGregorianCalendar dataRegistroJunta;
     @XmlElement(name = "ProcessoUltimaAlteracaoJunta", required = true)
     protected String processoUltimaAlteracaoJunta;
-    @XmlElement(name = "DataUltimaAlteracaoJunta", required = true)
+    @XmlElement(name = "DataUltimaAlteracaoJunta", required = true, nillable = true)
     @XmlSchemaType(name = "date")
-    protected String dataUltimaAlteracaoJunta;
+    protected XMLGregorianCalendar dataUltimaAlteracaoJunta;
     @XmlElement(name = "InscricaoImobiliaria", required = true)
     protected String inscricaoImobiliaria;
     @XmlElement(name = "NumeroTelefoneEmpresa", required = true)
@@ -270,42 +437,44 @@ public class SdtDadosCadastraisEmpresa {
     @XmlElement(name = "MediaAreaOcupada")
     protected double mediaAreaOcupada;
     @XmlElement(name = "LogradouroCodigoLocalizacaoEmpresa")
-    protected int logradouroCodigoLocalizacaoEmpresa;
+    protected long logradouroCodigoLocalizacaoEmpresa;
     @XmlElement(name = "BairroCodigoLocalizacaoEmpresa")
-    protected int bairroCodigoLocalizacaoEmpresa;
+    protected long bairroCodigoLocalizacaoEmpresa;
     @XmlElement(name = "NumeroLocalizacaoEmpresa", required = true)
     protected String numeroLocalizacaoEmpresa;
     @XmlElement(name = "CEPLocalizacaoEmpresa", required = true)
     protected String cepLocalizacaoEmpresa;
     @XmlElement(name = "MunicipioCodigoLocalizacaoEmpresa")
-    protected int municipioCodigoLocalizacaoEmpresa;
+    protected long municipioCodigoLocalizacaoEmpresa;
     @XmlElement(name = "ComplementoLocalizacaoEmpresa", required = true)
     protected String complementoLocalizacaoEmpresa;
-    @XmlElement(name = "Contratos", required = true)
-    protected ArrayOfSdtDadosCadastraisEmpresaContratoItens contratos;
-    @XmlElement(name = "Cnaes", required = true)
-    protected ArrayOfSdtDadosCadastraisEmpresaCnaeItens cnaes;
     @XmlElement(name = "CodigoClassificacaoAtividadeEconomica")
     protected byte codigoClassificacaoAtividadeEconomica;
     @XmlElement(name = "DescricaoClassificacaoAtividadeEconomica", required = true)
     protected String descricaoClassificacaoAtividadeEconomica;
     @XmlElement(name = "ComplementoAtividadeEconomica", required = true)
     protected String complementoAtividadeEconomica;
+    @XmlElement(name = "EmpresaAutonomo")
+    protected byte empresaAutonomo;
+    @XmlElement(name = "Contratos", required = true)
+    protected SdtDadosCadastraisEmpresa.Contratos contratos;
+    @XmlElement(name = "Cnaes", required = true)
+    protected SdtDadosCadastraisEmpresa.Cnaes cnaes;
     @XmlElement(name = "CaracteristicasFuncionamento", required = true)
-    protected ArrayOfSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens caracteristicasFuncionamento;
+    protected SdtDadosCadastraisEmpresa.CaracteristicasFuncionamento caracteristicasFuncionamento;
     @XmlElement(name = "Socios", required = true)
-    protected ArrayOfSdtDadosCadastraisEmpresaSocioItens socios;
+    protected SdtDadosCadastraisEmpresa.Socios socios;
     @XmlElement(name = "Procuradores", required = true)
-    protected ArrayOfSdtDadosCadastraisEmpresaProcuradorItens procuradores;
+    protected SdtDadosCadastraisEmpresa.Procuradores procuradores;
     @XmlElement(name = "RepresentantesLegais", required = true)
-    protected ArrayOfSdtDadosCadastraisEmpresaRepresentanteLegalItens representantesLegais;
+    protected SdtDadosCadastraisEmpresa.RepresentantesLegais representantesLegais;
     @XmlElement(name = "Servicos", required = true)
-    protected ArrayOfSdtDadosCadastraisEmpresaServicoItens servicos;
+    protected SdtDadosCadastraisEmpresa.Servicos servicos;
     @XmlElement(name = "GrupoSubgrupoAtividades", required = true)
-    protected ArrayOfSdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens grupoSubgrupoAtividades;
+    protected SdtDadosCadastraisEmpresa.GrupoSubgrupoAtividades grupoSubgrupoAtividades;
 
     /**
-     * Obtï¿½m o valor da propriedade flgacao.
+     * Obt�m o valor da propriedade flgacao.
      * 
      * @return
      *     possible object is
@@ -329,7 +498,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade desRetorno.
+     * Obt�m o valor da propriedade desRetorno.
      * 
      * @return
      *     possible object is
@@ -353,7 +522,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade idRetorno.
+     * Obt�m o valor da propriedade idRetorno.
      * 
      */
     public byte getIdRetorno() {
@@ -369,7 +538,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade inscricaoMunicipal.
+     * Obt�m o valor da propriedade inscricaoMunicipal.
      * 
      */
     public long getInscricaoMunicipal() {
@@ -385,31 +554,23 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade situacaoCadastral.
+     * Obt�m o valor da propriedade situacaoCadastral.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getSituacaoCadastral() {
+    public byte getSituacaoCadastral() {
         return situacaoCadastral;
     }
 
     /**
      * Define o valor da propriedade situacaoCadastral.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setSituacaoCadastral(String value) {
+    public void setSituacaoCadastral(byte value) {
         this.situacaoCadastral = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade descSituacaoCadastral.
+     * Obt�m o valor da propriedade descSituacaoCadastral.
      * 
      * @return
      *     possible object is
@@ -433,7 +594,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade razaoSocial.
+     * Obt�m o valor da propriedade razaoSocial.
      * 
      * @return
      *     possible object is
@@ -457,7 +618,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade nomeFantasia.
+     * Obt�m o valor da propriedade nomeFantasia.
      * 
      * @return
      *     possible object is
@@ -481,7 +642,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade codigoNaturezaJuridica.
+     * Obt�m o valor da propriedade codigoNaturezaJuridica.
      * 
      */
     public int getCodigoNaturezaJuridica() {
@@ -497,7 +658,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade descricaoNaturezaJuridica.
+     * Obt�m o valor da propriedade descricaoNaturezaJuridica.
      * 
      * @return
      *     possible object is
@@ -521,14 +682,14 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade validadeCertificadoLicenciamentoIntegrado.
+     * Obt�m o valor da propriedade validadeCertificadoLicenciamentoIntegrado.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public String getValidadeCertificadoLicenciamentoIntegrado() {
+    public XMLGregorianCalendar getValidadeCertificadoLicenciamentoIntegrado() {
         return validadeCertificadoLicenciamentoIntegrado;
     }
 
@@ -537,15 +698,15 @@ public class SdtDadosCadastraisEmpresa {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setValidadeCertificadoLicenciamentoIntegrado(String value) {
+    public void setValidadeCertificadoLicenciamentoIntegrado(XMLGregorianCalendar value) {
         this.validadeCertificadoLicenciamentoIntegrado = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade numeroCertificadoLicenciamentoIntegrado.
+     * Obt�m o valor da propriedade numeroCertificadoLicenciamentoIntegrado.
      * 
      * @return
      *     possible object is
@@ -569,7 +730,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade inscricaoEstadual.
+     * Obt�m o valor da propriedade inscricaoEstadual.
      * 
      * @return
      *     possible object is
@@ -593,14 +754,14 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade dataInicalMEI.
+     * Obt�m o valor da propriedade dataInicalMEI.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public String getDataInicalMEI() {
+    public XMLGregorianCalendar getDataInicalMEI() {
         return dataInicalMEI;
     }
 
@@ -609,15 +770,15 @@ public class SdtDadosCadastraisEmpresa {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setDataInicalMEI(String value) {
+    public void setDataInicalMEI(XMLGregorianCalendar value) {
         this.dataInicalMEI = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade numeroCNPJ.
+     * Obt�m o valor da propriedade numeroCNPJ.
      * 
      * @return
      *     possible object is
@@ -641,7 +802,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade codigoTipoISSQN.
+     * Obt�m o valor da propriedade codigoTipoISSQN.
      * 
      * @return
      *     possible object is
@@ -665,7 +826,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade descricaoTipoISSQN.
+     * Obt�m o valor da propriedade descricaoTipoISSQN.
      * 
      * @return
      *     possible object is
@@ -689,7 +850,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade situacaoTLFInicial.
+     * Obt�m o valor da propriedade situacaoTLFInicial.
      * 
      * @return
      *     possible object is
@@ -713,14 +874,14 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade dataAberturaEmpresa.
+     * Obt�m o valor da propriedade dataAberturaEmpresa.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public String getDataAberturaEmpresa() {
+    public XMLGregorianCalendar getDataAberturaEmpresa() {
         return dataAberturaEmpresa;
     }
 
@@ -729,22 +890,22 @@ public class SdtDadosCadastraisEmpresa {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setDataAberturaEmpresa(String value) {
+    public void setDataAberturaEmpresa(XMLGregorianCalendar value) {
         this.dataAberturaEmpresa = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade dataCadastroPrefeitura.
+     * Obt�m o valor da propriedade dataCadastroPrefeitura.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public String getDataCadastroPrefeitura() {
+    public XMLGregorianCalendar getDataCadastroPrefeitura() {
         return dataCadastroPrefeitura;
     }
 
@@ -753,15 +914,15 @@ public class SdtDadosCadastraisEmpresa {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setDataCadastroPrefeitura(String value) {
+    public void setDataCadastroPrefeitura(XMLGregorianCalendar value) {
         this.dataCadastroPrefeitura = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade numeroCRCContador.
+     * Obt�m o valor da propriedade numeroCRCContador.
      * 
      * @return
      *     possible object is
@@ -785,7 +946,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade ufcrcContador.
+     * Obt�m o valor da propriedade ufcrcContador.
      * 
      * @return
      *     possible object is
@@ -809,7 +970,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade nomeEscritorioContador.
+     * Obt�m o valor da propriedade nomeEscritorioContador.
      * 
      * @return
      *     possible object is
@@ -833,7 +994,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade logradouroNomeEscritorioContador.
+     * Obt�m o valor da propriedade logradouroNomeEscritorioContador.
      * 
      * @return
      *     possible object is
@@ -857,7 +1018,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade numeroEscritorioContador.
+     * Obt�m o valor da propriedade numeroEscritorioContador.
      * 
      * @return
      *     possible object is
@@ -881,7 +1042,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade bairroNomeEscritorioContador.
+     * Obt�m o valor da propriedade bairroNomeEscritorioContador.
      * 
      * @return
      *     possible object is
@@ -905,10 +1066,10 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade municipioCodigoEscritorioContador.
+     * Obt�m o valor da propriedade municipioCodigoEscritorioContador.
      * 
      */
-    public int getMunicipioCodigoEscritorioContador() {
+    public long getMunicipioCodigoEscritorioContador() {
         return municipioCodigoEscritorioContador;
     }
 
@@ -916,12 +1077,12 @@ public class SdtDadosCadastraisEmpresa {
      * Define o valor da propriedade municipioCodigoEscritorioContador.
      * 
      */
-    public void setMunicipioCodigoEscritorioContador(int value) {
+    public void setMunicipioCodigoEscritorioContador(long value) {
         this.municipioCodigoEscritorioContador = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade municipioNomeEscritorioContador.
+     * Obt�m o valor da propriedade municipioNomeEscritorioContador.
      * 
      * @return
      *     possible object is
@@ -945,7 +1106,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade municipioUFEscritorioContador.
+     * Obt�m o valor da propriedade municipioUFEscritorioContador.
      * 
      * @return
      *     possible object is
@@ -969,7 +1130,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade telefoneEscritorioContador.
+     * Obt�m o valor da propriedade telefoneEscritorioContador.
      * 
      * @return
      *     possible object is
@@ -993,7 +1154,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade cepEscritorioContador.
+     * Obt�m o valor da propriedade cepEscritorioContador.
      * 
      * @return
      *     possible object is
@@ -1017,7 +1178,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade nomeContador.
+     * Obt�m o valor da propriedade nomeContador.
      * 
      * @return
      *     possible object is
@@ -1041,7 +1202,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade numeroCPFContador.
+     * Obt�m o valor da propriedade numeroCPFContador.
      * 
      * @return
      *     possible object is
@@ -1065,7 +1226,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade numeroRGContador.
+     * Obt�m o valor da propriedade numeroRGContador.
      * 
      * @return
      *     possible object is
@@ -1089,7 +1250,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade orgaoExpedidorContador.
+     * Obt�m o valor da propriedade orgaoExpedidorContador.
      * 
      * @return
      *     possible object is
@@ -1113,10 +1274,10 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade logradouroCodigoContador.
+     * Obt�m o valor da propriedade logradouroCodigoContador.
      * 
      */
-    public int getLogradouroCodigoContador() {
+    public long getLogradouroCodigoContador() {
         return logradouroCodigoContador;
     }
 
@@ -1124,12 +1285,12 @@ public class SdtDadosCadastraisEmpresa {
      * Define o valor da propriedade logradouroCodigoContador.
      * 
      */
-    public void setLogradouroCodigoContador(int value) {
+    public void setLogradouroCodigoContador(long value) {
         this.logradouroCodigoContador = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade logradouroTipoContador.
+     * Obt�m o valor da propriedade logradouroTipoContador.
      * 
      * @return
      *     possible object is
@@ -1153,7 +1314,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade logradouroNomeContador.
+     * Obt�m o valor da propriedade logradouroNomeContador.
      * 
      * @return
      *     possible object is
@@ -1177,10 +1338,10 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade bairroCodigoContador.
+     * Obt�m o valor da propriedade bairroCodigoContador.
      * 
      */
-    public int getBairroCodigoContador() {
+    public long getBairroCodigoContador() {
         return bairroCodigoContador;
     }
 
@@ -1188,12 +1349,12 @@ public class SdtDadosCadastraisEmpresa {
      * Define o valor da propriedade bairroCodigoContador.
      * 
      */
-    public void setBairroCodigoContador(int value) {
+    public void setBairroCodigoContador(long value) {
         this.bairroCodigoContador = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade bairroNomeContador.
+     * Obt�m o valor da propriedade bairroNomeContador.
      * 
      * @return
      *     possible object is
@@ -1217,7 +1378,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade telefoneContador.
+     * Obt�m o valor da propriedade telefoneContador.
      * 
      * @return
      *     possible object is
@@ -1241,7 +1402,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade numeroLogradouroContador.
+     * Obt�m o valor da propriedade numeroLogradouroContador.
      * 
      * @return
      *     possible object is
@@ -1265,7 +1426,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade complementoLogradouroContador.
+     * Obt�m o valor da propriedade complementoLogradouroContador.
      * 
      * @return
      *     possible object is
@@ -1289,7 +1450,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade cepContador.
+     * Obt�m o valor da propriedade cepContador.
      * 
      * @return
      *     possible object is
@@ -1313,10 +1474,10 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade municipioCodigoContador.
+     * Obt�m o valor da propriedade municipioCodigoContador.
      * 
      */
-    public int getMunicipioCodigoContador() {
+    public long getMunicipioCodigoContador() {
         return municipioCodigoContador;
     }
 
@@ -1324,12 +1485,12 @@ public class SdtDadosCadastraisEmpresa {
      * Define o valor da propriedade municipioCodigoContador.
      * 
      */
-    public void setMunicipioCodigoContador(int value) {
+    public void setMunicipioCodigoContador(long value) {
         this.municipioCodigoContador = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade municipioNomeContador.
+     * Obt�m o valor da propriedade municipioNomeContador.
      * 
      * @return
      *     possible object is
@@ -1353,7 +1514,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade municipioUFContador.
+     * Obt�m o valor da propriedade municipioUFContador.
      * 
      * @return
      *     possible object is
@@ -1377,7 +1538,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade faxContador.
+     * Obt�m o valor da propriedade faxContador.
      * 
      * @return
      *     possible object is
@@ -1401,7 +1562,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade emailContador.
+     * Obt�m o valor da propriedade emailContador.
      * 
      * @return
      *     possible object is
@@ -1425,7 +1586,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade cnpjContador.
+     * Obt�m o valor da propriedade cnpjContador.
      * 
      * @return
      *     possible object is
@@ -1449,7 +1610,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade qtdeFuncionarios.
+     * Obt�m o valor da propriedade qtdeFuncionarios.
      * 
      */
     public short getQtdeFuncionarios() {
@@ -1465,7 +1626,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade qtdeProfissionais.
+     * Obt�m o valor da propriedade qtdeProfissionais.
      * 
      */
     public short getQtdeProfissionais() {
@@ -1481,7 +1642,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade valorCapitalSocial.
+     * Obt�m o valor da propriedade valorCapitalSocial.
      * 
      */
     public double getValorCapitalSocial() {
@@ -1497,7 +1658,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade numeroRegistroJunta.
+     * Obt�m o valor da propriedade numeroRegistroJunta.
      * 
      * @return
      *     possible object is
@@ -1521,38 +1682,14 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade nmrregjun.
+     * Obt�m o valor da propriedade dataRegistroJunta.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public String getNmrregjun() {
-        return nmrregjun;
-    }
-
-    /**
-     * Define o valor da propriedade nmrregjun.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNmrregjun(String value) {
-        this.nmrregjun = value;
-    }
-
-    /**
-     * Obtï¿½m o valor da propriedade dataRegistroJunta.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDataRegistroJunta() {
+    public XMLGregorianCalendar getDataRegistroJunta() {
         return dataRegistroJunta;
     }
 
@@ -1561,15 +1698,15 @@ public class SdtDadosCadastraisEmpresa {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setDataRegistroJunta(String value) {
+    public void setDataRegistroJunta(XMLGregorianCalendar value) {
         this.dataRegistroJunta = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade processoUltimaAlteracaoJunta.
+     * Obt�m o valor da propriedade processoUltimaAlteracaoJunta.
      * 
      * @return
      *     possible object is
@@ -1593,14 +1730,14 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade dataUltimaAlteracaoJunta.
+     * Obt�m o valor da propriedade dataUltimaAlteracaoJunta.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public String getDataUltimaAlteracaoJunta() {
+    public XMLGregorianCalendar getDataUltimaAlteracaoJunta() {
         return dataUltimaAlteracaoJunta;
     }
 
@@ -1609,15 +1746,15 @@ public class SdtDadosCadastraisEmpresa {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setDataUltimaAlteracaoJunta(String value) {
+    public void setDataUltimaAlteracaoJunta(XMLGregorianCalendar value) {
         this.dataUltimaAlteracaoJunta = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade inscricaoImobiliaria.
+     * Obt�m o valor da propriedade inscricaoImobiliaria.
      * 
      * @return
      *     possible object is
@@ -1641,7 +1778,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade numeroTelefoneEmpresa.
+     * Obt�m o valor da propriedade numeroTelefoneEmpresa.
      * 
      * @return
      *     possible object is
@@ -1665,7 +1802,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade horaEntradaPrimario.
+     * Obt�m o valor da propriedade horaEntradaPrimario.
      * 
      * @return
      *     possible object is
@@ -1689,7 +1826,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade horaSaidaPrimario.
+     * Obt�m o valor da propriedade horaSaidaPrimario.
      * 
      * @return
      *     possible object is
@@ -1713,7 +1850,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade horaEntradaSecundario.
+     * Obt�m o valor da propriedade horaEntradaSecundario.
      * 
      * @return
      *     possible object is
@@ -1737,7 +1874,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade horaSaidaSecundario.
+     * Obt�m o valor da propriedade horaSaidaSecundario.
      * 
      * @return
      *     possible object is
@@ -1761,7 +1898,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade horaEntradaSabado.
+     * Obt�m o valor da propriedade horaEntradaSabado.
      * 
      * @return
      *     possible object is
@@ -1785,7 +1922,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade horaSaidaSabado.
+     * Obt�m o valor da propriedade horaSaidaSabado.
      * 
      * @return
      *     possible object is
@@ -1809,7 +1946,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade horaEntradaDomingo.
+     * Obt�m o valor da propriedade horaEntradaDomingo.
      * 
      * @return
      *     possible object is
@@ -1833,7 +1970,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade horaSaidaDomingo.
+     * Obt�m o valor da propriedade horaSaidaDomingo.
      * 
      * @return
      *     possible object is
@@ -1857,7 +1994,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade observacaoEmpresa.
+     * Obt�m o valor da propriedade observacaoEmpresa.
      * 
      * @return
      *     possible object is
@@ -1881,7 +2018,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade emailEmpresa.
+     * Obt�m o valor da propriedade emailEmpresa.
      * 
      * @return
      *     possible object is
@@ -1905,7 +2042,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade mediaAreaOcupada.
+     * Obt�m o valor da propriedade mediaAreaOcupada.
      * 
      */
     public double getMediaAreaOcupada() {
@@ -1921,10 +2058,10 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade logradouroCodigoLocalizacaoEmpresa.
+     * Obt�m o valor da propriedade logradouroCodigoLocalizacaoEmpresa.
      * 
      */
-    public int getLogradouroCodigoLocalizacaoEmpresa() {
+    public long getLogradouroCodigoLocalizacaoEmpresa() {
         return logradouroCodigoLocalizacaoEmpresa;
     }
 
@@ -1932,15 +2069,15 @@ public class SdtDadosCadastraisEmpresa {
      * Define o valor da propriedade logradouroCodigoLocalizacaoEmpresa.
      * 
      */
-    public void setLogradouroCodigoLocalizacaoEmpresa(int value) {
+    public void setLogradouroCodigoLocalizacaoEmpresa(long value) {
         this.logradouroCodigoLocalizacaoEmpresa = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade bairroCodigoLocalizacaoEmpresa.
+     * Obt�m o valor da propriedade bairroCodigoLocalizacaoEmpresa.
      * 
      */
-    public int getBairroCodigoLocalizacaoEmpresa() {
+    public long getBairroCodigoLocalizacaoEmpresa() {
         return bairroCodigoLocalizacaoEmpresa;
     }
 
@@ -1948,12 +2085,12 @@ public class SdtDadosCadastraisEmpresa {
      * Define o valor da propriedade bairroCodigoLocalizacaoEmpresa.
      * 
      */
-    public void setBairroCodigoLocalizacaoEmpresa(int value) {
+    public void setBairroCodigoLocalizacaoEmpresa(long value) {
         this.bairroCodigoLocalizacaoEmpresa = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade numeroLocalizacaoEmpresa.
+     * Obt�m o valor da propriedade numeroLocalizacaoEmpresa.
      * 
      * @return
      *     possible object is
@@ -1977,7 +2114,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade cepLocalizacaoEmpresa.
+     * Obt�m o valor da propriedade cepLocalizacaoEmpresa.
      * 
      * @return
      *     possible object is
@@ -2001,10 +2138,10 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade municipioCodigoLocalizacaoEmpresa.
+     * Obt�m o valor da propriedade municipioCodigoLocalizacaoEmpresa.
      * 
      */
-    public int getMunicipioCodigoLocalizacaoEmpresa() {
+    public long getMunicipioCodigoLocalizacaoEmpresa() {
         return municipioCodigoLocalizacaoEmpresa;
     }
 
@@ -2012,12 +2149,12 @@ public class SdtDadosCadastraisEmpresa {
      * Define o valor da propriedade municipioCodigoLocalizacaoEmpresa.
      * 
      */
-    public void setMunicipioCodigoLocalizacaoEmpresa(int value) {
+    public void setMunicipioCodigoLocalizacaoEmpresa(long value) {
         this.municipioCodigoLocalizacaoEmpresa = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade complementoLocalizacaoEmpresa.
+     * Obt�m o valor da propriedade complementoLocalizacaoEmpresa.
      * 
      * @return
      *     possible object is
@@ -2041,55 +2178,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade contratos.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaContratoItens }
-     *     
-     */
-    public ArrayOfSdtDadosCadastraisEmpresaContratoItens getContratos() {
-        return contratos;
-    }
-
-    /**
-     * Define o valor da propriedade contratos.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaContratoItens }
-     *     
-     */
-    public void setContratos(ArrayOfSdtDadosCadastraisEmpresaContratoItens value) {
-        this.contratos = value;
-    }
-
-    /**
-     * Obtï¿½m o valor da propriedade cnaes.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaCnaeItens }
-     *     
-     */
-    public ArrayOfSdtDadosCadastraisEmpresaCnaeItens getCnaes() {
-        return cnaes;
-    }
-
-    /**
-     * Define o valor da propriedade cnaes.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaCnaeItens }
-     *     
-     */
-    public void setCnaes(ArrayOfSdtDadosCadastraisEmpresaCnaeItens value) {
-        this.cnaes = value;
-    }
-
-    /**
-     * Obtï¿½m o valor da propriedade codigoClassificacaoAtividadeEconomica.
+     * Obt�m o valor da propriedade codigoClassificacaoAtividadeEconomica.
      * 
      */
     public byte getCodigoClassificacaoAtividadeEconomica() {
@@ -2105,7 +2194,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade descricaoClassificacaoAtividadeEconomica.
+     * Obt�m o valor da propriedade descricaoClassificacaoAtividadeEconomica.
      * 
      * @return
      *     possible object is
@@ -2129,7 +2218,7 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade complementoAtividadeEconomica.
+     * Obt�m o valor da propriedade complementoAtividadeEconomica.
      * 
      * @return
      *     possible object is
@@ -2153,14 +2242,78 @@ public class SdtDadosCadastraisEmpresa {
     }
 
     /**
-     * Obtï¿½m o valor da propriedade caracteristicasFuncionamento.
+     * Obt�m o valor da propriedade empresaAutonomo.
+     * 
+     */
+    public byte getEmpresaAutonomo() {
+        return empresaAutonomo;
+    }
+
+    /**
+     * Define o valor da propriedade empresaAutonomo.
+     * 
+     */
+    public void setEmpresaAutonomo(byte value) {
+        this.empresaAutonomo = value;
+    }
+
+    /**
+     * Obt�m o valor da propriedade contratos.
      * 
      * @return
      *     possible object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens }
+     *     {@link SdtDadosCadastraisEmpresa.Contratos }
      *     
      */
-    public ArrayOfSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens getCaracteristicasFuncionamento() {
+    public SdtDadosCadastraisEmpresa.Contratos getContratos() {
+        return contratos;
+    }
+
+    /**
+     * Define o valor da propriedade contratos.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SdtDadosCadastraisEmpresa.Contratos }
+     *     
+     */
+    public void setContratos(SdtDadosCadastraisEmpresa.Contratos value) {
+        this.contratos = value;
+    }
+
+    /**
+     * Obt�m o valor da propriedade cnaes.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SdtDadosCadastraisEmpresa.Cnaes }
+     *     
+     */
+    public SdtDadosCadastraisEmpresa.Cnaes getCnaes() {
+        return cnaes;
+    }
+
+    /**
+     * Define o valor da propriedade cnaes.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SdtDadosCadastraisEmpresa.Cnaes }
+     *     
+     */
+    public void setCnaes(SdtDadosCadastraisEmpresa.Cnaes value) {
+        this.cnaes = value;
+    }
+
+    /**
+     * Obt�m o valor da propriedade caracteristicasFuncionamento.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SdtDadosCadastraisEmpresa.CaracteristicasFuncionamento }
+     *     
+     */
+    public SdtDadosCadastraisEmpresa.CaracteristicasFuncionamento getCaracteristicasFuncionamento() {
         return caracteristicasFuncionamento;
     }
 
@@ -2169,22 +2322,22 @@ public class SdtDadosCadastraisEmpresa {
      * 
      * @param value
      *     allowed object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens }
+     *     {@link SdtDadosCadastraisEmpresa.CaracteristicasFuncionamento }
      *     
      */
-    public void setCaracteristicasFuncionamento(ArrayOfSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens value) {
+    public void setCaracteristicasFuncionamento(SdtDadosCadastraisEmpresa.CaracteristicasFuncionamento value) {
         this.caracteristicasFuncionamento = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade socios.
+     * Obt�m o valor da propriedade socios.
      * 
      * @return
      *     possible object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaSocioItens }
+     *     {@link SdtDadosCadastraisEmpresa.Socios }
      *     
      */
-    public ArrayOfSdtDadosCadastraisEmpresaSocioItens getSocios() {
+    public SdtDadosCadastraisEmpresa.Socios getSocios() {
         return socios;
     }
 
@@ -2193,22 +2346,22 @@ public class SdtDadosCadastraisEmpresa {
      * 
      * @param value
      *     allowed object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaSocioItens }
+     *     {@link SdtDadosCadastraisEmpresa.Socios }
      *     
      */
-    public void setSocios(ArrayOfSdtDadosCadastraisEmpresaSocioItens value) {
+    public void setSocios(SdtDadosCadastraisEmpresa.Socios value) {
         this.socios = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade procuradores.
+     * Obt�m o valor da propriedade procuradores.
      * 
      * @return
      *     possible object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaProcuradorItens }
+     *     {@link SdtDadosCadastraisEmpresa.Procuradores }
      *     
      */
-    public ArrayOfSdtDadosCadastraisEmpresaProcuradorItens getProcuradores() {
+    public SdtDadosCadastraisEmpresa.Procuradores getProcuradores() {
         return procuradores;
     }
 
@@ -2217,22 +2370,22 @@ public class SdtDadosCadastraisEmpresa {
      * 
      * @param value
      *     allowed object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaProcuradorItens }
+     *     {@link SdtDadosCadastraisEmpresa.Procuradores }
      *     
      */
-    public void setProcuradores(ArrayOfSdtDadosCadastraisEmpresaProcuradorItens value) {
+    public void setProcuradores(SdtDadosCadastraisEmpresa.Procuradores value) {
         this.procuradores = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade representantesLegais.
+     * Obt�m o valor da propriedade representantesLegais.
      * 
      * @return
      *     possible object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaRepresentanteLegalItens }
+     *     {@link SdtDadosCadastraisEmpresa.RepresentantesLegais }
      *     
      */
-    public ArrayOfSdtDadosCadastraisEmpresaRepresentanteLegalItens getRepresentantesLegais() {
+    public SdtDadosCadastraisEmpresa.RepresentantesLegais getRepresentantesLegais() {
         return representantesLegais;
     }
 
@@ -2241,22 +2394,22 @@ public class SdtDadosCadastraisEmpresa {
      * 
      * @param value
      *     allowed object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaRepresentanteLegalItens }
+     *     {@link SdtDadosCadastraisEmpresa.RepresentantesLegais }
      *     
      */
-    public void setRepresentantesLegais(ArrayOfSdtDadosCadastraisEmpresaRepresentanteLegalItens value) {
+    public void setRepresentantesLegais(SdtDadosCadastraisEmpresa.RepresentantesLegais value) {
         this.representantesLegais = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade servicos.
+     * Obt�m o valor da propriedade servicos.
      * 
      * @return
      *     possible object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaServicoItens }
+     *     {@link SdtDadosCadastraisEmpresa.Servicos }
      *     
      */
-    public ArrayOfSdtDadosCadastraisEmpresaServicoItens getServicos() {
+    public SdtDadosCadastraisEmpresa.Servicos getServicos() {
         return servicos;
     }
 
@@ -2265,22 +2418,22 @@ public class SdtDadosCadastraisEmpresa {
      * 
      * @param value
      *     allowed object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaServicoItens }
+     *     {@link SdtDadosCadastraisEmpresa.Servicos }
      *     
      */
-    public void setServicos(ArrayOfSdtDadosCadastraisEmpresaServicoItens value) {
+    public void setServicos(SdtDadosCadastraisEmpresa.Servicos value) {
         this.servicos = value;
     }
 
     /**
-     * Obtï¿½m o valor da propriedade grupoSubgrupoAtividades.
+     * Obt�m o valor da propriedade grupoSubgrupoAtividades.
      * 
      * @return
      *     possible object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens }
+     *     {@link SdtDadosCadastraisEmpresa.GrupoSubgrupoAtividades }
      *     
      */
-    public ArrayOfSdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens getGrupoSubgrupoAtividades() {
+    public SdtDadosCadastraisEmpresa.GrupoSubgrupoAtividades getGrupoSubgrupoAtividades() {
         return grupoSubgrupoAtividades;
     }
 
@@ -2289,11 +2442,491 @@ public class SdtDadosCadastraisEmpresa {
      * 
      * @param value
      *     allowed object is
-     *     {@link ArrayOfSdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens }
+     *     {@link SdtDadosCadastraisEmpresa.GrupoSubgrupoAtividades }
      *     
      */
-    public void setGrupoSubgrupoAtividades(ArrayOfSdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens value) {
+    public void setGrupoSubgrupoAtividades(SdtDadosCadastraisEmpresa.GrupoSubgrupoAtividades value) {
         this.grupoSubgrupoAtividades = value;
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conte�do esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="CaracteristicaFuncionamentoItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.CaracteristicaFuncionamentoItens" maxOccurs="unbounded" minOccurs="0"/>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "caracteristicaFuncionamentoItens"
+    })
+    public static class CaracteristicasFuncionamento {
+
+        @XmlElement(name = "CaracteristicaFuncionamentoItens")
+        protected List<SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens> caracteristicaFuncionamentoItens;
+
+        /**
+         * Gets the value of the caracteristicaFuncionamentoItens property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the caracteristicaFuncionamentoItens property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getCaracteristicaFuncionamentoItens().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens }
+         * 
+         * 
+         */
+        public List<SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens> getCaracteristicaFuncionamentoItens() {
+            if (caracteristicaFuncionamentoItens == null) {
+                caracteristicaFuncionamentoItens = new ArrayList<SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens>();
+            }
+            return this.caracteristicaFuncionamentoItens;
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conte�do esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="CnaeItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.CnaeItens" maxOccurs="unbounded" minOccurs="0"/>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "cnaeItens"
+    })
+    public static class Cnaes {
+
+        @XmlElement(name = "CnaeItens")
+        protected List<SdtDadosCadastraisEmpresaCnaeItens> cnaeItens;
+
+        /**
+         * Gets the value of the cnaeItens property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the cnaeItens property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getCnaeItens().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link SdtDadosCadastraisEmpresaCnaeItens }
+         * 
+         * 
+         */
+        public List<SdtDadosCadastraisEmpresaCnaeItens> getCnaeItens() {
+            if (cnaeItens == null) {
+                cnaeItens = new ArrayList<SdtDadosCadastraisEmpresaCnaeItens>();
+            }
+            return this.cnaeItens;
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conte�do esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="ContratoItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.ContratoItens" maxOccurs="unbounded" minOccurs="0"/>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "contratoItens"
+    })
+    public static class Contratos {
+
+        @XmlElement(name = "ContratoItens")
+        protected List<SdtDadosCadastraisEmpresaContratoItens> contratoItens;
+
+        /**
+         * Gets the value of the contratoItens property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the contratoItens property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getContratoItens().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link SdtDadosCadastraisEmpresaContratoItens }
+         * 
+         * 
+         */
+        public List<SdtDadosCadastraisEmpresaContratoItens> getContratoItens() {
+            if (contratoItens == null) {
+                contratoItens = new ArrayList<SdtDadosCadastraisEmpresaContratoItens>();
+            }
+            return this.contratoItens;
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conte�do esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="GrupoSubgrupoAtividadeItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.GrupoSubgrupoAtividadeItens" maxOccurs="unbounded" minOccurs="0"/>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "grupoSubgrupoAtividadeItens"
+    })
+    public static class GrupoSubgrupoAtividades {
+
+        @XmlElement(name = "GrupoSubgrupoAtividadeItens")
+        protected List<SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens> grupoSubgrupoAtividadeItens;
+
+        /**
+         * Gets the value of the grupoSubgrupoAtividadeItens property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the grupoSubgrupoAtividadeItens property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getGrupoSubgrupoAtividadeItens().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens }
+         * 
+         * 
+         */
+        public List<SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens> getGrupoSubgrupoAtividadeItens() {
+            if (grupoSubgrupoAtividadeItens == null) {
+                grupoSubgrupoAtividadeItens = new ArrayList<SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens>();
+            }
+            return this.grupoSubgrupoAtividadeItens;
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conte�do esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="ProcuradorItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.ProcuradorItens" maxOccurs="unbounded" minOccurs="0"/>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "procuradorItens"
+    })
+    public static class Procuradores {
+
+        @XmlElement(name = "ProcuradorItens")
+        protected List<SdtDadosCadastraisEmpresaProcuradorItens> procuradorItens;
+
+        /**
+         * Gets the value of the procuradorItens property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the procuradorItens property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getProcuradorItens().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link SdtDadosCadastraisEmpresaProcuradorItens }
+         * 
+         * 
+         */
+        public List<SdtDadosCadastraisEmpresaProcuradorItens> getProcuradorItens() {
+            if (procuradorItens == null) {
+                procuradorItens = new ArrayList<SdtDadosCadastraisEmpresaProcuradorItens>();
+            }
+            return this.procuradorItens;
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conte�do esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="RepresentanteLegalItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.RepresentanteLegalItens" maxOccurs="unbounded" minOccurs="0"/>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "representanteLegalItens"
+    })
+    public static class RepresentantesLegais {
+
+        @XmlElement(name = "RepresentanteLegalItens")
+        protected List<SdtDadosCadastraisEmpresaRepresentanteLegalItens> representanteLegalItens;
+
+        /**
+         * Gets the value of the representanteLegalItens property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the representanteLegalItens property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getRepresentanteLegalItens().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link SdtDadosCadastraisEmpresaRepresentanteLegalItens }
+         * 
+         * 
+         */
+        public List<SdtDadosCadastraisEmpresaRepresentanteLegalItens> getRepresentanteLegalItens() {
+            if (representanteLegalItens == null) {
+                representanteLegalItens = new ArrayList<SdtDadosCadastraisEmpresaRepresentanteLegalItens>();
+            }
+            return this.representanteLegalItens;
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conte�do esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="ServicoItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.ServicoItens" maxOccurs="unbounded" minOccurs="0"/>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "servicoItens"
+    })
+    public static class Servicos {
+
+        @XmlElement(name = "ServicoItens")
+        protected List<SdtDadosCadastraisEmpresaServicoItens> servicoItens;
+
+        /**
+         * Gets the value of the servicoItens property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the servicoItens property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getServicoItens().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link SdtDadosCadastraisEmpresaServicoItens }
+         * 
+         * 
+         */
+        public List<SdtDadosCadastraisEmpresaServicoItens> getServicoItens() {
+            if (servicoItens == null) {
+                servicoItens = new ArrayList<SdtDadosCadastraisEmpresaServicoItens>();
+            }
+            return this.servicoItens;
+        }
+
+    }
+
+
+    /**
+     * <p>Classe Java de anonymous complex type.
+     * 
+     * <p>O seguinte fragmento do esquema especifica o conte�do esperado contido dentro desta classe.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="SocioItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.SocioItens" maxOccurs="unbounded" minOccurs="0"/>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "socioItens"
+    })
+    public static class Socios {
+
+        @XmlElement(name = "SocioItens")
+        protected List<SdtDadosCadastraisEmpresaSocioItens> socioItens;
+
+        /**
+         * Gets the value of the socioItens property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the socioItens property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getSocioItens().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link SdtDadosCadastraisEmpresaSocioItens }
+         * 
+         * 
+         */
+        public List<SdtDadosCadastraisEmpresaSocioItens> getSocioItens() {
+            if (socioItens == null) {
+                socioItens = new ArrayList<SdtDadosCadastraisEmpresaSocioItens>();
+            }
+            return this.socioItens;
+        }
+
     }
 
 }

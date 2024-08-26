@@ -38,7 +38,7 @@ public class ParseInscricao {
      * @param codigo
      * @return
      */
-    private byte gerarCodigoEmpresa(String status, byte codigo){
+  /*  private byte gerarCodigoEmpresa(String status, byte codigo){
     	status = status.toLowerCase();
     	 if(status.equalsIgnoreCase("nova")){
              return 0;
@@ -228,7 +228,7 @@ public class ParseInscricao {
 	                	 	dadosPublicidadario.setCodigoCaracteristicaFuncionamento(p.getTipo().byteValue());                	 
 	                	 	dadosPublicidadario.setQuantidadeCaracteristicaFuncionamento(p.getQuantidade().shortValue());                    	
 	                	 	listaCaracteristicas.add(dadosPublicidadario);
-	                	 	System.out.println("" + p.getM2() +  " " + p.getQuantidade().shortValue());
+	                	 //	System.out.println("" + p.getM2() +  " " + p.getQuantidade().shortValue());
 	                	}
 	                }
 	            }
@@ -561,7 +561,7 @@ public class ParseInscricao {
 	        return dadosCadastraisEmpresa;
 	    }
 
-
+*/
 
 }
 

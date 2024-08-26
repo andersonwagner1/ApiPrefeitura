@@ -16,10 +16,10 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="Sdt_DadosCadastraisEmpresa.CnaeItens">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;all>
- *         &lt;element name="NumeroCnae" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *       &lt;sequence>
+ *         &lt;element name="NumeroCnae" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="PosicaoCnae" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *       &lt;/all>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -29,28 +29,37 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Sdt_DadosCadastraisEmpresa.CnaeItens", propOrder = {
-
+    "numeroCnae",
+    "posicaoCnae"
 })
 public class SdtDadosCadastraisEmpresaCnaeItens {
 
-    @XmlElement(name = "NumeroCnae")
-    protected int numeroCnae;
+    @XmlElement(name = "NumeroCnae", required = true)
+    protected String numeroCnae;
     @XmlElement(name = "PosicaoCnae", required = true)
     protected String posicaoCnae;
 
     /**
      * Obt�m o valor da propriedade numeroCnae.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getNumeroCnae() {
+    public String getNumeroCnae() {
         return numeroCnae;
     }
 
     /**
      * Define o valor da propriedade numeroCnae.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setNumeroCnae(int value) {
+    public void setNumeroCnae(String value) {
         this.numeroCnae = value;
     }
 

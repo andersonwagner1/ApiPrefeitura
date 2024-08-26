@@ -16,27 +16,27 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="Sdt_DadosCadastraisEmpresa.SocioItens">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;all>
+ *       &lt;sequence>
  *         &lt;element name="NumeroCpfSocio" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="NumeroRgSocio" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="NomeSocio" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="OrgaoExpedidorSocio" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="LogradouroCodigoSocio" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="LogradouroCodigoSocio" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="LogradouroTipoSocio" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="LogradouroNomeSocio" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="BairroCodigoSocio" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="BairroCodigoSocio" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="BairroNomeSocio" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="TelefoneSocio" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="NumeroLogradouroSocio" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="ComplementoLogradouroSocio" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="EmailSocio" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="CEPSocio" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="MunicipioCodigoSocio" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="MunicipioCodigoSocio" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="MunicipioNomeSocio" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="MunicipioUfSocio" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="PaisCodigoSocio" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="PaisCodigoSocio" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="PaisNomeSocio" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *       &lt;/all>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -46,7 +46,25 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Sdt_DadosCadastraisEmpresa.SocioItens", propOrder = {
-
+    "numeroCpfSocio",
+    "numeroRgSocio",
+    "nomeSocio",
+    "orgaoExpedidorSocio",
+    "logradouroCodigoSocio",
+    "logradouroTipoSocio",
+    "logradouroNomeSocio",
+    "bairroCodigoSocio",
+    "bairroNomeSocio",
+    "telefoneSocio",
+    "numeroLogradouroSocio",
+    "complementoLogradouroSocio",
+    "emailSocio",
+    "cepSocio",
+    "municipioCodigoSocio",
+    "municipioNomeSocio",
+    "municipioUfSocio",
+    "paisCodigoSocio",
+    "paisNomeSocio"
 })
 public class SdtDadosCadastraisEmpresaSocioItens {
 
@@ -59,13 +77,13 @@ public class SdtDadosCadastraisEmpresaSocioItens {
     @XmlElement(name = "OrgaoExpedidorSocio", required = true)
     protected String orgaoExpedidorSocio;
     @XmlElement(name = "LogradouroCodigoSocio")
-    protected int logradouroCodigoSocio;
+    protected long logradouroCodigoSocio;
     @XmlElement(name = "LogradouroTipoSocio", required = true)
     protected String logradouroTipoSocio;
     @XmlElement(name = "LogradouroNomeSocio", required = true)
     protected String logradouroNomeSocio;
     @XmlElement(name = "BairroCodigoSocio")
-    protected int bairroCodigoSocio;
+    protected long bairroCodigoSocio;
     @XmlElement(name = "BairroNomeSocio", required = true)
     protected String bairroNomeSocio;
     @XmlElement(name = "TelefoneSocio", required = true)
@@ -79,13 +97,13 @@ public class SdtDadosCadastraisEmpresaSocioItens {
     @XmlElement(name = "CEPSocio", required = true)
     protected String cepSocio;
     @XmlElement(name = "MunicipioCodigoSocio")
-    protected int municipioCodigoSocio;
+    protected long municipioCodigoSocio;
     @XmlElement(name = "MunicipioNomeSocio", required = true)
     protected String municipioNomeSocio;
     @XmlElement(name = "MunicipioUfSocio", required = true)
     protected String municipioUfSocio;
     @XmlElement(name = "PaisCodigoSocio")
-    protected int paisCodigoSocio;
+    protected long paisCodigoSocio;
     @XmlElement(name = "PaisNomeSocio", required = true)
     protected String paisNomeSocio;
 
@@ -189,7 +207,7 @@ public class SdtDadosCadastraisEmpresaSocioItens {
      * Obt�m o valor da propriedade logradouroCodigoSocio.
      * 
      */
-    public int getLogradouroCodigoSocio() {
+    public long getLogradouroCodigoSocio() {
         return logradouroCodigoSocio;
     }
 
@@ -197,7 +215,7 @@ public class SdtDadosCadastraisEmpresaSocioItens {
      * Define o valor da propriedade logradouroCodigoSocio.
      * 
      */
-    public void setLogradouroCodigoSocio(int value) {
+    public void setLogradouroCodigoSocio(long value) {
         this.logradouroCodigoSocio = value;
     }
 
@@ -253,7 +271,7 @@ public class SdtDadosCadastraisEmpresaSocioItens {
      * Obt�m o valor da propriedade bairroCodigoSocio.
      * 
      */
-    public int getBairroCodigoSocio() {
+    public long getBairroCodigoSocio() {
         return bairroCodigoSocio;
     }
 
@@ -261,7 +279,7 @@ public class SdtDadosCadastraisEmpresaSocioItens {
      * Define o valor da propriedade bairroCodigoSocio.
      * 
      */
-    public void setBairroCodigoSocio(int value) {
+    public void setBairroCodigoSocio(long value) {
         this.bairroCodigoSocio = value;
     }
 
@@ -413,7 +431,7 @@ public class SdtDadosCadastraisEmpresaSocioItens {
      * Obt�m o valor da propriedade municipioCodigoSocio.
      * 
      */
-    public int getMunicipioCodigoSocio() {
+    public long getMunicipioCodigoSocio() {
         return municipioCodigoSocio;
     }
 
@@ -421,7 +439,7 @@ public class SdtDadosCadastraisEmpresaSocioItens {
      * Define o valor da propriedade municipioCodigoSocio.
      * 
      */
-    public void setMunicipioCodigoSocio(int value) {
+    public void setMunicipioCodigoSocio(long value) {
         this.municipioCodigoSocio = value;
     }
 
@@ -477,7 +495,7 @@ public class SdtDadosCadastraisEmpresaSocioItens {
      * Obt�m o valor da propriedade paisCodigoSocio.
      * 
      */
-    public int getPaisCodigoSocio() {
+    public long getPaisCodigoSocio() {
         return paisCodigoSocio;
     }
 
@@ -485,7 +503,7 @@ public class SdtDadosCadastraisEmpresaSocioItens {
      * Define o valor da propriedade paisCodigoSocio.
      * 
      */
-    public void setPaisCodigoSocio(int value) {
+    public void setPaisCodigoSocio(long value) {
         this.paisCodigoSocio = value;
     }
 

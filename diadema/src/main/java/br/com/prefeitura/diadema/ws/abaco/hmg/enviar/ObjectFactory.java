@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the br.com.prefeitura.diadema.ws.abaco.hmg.inscricao package. 
+ * generated in the br.com.prefeitura.diadema.ws.egata package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -23,34 +23,10 @@ public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: br.com.prefeitura.diadema.ws.abaco.hmg.inscricao
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: br.com.prefeitura.diadema.ws.egata
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link WsEnviarDadosEmpresaExecuteResponse }
-     * 
-     */
-    public WsEnviarDadosEmpresaExecuteResponse createWsEnviarDadosEmpresaExecuteResponse() {
-        return new WsEnviarDadosEmpresaExecuteResponse();
-    }
-
-    /**
-     * Create an instance of {@link RetornoWS }
-     * 
-     */
-    public RetornoWS createRetornoWS() {
-        return new RetornoWS();
-    }
-
-    /**
-     * Create an instance of {@link WsEnviarDadosEmpresaExecute }
-     * 
-     */
-    public WsEnviarDadosEmpresaExecute createWsEnviarDadosEmpresaExecute() {
-        return new WsEnviarDadosEmpresaExecute();
     }
 
     /**
@@ -59,6 +35,30 @@ public class ObjectFactory {
      */
     public SdtDadosCadastraisEmpresa createSdtDadosCadastraisEmpresa() {
         return new SdtDadosCadastraisEmpresa();
+    }
+
+    /**
+     * Create an instance of {@link WSEnviarDadosEmpresaExecute }
+     * 
+     
+    public WSEnviarDadosEmpresaExecute createWSEnviarDadosEmpresaExecute() {
+        return new WSEnviarDadosEmpresaExecute();
+    }
+
+   
+     * Create an instance of {@link WSEnviarDadosEmpresaExecuteResponse }
+     * 
+     
+    public WSEnviarDadosEmpresaExecuteResponse createWSEnviarDadosEmpresaExecuteResponse() {
+        return new WSEnviarDadosEmpresaExecuteResponse();
+    }
+
+    /**
+     * Create an instance of {@link RetornoWS }
+     * 
+     */
+    public RetornoWS createRetornoWS() {
+        return new RetornoWS();
     }
 
     /**
@@ -195,6 +195,70 @@ public class ObjectFactory {
      */
     public ArrayOfSdtDadosCadastraisEmpresaContratoItens createArrayOfSdtDadosCadastraisEmpresaContratoItens() {
         return new ArrayOfSdtDadosCadastraisEmpresaContratoItens();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.Contratos }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.Contratos createSdtDadosCadastraisEmpresaContratos() {
+        return new SdtDadosCadastraisEmpresa.Contratos();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.Cnaes }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.Cnaes createSdtDadosCadastraisEmpresaCnaes() {
+        return new SdtDadosCadastraisEmpresa.Cnaes();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.CaracteristicasFuncionamento }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.CaracteristicasFuncionamento createSdtDadosCadastraisEmpresaCaracteristicasFuncionamento() {
+        return new SdtDadosCadastraisEmpresa.CaracteristicasFuncionamento();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.Socios }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.Socios createSdtDadosCadastraisEmpresaSocios() {
+        return new SdtDadosCadastraisEmpresa.Socios();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.Procuradores }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.Procuradores createSdtDadosCadastraisEmpresaProcuradores() {
+        return new SdtDadosCadastraisEmpresa.Procuradores();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.RepresentantesLegais }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.RepresentantesLegais createSdtDadosCadastraisEmpresaRepresentantesLegais() {
+        return new SdtDadosCadastraisEmpresa.RepresentantesLegais();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.Servicos }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.Servicos createSdtDadosCadastraisEmpresaServicos() {
+        return new SdtDadosCadastraisEmpresa.Servicos();
+    }
+
+    /**
+     * Create an instance of {@link SdtDadosCadastraisEmpresa.GrupoSubgrupoAtividades }
+     * 
+     */
+    public SdtDadosCadastraisEmpresa.GrupoSubgrupoAtividades createSdtDadosCadastraisEmpresaGrupoSubgrupoAtividades() {
+        return new SdtDadosCadastraisEmpresa.GrupoSubgrupoAtividades();
     }
 
 }

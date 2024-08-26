@@ -85,9 +85,9 @@ public class ShoppingController {
 	/**
 	 * Envia dados para a tabela auxiliar para garantir que o usuario não esteja duplicado os dados, 
 	 * as informação que sera cadatrada serão apenas dados que o usuario enviou (sem anexos)
-	 * EM_ANDAMENTO - ESTA EM ANDAMENTO
-	 * CANCELADO - O PROCESSO TERÁ QUE SER REFEITO
-	 * CONCLUIDO - FINALIZADO, O USUARIO NÃO PODE REFAZER
+	 * EM_ANDAMENTO - ESTA EM ANDAMENTO						- NÃO ODE ABRIR OUTRO (SE QUISER ABRIRU OUTRO TEM QUE CANCELAR ESTE)
+	 * CANCELADO - O PROCESSO TERÁ QUE SER REFEITO			- PODE ABRIR OUTRO
+	 * CONCLUIDO - FINALIZADO, O USUARIO NÃO PODE REFAZER	- NÃO PODE ABRIR OUTRO
 	 * @param inscricao
 	 * @return
 	 */
@@ -121,8 +121,12 @@ public class ShoppingController {
 	}
 	
 	
-	
-	@GetMapping(value = "/parecer")
+	/**
+	 * Esse parecer serve para atualizar os dados da avaliação, ira atualizar assim que o o processo for cancelado ou quando o processo for aprovado
+	 * @param shopping
+	 * @return
+	 */
+	@PostMapping(value = "/parecer")
 	public ResponseEntity<String> avaliacaoDoUsuario(@RequestBody DtoShopping shopping) {
 		
 		PmdLogs log = logsService.infoJson("avaliacaoDoUsuario", shopping);

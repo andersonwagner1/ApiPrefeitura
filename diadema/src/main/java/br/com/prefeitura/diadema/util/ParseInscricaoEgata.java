@@ -217,7 +217,17 @@ public class ParseInscricaoEgata {
 		
 		
 		
+		
 	    dadosCadastraisEmpresa.setCodigoNaturezaJuridica(inscricaoMunicipal.getCodigoNaturezaJuridica());
+	    
+	    //Caso seja uma empresa == 2, qualquer outra será SIM
+	    if(inscricaoMunicipal.getCodigoNaturezaJuridica() == 2){
+	    	inscricaoMunicipal.setEmpresaAutonoma((byte) 2 ); // NÃO PARA EMPRESA AUTONOMA
+	    }else{
+	    	inscricaoMunicipal.setEmpresaAutonoma((byte) 1); // SIM PARA EMPREAS AUTONOMA	    	
+	    }
+	    dadosCadastraisEmpresa.setEmpresaAutonomo(inscricaoMunicipal.getEmpresaAutonoma());
+	    
 	    dadosCadastraisEmpresa.setDataRegistroJunta(parseStringDate(new Date()));
 	    dadosCadastraisEmpresa.setDataCadastroPrefeitura(parseStringDate(new Date()));
 	    dadosCadastraisEmpresa.setDataUltimaAlteracaoJunta(parseStringDate(inscricaoMunicipal.getDataUltimaAlteracaoJunta()));
@@ -582,6 +592,21 @@ public class ParseInscricaoEgata {
 	            for (EnquadramentoAtividadeEconomicaComplemento enquadramentoAtividadeEconomicaComplemento : complementoAtividades) {
 	                SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens item = new SdtDadosCadastraisEmpresaGrupoSubgrupoAtividadeItens();
 	                
+			if (enquadramentoAtividadeEconomicaComplemento.getComplementoAtividade().getAtividade() == null) {
+/*
+				String[] partes = enquadramentoAtividadeEconomicaComplemento
+						.getComplementoAtividade().getDescricao().split(" ");
+
+				// O primeiro elemento é a parte com os números
+				String numeros = partes[0];
+				String[] numerosArray = numeros.split("\\.");
+
+				item.setCodigoAtividade(Short.valueOf(numerosArray[0]));
+				item.setCodigoGrupoAtividade(Short.valueOf(numerosArray[1]));
+				item.setCodigoSubgrupoAtividade(Short.valueOf(numerosArray[2]));*/
+				throw new NumberFormatException("Enquadramento Atividade Economica Codigo da Atividade esta nulo");
+			}
+	               
 	                item.setCodigoAtividade(Short.valueOf(enquadramentoAtividadeEconomicaComplemento.getComplementoAtividade().getAtividade().toString()));
 	                item.setCodigoGrupoAtividade(Short.valueOf(enquadramentoAtividadeEconomicaComplemento.getComplementoAtividade().getGrupo().toString()));
 	                item.setCodigoSubgrupoAtividade(enquadramentoAtividadeEconomicaComplemento.getComplementoAtividade().getSubgrupo());

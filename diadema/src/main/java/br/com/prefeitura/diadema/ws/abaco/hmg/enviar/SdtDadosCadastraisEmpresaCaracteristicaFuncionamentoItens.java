@@ -16,13 +16,13 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="Sdt_DadosCadastraisEmpresa.CaracteristicaFuncionamentoItens">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;all>
- *         &lt;element name="SequencialCaractefisticaFuncionamento" type="{http://www.w3.org/2001/XMLSchema}byte"/>
- *         &lt;element name="CodigoCaracteristicaFuncionamento" type="{http://www.w3.org/2001/XMLSchema}byte"/>
+ *       &lt;sequence>
+ *         &lt;element name="SequencialCaractefisticaFuncionamento" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="CodigoCaracteristicaFuncionamento" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="DescricaoCaracteristicaFuncionamento" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="QuantidadeCaracteristicaFuncionamento" type="{http://www.w3.org/2001/XMLSchema}short"/>
  *         &lt;element name="ValorM2CaractefisticaFuncionamento" type="{http://www.w3.org/2001/XMLSchema}double"/>
- *       &lt;/all>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -32,14 +32,18 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Sdt_DadosCadastraisEmpresa.CaracteristicaFuncionamentoItens", propOrder = {
-
+    "sequencialCaractefisticaFuncionamento",
+    "codigoCaracteristicaFuncionamento",
+    "descricaoCaracteristicaFuncionamento",
+    "quantidadeCaracteristicaFuncionamento",
+    "valorM2CaractefisticaFuncionamento"
 })
 public class SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens {
 
     @XmlElement(name = "SequencialCaractefisticaFuncionamento")
-    protected byte sequencialCaractefisticaFuncionamento;
+    protected int sequencialCaractefisticaFuncionamento;
     @XmlElement(name = "CodigoCaracteristicaFuncionamento")
-    protected byte codigoCaracteristicaFuncionamento;
+    protected int codigoCaracteristicaFuncionamento;
     @XmlElement(name = "DescricaoCaracteristicaFuncionamento", required = true)
     protected String descricaoCaracteristicaFuncionamento;
     @XmlElement(name = "QuantidadeCaracteristicaFuncionamento")
@@ -51,7 +55,7 @@ public class SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens {
      * Obt�m o valor da propriedade sequencialCaractefisticaFuncionamento.
      * 
      */
-    public byte getSequencialCaractefisticaFuncionamento() {
+    public int getSequencialCaractefisticaFuncionamento() {
         return sequencialCaractefisticaFuncionamento;
     }
 
@@ -59,7 +63,7 @@ public class SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens {
      * Define o valor da propriedade sequencialCaractefisticaFuncionamento.
      * 
      */
-    public void setSequencialCaractefisticaFuncionamento(byte value) {
+    public void setSequencialCaractefisticaFuncionamento(int value) {
         this.sequencialCaractefisticaFuncionamento = value;
     }
 
@@ -67,7 +71,7 @@ public class SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens {
      * Obt�m o valor da propriedade codigoCaracteristicaFuncionamento.
      * 
      */
-    public byte getCodigoCaracteristicaFuncionamento() {
+    public int getCodigoCaracteristicaFuncionamento() {
         return codigoCaracteristicaFuncionamento;
     }
 
@@ -75,7 +79,7 @@ public class SdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens {
      * Define o valor da propriedade codigoCaracteristicaFuncionamento.
      * 
      */
-    public void setCodigoCaracteristicaFuncionamento(byte value) {
+    public void setCodigoCaracteristicaFuncionamento(int value) {
         this.codigoCaracteristicaFuncionamento = value;
     }
 

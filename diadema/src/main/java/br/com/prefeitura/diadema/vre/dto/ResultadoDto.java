@@ -11,7 +11,9 @@ public class ResultadoDto {
 	private List<Evento> eventos;
 	private DadosEmpresa dadosEmpresa;
 	private DadosEstabelecimento dadosEstabelecimento;
+	
 	private List<Socio> socios;
+	private List<Servico> servicos;
 	private RepresentanteIM representanteIM;
 	private Contador contador;
 	private Validacao validacao;
@@ -96,5 +98,14 @@ public class ResultadoDto {
 	public void setResultado(String resultado) {
 		this.resultado = resultado;
 	}
+
+	public List<Servico> getServicos() {
+		return servicos;
+	}
+
+	public void setServicos(List<Servico> servicos) {
+		this.servicos = servicos;
+	}
+	
 
 }

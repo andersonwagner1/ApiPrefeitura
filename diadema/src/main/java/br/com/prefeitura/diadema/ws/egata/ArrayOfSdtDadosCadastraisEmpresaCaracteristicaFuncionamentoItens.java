@@ -71,6 +71,5 @@ public class ArrayOfSdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens {
 		this.sdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens = sdtDadosCadastraisEmpresaCaracteristicaFuncionamentoItens;
 	}
     
-    
 
 }

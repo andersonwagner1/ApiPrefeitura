@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,8 +38,10 @@ import br.com.prefeitura.diadema.vre.dto.DadosEstabelecimento;
 import br.com.prefeitura.diadema.vre.dto.EmpresaDTO;
 import br.com.prefeitura.diadema.vre.dto.EnderecoDTO;
 import br.com.prefeitura.diadema.vre.dto.ResultadoDto;
+import br.com.prefeitura.diadema.vre.dto.Servico;
 import br.com.prefeitura.diadema.ws.EgataInscricaoWS;
 import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresa;
+import br.com.prefeitura.diadema.ws.egata.SdtDadosCadastraisEmpresaServicoItens;
 import br.com.prefeitura.diadema.ws.egata.SdtEmpresasporCnpjSdtEmpresasporCnpjItem;
 import br.com.prefeitura.diadema.ws.egata.WsConsultarExistenciaDaEmpresaExecuteResponse;
 
@@ -46,6 +49,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 @Service
 public class VreService {
 	private VreSolicitacaoRespository dao;
@@ -102,6 +107,10 @@ public class VreService {
 		
 		return jsonString;
 	}
+	
+	
+	
+	
 	
 	
 	/**
@@ -282,14 +291,10 @@ public class VreService {
 
 	private SdtDadosCadastraisEmpresa realizarConsultaEmpresaPorCnpj(String cnpj){
 		 try {
-				SdtEmpresasporCnpjSdtEmpresasporCnpjItem dadosEmpresaAbaco = egataWs.consultarExistemEmpresaPorCnpj(Long.parseLong(cnpj));
+				SdtEmpresasporCnpjSdtEmpresasporCnpjItem dadosEmpresaAbaco = egataWs.consultarExistemEmpresaPorCnpj(cnpj);
 				WsConsultarExistenciaDaEmpresaExecuteResponse restornoInforamcaoEmpresa = egataWs.consultaInformacaoDaInscricaoMobiliario(dadosEmpresaAbaco.getInscricaoMunicipal());
 				
 				return restornoInforamcaoEmpresa.getSdtDadoscadastraisempresas();
-				
-				
-				
-				
 				
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
@@ -336,6 +341,22 @@ public class VreService {
 	
 	
 	
+	private Date converterStringParaDate(String dateString){
+		if(dateString == null){
+			return null;
+		}
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            Date date = formatter.parse(dateString);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+	}
+	
 	/**
 	 * Realizar o parse das informação da JUCESP para o sistema da abaco
 	 * @param protocolo
@@ -379,6 +400,25 @@ public class VreService {
 				DadosEstabelecimento dadosEstabelicimento = dadosJucesp.getDadosEstabelecimento();
 				if(dadosEstabelicimento == null){
 					dadosEstabelicimento = new DadosEstabelecimento();
+				}
+
+				if( dadosEmpresaAbaco.getServicos() != null){
+					List<Servico> servicos = new ArrayList<Servico>();
+					for(SdtDadosCadastraisEmpresaServicoItens servico : dadosEmpresaAbaco.getServicos().getServicoItens()){
+						Servico dadosServico = new Servico();
+						dadosServico.setCodigoServico(servico.getCodigoServico());
+						dadosServico.setDataFimServico(converterStringParaDate(servico.getDataFimServico()));
+						dadosServico.setDataInicioServico(converterStringParaDate(servico.getDataInicioServico()));
+					
+						dadosServico.setDescricaoServico(servico.getDescricaoServico());
+						dadosServico.setSituacaoServico(servico.getSituacaoServico());
+						dadosServico.setTipoServico(servico.getTipoServico());
+						
+						servicos.add(dadosServico);
+					}
+					
+					
+					dadosJucesp.setServicos(servicos);
 				}
 				
 				
@@ -514,29 +554,25 @@ public class VreService {
 	
 	public String listarProtocoloEmpresa(String dataInicial, String dataFinal) throws IOException {
 		String token = "abc";
-		token = getToken(USUARIO, SENHA);	
-		String[] resultado = listarProtocolosValidosSemRepeticao(token, dataInicial, dataFinal);
-		
-		 ObjectMapper mapper = new ObjectMapper();
+		token = getToken(USUARIO, SENHA);
+        String resultado[] = listarProtocolosValidosSemRepeticao(token, dataInicial, dataFinal);
+        
+        ObjectMapper mapper = new ObjectMapper();
 
-	        // Cria um ArrayNode e adiciona os elementos do array de strings
-	        ArrayNode arrayNode = mapper.createArrayNode();
-	        for (String s : resultado) {
-	            arrayNode.add(s);
-	        }
+        // Cria um ArrayNode e adiciona os elementos do array de strings
+        ArrayNode arrayNode = mapper.createArrayNode();
+        for (String s : resultado) {
+            arrayNode.add(s);
+        }
 
-	        // Cria um ObjectNode e coloca o ArrayNode dentro dele
-	        ObjectNode objectNode = mapper.createObjectNode();
-	        objectNode.set("protocolos", arrayNode);
+        // Cria um ObjectNode e coloca o ArrayNode dentro dele
+        ObjectNode objectNode = mapper.createObjectNode();
+        objectNode.set("protocolos", arrayNode);
 
-	        // Converte o ObjectNode para string e imprime
-	        String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNode);
-	      //  System.out.println(jsonString);
-	        
-	       
-			
-			return jsonString;
-	
+        // Converte o ObjectNode para string e imprime
+        String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectNode);
+   
+		return jsonString;
 	}
 	
 	 private String[] removerProtoocolosQueNaoSejaSPMeSPP(String[] inputArray) {
@@ -571,7 +607,7 @@ public class VreService {
 	
 	private String[] verificaSituacaoNovasInscricao(String token, String[] inscricoes)  throws IOException{		
 		 List<String> inscricoesList = new ArrayList<>(Arrays.asList(inscricoes));	
-		System.out.println("Total " + inscricoesList.size());
+		//System.out.println("Total " + inscricoesList.size());
 		 //Verificar protocolo por protocolo para ver se existe um protocolo com o codigo
 		 for (String inscricao : inscricoes){
 			 
@@ -606,7 +642,7 @@ public class VreService {
 			    if(!hasSpecificCodigo){
 			        v.setDsSituacao(EnumVreSituacao.NAO_ENVIAR_SOLAR);
 			        inscricoesList.removeIf(valor -> valor.equals(inscricao)); 
-			        v.setMotivo(dataEmpresaResponse.getEventos().get(0).getDescricao()); // coloca a descrição do motivo de não pode enviar para o SOLAR
+			        v.setMotivo("Codigo evento invalido para carregar");// dataEmpresaResponse.getEventos().get(0).getDescricao()); // coloca a descrição do motivo de não pode enviar para o SOLAR
 			        continua = false;
 			        //System.out.println(dataEmpresaResponse.getEventos().get(0).getCodigo() + " Codigo invalido");
 			    }/*else{
@@ -657,7 +693,7 @@ public class VreService {
 			//
 			if(continua){ // caso a empresa tenha o codigo 209 apenas considera que a empresa não precisa realizar consulta no webservice
 				try {
-					SdtEmpresasporCnpjSdtEmpresasporCnpjItem empresaAgata = egataWs.consultarExistemEmpresaPorCnpj(Long.parseLong(dataEmpresaResponse.getDadosEmpresa().getCnpj()));
+					SdtEmpresasporCnpjSdtEmpresasporCnpjItem empresaAgata = egataWs.consultarExistemEmpresaPorCnpj(dataEmpresaResponse.getDadosEmpresa().getCnpj());
 					
 					if(empresaAgata != null){
 						//String empresa = empresaAgata.getDescSituacaoCadastral();
@@ -691,7 +727,7 @@ public class VreService {
 			//--------------------------------------------------------------------------------------------------------------
 		}
 		inscricoes = inscricoesList.toArray(new String[0]);
-		System.out.println("Final " + inscricoesList.size());
+		//System.out.println("Final " + inscricoesList.size());
 		return inscricoes;
 	}
 	
@@ -731,22 +767,97 @@ public class VreService {
 		return inscricoes;
 	}
 	
+	
 	private String[] listarProtocolosValidosSemRepeticao(String token, String dataInicial,	String dataFinal) throws IOException {
 		String[] inscricoes = listarProtocolosJucesp(token, dataInicial,dataFinal);
 		inscricoes = removerProtoocolosQueNaoSejaSPMeSPP(inscricoes); //Mudar Apenas o SPP		
-		inscricoes = removerInscricaoesJaVerificadas(inscricoes);
-		//inscricoes = filtrarApenasProtocolosNosEventosValido(inscricoes); // 101 102 209 210 211 220 225 244 
+		//teste de homologação criar um if
+		
+		//Removido o codigo a pedido do Erick pois segundo ele o sistema ja faz isso
+		//if(UrlEndereco.EWSDL_URL.equals("https://abc-grp.diadema.sp.gov.br/eagata/servlet/")){
+			//inscricoes = removerInscricaoesJaVerificadas(inscricoes);
+		//}
+		// desabiiltado inscricoes = filtrarApenasProtocolosNosEventosValido(inscricoes); // 101 102 209 210 211 220 225 244 
 		inscricoes = verificaSituacaoNovasInscricao(token, inscricoes);
+		inscricoes = carregarProtocolosManualmente(inscricoes);
 		return inscricoes;
 	}
 	
-	
-	private String[] filtrarApenasProtocolosNosEventosValido(String[] inscricoes) {
-		
-		
-		return null;
+	/**
+	 * Realizar carga dos processo carregado manual
+	 * @param inscricoes
+	 * @return
+	 */
+	private String[] carregarProtocolosManualmente(String[] inscricoes) {
+	    // Obter a lista de protocolos aguardando para carregar
+	    List<PmdVreSolicitacao> listarProtocoloAguardando = dao.listarProtocolosAguardandoParaCarregar();
+	    
+	 // Atualizar a situação dos protocolos e salvar no banco de dados
+	    listarProtocoloAguardando.forEach(protocolo -> {
+	        protocolo.setDsSituacao(EnumVreSituacao.INICIADO);
+	        dao.save(protocolo);
+	    });
+	    
+
+	    // Converter a lista de objetos PmdVreSolicitacao para uma lista de Strings contendo os números dos processos
+	    List<String> listaProtocoloAguardando = listarProtocoloAguardando.stream()
+	            .map(PmdVreSolicitacao::getNrProcessoBoleto)
+	            .collect(Collectors.toList());
+
+	    // Criar uma lista a partir do array de inscrições fornecido
+	    List<String> inscricoesList = new ArrayList<>(Arrays.asList(inscricoes));
+	    
+	    // Adicionar todos os números de processos aguardando à lista de inscrições
+	    inscricoesList.addAll(listaProtocoloAguardando);
+	    
+	    
+
+	    // Converter a lista final de inscrições de volta para um array
+	    return inscricoesList.toArray(new String[0]);
 	}
 
+	/*private String consultarEmpresaPorProtocolo(String token, String protocolo) throws IOException {
+	    String url = "https://www.jucesp.sp.gov.br/inscricaomunicipal20.services/api/v1/consultar-inscricao-municipal";
+	    String requestBody = "{\"protocolo\": \"" + protocolo + "\", \"cnpj\": \"\"}";
+
+	    HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+	    connection.setRequestMethod("POST");
+	    connection.setRequestProperty("Content-Type", "application/json");
+	    connection.setRequestProperty("Authorization", "Bearer " + token);
+	    connection.setDoOutput(true);
+
+	    try (OutputStream os = connection.getOutputStream()) {
+	        os.write(requestBody.getBytes());
+	    }
+
+	    int responseCode = connection.getResponseCode();
+	    StringBuilder response = new StringBuilder();
+	    try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+	            responseCode >= 400 ? connection.getErrorStream() : connection.getInputStream()))) {
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            response.append(line);
+	        }
+	    }
+
+	    String responseBody = response.toString();
+	    System.out.println("Resposta do servidor: " + responseBody);
+
+	    // Se a resposta esperada for JSON
+	    if (responseBody.startsWith("{") || responseBody.startsWith("[")) {
+	        Gson gson = new Gson();
+	        try {
+	            JsonObject jsonResponse = gson.fromJson(responseBody, JsonObject.class);
+	            return jsonResponse.toString();
+	        } catch (JsonSyntaxException e) {
+	            System.err.println("Erro ao parsear JSON: " + e.getMessage());
+	            return "Erro ao parsear JSON: " + e.getMessage();
+	        }
+	    } else {
+	        // Se a resposta não for JSON, retorná-la diretamente
+	        return responseBody;
+	    }
+	}*/
 
 	private String consultarEmpresaPorProtocolo(String token, String protocolo) throws IOException {
         String url = "https://www.jucesp.sp.gov.br/inscricaomunicipal20.services/api/v1/consultar-inscricao-municipal";
@@ -861,18 +972,27 @@ public class VreService {
 
 
 	public static void main(String[] args) throws IOException {
-		String userName = "diadema.im.redesim";
+		
+		
+		
+	/*	String userName = "diadema.im.redesim";
 		String password = "161.redesim";
 		String token = "abc";
 
 		
 		VreService s = new VreService(null, null);
-		EmpresaDTO retorno =  s.consultarDadosEmpresaPorCnpj("SPP2430386949");
+	//	EmpresaDTO retorno =  s.consultarDadosEmpresaPorCnpj("SPP2430386949");
+		//s.listarProtocoloEmpresa(new Date());
+		
+		if(UrlEndereco.EWSDL_URL.equals("https://abc-grp.diadema.sp.gov.br/eagata/servlet/")){
+		//	removerInscricaoesJaVerificadas(null);
+			System.out.println("Produção");
+		}else{
+			System.out.println("homologação");
+		}
 		
 		
-		
-		
-		int httpStatusCode = 0;
+		int httpStatusCode = 0;*/
 
 		/*int tentativas = 3; // o sistema ira fazer uma nova tentativas
 		do {

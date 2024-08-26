@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Sdt_DadosCadastraisEmpresa.RepresentanteLegalItens" type="{AGATA}Sdt_DadosCadastraisEmpresa.RepresentanteLegalItens" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="Sdt_DadosCadastraisEmpresa.RepresentanteLegalItens" type="{eAgata}Sdt_DadosCadastraisEmpresa.RepresentanteLegalItens" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -65,12 +65,5 @@ public class ArrayOfSdtDadosCadastraisEmpresaRepresentanteLegalItens {
         }
         return this.sdtDadosCadastraisEmpresaRepresentanteLegalItens;
     }
-
-	public void setSdtDadosCadastraisEmpresaRepresentanteLegalItens(
-			List<SdtDadosCadastraisEmpresaRepresentanteLegalItens> sdtDadosCadastraisEmpresaRepresentanteLegalItens) {
-		this.sdtDadosCadastraisEmpresaRepresentanteLegalItens = sdtDadosCadastraisEmpresaRepresentanteLegalItens;
-	}
-    
-    
 
 }

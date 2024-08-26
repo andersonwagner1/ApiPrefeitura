@@ -18,13 +18,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * &lt;complexType name="Sdt_DadosCadastraisEmpresa.ServicoItens">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;all>
+ *       &lt;sequence>
  *         &lt;element name="CodigoServico" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="TipoServico" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="SituacaoServico" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="DataInicioServico" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="DataFimServico" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *       &lt;/all>
+ *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -34,22 +34,26 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Sdt_DadosCadastraisEmpresa.ServicoItens", propOrder = {
-
+    "codigoServico",
+    "tipoServico",
+    "situacaoServico",
+    "dataInicioServico",
+    "dataFimServico"
 })
 public class SdtDadosCadastraisEmpresaServicoItens {
 
-	@XmlElement(name = "CodigoServico", required = true)
+    @XmlElement(name = "CodigoServico", required = true)
     protected String codigoServico;
     @XmlElement(name = "TipoServico", required = true)
     protected String tipoServico;
     @XmlElement(name = "SituacaoServico", required = true)
     protected String situacaoServico;
-    @XmlElement(name = "DataInicioServico", required = true)
+    @XmlElement(name = "DataInicioServico", required = true, nillable = true)
     @XmlSchemaType(name = "date")
-    protected String dataInicioServico;
-    @XmlElement(name = "DataFimServico", required = true)
+    protected XMLGregorianCalendar dataInicioServico;
+    @XmlElement(name = "DataFimServico", required = true, nillable = true)
     @XmlSchemaType(name = "date")
-    protected String dataFimServico;
+    protected XMLGregorianCalendar dataFimServico;
 
     /**
      * Obt�m o valor da propriedade codigoServico.
@@ -128,10 +132,10 @@ public class SdtDadosCadastraisEmpresaServicoItens {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public String getDataInicioServico() {
+    public XMLGregorianCalendar getDataInicioServico() {
         return dataInicioServico;
     }
 
@@ -140,10 +144,10 @@ public class SdtDadosCadastraisEmpresaServicoItens {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setDataInicioServico(String value) {
+    public void setDataInicioServico(XMLGregorianCalendar value) {
         this.dataInicioServico = value;
     }
 
@@ -152,10 +156,10 @@ public class SdtDadosCadastraisEmpresaServicoItens {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public String getDataFimServico() {
+    public XMLGregorianCalendar getDataFimServico() {
         return dataFimServico;
     }
 
@@ -164,10 +168,10 @@ public class SdtDadosCadastraisEmpresaServicoItens {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setDataFimServico(String value) {
+    public void setDataFimServico(XMLGregorianCalendar value) {
         this.dataFimServico = value;
     }
 

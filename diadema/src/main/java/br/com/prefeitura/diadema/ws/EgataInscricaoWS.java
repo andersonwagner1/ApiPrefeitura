@@ -506,7 +506,7 @@ public class EgataInscricaoWS {
 		}*/
 		
 		//w.consultarCmcPorCnpj(32379324859L);
-		w.consultarExistemEmpresaPorCnpj(32379324859L);
+		//w.consultarExistemEmpresaPorCnpj(32379324859L);
 		
 		//w.enviarDadosAgata(paramentroInsrciao2());
 		
@@ -698,9 +698,9 @@ public class EgataInscricaoWS {
 	 * @return
 	 * @throws Exception
 	 */
-	public SdtEmpresasporCnpjSdtEmpresasporCnpjItem consultarExistemEmpresaPorCnpj(Long cnpj) throws Exception{
+	public SdtEmpresasporCnpjSdtEmpresasporCnpjItem consultarExistemEmpresaPorCnpj(String cnpj) throws Exception{
 		WsconsultaexistenciaempresaExecute param = new WsconsultaexistenciaempresaExecute();
-		param.setCnpj(cnpj.toString());
+		param.setCnpj(cnpj);
 
 		Wsconsultaexistenciaempresa ws1 = new Wsconsultaexistenciaempresa();
 		WsconsultaexistenciaempresaSoapPort port = ws1.getWsconsultaexistenciaempresaSoapPort();

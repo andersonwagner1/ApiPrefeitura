@@ -14,7 +14,7 @@ public class ConverterDtoJson {
 		// Exemplo de uso
 		String json = "{\"nome\":\"João\", \"idade\":30}";
 		DtoJsonDados dados = jsonParaDto(json, DtoJsonDados.class);
-		System.out.println(dados);
+		//System.out.println(dados);
 	}
 	
 	public static <T> T jsonParaDto(String json, Class<T> dtoClass) {
@@ -49,7 +49,7 @@ public class ConverterDtoJson {
 		try {
 	
 			String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(dto);
-			 System.out.println(json);
+			// System.out.println(json);
 	        return json;		
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
@@ -63,7 +63,7 @@ public class ConverterDtoJson {
 		try {
 	
 			String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(dto);
-	        System.out.println(json);
+	      //  System.out.println(json);
 			//String json = objectMapper.writeValueAsString(dto);
 			//System.out.println(json);
 		} catch (JsonProcessingException e) {

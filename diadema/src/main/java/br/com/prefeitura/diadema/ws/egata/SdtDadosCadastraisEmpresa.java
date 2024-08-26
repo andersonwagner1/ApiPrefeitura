@@ -2512,7 +2512,6 @@ public class SdtDadosCadastraisEmpresa {
 			this.caracteristicaFuncionamentoItens = caracteristicaFuncionamentoItens;
 		}
         
-        
 
     }
 
@@ -2964,8 +2963,7 @@ public class SdtDadosCadastraisEmpresa {
 		public void setSocioItens(List<SdtDadosCadastraisEmpresaSocioItens> socioItens) {
 			this.socioItens = socioItens;
 		}
-		
-		
+        
         
 
     }

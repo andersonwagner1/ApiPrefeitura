@@ -382,7 +382,8 @@ public class InscricaoService {
         
         WsEnviarDadosEmpresaExecute execute = new WsEnviarDadosEmpresaExecute();
         SdtDadosCadastraisEmpresa params = new SdtDadosCadastraisEmpresa();
-        params = parse.parseAgata(inscricaoMunicipal);
+        //deabiiltado para remoção
+      //  params = parse.parseAgata(inscricaoMunicipal);
         execute.setSdtDadoscadastraisempresas(params);
         
         
@@ -403,7 +404,7 @@ public class InscricaoService {
                         	
                             throw new Exception("Não foi possível enviar dados ao àgata: " + item.getDesRetorno());
                         } else {
-                        	System.out.println("Finalizado NUMERO DA INSCRICAO " + item.getDesRetorno().split(":")[1].trim());
+                        	//System.out.println("Finalizado NUMERO DA INSCRICAO " + item.getDesRetorno().split(":")[1].trim());
                             break;
                         }
                     }
@@ -483,7 +484,8 @@ public class InscricaoService {
         WsEnviarDadosEmpresaExecute execute = new WsEnviarDadosEmpresaExecute();
         SdtDadosCadastraisEmpresa params = new SdtDadosCadastraisEmpresa();
        // params.setSituacaoCadastral("ALTERACAO"); /// codigo provisorio para realiza o cadastro do sistema
-        params = parse.parseAgata(inscricaoMunicipal);
+        //Desabiiltado para remoção
+       // params = parse.parseAgata(inscricaoMunicipal);
         execute.setSdtDadoscadastraisempresas(params);
         
         //String valor = ConverterDtoJson.json(execute);
