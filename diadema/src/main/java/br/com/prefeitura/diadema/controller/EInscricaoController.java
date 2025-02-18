@@ -76,12 +76,12 @@ public class EInscricaoController {
 	public ResponseEntity<Long> consultarInscricaoPorCnpj(
 			@PathVariable("cnpj") Long cnpj) {
 		
-		PmdLogs log = logsService.infoJson("consultarInscricao", cnpj);
+		//PmdLogs log = logsService.infoJson("consultarInscricao", cnpj);
 		try{
 			Long existe = egataWs.consultarCmcPorCnpj(cnpj);
 			return new ResponseEntity<Long>(existe, HttpStatus.OK);
 		}catch(Exception e){
-			logsService.falha(log, e.getMessage());
+			//logsService.falha(log, e.getMessage());
 			return new ResponseEntity<Long>(0L, HttpStatus.BAD_GATEWAY);
 		}		
 	}
@@ -94,7 +94,7 @@ public class EInscricaoController {
 	@GetMapping(value = "/consultar-situacao/{cnpj}")
 	public ResponseEntity<SdtEmpresasporCnpjSdtEmpresasporCnpjItem> consultaSituacaoEmpresaPorCnj(@PathVariable("cnpj") String cnpj) {
 		
-		PmdLogs log = logsService.infoJson("consultaSituacaoEmpresaPorCnj", cnpj);
+		//PmdLogs log = logsService.infoJson("consultaSituacaoEmpresaPorCnj", cnpj);
 		SdtEmpresasporCnpjSdtEmpresasporCnpjItem existe = null;
 		try{
 		 
@@ -104,7 +104,7 @@ public class EInscricaoController {
 		}catch(Exception e){
 			existe = new SdtEmpresasporCnpjSdtEmpresasporCnpjItem();
 			existe.setDesRetorno(e.getMessage());
-			logsService.falha(log, e.getMessage());
+			//logsService.falha(log, e.getMessage());
 			return new ResponseEntity<SdtEmpresasporCnpjSdtEmpresasporCnpjItem>(existe, HttpStatus.BAD_GATEWAY);
 		}		
 	}
@@ -117,12 +117,12 @@ public class EInscricaoController {
 			@PathVariable("tipo") String tipo,
 			@PathVariable("numero") Long numero) {
 		
-		PmdLogs log = logsService.infoJson("existeInscricao", numero);
+		//PmdLogs log = logsService.infoJson("existeInscricao", numero);
 		try{
 			boolean existe = egataWs.existeInscricaoMobiliario(tipo, numero);
 			return new ResponseEntity<Boolean>(existe, HttpStatus.OK);
 		}catch(Exception e){
-			logsService.falha(log, e.getMessage());
+			//logsService.falha(log, e.getMessage());
 			return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 		}
 		
@@ -386,7 +386,7 @@ public class EInscricaoController {
 			{
 		
 		
-		observacao = "BOLETO REFERENTE TAXA DE PROCESSOS ADMINISTRATIVO - PAGAR A PARTIR DO DIA SEGUINTE A DA DE EMISSAO.";
+		//observacao = "BOLETO REFERENTE TAXA DE PROCESSOS ADMINISTRATIVO - PAGAR A PARTIR DO DIA SEGUINTE A DA DE EMISSAO.";
 		PmdLogs log = logsService.info("lancarTaxaDiversars", orgao,numeroProcesso,ano,tipoContribuinte,inscricao );
 		RetBoleto fileBoelto;
 		try{

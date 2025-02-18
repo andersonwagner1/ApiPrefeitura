@@ -4,6 +4,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LocalizarValores {
+	
+	public static void main(String arg[]) throws SQLException{
+		LocalizarValores l = new LocalizarValores();
+		//l.localizarValor("");
+		//l.localizarValor(11970L);
+		l.localizarValor("FERNANDA.SOUZA", false);//Cota-Despacho - PMDI 8111.24 assinado
+		//32527218806
+		//l.localizarValor(11970L, true);
+		System.out.println("Fim");
+	}
+	/*
+	SELECT * FROM ECPATIPOTAREFA WHERE upper(DETIPOTAREFA) like upper('%Analisar resposta do comunique-se%');
+	SELECT * FROM ECPATIPOTAREFAESPECIALIZADA WHERE upper(DETIPOTAREFAESPECIALIZADA) like upper('%Analisar resposta do comunique-se%');
+	SELECT * FROM ECPAFILATRABALHOTAREFA WHERE upper(DETIPOTAREFA) like upper('%Analisar resposta do comunique-se%');
+	SELECT * FROM ECPAFILATRABALHOTAREFA WHERE upper(NMTAREFA) like upper('%Analisar resposta do comunique-se%');
+	SELECT * FROM ECPATAREFA WHERE upper(NMTAREFA) like upper('%Analisar resposta do comunique-se%');*/
+	
+	
 	String views[] = {};
 	String views5[] = {"ecpaassunto", 
 			"ecpaassuntowflaux", 
@@ -70,7 +88,7 @@ public class LocalizarValores {
 			"vsrhcadsimpfunc", 
 			"vsrhfuncionario"};
 			
-			
+	
 			
 			
 			
@@ -238,25 +256,20 @@ public class LocalizarValores {
 	};*/
 	
 	//private OracleAbaco coneection = new OracleAbaco();
-	//private OracleSoftplanProd coneection = new OracleSoftplanProd();
+	private OracleSoftplanProd coneection = new OracleSoftplanProd();
 	//private OracleBpm coneection = new OracleBpm();
-	private OracleSoftplanHomolog coneection = new OracleSoftplanHomolog();
+	//private OracleSoftplanHomolog coneection = new OracleSoftplanHomolog();
 	//private OracleMobile coneection = new OracleMobile();
 	//private OracleAgiles coneection = new OracleAgiles();
 	
 	 
 	
 	
-	public static void main(String arg[]) throws SQLException{
-		LocalizarValores l = new LocalizarValores();
-		//l.localizarValor("");
-		//l.localizarValor("904", false);
-		//l.localizarValor("SEHAB-421",true);
-		
-		l.localizarValor("FATIMA.QUEIROZ", true);
-		System.out.println("Fim");
-	}
-	
+
+	/**
+	 * 
+	 * @return
+	 */
 	private ResultSet listarTabelas(){
 		System.out.println("----------------------- Iniciando ---------------------------");
 		StringBuffer sqltabela = new StringBuffer();
@@ -371,7 +384,7 @@ public class LocalizarValores {
 				localizarValores(rs.getString(1), rsColunas3.getString(1), valor, exato);
 			}
 			rsColunas3.close();
-*/
+			 */
 		}
 		
 		

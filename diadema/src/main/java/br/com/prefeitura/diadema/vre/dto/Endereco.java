@@ -10,7 +10,8 @@ public class Endereco {
     private String bairro;
     private String estado;
     private String referencia;
-    private List<String> complementos;
+    //private List<String> complementos;
+    private List<Complemento> complementos;
     private Municipio municipio;
 	public TipoLogradouro getTipoLogradouro() {
 		return tipoLogradouro;
@@ -54,10 +55,11 @@ public class Endereco {
 	public void setReferencia(String referencia) {
 		this.referencia = referencia;
 	}
-	public List<String> getComplementos() {
+	
+	public List<Complemento> getComplementos() {
 		return complementos;
 	}
-	public void setComplementos(List<String> complementos) {
+	public void setComplementos(List<Complemento> complementos) {
 		this.complementos = complementos;
 	}
 	public Municipio getMunicipio() {

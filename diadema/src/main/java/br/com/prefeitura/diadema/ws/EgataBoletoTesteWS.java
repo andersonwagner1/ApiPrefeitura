@@ -1,5 +1,6 @@
 package br.com.prefeitura.diadema.ws;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -383,6 +384,7 @@ public class EgataBoletoTesteWS {
 			SdtLancarTaxasDiversasTaxasItem lancarTaxasDiversasTaxasItem = new SdtLancarTaxasDiversasTaxasItem();
 			lancarTaxasDiversasTaxasItem.setCodigoTaxa(ta.getCodigoTaxa().shortValue());
 			lancarTaxasDiversasTaxasItem.setQuantidadeTaxa(ta.getQuantidadeTaxa());
+			lancarTaxasDiversasTaxasItem.setValorTaxa(ta.getValorTaxa());
 			taxas.getTaxasItem().add(lancarTaxasDiversasTaxasItem);
 		}
 
@@ -439,11 +441,11 @@ public class EgataBoletoTesteWS {
 		Boleto boletoStella = boletos.toStellaBoleto();
 		GeradorDeBoleto gerador = new GeradorDeBoleto(parametros, boletoStella);
 		//String caminho = CAMINHO_ARQUIVO + File.separator +  numeroProcesso + ".pdf";
-	//	caminho = caminho.replace(":", "/");
-//		caminho = caminho.replace(";", "");
+		//caminho = caminho.replace(":", "/");
+		//caminho = caminho.replace(";", "");
 
-		//File pdf = new File(caminho); //desativadro o agerar arquivo no servidor, pois não é necessario
-		//gerador.geraPDF(pdf);
+		File pdf = new File("E:\\sakai\\pdf.pdf"); //desativadro o agerar arquivo no servidor, pois não é necessario
+		gerador.geraPDF(pdf);
 		
 		byte[] arquivo = gerador.geraPDF();
 

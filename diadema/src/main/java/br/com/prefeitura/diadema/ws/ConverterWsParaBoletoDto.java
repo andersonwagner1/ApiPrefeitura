@@ -7,6 +7,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import br.com.prefeitura.diadema.boleto.Boletos;
 import br.com.prefeitura.diadema.boleto.bancos.Bradesco;
+import br.com.prefeitura.diadema.ws.egata.SdtBoletoTaxasDiversasTaxasItem;
 import br.com.prefeitura.diadema.ws.egata.WsBuscaDadosBoletoTaxasDiversasExecuteResponse;
 
 public class ConverterWsParaBoletoDto {
@@ -102,10 +103,21 @@ public class ConverterWsParaBoletoDto {
 				.getSdtboletotaxasdiversas().getReferencia());
 		this.boleto.setTipoInscricao(this.boletoResponse
 				.getSdtboletotaxasdiversas().getTipoInscricao());
-		this.boleto.setTsa(String.valueOf(this.boletoResponse
-				.getSdtboletotaxasdiversas().getTSA()));
-		this.boleto.setValorBoleto(String.valueOf(this.boletoResponse
-				.getSdtboletotaxasdiversas().getValoraPagar()));
+		this.boleto.setTsa(String.valueOf(this.boletoResponse.getSdtboletotaxasdiversas().getTSA()));
+		
+		//versão antiga para mostrar o valor da taxa
+		//this.boleto.setValorBoleto(String.valueOf(this.boletoResponse.getSdtboletotaxasdiversas().getValoraPagar()));
+		
+		//SOMAR TODAS AS TAXAS
+		Double totalValor = 0d;
+		if(this.boletoResponse.getSdtboletotaxasdiversas().getTaxas()!=null){
+			for(SdtBoletoTaxasDiversasTaxasItem taxa :  this.boletoResponse.getSdtboletotaxasdiversas().getTaxas().getTaxasItem()){			
+				totalValor = totalValor + taxa.getValorTaxa();
+			}
+		}
+		
+		this.boleto.setValorBoleto(String.valueOf(totalValor));
+		
 
 		return this.boleto;
 	}

@@ -1,4 +1,5 @@
 package br.com.prefeitura.diadema.ws;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +40,7 @@ public class BoletoBradescoExample {
         Boleto boleto = Boleto.novoBoleto()
             .comBanco(banco)
             .comDatas(datas)
-            .comDescricoes("descricao 1", "descricao 2", "descricao 3",
+            .comDescricoes("123456789", "descricao 2", "descricao 3",
                         "descricao 4", "descricao 5")
             .comEmissor(emissor)
             .comSacado(sacado)
@@ -64,11 +65,16 @@ public class BoletoBradescoExample {
         gerador.geraPDF("BoletoBradesco.png");
 
         // Para gerar um array de bytes a partir de um PDF
-        @SuppressWarnings("unused")
-        byte[] bPDF = gerador.geraPDF();
+       // @SuppressWarnings("unused")
+       // byte[] bPDF = gerador.geraPDF();
 
         // Para gerar um array de bytes a partir de um PNG
-        @SuppressWarnings("unused")
-        byte[] bPNG = gerador.geraPNG();
+      //  @SuppressWarnings("unused")
+      //  byte[] bPNG = gerador.geraPDF();
+        
+        File pdf = new File("E:\\sakai\\pdf.pdf"); //desativadro o agerar arquivo no servidor, pois não é necessario
+		gerador.geraPDF(pdf);
+        
+        
     }
 }

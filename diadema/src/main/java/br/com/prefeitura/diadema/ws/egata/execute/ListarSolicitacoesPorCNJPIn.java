@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java de ListarSolicitacoesPorCNJPIn complex type.
  * 
- * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * <p>O seguinte fragmento do esquema especifica o contedo esperado contido dentro desta classe.
  * 
  * <pre>
  * &lt;complexType name="ListarSolicitacoesPorCNJPIn">
@@ -39,7 +39,7 @@ public class ListarSolicitacoesPorCNJPIn
     protected JAXBElement<String> cnpj;
 
     /**
-     * Obtém o valor da propriedade cnpj.
+     * Obtï¿½m o valor da propriedade cnpj.
      * 
      * @return
      *     possible object is

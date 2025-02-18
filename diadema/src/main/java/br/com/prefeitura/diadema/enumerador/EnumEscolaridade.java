@@ -3,16 +3,16 @@ package br.com.prefeitura.diadema.enumerador;
 
 
 public enum EnumEscolaridade {
-	ENS_BASICO_INCOMPL("Ensino Básico Incompleto"), 	//EBI
-	ENS_BASICO_COMPL("Ensino Básico Completo"), 		//EBC
-	ENS_FUNDAM_INCOMPL("Ensino Fundamental Incompleto"),//EFI
-	ENS_FUNDAM_COMPL("Ensino Fundamental Completo"), 	//EFC
-	ENS_MEDIO_INCOMPL("Ensino Médio Incompleto"), 		//EMI
-	ENS_MEDIO_COMPL("Ensino Médio Completo"), 			//EMC
-	ENS_SUP_INCOMPL("Ensino Superior Incompleto"), 		//ESI
-	ENS_SUP_COMPL("Ensino Superior Completo"); 			//ESC
+	EBI("Ensino Básico Incompleto"), 	//EBI
+	EBC("Ensino Básico Completo"), 		//EBC
+	EFI("Ensino Fundamental Incompleto"),//EFI
+	EFC("Ensino Fundamental Completo"), 	//EFC
+	EMI("Ensino Médio Incompleto"), 		//EMI
+	EMC("Ensino Médio Completo"), 			//EMC
+	ESI("Ensino Superior Incompleto"), 		//ESI
+	ESC("Ensino Superior Completo"); 			//ESC
 	
-	
+	//ENS_SUP_INCOMPL, ENS_BASICO_COMPL, ENS_MEDIO_INCOMPL, ENS_SUP_COMPL, ENS_MEDIO_COMPL, ENS_BASICO_INCOMPL, ENS_FUNDAM_COMPL, ENS_FUNDAM_INCOMPL
 	
 	private String nomeEscolar;
 	

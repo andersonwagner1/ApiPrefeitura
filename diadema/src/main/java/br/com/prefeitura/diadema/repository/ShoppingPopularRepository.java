@@ -11,7 +11,7 @@ import br.com.prefeitura.diadema.model.PmdBoleto;
 import br.com.prefeitura.diadema.model.PmdShoppingPopular;
 
 @Repository
-public abstract interface ShoppingPopularRepository extends JpaRepository<PmdShoppingPopular, Long>{
+public abstract interface ShoppingPopularRepository extends JpaRepository<PmdShoppingPopular, String>{
 	
 	
 	/**
@@ -20,9 +20,12 @@ public abstract interface ShoppingPopularRepository extends JpaRepository<PmdSho
 	 * @param ano
 	 * @return
 	 */
-	@Query(value = "SELECT x from PmdShoppingPopular x where x.cpf =:cpf AND x.ano = :ano AND x.icSituacao <> 'CANCELADO' ")
+	@Query(value = "SELECT x from PmdShoppingPopular x where x.cpf =:cpf AND x.ano = :ano AND x.icSituacao IN('APROVADO','EXECUTANDO')")
 	public List<PmdShoppingPopular> consultarSeExisteProcessoEmAndamento(@Param("cpf") String cpf, @Param("ano") Integer ano);
 	
+	
+	@Query(value = "SELECT x FROM PmdShoppingPopular x WHERE x.ano = :ano AND x.icSituacao IN('APROVADO') ORDER BY x.criterioDePontuacao desc, x.criterioDeDesempate desc")
+	public List<PmdShoppingPopular> listarRankingPelPontuacaoPorAno(@Param("ano") Integer ano);
 	
 	
 	/**
@@ -31,8 +34,8 @@ public abstract interface ShoppingPopularRepository extends JpaRepository<PmdSho
 	 * @param ano
 	 * @return
 	 */
-	@Query(value = "SELECT x from PmdShoppingPopular x where x.cpf =:cpf AND x.ano = :ano  AND x.icSituacao = 'EXECUCAO' ")
-	public PmdShoppingPopular consultaUsuario(@Param("cpf") String cpf, @Param("ano") Integer ano);
+	//@Query(value = "SELECT x from PmdShoppingPopular x where x.cpf =:cpf AND x.ano = :ano  AND x.icSituacao = 'EXECUCAO' ")
+	//public PmdShoppingPopular consultaUsuario(@Param("cpf") String cpf, @Param("ano") Integer ano);
 	
 	
 	/**
@@ -40,8 +43,8 @@ public abstract interface ShoppingPopularRepository extends JpaRepository<PmdSho
 	 * @param ano
 	 * @return
 	 */
-	@Query(value = "SELECT x from PmdShoppingPopular x where x.ano = :ano  AND x.icSituacao = 'CONCLUIDO' ")
-	public List<PmdShoppingPopular> consultarProcessosConcluidos(@Param("ano") Integer ano);
+	//@Query(value = "SELECT x from PmdShoppingPopular x where x.ano = :ano  AND x.icSituacao = 'CONCLUIDO' ")
+	//public List<PmdShoppingPopular> consultarProcessosConcluidos(@Param("ano") Integer ano);
 
 	
 	

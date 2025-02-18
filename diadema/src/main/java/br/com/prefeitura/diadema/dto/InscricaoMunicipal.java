@@ -3,6 +3,10 @@ package br.com.prefeitura.diadema.dto;
 import java.util.Date;
 import java.util.List;
 
+import br.com.prefeitura.diadema.PublicidadesListDeserializer;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 public class InscricaoMunicipal {
     private Long id;
     private String numeroProtocolo;
@@ -96,7 +100,7 @@ public class InscricaoMunicipal {
     private Date dataDeAlteracao;
     private Date dataDeEntrada;
     
-    
+    @JsonDeserialize(using = PublicidadesListDeserializer.class)
     private List<Publicidades> publicidades;
     private EnquadramentoAtividadeEconomica enquadramentoAtividadeEconomica;
     private List<Socio> socios;
@@ -187,7 +191,7 @@ public class InscricaoMunicipal {
 				+ tipoAlteracaoEndereco + ", tipoAlteracaoRenovacao="
 				+ tipoAlteracaoRenovacao + ", dataDeAlteracao="
 				+ dataDeAlteracao + ", dataDeEntrada=" + dataDeEntrada
-				+ ", publicidades=" + publicidades
+			//	+ ", publicidades=" + publicidades
 				+ ", enquadramentoAtividadeEconomica="
 				+ enquadramentoAtividadeEconomica + ", socios=" + socios
 				+ ", enquadramentoISS=" + enquadramentoISS + ", cnaes=" + cnaes

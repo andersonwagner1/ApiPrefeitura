@@ -1,5 +1,6 @@
 package br.com.prefeitura.diadema.controller;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,19 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.prefeitura.diadema.boleto.RetBoleto;
-import br.com.prefeitura.diadema.dto.DtoInscricao;
-import br.com.prefeitura.diadema.dto.InscricaoMunicipal;
-import br.com.prefeitura.diadema.dto.Logradouro;
-import br.com.prefeitura.diadema.dto.RetornoDto;
 import br.com.prefeitura.diadema.dto.Taxa;
 import br.com.prefeitura.diadema.dto.TaxaDiversas;
 import br.com.prefeitura.diadema.model.PmdBoleto;
 import br.com.prefeitura.diadema.model.PmdLogs;
 import br.com.prefeitura.diadema.service.LogsService;
-import br.com.prefeitura.diadema.util.ConverterDtoJson;
 import br.com.prefeitura.diadema.ws.EgataBoletoTesteWS;
 import br.com.prefeitura.diadema.ws.EgataBoletoWS;
-import br.com.prefeitura.diadema.ws.EgataInscricaoWS;
 
 @RestController
 @RequestMapping("/api/diadema/boleto")
@@ -57,7 +52,7 @@ public class EBoletoController {
 			@PathVariable("tipo") String tipo,
 			@PathVariable("numeroProcesso") Long numeroProcesso,
 			@PathVariable("anoProcesso") Integer ano){
-		PmdLogs log = logsService.info("consultarBoleto", tipo,numeroProcesso,ano );
+		//PmdLogs log = logsService.info("consultarBoleto", tipo,numeroProcesso,ano );
 		
 		try{
 			//PmdBoleto boleot = egataWs.consultarSituacaoBoletoPorNumeroProtocolo(numeroProcesso, tipo, ano);
@@ -65,9 +60,9 @@ public class EBoletoController {
 			return new ResponseEntity<PmdBoleto>(boleot, HttpStatus.OK);
 		}catch(Exception ex){
 			ex.printStackTrace();
-			logsService.falha(log, ex.getMessage());
+			//logsService.falha(log, ex.getMessage());
 			
-			return new ResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
 		}		
 	}
 	
@@ -101,7 +96,7 @@ public class EBoletoController {
 				ex.printStackTrace();
 				logsService.falha(log, ex.getMessage());
 				
-				return new ResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
 			}		
 		}
 	
@@ -120,8 +115,7 @@ public class EBoletoController {
 			@PathVariable("observacao")String observacao) throws Exception
 			{
 		
-		
-		observacao = "BOLETO REFERENTE TAXA DE PROCESSOS ADMINISTRATIVO - PAGAR A PARTIR DO DIA SEGUINTE A DA DE EMISSAO.";
+		 observacao = URLDecoder.decode(observacao, "UTF-8");
 		
 		StringBuffer s = new StringBuffer();
 		s.append("Processo: " + orgao + " " + numeroProcesso + "/" + ano);
@@ -138,6 +132,12 @@ public class EBoletoController {
 			//--------------------------------------------------------------------------------
 			//CONVERTE PARA A CLASSE PARA GERAR PAREMTROS
 			//--------------------------------------------------------------------------------
+			//Est ocorrendo que esta vindo valor da taxa no formulario do Erick
+			if(codigoTaxa != 35){
+				valorTaxa = 0.0;
+			}
+			
+			
 			TaxaDiversas taxaDiversas = new TaxaDiversas();
 			taxaDiversas.setAno(ano);
 			taxaDiversas.setCodigoLote("0");
@@ -149,7 +149,11 @@ public class EBoletoController {
 			taxaDiversas.setOrgao(orgao);
 			taxaDiversas.setTipoContibuinte(tipoContribuinte);
 			taxaDiversas.setValorTaxaAdministrativa(valorTaxa);
-			taxaDiversas.setObservacao("BOLETO REFERENTE TAXA DE PROCESSOS ADMINISTRATIVO - PAGAR A PARTIR DO DIA SEGUINTE A DA DE EMISSAO.");
+			taxaDiversas.setObservacao(observacao);
+			//taxaDiversas.setObservacao("BOLETO REFERENTE TAXA DE PROCESSOS ADMINISTRATIVO - PAGAR A PARTIR DO DIA SEGUINTE A DA DE EMISSAO.");
+			
+			
+			
 			
 			List<Taxa> taxas = new ArrayList<Taxa>();
 			Taxa taxa = new Taxa();
@@ -179,7 +183,7 @@ public class EBoletoController {
 			fileBoelto.setSucesso(false);
 			
 			fileBoelto.setResultado(ex.getMessage());
-			return new ResponseEntity(fileBoelto, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(fileBoelto, HttpStatus.BAD_REQUEST);
 		}
 		
 		
@@ -190,7 +194,13 @@ public class EBoletoController {
 	public ResponseEntity<RetBoleto> lancarTaxasDiversasParametrizado(@RequestBody TaxaDiversas taxaDiversas)throws Exception{
 		
 		//a classe TaxasDiversas tem valores padrões, verifique a classe
-		taxaDiversas.setObservacao("BOLETO REFERENTE TAXA DE PROCESSOS ADMINISTRATIVO - PAGAR A PARTIR DO DIA SEGUINTE A DA DE EMISSAO.");
+		
+		//if(taxaDiversas.getObservacao() == null || taxaDiversas.getObservacao().isEmpty()){
+		//	taxaDiversas.setObservacao("BOLETO REFERENTE TAXA DE PROCESSOS ADMINISTRATIVO - PAGAR A PARTIR DO DIA SEGUINTE A DA DE EMISSAO.");
+		//}
+		
+		
+		//taxaDiversas.setObservacao("BOLETO REFERENTE TAXA DE PROCESSOS ADMINISTRATIVO - PAGAR A PARTIR DO DIA SEGUINTE A DA DE EMISSAO.");
 		
 		PmdLogs log = logsService.infoJson("lancarTaxasDiversasParametrizado POST", taxaDiversas);
 		RetBoleto fileBoelto;
@@ -205,7 +215,7 @@ public class EBoletoController {
 			fileBoelto.setSucesso(false);
 			
 			fileBoelto.setResultado(ex.getMessage());
-			return new ResponseEntity(fileBoelto, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(fileBoelto, HttpStatus.BAD_REQUEST);
 		}
 	}
 	

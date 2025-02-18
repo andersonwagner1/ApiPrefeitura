@@ -285,7 +285,7 @@ public class ParseInscricaoEgata {
         
         //CONTADOR
         if(inscricaoMunicipal.getDadosContadorNome() != null){
-        	if(!inscricaoMunicipal.getDadosContadorNome().endsWith("")){
+        	if(!inscricaoMunicipal.getDadosContadorNome().equals("")){
         		dadosCadastraisEmpresa.setNumeroCRCContador(inscricaoMunicipal.getDadosContadorCrc());
         		dadosCadastraisEmpresa.setNomeContador(inscricaoMunicipal.getDadosContadorNome());
         		dadosCadastraisEmpresa.setNumeroCPFContador(somenteNumeros(inscricaoMunicipal.getDadosContadorCPF()));

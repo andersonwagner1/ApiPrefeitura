@@ -165,9 +165,9 @@ public class EgataInscricaoWS {
 		publicidade.setM2(6d);
 		publicidade.setQuantidade(2);
 		
-		List<Publicidades> publicidades = new ArrayList<Publicidades>();
-		publicidades.add(publicidade);
-		inscricaoMunicipal.setPublicidades(publicidades );
+		//List<Publicidades> publicidades = new ArrayList<Publicidades>();
+		//publicidades.add(publicidade);
+		//inscricaoMunicipal.setPublicidades(publicidades );
 
 		//Isso repete no item pulibidade
 		inscricaoMunicipal.setQuantidadePublicidadeLuminoso(2);
@@ -706,7 +706,9 @@ public class EgataInscricaoWS {
 		WsconsultaexistenciaempresaSoapPort port = ws1.getWsconsultaexistenciaempresaSoapPort();
 		
 		WsconsultaexistenciaempresaExecuteResponse exisiteInscricaoMunicipal = port.execute(param);
-		return exisiteInscricaoMunicipal.getSdtEmpresasporcnpj().getSdtEmpresasporCnpjSdtEmpresasporCnpjItem().get(0);
+		
+		//Alterado o codigo, pois na abaco esta sempre retornando a primeira empresa, alterado para retornar sempre a ultima empresa cadastrada
+		return exisiteInscricaoMunicipal.getSdtEmpresasporcnpj().getSdtEmpresasporCnpjSdtEmpresasporCnpjItem().get(exisiteInscricaoMunicipal.getSdtEmpresasporcnpj().getSdtEmpresasporCnpjSdtEmpresasporCnpjItem().size() - 1);
 	}
 	
 	

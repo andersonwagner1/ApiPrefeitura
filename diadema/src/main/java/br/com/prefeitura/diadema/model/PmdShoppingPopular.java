@@ -23,17 +23,18 @@ public class PmdShoppingPopular {
 	
 	@Id
 	private String processo; // numero do processo eletronico
+	private String nuProcessoFormatado;
 	private Integer ano; // ano do processo
-	private Integer criterioDePontuacao; // pontuaçao do usuario
-	private Long criterioDeDesempate; // prontuacções
-	private Integer posicao;	
+	private Integer criterioDePontuacao = 0; // pontuaçao do usuario
+	private Long criterioDeDesempate = 0L; // prontuacções
+	private Integer posicao = 0;	
 	
 	
 	@Enumerated(EnumType.STRING)
 	private EnumShoppingSituacao icSituacao;
 	
 	@Lob
-	private DtoJsonDados jsonDosDados; 
+	private String jsonDosDados; 
 	
 	
 	public String getCpf() {
@@ -85,11 +86,17 @@ public class PmdShoppingPopular {
 	public void setIcSituacao(EnumShoppingSituacao icSituacao) {
 		this.icSituacao = icSituacao;
 	}
-	public DtoJsonDados getJsonDosDados() {
+	public String getJsonDosDados() {
 		return jsonDosDados;
 	}
-	public void setJsonDosDados(DtoJsonDados jsonDosDados) {
+	public void setJsonDosDados(String jsonDosDados) {
 		this.jsonDosDados = jsonDosDados;
+	}
+	public String getNuProcessoFormatado() {
+		return nuProcessoFormatado;
+	}
+	public void setNuProcessoFormatado(String nuProcessoFormatado) {
+		this.nuProcessoFormatado = nuProcessoFormatado;
 	}
 	
 	

@@ -1,9 +1,12 @@
 package br.com.prefeitura.diadema.dto.shopping;
 
 import java.util.Date;
+import java.util.List;
 
 import br.com.prefeitura.diadema.enumerador.EnumEscolaridade;
 import br.com.prefeitura.diadema.enumerador.EnumSimNao;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 public class DtoJsonDados {
@@ -11,84 +14,149 @@ public class DtoJsonDados {
 	private Date dataInclusao;
 	
 	
-	private EnumSimNao pagaAluguel;
+	private EnumSimNao dsPagaAluguel;
 	
 	
-	private Date dataNascimento;
+	private String dtNascimento;
 	private Integer idade;
 	
-	private EnumSimNao temNecessidadeEspecial;
+	private EnumSimNao dsPortadorNecessidadeEspecial;
 	
 	private Integer quantidadeDependente;
 	
-	private EnumSimNao eMoradorDiademaMais2Anos;
+	private EnumSimNao dsMoraMais2AnosEmDiadema;
 	
-	private Double rendaMensal;
-	private EnumSimNao eAponsentado;
+	private Double vlAlguel;
+	private Double vlRendaMensal;
+	private EnumSimNao dsAponsentado;
 	
-	private EnumEscolaridade escolaridade;
+	private EnumEscolaridade dsEscolaridade;
 	
 	
-	
+	private List<Depedente> tbDepedente;
+
 	public Date getDataInclusao() {
 		return dataInclusao;
 	}
+
 	public void setDataInclusao(Date dataInclusao) {
 		this.dataInclusao = dataInclusao;
 	}
-	public EnumSimNao getPagaAluguel() {
-		return pagaAluguel;
+
+	public EnumSimNao getDsPagaAluguel() {
+		return dsPagaAluguel;
 	}
-	public void setPagaAluguel(EnumSimNao pagaAluguel) {
-		this.pagaAluguel = pagaAluguel;
+
+	public void setDsPagaAluguel(EnumSimNao dsPagaAluguel) {
+		this.dsPagaAluguel = dsPagaAluguel;
 	}
-	public Date getDataNascimento() {
-		return dataNascimento;
+
+	public String getDtNascimento() {
+		return dtNascimento;
 	}
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
+
+	public void setDtNascimento(String dtNascimento) {
+		this.dtNascimento = dtNascimento;
 	}
+
 	public Integer getIdade() {
 		return idade;
 	}
+
 	public void setIdade(Integer idade) {
 		this.idade = idade;
 	}
-	public EnumSimNao getTemNecessidadeEspecial() {
-		return temNecessidadeEspecial;
+
+	public EnumSimNao getDsPortadorNecessidadeEspecial() {
+		return dsPortadorNecessidadeEspecial;
 	}
-	public void setTemNecessidadeEspecial(EnumSimNao temNecessidadeEspecial) {
-		this.temNecessidadeEspecial = temNecessidadeEspecial;
+
+	public void setDsPortadorNecessidadeEspecial(
+			EnumSimNao dsPortadorNecessidadeEspecial) {
+		this.dsPortadorNecessidadeEspecial = dsPortadorNecessidadeEspecial;
 	}
+
 	public Integer getQuantidadeDependente() {
 		return quantidadeDependente;
 	}
+
 	public void setQuantidadeDependente(Integer quantidadeDependente) {
 		this.quantidadeDependente = quantidadeDependente;
 	}
-	public EnumSimNao geteMoradorDiademaMais2Anos() {
-		return eMoradorDiademaMais2Anos;
+
+	public EnumSimNao getDsMoraMais2AnosEmDiadema() {
+		return dsMoraMais2AnosEmDiadema;
 	}
-	public void seteMoradorDiademaMais2Anos(EnumSimNao eMoradorDiademaMais2Anos) {
-		this.eMoradorDiademaMais2Anos = eMoradorDiademaMais2Anos;
+
+	public void setDsMoraMais2AnosEmDiadema(EnumSimNao dsMoraMais2AnosEmDiadema) {
+		this.dsMoraMais2AnosEmDiadema = dsMoraMais2AnosEmDiadema;
 	}
-	public Double getRendaMensal() {
-		return rendaMensal;
+
+	public Double getVlAlguel() {
+		return vlAlguel;
 	}
-	public void setRendaMensal(Double rendaMensal) {
-		this.rendaMensal = rendaMensal;
+
+	public void setVlAlguel(Double vlAlguel) {
+		this.vlAlguel = vlAlguel;
 	}
-	public EnumSimNao geteAponsentado() {
-		return eAponsentado;
+
+	public EnumSimNao getDsAponsentado() {
+		return dsAponsentado;
 	}
-	public void seteAponsentado(EnumSimNao eAponsentado) {
-		this.eAponsentado = eAponsentado;
+
+	public void setDsAponsentado(EnumSimNao dsAponsentado) {
+		this.dsAponsentado = dsAponsentado;
 	}
-	public EnumEscolaridade getEscolaridade() {
-		return escolaridade;
+
+	public EnumEscolaridade getDsEscolaridade() {
+		return dsEscolaridade;
 	}
-	public void setEscolaridade(EnumEscolaridade escolaridade) {
-		this.escolaridade = escolaridade;
+
+	public void setDsEscolaridade(EnumEscolaridade dsEscolaridade) {
+		this.dsEscolaridade = dsEscolaridade;
+	}
+
+	public List<Depedente> getTbDepedente() {
+		return tbDepedente;
+	}
+
+	public void setTbDepedente(List<Depedente> tbDepedente) {
+		if(tbDepedente == null || tbDepedente.size() == 0){
+			this.quantidadeDependente = 0;
+		}else{
+			if(tbDepedente.get(0).getDsNome() == null){
+				this.tbDepedente = null;
+				this.quantidadeDependente = 0;
+			}else{
+				this.quantidadeDependente = tbDepedente.size();
+			}
+		}
+		
+		
+		this.tbDepedente = tbDepedente;
+	}
+
+	public Double getVlRendaMensal() {
+		return vlRendaMensal;
+	}
+
+	public void setVlRendaMensal(Double vlRendaMensal) {
+		this.vlRendaMensal = vlRendaMensal;
+	}
+	
+
+
+}
+
+class Depedente {
+	private String dsNome;
+
+	public String getDsNome() {
+		return dsNome;
+	}
+
+	public void setDsNome(String dsNome) {
+		this.dsNome = dsNome;
 	}
 	
 	

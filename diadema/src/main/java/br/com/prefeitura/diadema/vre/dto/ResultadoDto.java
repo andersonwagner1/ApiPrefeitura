@@ -2,6 +2,8 @@ package br.com.prefeitura.diadema.vre.dto;
 
 import java.util.List;
 
+import br.com.prefeitura.diadema.dto.Publicidades;
+
 public class ResultadoDto {
 
 	private String resultado;
@@ -14,6 +16,7 @@ public class ResultadoDto {
 	
 	private List<Socio> socios;
 	private List<Servico> servicos;
+	private List<Publicidades> publicidades;
 	private RepresentanteIM representanteIM;
 	private Contador contador;
 	private Validacao validacao;
@@ -105,6 +108,14 @@ public class ResultadoDto {
 
 	public void setServicos(List<Servico> servicos) {
 		this.servicos = servicos;
+	}
+
+	public List<Publicidades> getPublicidades() {
+		return publicidades;
+	}
+
+	public void setPublicidades(List<Publicidades> publicidades) {
+		this.publicidades = publicidades;
 	}
 	
 

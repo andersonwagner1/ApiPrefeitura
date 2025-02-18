@@ -8,7 +8,7 @@ public class DadosEstabelecimento {
     private double areaEstabelecimento;
     private double areaTerreno;
     private double areaImovel;
-    private int cumprimentoTestada;
+    private Double cumprimentoTestada;
     private List<AreaPublicidades> areaPublicidades;
     private int numeroFuncionarios;
     private String tipodeUnidade;
@@ -50,10 +50,10 @@ public class DadosEstabelecimento {
 	public void setAreaImovel(double areaImovel) {
 		this.areaImovel = areaImovel;
 	}
-	public int getCumprimentoTestada() {
+	public Double getCumprimentoTestada() {
 		return cumprimentoTestada;
 	}
-	public void setCumprimentoTestada(int cumprimentoTestada) {
+	public void setCumprimentoTestada(Double cumprimentoTestada) {
 		this.cumprimentoTestada = cumprimentoTestada;
 	}
 	public List<AreaPublicidades> getAreaPublicidades() {

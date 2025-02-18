@@ -52,7 +52,7 @@ public class DadosEmpresa {
 	public void setOrgaoRegistro(String orgaoRegistro) {
 		this.orgaoRegistro = orgaoRegistro;
 	}
-	public String getDataInicioOperacao() {
+	public String getDataInicioOperaca1o() {
 		return dataInicioOperacao;
 	}
 	public void setDataInicioOperacao(String dataInicioOperacao) {

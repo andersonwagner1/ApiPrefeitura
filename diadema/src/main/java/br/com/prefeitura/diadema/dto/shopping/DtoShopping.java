@@ -2,19 +2,22 @@ package br.com.prefeitura.diadema.dto.shopping;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Id;
 
 import br.com.prefeitura.diadema.enumerador.EnumShoppingSituacao;
-import br.com.prefeitura.diadema.enumerador.EnumSimNao;
 
 public class DtoShopping {
 	private String cpf; // identificador
 	private String nome; //nome de confirmação
+	
+	
 	private String processo; // numero do processo eletronico
 	private Integer ano; // ano do processo
 	private Integer criterioDePontuacao; // pontuaçao do usuario
 	private Long criterioDeDesempate; // prontuacções
-	private EnumSimNao aprovado;
+	private String parecer;
 	private Integer posicao;
+	private String nuProcessoFormatado;
 	private DtoJsonDados jsonDados;
 	
 	
@@ -95,14 +98,23 @@ public class DtoShopping {
 		this.jsonDados = jsonDados;
 	}
 
-	public EnumSimNao getAprovado() {
-		return aprovado;
+	public String getParecer() {
+		return parecer;
 	}
 
-	public void setAprovado(EnumSimNao aprovado) {
-		this.aprovado = aprovado;
+	public void setParecer(String parecer) {
+		this.parecer = parecer;
 	}
 
+	public String getNuProcessoFormatado() {
+		return nuProcessoFormatado;
+	}
+
+	public void setNuProcessoFormatado(String nuProcessoFormatado) {
+		this.nuProcessoFormatado = nuProcessoFormatado;
+	}
+
+	
 
 	
 	

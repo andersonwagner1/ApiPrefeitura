@@ -36,6 +36,8 @@ public class VreController {
     public VreController(VreService serviceVre, LogsService logsService) {
        this.serviceVre = serviceVre;  
         this.logsService = logsService;
+        
+       
     }
 	
 	

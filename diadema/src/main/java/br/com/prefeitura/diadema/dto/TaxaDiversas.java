@@ -11,7 +11,7 @@ public class TaxaDiversas {
 	private Integer ano;
 	
 	
-	private Integer tipoContibuinte;
+	private Integer tipoContibuinte;//1= Contribuinte Geral, 2 = Inscrição do imóvel, 3 = cmc
 	private Long inscricao;
 	private Integer codigoSetor;
 	private String codigoQuadra;

@@ -1,5 +1,7 @@
 package br.com.prefeitura.diadema.controller;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.prefeitura.diadema.dto.RetornoDto;
+import br.com.prefeitura.diadema.dto.shopping.DtoJsonDados;
 import br.com.prefeitura.diadema.dto.shopping.DtoShopping;
 import br.com.prefeitura.diadema.model.PmdLogs;
 import br.com.prefeitura.diadema.service.LogsService;
 import br.com.prefeitura.diadema.service.ShoppingService;
+import br.com.prefeitura.diadema.util.CalcularRanking;
 
 
 @RestController
@@ -36,8 +40,9 @@ public class ShoppingController {
 	}
 	
 	@Autowired
-    public ShoppingController(ShoppingService shoppingService) {
+    public ShoppingController(ShoppingService shoppingService, LogsService logsService) {
 		this.shoppingService = shoppingService;
+		this.logsService = logsService;
     }
 	
 	
@@ -46,16 +51,16 @@ public class ShoppingController {
 	 * @return
 	 */
 	@GetMapping(value = "/processo-habilidado")
-	public ResponseEntity<Boolean> verificarSeeEstaNoPeriodoInscricao() {
+	public ResponseEntity<String> verificarSeeEstaNoPeriodoInscricao() {
 		
 		
 		try{
-			Boolean aberto = shoppingService.verificarInscricaoEstaAberta();
+			String aberto = shoppingService.verificarInscricaoEstaAberta();
 			
-			return new ResponseEntity<Boolean>(aberto, HttpStatus.OK);
+			return new ResponseEntity<String>(aberto, HttpStatus.OK);
 		}catch(Exception e){
 			//logsService.falha(log, e.getMessage());
-			return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+			return new ResponseEntity<String>("false", HttpStatus.OK);
 		}		
 	}
 	
@@ -71,12 +76,12 @@ public class ShoppingController {
 	public ResponseEntity<String> consultarProcessoAbertoNesteAno(
 			@PathVariable("cpf") String cpf) {
 		
-		PmdLogs log = logsService.infoJson("consultarProcessoAbertoNesteAno", cpf);
+		//PmdLogs log = logsService.infoJson("consultarProcessoAbertoNesteAno", cpf);
 		try{
 			String mensagem = shoppingService.verificarSeExisteUmProcessoAberto(cpf);
 			return new ResponseEntity<String>(mensagem, HttpStatus.OK);
 		}catch(Exception e){
-			logsService.falha(log, e.getMessage());
+		//	logsService.falha(log, e.getMessage());
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.OK);
 		}		
 	}
@@ -86,8 +91,8 @@ public class ShoppingController {
 	 * Envia dados para a tabela auxiliar para garantir que o usuario não esteja duplicado os dados, 
 	 * as informação que sera cadatrada serão apenas dados que o usuario enviou (sem anexos)
 	 * EM_ANDAMENTO - ESTA EM ANDAMENTO						- NÃO ODE ABRIR OUTRO (SE QUISER ABRIRU OUTRO TEM QUE CANCELAR ESTE)
-	 * CANCELADO - O PROCESSO TERÁ QUE SER REFEITO			- PODE ABRIR OUTRO
-	 * CONCLUIDO - FINALIZADO, O USUARIO NÃO PODE REFAZER	- NÃO PODE ABRIR OUTRO
+	 * REPROVADO|CANCELADO - O PROCESSO TERÁ QUE SER REFEITO			- PODE ABRIR OUTRO
+	 * APROVADO - FINALIZADO, O USUARIO NÃO PODE REFAZER	- NÃO PODE ABRIR OUTRO
 	 * @param inscricao
 	 * @return
 	 */
@@ -121,22 +126,37 @@ public class ShoppingController {
 	}
 	
 	
+	
+	
 	/**
 	 * Esse parecer serve para atualizar os dados da avaliação, ira atualizar assim que o o processo for cancelado ou quando o processo for aprovado
 	 * @param shopping
 	 * @return
-	 */
+	 */	
 	@PostMapping(value = "/parecer")
-	public ResponseEntity<String> avaliacaoDoUsuario(@RequestBody DtoShopping shopping) {
+	public ResponseEntity<String> avaliacaoDoUsuario(@RequestBody DtoShopping parecer)  {
 		
-		PmdLogs log = logsService.infoJson("avaliacaoDoUsuario", shopping);
+		PmdLogs log = logsService.infoJson("avaliacaoDoUsuario", parecer);
 		try{
-			String mensagem = shoppingService.avaliacaoDoUsuario(shopping);
+			String mensagem = shoppingService.avaliacaoDoUsuario(parecer);
 			return new ResponseEntity<String>(mensagem, HttpStatus.OK);
 		}catch(Exception e){
 			logsService.falha(log, e.getMessage());
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.OK);
 		}		
+	}
+	
+	@PostMapping(value = "/calcular")
+	public ResponseEntity<String> avaliacaoDoUsuario(@RequestBody DtoJsonDados parecer)  {
+		CalcularRanking c = new CalcularRanking(parecer, 1412.0);
+		int pontuacao = c.calcularPontuacao();
+		Long pontuacaoDesempate = c.calcularPontuacaoCriterioParaDesempate();
+		
+		
+		
+		
+		return null;
+		
 	}
 	
 	
